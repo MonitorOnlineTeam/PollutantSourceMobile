@@ -36,7 +36,11 @@ class Account extends Component {
     const { login } = this.props;
     return (
       <View style={styles.container}>
-        <Button text="知识库" style={{}} />
+        <Button text="知识库" style={{ width: 50 }} />
+        <Button text="通讯录" style={{ width: 50 }} />
+        <Button text="通知提醒" style={{ width: 50 }} />
+        <Button text="知识库" style={{ width: 50 }} />
+        <Button text="知识库" style={{ width: 50 }} />
         {login ? (
           <Button text="Logout" onPress={this.logout} />
         ) : (

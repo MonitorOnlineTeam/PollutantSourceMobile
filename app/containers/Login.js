@@ -53,7 +53,7 @@ class Login extends Component {
   /**
    * 调整界面高度
    */
-  _scrollViewLayout = event => {
+  scrollViewLayout = event => {
     if (Platform.OS === 'ios') {
       this.setState({ contentHeight: WINDOW_HEIGHT });
     } else if (this.state.contentHeight === WINDOW_HEIGHT) {
@@ -93,10 +93,7 @@ class Login extends Component {
   }
   render() {
     return (
-      <ScrollView
-        style={styles.container}
-        onLayout={this._scrollViewLayout.bind(this)}
-      >
+      <ScrollView style={styles.container} onLayout={this.scrollViewLayout}>
         <Image
           source={require('../images/bg_login.jpg')}
           style={[
