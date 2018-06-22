@@ -11,8 +11,10 @@ import Router, { routerMiddleware, screenTracking } from './router';
 import { registerModels } from './models';
 // import api from './config/globalapi';
 
-
-YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated', 'Module RCTImageLoader']);
+YellowBox.ignoreWarnings([
+  'Warning: isMounted(...) is deprecated',
+  'Module RCTImageLoader',
+]);
 const logger = createLogger();
 
 if (!__DEV__) {
@@ -20,7 +22,7 @@ if (!__DEV__) {
     info: () => {},
     log: () => {},
     warn: () => {},
-    error: () => {}
+    error: () => {},
   };
 }
 
@@ -40,7 +42,7 @@ if (!__DEV__) {
 //         let netitem = {};
 //         netitem.neturl = `http://${item.configIp}:${item.configPort}`;
 //         netitem.isuse = true;
-        
+
 //         if (config.neturl != netitem.neturl) {
 //           newconfig.push(netitem);
 //         }
@@ -73,7 +75,7 @@ const App = app.start(<Router />);
 registerModels(app);
 persistStore(app.getStore(), {
   storage: AsyncStorage,
-  blacklist: ['router']
+  blacklist: ['router'],
 });
 
 AppRegistry.registerComponent('PollutantSourceMobile', () => App);

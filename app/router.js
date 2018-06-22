@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { BackHandler, Animated, Easing, } from 'react-native';
+import { BackHandler, Animated, Easing } from 'react-native';
 import {
   StackNavigator,
   TabNavigator,
@@ -14,7 +14,7 @@ import {
 import { connect } from 'react-redux';
 // import CodePush from "react-native-code-push";
 
-import {getCurrentParams, Event} from './utils';
+import { getCurrentParams, Event } from './utils';
 import Loading from './containers/Loading';
 // import Login from './containers/Login';
 // import Home from './containers/Home';
@@ -22,7 +22,6 @@ import Loading from './containers/Loading';
 // import Detail from './containers/Detail';
 import AppNavigator from './containers';
 // import {doUpdate} from './utils/CodePushUtil';
-
 
 // const HomeNavigator = TabNavigator(
 //   {
@@ -103,27 +102,33 @@ export const routerMiddleware = createReactNavigationReduxMiddleware(
 );
 const addListener = createReduxBoundAddListener('root');
 
-export const screenTracking = ({getState}) => next => async (action) => {
-  if (action.type !== NavigationActions.NAVIGATE && action.type !== NavigationActions.BACK&& action.type !== NavigationActions.RESET) {
+export const screenTracking = ({ getState }) => next => async action => {
+  if (
+    action.type !== NavigationActions.NAVIGATE &&
+    action.type !== NavigationActions.BACK &&
+    action.type !== NavigationActions.RESET
+  ) {
     return next(action);
   }
-  if(!action.routeName)
-  {
+  if (!action.routeName) {
     const navigateInfo = routerReducer(getState().router, action);
-          const currentScreen = getCurrentScreen(navigateInfo);
-          const params = getCurrentParams(navigateInfo);
-          action.routeName=currentScreen;
-          action.params=params;
-  }  
-  // routeName, params, type 
-  await Event.emit('RouterChange', action); 
+    const currentScreen = getCurrentScreen(navigateInfo);
+    const params = getCurrentParams(navigateInfo);
+    action.routeName = currentScreen;
+    action.params = params;
+  }
+  // routeName, params, type
+  await Event.emit('RouterChange', action);
   // lizheng solve detail page flash before loading data.
-  const result = next(action); 
+  const result = next(action);
   return result;
 };
 
-@connect(({ app, router, loading }) => ({ app, router,
-  loginLoading:loading.effects['app/login'], }))
+@connect(({ app, router, loading }) => ({
+  app,
+  router,
+  loginLoading: loading.effects['app/login'],
+}))
 class Router extends PureComponent {
   componentWillMount() {
     BackHandler.addEventListener('hardwareBackPress', this.backHandle);
@@ -156,7 +161,8 @@ class Router extends PureComponent {
     if (
       // app.loading
       this.props.loginLoading
-    ) return <Loading />;
+    )
+      return <Loading />;
 
     const navigation = {
       dispatch,

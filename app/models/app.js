@@ -39,9 +39,7 @@ export default Model.extend({
     *logout(action, { call, put }) {
       yield call(Storage.set, 'login', false);
       yield put(createAction('updateState')({ login: false }));
-      yield put(
-        NavigationActions.navigate({ routeName: 'Login' })
-      );
+      yield put(NavigationActions.navigate({ routeName: 'Login' }));
     },
   },
   subscriptions: {
@@ -50,7 +48,7 @@ export default Model.extend({
     },
     setupSubscriber({ dispatch, listen }) {
       listen({
-        // MyPhoneList: ({ params }) => {  
+        // MyPhoneList: ({ params }) => {
         //   dispatch({
         //     type: 'loadcontactlist',
         //     payload: {
@@ -59,6 +57,5 @@ export default Model.extend({
         // },
       });
     },
-    
   },
 });

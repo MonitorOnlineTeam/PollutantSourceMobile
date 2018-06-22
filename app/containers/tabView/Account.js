@@ -15,7 +15,10 @@ class Account extends Component {
     tabBarLabel: '我',
     tabBarIcon: ({ focused, tintColor }) => (
       <Image
-        style={[wholeSituationStyle.icon, { tintColor: focused ? tintColor : 'gray' }]}
+        style={[
+          wholeSituationStyle.icon,
+          { tintColor: focused ? tintColor : 'gray' },
+        ]}
         source={require('../../images/person.png')}
       />
     ),
@@ -33,6 +36,7 @@ class Account extends Component {
     const { login } = this.props;
     return (
       <View style={styles.container}>
+        <Button text="知识库" style={{}} />
         {login ? (
           <Button text="Logout" onPress={this.logout} />
         ) : (

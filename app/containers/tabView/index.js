@@ -1,7 +1,4 @@
-import {
-    TabNavigator,
-    TabBarBottom,
-} from 'react-navigation';
+import { TabNavigator, TabBarBottom } from 'react-navigation';
 
 // import Home from './Home';
 import DataList from './DataList';
@@ -12,20 +9,20 @@ import Statistical from './Statistical';
 import Account from './Account';
 
 export default TabNavigator(
-    {
-        DataList: { screen: DataList },
-        Map: { screen: Map },
-        Workbench: { screen: Workbench },
-        Statistical: { screen: Statistical },
-        // Home: { screen: Home },
-        Account: { screen: Account },
-    },
-    {
-        headerMode: 'none',
-        tabBarComponent: TabBarBottom,
-        tabBarPosition: 'bottom',
-        swipeEnabled: false,
-        animationEnabled: false,
-        lazyLoad: false,
-    }
+  {
+    DataList: { screen: DataList },
+    Map: { screen: Map },
+    Workbench: { screen: Workbench },
+    Statistical: { screen: Statistical },
+    // Home: { screen: Home },
+    Account: { screen: Account },
+  },
+  {
+    headerMode: 'none',
+    tabBarComponent: TabBarBottom,
+    tabBarPosition: 'bottom',
+    swipeEnabled: false,
+    animationEnabled: false,
+    lazyLoad: false,
+  }
 );
