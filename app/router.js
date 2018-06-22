@@ -12,7 +12,7 @@ import {
   createReactNavigationReduxMiddleware,
 } from 'react-navigation-redux-helpers';
 import { connect } from 'react-redux';
-// import CodePush from "react-native-code-push";
+import CodePush from "react-native-code-push";
 
 import { getCurrentParams, Event } from './utils';
 import Loading from './containers/Loading';
@@ -21,7 +21,7 @@ import Loading from './containers/Loading';
 // import Account from './containers/Account';
 // import Detail from './containers/Detail';
 import AppNavigator from './containers';
-// import {doUpdate} from './utils/CodePushUtil';
+import {doUpdate} from './utils/CodePushUtil';
 
 // const HomeNavigator = TabNavigator(
 //   {
@@ -135,8 +135,8 @@ class Router extends PureComponent {
   }
 
   componentDidMount() {
-    // CodePush.notifyAppReady();
-    // doUpdate((syncStatus)=>{},(progress)=>{});
+    CodePush.notifyAppReady();
+    doUpdate((syncStatus)=>{},(progress)=>{});
     initializeListeners('root', this.props.router);
   }
 
