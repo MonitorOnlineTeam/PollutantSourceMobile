@@ -30,25 +30,23 @@ import { saveStorage, loadStorage } from '../dvapack/storage';
   loadglobalvariable: loading.effects['app/loadglobalvariable'],
 }))
 class Login extends Component {
-
-    /**
-     * 构造方法
-    */
-    constructor(props){
-        super(props);
-        this.state ={
-            User_Account:'',
-            User_Pwd:'',
-            loadingState:false,
-            isremenber:false,
-            contentHeight:WINDOW_HEIGHT,
-        };
-    }
-    async componentWillMount() {
-      const loginmsg = await loadStorage('loginmsg');
-      if (loginmsg != null) {
-        this.setState(loginmsg);
-      }
+  /**
+   * 构造方法
+   */
+  constructor(props) {
+    super(props);
+    this.state = {
+      User_Account: '',
+      User_Pwd: '',
+      loadingState: false,
+      isremenber: false,
+      contentHeight: WINDOW_HEIGHT,
+    };
+  }
+  async componentWillMount() {
+    const loginmsg = await loadStorage('loginmsg');
+    if (loginmsg != null) {
+      this.setState(loginmsg);
     }
   }
 
@@ -70,23 +68,25 @@ class Login extends Component {
     const username = this.userNameInput.props.value;
     const password = this.passWordInput.props.value;
 
-    this.props.dispatch(createAction('app/login')({
-      'User_Account': username,
-      'User_Pwd': password,
-    }));
+    this.props.dispatch(
+      createAction('app/login')({
+        User_Account: username,
+        User_Pwd: password,
+      })
+    );
 
     /**
-         * 选中‘记住密码’则存储密码
-        */
+     * 选中‘记住密码’则存储密码
+     */
     if (this.state.isremenber) {
       this.state.User_Account = username;
       this.state.User_Pwd = password;
       await saveStorage('loginmsg', this.state);
     } else {
       const loginInfo = {
-        'User_Account':this.state.username,
-        'User_Pwd':password,
-        'isremenber':false,
+        User_Account: this.state.username,
+        User_Pwd: password,
+        isremenber: false,
       };
       await saveStorage('loginmsg', loginInfo);
     }
