@@ -27,8 +27,8 @@ class Login extends Component {
     constructor(props){
         super(props);
         this.state ={
-            username:'',
-            password:'',
+            User_Account:'',
+            User_Pwd:'',
             loadingState:false,
             isremenber:false,
             contentHeight:WINDOW_HEIGHT,
@@ -61,21 +61,21 @@ class Login extends Component {
         const password = this.passWordInput.props.value;
 
         this.props.dispatch(createAction('app/login')({
-            'username': username,
-            'password': password,
+            'User_Account': username,
+            'User_Pwd': password,
         }));
        
         /**
          * 选中‘记住密码’则存储密码
         */
         if (this.state.isremenber) {
-            this.state.username = username;
-            this.state.password = password;
+            this.state.User_Account = username;
+            this.state.User_Pwd = password;
             await saveStorage('loginmsg', this.state);
         } else {
             const loginInfo = {
-                'username':this.state.username,
-                'password':password,
+                'User_Account':this.state.username,
+                'User_Pwd':password,
                 'isremenber':false,
             };
             await saveStorage('loginmsg', loginInfo);

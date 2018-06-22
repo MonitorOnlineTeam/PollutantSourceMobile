@@ -1,8 +1,8 @@
-import { createAction, NavigationActions, Storage } from '../utils';
+import { createAction, NavigationActions, Storage, ShowToast } from '../utils';
 import * as authService from '../services/auth';
 import { Model } from '../dvapack';
+import { clearToken, saveToken, saveStorage, loadStorage } from '../dvapack/storage';
 
-console.log(Model);
 export default Model.extend({
   namespace: 'app',
   state: {
@@ -20,21 +20,47 @@ export default Model.extend({
       const login = yield call(Storage.get, 'login', false);
       yield put(createAction('updateState')({ login, loading: false }));
     },
+    /**
+     * 获取全局变量
+     * liz 2017.11.11
+     * @param {any} { payload } 
+     * @param {any} { call, put, update } 
+     */
+    * loadglobalvariable({ payload }, { call, put, update,take }) {
+      // const { user } = payload;
+      // let globalConfig = yield loadStorage('globalconfig');
+      
+      // if (user && user != null) {
+      //   yield put('GetPolluntType', { });
+      //   yield take('GetPolluntType/@@end');
+      // } 
+      // if (SplashScreen) {
+      //   SplashScreen.hide();
+      // }
+      // yield update({ globalConfig, user });
+    },
     *login({ payload }, { call, put }) {
       yield put(createAction('updateState')({ fetching: true }));
       const login = yield call(authService.login, payload);
-      if (login) {
+      console.log(login);
+      if(login == null) {
+        ShowToast('登陆失败');
+      } else if (login&&login.requstresult === '1') {
+        const user = login.data;
+        Storage.set('login', login);
+        yield put(createAction('updateState')({ login, fetching: false }));
+        yield saveToken(user);
+        // yield put('loadglobalvariable', { user });
+        // yield take('loadglobalvariable/@@end');
         yield put(
-          // NavigationActions.reset can't use at react-navigation 2.0.1
-          // should use StackActions, but now is ineffective
           NavigationActions.reset({
             index: 0,
             actions: [NavigationActions.navigate({ routeName: 'Main' })],
           })
         );
+      } else {
+        ShowToast('用户名或密码错误');
       }
-      yield put(createAction('updateState')({ login, fetching: false }));
-      Storage.set('login', login);
     },
     *logout(action, { call, put }) {
       yield call(Storage.set, 'login', false);

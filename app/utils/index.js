@@ -1,3 +1,5 @@
+import {Toast} from 'antd-mobile-rn';
+
 export { NavigationActions } from 'react-navigation';
 
 export { default as Storage } from './storage';
@@ -48,3 +50,7 @@ export const Event = {
       }
     }
   };
+
+export const ShowToast = (msg) => {
+  Toast.info(msg, 1);
+};
