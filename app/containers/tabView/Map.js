@@ -17,43 +17,45 @@ import wholeSituationStyle from '../../config/wholeSituationStyle';
  * @Description: 地图一览.
  */
 
- 
 // create a component
 @connect()
 class Map extends Component {
-    static navigationOptions = {
-        header: null,
-        title: '地图一览',
-        tabBarLabel: '地图一览',
-        tabBarIcon: ({ focused, tintColor }) => (
-            <Image
-            style={[wholeSituationStyle.icon, { tintColor: focused ? tintColor : 'gray' }]}
-            source={require('../../images/person.png')}
-            />
-        ),
-    }
-    
-    render() {
-        return (
-            <MapView
-                style={[styles.container,]}
-                coordinate={{
-                    latitude: 39.91095,
-                    longitude: 116.37296,
-                }}
-            />
-        );
-    }
+  static navigationOptions = {
+    header: null,
+    title: '地图一览',
+    tabBarLabel: '地图一览',
+    tabBarIcon: ({ focused, tintColor }) => (
+      <Image
+        style={[
+          wholeSituationStyle.icon,
+          { tintColor: focused ? tintColor : 'gray' },
+        ]}
+        source={require('../../images/person.png')}
+      />
+    ),
+  }
+
+  render() {
+    return (
+      <MapView
+        style={[styles.container]}
+        coordinate={{
+          latitude: 39.91095,
+          longitude: 116.37296,
+        }}
+      />
+    );
+  }
 }
 
 // define your styles
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        // backgroundColor: '#2c3e50',
-    },
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    // backgroundColor: '#2c3e50',
+  },
 });
 
 // make this component available to the app

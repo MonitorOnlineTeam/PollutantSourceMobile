@@ -1,4 +1,11 @@
-import { ShowResult, ShowToast, ShowLoadingToast, CloseToast, Event, ShowAlert } from '../../utils/index';
+import {
+  ShowResult,
+  ShowToast,
+  ShowLoadingToast,
+  CloseToast,
+  Event,
+  ShowAlert,
+} from '../../utils/index';
 
 const PATH_SUBSCRIBER_KEY = '_pathSubscriberKey';
 
@@ -6,12 +13,10 @@ const createNestedValueRecuder = (parentKey, value) => (state, { payload }) => {
   let parentState = state[parentKey];
   const { key } = payload;
   if (key) {
-    parentState = typeof parentState === 'boolean'
-      ? {}
-      : parentState;
+    parentState = typeof parentState === 'boolean' ? {} : parentState;
     parentState = {
       ...parentState,
-      [key]: value
+      [key]: value,
     };
   } else {
     // 兼容旧版本，如果type不存在，则直接对parent赋值
@@ -20,22 +25,20 @@ const createNestedValueRecuder = (parentKey, value) => (state, { payload }) => {
   return {
     ...state,
     ...payload,
-    [parentKey]: parentState
+    [parentKey]: parentState,
   };
 };
 
 const createNestedRecuder = parentKey => (state, { payload }) => {
   let parentState = state[parentKey];
-  parentState = typeof parentState === 'boolean'
-    ? {}
-    : parentState;
+  parentState = typeof parentState === 'boolean' ? {} : parentState;
 
   return {
     ...state,
     [parentKey]: {
       ...parentState,
-      payload
-    }
+      payload,
+    },
   };
 };
 
@@ -45,7 +48,7 @@ const getDefaultModel = () => ({
     visible: false,
     spinning: false,
     loading: false,
-    confirmLoading: false
+    confirmLoading: false,
   },
   subscriptions: {},
   effects: {},
@@ -62,10 +65,10 @@ const getDefaultModel = () => ({
     updateState(state, { payload }) {
       return {
         ...state,
-        ...payload
+        ...payload,
       };
-    }
-  }
+    },
+  },
 });
 
 /**
@@ -92,15 +95,13 @@ const getDefaultModel = () => ({
  * }
  */
 const enhanceSubscriptions = (subscriptions = {}) => {
-  return Object
-    .keys(subscriptions)
-    .reduce((wrappedSubscriptions, key) => {
-      wrappedSubscriptions[key] = createWrappedSubscriber(subscriptions[key]);
-      return wrappedSubscriptions;
-    }, {});
+  return Object.keys(subscriptions).reduce((wrappedSubscriptions, key) => {
+    wrappedSubscriptions[key] = createWrappedSubscriber(subscriptions[key]);
+    return wrappedSubscriptions;
+  }, {});
 
   function createWrappedSubscriber(subscriber) {
-    return (props) => {
+    return props => {
       const { dispatch, history } = props;
 
       const listen = (pathReg, action) => {
@@ -111,30 +112,27 @@ const enhanceSubscriptions = (subscriptions = {}) => {
           listeners[pathReg] = action;
         }
         Event.on('RouterChange', ({ routeName, params, type }) => {
-          Object
-            .keys(listeners)
-            .forEach((key) => {
-              // 返回上一级页面时，不执行数据加载
-              if (type.indexOf('BACK') === -1) {
-                const _pathReg = key;
-                const _action = listeners[key];
-                if (routeName === _pathReg) {
-                  if (typeof _action === 'object') {
-                    dispatch(_action);
-                  } else if (typeof _action === 'function') {
-                    _action({
-                      params
-                    });
-                  }
+          Object.keys(listeners).forEach(key => {
+            // 返回上一级页面时，不执行数据加载
+            if (type.indexOf('BACK') === -1) {
+              const _pathReg = key;
+              const _action = listeners[key];
+              if (routeName === _pathReg) {
+                if (typeof _action === 'object') {
+                  dispatch(_action);
+                } else if (typeof _action === 'function') {
+                  _action({
+                    params,
+                  });
                 }
               }
-              
-            });
+            }
+          });
         });
       };
       subscriber({
         ...props,
-        listen
+        listen,
       });
     };
   }
@@ -154,26 +152,26 @@ const enhanceSubscriptions = (subscriptions = {}) => {
  */
 const enhanceEffects = (effects = {}) => {
   const wrappedEffects = {};
-  Object
-    .keys(effects)
-    .forEach((key) => {
-      wrappedEffects[key] = function* (action, sagaEffects) {
-        const extraSagaEffects = {
-          ...sagaEffects,
-          put: createPutEffect(sagaEffects),
-          update: createUpdateEffect(sagaEffects),
-          callWithLoading: createExtraCall(sagaEffects, { loading: true }),
-          callWithConfirmLoading: createExtraCall(sagaEffects, { confirmLoading: true }),
-          callWithSpinning: createExtraCall(sagaEffects, { spinning: true }),
-          callWithMessage: createExtraCall(sagaEffects),
-          callWithExtra: (serviceFn, args, config) => {
-            createExtraCall(sagaEffects, config)(serviceFn, args, config);
-          }
-        };
-
-        yield effects[key](action, extraSagaEffects);
+  Object.keys(effects).forEach(key => {
+    wrappedEffects[key] = function*(action, sagaEffects) {
+      const extraSagaEffects = {
+        ...sagaEffects,
+        put: createPutEffect(sagaEffects),
+        update: createUpdateEffect(sagaEffects),
+        callWithLoading: createExtraCall(sagaEffects, { loading: true }),
+        callWithConfirmLoading: createExtraCall(sagaEffects, {
+          confirmLoading: true,
+        }),
+        callWithSpinning: createExtraCall(sagaEffects, { spinning: true }),
+        callWithMessage: createExtraCall(sagaEffects),
+        callWithExtra: (serviceFn, args, config) => {
+          createExtraCall(sagaEffects, config)(serviceFn, args, config);
+        },
       };
-    });
+
+      yield effects[key](action, extraSagaEffects);
+    };
+  });
 
   return wrappedEffects;
 
@@ -182,7 +180,7 @@ const enhanceEffects = (effects = {}) => {
     return function* putEffect(type, payload) {
       let action = {
         type,
-        payload
+        payload,
       };
       if (arguments.length === 1 && typeof type === 'object') {
         action = arguments[0];
@@ -200,30 +198,41 @@ const enhanceEffects = (effects = {}) => {
 
   function createExtraCall(sagaEffects, config = {}) {
     const { put, call } = sagaEffects;
-    return function* extraCallEffect(serviceFn, args, payloadupdate, message = {}) {
+    return function* extraCallEffect(
+      serviceFn,
+      args,
+      payloadupdate,
+      message = {}
+    ) {
       let result;
       const { loading, confirmLoading, spinning } = config;
       const { successMsg, errorMsg, key } = message;
       if (loading) {
-        yield put({ type: 'showLoading',
+        yield put({
+          type: 'showLoading',
           payload: {
             ...payloadupdate,
-            key
-          } });
+            key,
+          },
+        });
       }
       if (confirmLoading) {
-        yield put({ type: 'showConfirmLoading',
+        yield put({
+          type: 'showConfirmLoading',
           payload: {
             ...payloadupdate,
-            key
-          } });
+            key,
+          },
+        });
       }
       if (spinning) {
-        yield put({ type: 'showSpinning',
+        yield put({
+          type: 'showSpinning',
           payload: {
             ...payloadupdate,
-            key
-          } });
+            key,
+          },
+        });
       }
 
       try {
@@ -234,25 +243,31 @@ const enhanceEffects = (effects = {}) => {
         throw e;
       } finally {
         if (loading) {
-          yield put({ type: 'hideLoading',
+          yield put({
+            type: 'hideLoading',
             payload: {
               ...payloadupdate,
-              key
-            } });
+              key,
+            },
+          });
         }
         if (confirmLoading) {
-          yield put({ type: 'hideConfirmLoading',
+          yield put({
+            type: 'hideConfirmLoading',
             payload: {
               ...payloadupdate,
-              key
-            } });
+              key,
+            },
+          });
         }
         if (spinning) {
-          yield put({ type: 'hideSpinning',
+          yield put({
+            type: 'hideSpinning',
             payload: {
               ...payloadupdate,
-              key
-            } });
+              key,
+            },
+          });
         }
       }
 
@@ -277,7 +292,7 @@ function extend(defaults, properties) {
   const model = defaults || getDefaultModel();
   const modelAssignKeys = ['state', 'subscriptions', 'effects', 'reducers'];
   const { namespace } = properties;
-  modelAssignKeys.forEach((key) => {
+  modelAssignKeys.forEach(key => {
     if (key === 'subscriptions') {
       properties[key] = enhanceSubscriptions(properties[key]);
     }
@@ -288,20 +303,20 @@ function extend(defaults, properties) {
   });
 
   const initialState = {
-    ...model.state
+    ...model.state,
   };
 
   Object.assign(model.reducers, {
     resetState() {
       return {
-        ...initialState
+        ...initialState,
       };
-    }
+    },
   });
 
   return Object.assign(model, { namespace });
 }
 
 export default {
-  extend
+  extend,
 };

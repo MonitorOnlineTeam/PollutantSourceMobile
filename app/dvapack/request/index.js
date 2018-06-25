@@ -27,10 +27,9 @@ const fetchtimeout = (requestPromise, timeout = 30000) => {
   return Promise.race([requestPromise, timerPromise]);
 };
 
-
 async function request(url, _options) {
   let { neturl } = await getUseNetConfig();
-  //替换为https
+  // 替换为https
   neturl = 'https://api.chsdl.cn/PMS15';
   const uri = new URI(neturl + url);
   const options = _options || {};
@@ -76,11 +75,11 @@ export function test(url, params) {
   return new Promise((resolve, reject) => {
     fetchtimeout(myFetch, 5000)
       .then(response => response.json())
-      .then((responseData) => {
+      .then(responseData => {
         resolve(responseData);
         return true;
       })
-      .catch((error) => {
+      .catch(error => {
         reject(error);
         return false;
       });
@@ -98,7 +97,7 @@ export async function upload(url, body, optionscall, tooken) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(body),
-    ...optionscall
+    ...optionscall,
   };
   const resp = await fetch(uri.toString(), options);
   console.log(`status${resp.status}`);
@@ -125,14 +124,15 @@ export async function upload(url, body, optionscall, tooken) {
     return null;
   }
 
-
   return json;
 }
 export async function get(url, params, options, tooken) {
   if (params) {
     const paramsArray = [];
     // encodeURIComponent
-    Object.keys(params).forEach(key => paramsArray.push(`${key}=${params[key]}`));
+    Object.keys(params).forEach(key =>
+      paramsArray.push(`${key}=${params[key]}`)
+    );
     url = await geturl(url, tooken);
     if (url.indexOf('?') === -1) {
       if (url.search(/\?/) === -1) {
@@ -169,7 +169,9 @@ export async function posturl(url, params, options, tooken) {
   if (params) {
     const paramsArray = [];
     // encodeURIComponent
-    Object.keys(params).forEach(key => paramsArray.push(`${key}=${params[key]}`));
+    Object.keys(params).forEach(key =>
+      paramsArray.push(`${key}=${params[key]}`)
+    );
     url = await geturl(url, tooken);
     if (url.indexOf('?') === -1) {
       if (url.search(/\?/) === -1) {
