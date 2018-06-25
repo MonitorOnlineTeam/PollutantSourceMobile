@@ -34,6 +34,7 @@ export default StackNavigator(
     Detail: { screen: Detail },
   },
   {
+    lazyLoad: true,
     headerMode: 'none',
     mode: 'modal',
     navigationOptions: {

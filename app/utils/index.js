@@ -47,7 +47,6 @@ export const Event = {
     }
   },
 };
-
 export const ShowToast = (msg) => {
   Toast.info(msg, 1);
 };
