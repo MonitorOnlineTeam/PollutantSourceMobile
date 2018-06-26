@@ -23,5 +23,6 @@ export default TabNavigator(
     swipeEnabled: false,
     animationEnabled: false,
     lazyLoad: false,
+    // initialRouteName:'Workbench'
   }
 );

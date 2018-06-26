@@ -43,6 +43,13 @@ class Login extends Component {
       contentHeight: WINDOW_HEIGHT,
     };
   }
+
+  static navigationOptions = {
+    title: '人员信息',
+    headerTintColor: '#fff',
+    headerStyle: { backgroundColor: '#4f6aea',height:0, }
+  }
+
   async componentWillMount() {
     const loginmsg = await loadStorage('loginmsg');
     if (loginmsg != null) {

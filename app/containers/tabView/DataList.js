@@ -37,7 +37,12 @@ class DataList extends Component {
   }
 
   gotoDetail = () => {
-    this.props.dispatch(NavigationActions.navigate({ routeName: 'Detail' }));
+    // this.props.dispatch(NavigationActions.navigate({ routeName: 'Detail' }));
+    this.props.dispatch(NavigationActions.navigate({ routeName: 'SingleStationDetail' }));
+    // this.props.dispatch(NavigationActions.reset({
+    //   index: 0,
+    //   actions: [NavigationActions.navigate({ routeName: 'SingleStationDetail' })],
+    // }));
   }
 
   render() {

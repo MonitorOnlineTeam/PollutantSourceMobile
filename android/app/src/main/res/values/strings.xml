@@ -1,4 +1,5 @@
 <resources>
+
     <string moduleConfig="true" name="reactNativeCodePush_androidDeploymentKey">_QDZW15WsVGB-EvG3dMuNCEvQ9Xmd4a7e3a5-9ea1-45d8-9b3f-6f08d1f6119f</string>
     <string name="app_name">PollutantSourceMobile</string>
 </resources>
