@@ -12,6 +12,8 @@ import { NavigationActions } from '../../utils';
 class EmissionsPlan extends Component {
     static navigationOptions =({router,navigation})=>{
         return{
+            title: '排污计划',
+            tabBarLabel: '排污计划',
             headerLeft:(  
                 <Text  onPress={()=>{
                     navigation.dispatch(NavigationActions.back());
@@ -27,8 +29,9 @@ class EmissionsPlan extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text>EmissionsPlan</Text>
-                <Button text="Go Back" onPress={this.goBack} />
+                <Text>EmissionsPlan
+                排污规划
+                </Text>
             </View>
         );
     }
@@ -40,7 +43,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#2c3e50',
+        backgroundColor: 'lightgrey',
     },
 });
 

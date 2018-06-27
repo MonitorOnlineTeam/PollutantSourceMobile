@@ -12,6 +12,8 @@ import { NavigationActions } from '../../utils';
 class TaskManage extends Component {
     static navigationOptions =({router,navigation})=>{
         return{
+            title: '任务管理',
+            tabBarLabel: '任务管理',
             headerLeft:(  
                 <Text  onPress={()=>{
                     navigation.dispatch(NavigationActions.back());
@@ -28,7 +30,6 @@ class TaskManage extends Component {
         return (
             <View style={styles.container}>
                 <Text>TaskManage</Text>
-                <Button text="Go Back" onPress={this.goBack} />
             </View>
         );
     }

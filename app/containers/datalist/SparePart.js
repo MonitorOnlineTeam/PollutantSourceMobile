@@ -12,6 +12,8 @@ import { NavigationActions } from '../../utils';
 class SparePart extends Component {
     static navigationOptions =({router,navigation})=>{
         return{
+            title: '备品备件',
+            tabBarLabel: '备品备件',
             headerLeft:(  
                 <Text  onPress={()=>{
                     navigation.dispatch(NavigationActions.back());
@@ -27,8 +29,7 @@ class SparePart extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text>SparePart</Text>
-                <Button text="Go Back" onPress={this.goBack} />
+                <Text>SparePart 备品备件历史记录</Text>
             </View>
         );
     }
@@ -40,7 +41,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#2c3e50',
+        backgroundColor: 'lightgrey',
     },
 });
 

@@ -12,6 +12,8 @@ import { NavigationActions } from '../../utils';
 class Patrol extends Component {
     static navigationOptions =({router,navigation})=>{
         return{
+            title: '例行任务',
+            tabBarLabel: '例行任务',
             headerLeft:(  
                 <Text  onPress={()=>{
                     navigation.dispatch(NavigationActions.back());
@@ -27,8 +29,7 @@ class Patrol extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text>Patrol</Text>
-                <Button text="Go Back" onPress={this.goBack} />
+                <Text>Patrol 单站点 例行任务</Text>
             </View>
         );
     }
@@ -40,7 +41,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#2c3e50',
+        backgroundColor: 'lightgrey',
     },
 });
 

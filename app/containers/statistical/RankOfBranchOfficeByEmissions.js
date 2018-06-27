@@ -12,6 +12,8 @@ import { NavigationActions } from '../../utils';
 class RankOfBranchOfficeByEmissions extends Component {
     static navigationOptions =({router,navigation})=>{
         return{
+            title: '分厂排污排名',
+            tabBarLabel: '分厂排污排名',
             headerLeft:(  
                 <Text  onPress={()=>{
                     navigation.dispatch(NavigationActions.back());
@@ -27,8 +29,9 @@ class RankOfBranchOfficeByEmissions extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text>RankOfBranchOfficeByEmissions</Text>
-                <Button text="Go Back" onPress={this.goBack} />
+                <Text>RankOfBranchOfficeByEmissions
+                分厂排污排名
+                </Text>
             </View>
         );
     }
@@ -40,7 +43,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#2c3e50',
+        backgroundColor: 'lightgrey',
     },
 });
 

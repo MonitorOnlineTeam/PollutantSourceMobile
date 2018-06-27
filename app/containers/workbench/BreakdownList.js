@@ -12,6 +12,8 @@ import { NavigationActions } from '../../utils';
 class BreakdownList extends Component {
     static navigationOptions =({router,navigation})=>{
         return{
+            title: '故障记录',
+            tabBarLabel: '故障记录',
             headerLeft:(  
                 <Text  onPress={()=>{
                     navigation.dispatch(NavigationActions.back());
@@ -28,7 +30,6 @@ class BreakdownList extends Component {
         return (
             <View style={styles.container}>
                 <Text>BreakdownList</Text>
-                <Button text="Go Back" onPress={this.goBack} />
             </View>
         );
     }

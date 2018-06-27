@@ -12,6 +12,8 @@ import { NavigationActions } from '../../utils';
 class AlarmingNumberStatistics extends Component {
     static navigationOptions =({router,navigation})=>{
         return{
+            title: '报警次数排名',
+            tabBarLabel: '报警次数排名',
             headerLeft:(  
                 <Text  onPress={()=>{
                     navigation.dispatch(NavigationActions.back());
@@ -27,8 +29,9 @@ class AlarmingNumberStatistics extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text>AlarmingNumberStatistics</Text>
-                <Button text="Go Back" onPress={this.goBack} />
+                <Text>AlarmingNumberStatistics
+                    报警次数排名
+                </Text>
             </View>
         );
     }
@@ -40,7 +43,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#2c3e50',
+        backgroundColor: 'lightgrey',
     },
 });
 

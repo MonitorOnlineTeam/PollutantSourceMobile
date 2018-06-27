@@ -12,6 +12,8 @@ import { NavigationActions } from '../../utils';
 class ConsumableManage extends Component {
     static navigationOptions =({router,navigation})=>{
         return{
+            title: '耗材统计',
+            tabBarLabel: '耗材统计',
             headerLeft:(  
                 <Text  onPress={()=>{
                     navigation.dispatch(NavigationActions.back());
@@ -28,7 +30,6 @@ class ConsumableManage extends Component {
         return (
             <View style={styles.container}>
                 <Text>ConsumableManage</Text>
-                <Button text="Go Back" onPress={this.goBack} />
             </View>
         );
     }

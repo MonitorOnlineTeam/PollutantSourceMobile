@@ -12,6 +12,8 @@ import { NavigationActions } from '../../utils';
 class Emergency extends Component {
     static navigationOptions =({router,navigation})=>{
         return{
+            title: '应急任务',
+            tabBarLabel: '应急任务',
             headerLeft:(  
                 <Text  onPress={()=>{
                     navigation.dispatch(NavigationActions.back());
@@ -27,8 +29,7 @@ class Emergency extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text>Emergency</Text>
-                <Button text="Go Back" onPress={this.goBack} />
+                <Text>Emergency 单站点 应急任务历史记录</Text>
             </View>
         );
     }
@@ -40,7 +41,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#2c3e50',
+        backgroundColor: 'lightgrey',
     },
 });
 

@@ -12,6 +12,8 @@ import { NavigationActions } from '../../utils';
 class QualityControl extends Component {
     static navigationOptions =({router,navigation})=>{
         return{
+            title: '质控',
+            tabBarLabel: '质控',
             headerLeft:(  
                 <Text  onPress={()=>{
                     navigation.dispatch(NavigationActions.back());
@@ -27,8 +29,7 @@ class QualityControl extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text>QualityControl</Text>
-                <Button text="Go Back" onPress={this.goBack} />
+                <Text>QualityControl 质控历史记录</Text>
             </View>
         );
     }
@@ -40,7 +41,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#2c3e50',
+        backgroundColor: 'lightgrey',
     },
 });
 

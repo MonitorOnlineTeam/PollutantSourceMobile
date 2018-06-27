@@ -12,6 +12,8 @@ import { NavigationActions } from '../../utils';
 class EarlyWarning extends Component {
     static navigationOptions =({router,navigation})=>{
         return{
+            title: '预警',
+            tabBarLabel: '预警',
             headerLeft:(  
                 <Text  onPress={()=>{
                     navigation.dispatch(NavigationActions.back());
@@ -27,8 +29,7 @@ class EarlyWarning extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text>EarlyWarning</Text>
-                <Button text="Go Back" onPress={this.goBack} />
+                <Text>EarlyWarning 工作台 预警提醒</Text>
             </View>
         );
     }

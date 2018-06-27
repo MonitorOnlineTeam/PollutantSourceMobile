@@ -9,9 +9,11 @@ import { NavigationActions } from '../../utils';
 
 // create a component
 @connect()
-class AlarmingTimeStatistics extends Component {
+class AlarmingDurationStatistics extends Component {
     static navigationOptions =({router,navigation})=>{
         return{
+            title: '报警时长排名',
+            tabBarLabel: '报警时长排名',
             headerLeft:(  
                 <Text  onPress={()=>{
                     navigation.dispatch(NavigationActions.back());
@@ -27,8 +29,9 @@ class AlarmingTimeStatistics extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text>AlarmingTimeStatistics</Text>
-                <Button text="Go Back" onPress={this.goBack} />
+                <Text>AlarmingDurationStatistics
+                报警时长排名
+                </Text>
             </View>
         );
     }
@@ -40,9 +43,9 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#2c3e50',
+        backgroundColor: 'lightgrey',
     },
 });
 
 //make this component available to the app
-export default AlarmingTimeStatistics;
+export default AlarmingDurationStatistics;

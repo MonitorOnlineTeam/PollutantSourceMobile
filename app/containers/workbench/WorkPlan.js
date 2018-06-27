@@ -12,6 +12,8 @@ import { NavigationActions } from '../../utils';
 class WorkPlan extends Component {
     static navigationOptions =({router,navigation})=>{
         return{
+            title: '工作计划',
+            tabBarLabel: '工作计划',
             headerLeft:(  
                 <Text  onPress={()=>{
                     navigation.dispatch(NavigationActions.back());
@@ -28,7 +30,6 @@ class WorkPlan extends Component {
         return (
             <View style={styles.container}>
                 <Text>WorkPlan</Text>
-                <Button text="Go Back" onPress={this.goBack} />
             </View>
         );
     }

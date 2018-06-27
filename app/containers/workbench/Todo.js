@@ -12,6 +12,8 @@ import { NavigationActions } from '../../utils';
 class Todo extends Component {
     static navigationOptions =({router,navigation})=>{
         return{
+            title: '待办',
+            tabBarLabel: '待办',
             headerLeft:(  
                 <Text  onPress={()=>{
                     navigation.dispatch(NavigationActions.back());
@@ -27,8 +29,7 @@ class Todo extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text>Todo</Text>
-                <Button text="Go Back" onPress={this.goBack} />
+                <Text>Todo 工作台 待办提醒</Text>
             </View>
         );
     }

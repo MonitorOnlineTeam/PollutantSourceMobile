@@ -1,26 +1,27 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Image } from 'react-native';
 import { connect } from 'react-redux';
+import Icon from 'react-native-vector-icons/dist/FontAwesome';
 
 import { Button } from '../../components';
-
 import { createAction, NavigationActions } from '../../utils';
 import wholeSituationStyle from '../../config/wholeSituationStyle';
 
 @connect(({ app }) => ({ ...app }))
 class Account extends Component {
   static navigationOptions = {
-    header: null,
+    // header: null,
     title: '我',
     tabBarLabel: '我',
     tabBarIcon: ({ focused, tintColor }) => (
-      <Image
-        style={[
-          wholeSituationStyle.icon,
-          { tintColor: focused ? tintColor : 'gray' },
-        ]}
-        source={require('../../images/person.png')}
-      />
+      // <Image
+      //   style={[
+      //     wholeSituationStyle.icon,
+      //     { tintColor: focused ? tintColor : 'gray' },
+      //   ]}
+      //   source={require('../../images/person.png')}
+      // />
+      <Icon name={'address-card'} size={20} style={{color:focused ? tintColor : 'gray'}}/>
     ),
   }
 

@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 import { Grid } from 'antd-mobile';
+import Icon from 'react-native-vector-icons/dist/FontAwesome';
+import Iconi from 'react-native-vector-icons/dist/Ionicons';
 
 import wholeSituationStyle from '../../config/wholeSituationStyle';
 import { NavigationActions } from '../../utils';
@@ -14,7 +16,7 @@ import { NavigationActions } from '../../utils';
  * @Email: houxfmark3955@163.com
  * @Create At: 2018-06-20 14:45:44
  * @Last Modified By: houxfmark3955@163.com
- * @Last Modified At: 2018-06-26 10:46:53
+ * @Last Modified At: 2018-06-27 15:18:37
  * @Description: 统计.
  */
 
@@ -22,17 +24,18 @@ import { NavigationActions } from '../../utils';
 @connect()
 class Statistical extends Component {
   static navigationOptions = {
-    header: null,
+    // header: null,
     title: '统计',
     tabBarLabel: '统计',
     tabBarIcon: ({ focused, tintColor }) => (
-      <Image
-        style={[
-          wholeSituationStyle.icon,
-          { tintColor: focused ? tintColor : 'gray' },
-        ]}
-        source={require('../../images/person.png')}
-      />
+      // <Image
+      //   style={[
+      //     wholeSituationStyle.icon,
+      //     { tintColor: focused ? tintColor : 'gray' },
+      //   ]}
+      //   source={require('../../images/person.png')}
+      // />
+      <Icon name={'pie-chart'} size={20} style={{color:focused ? tintColor : 'gray'}}/>
     ),
   }
 
@@ -41,64 +44,53 @@ class Statistical extends Component {
     this.state = {
       rankList:[
         {
-          icon: 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png',
+          icon: <Icon name={'bar-chart'} size={20} style={{color:'gray'}}/>,
           text: `站点排污排名`,
           id:0,
         },
         {
-          icon: 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png',
+          icon: <Icon name={'bar-chart'} size={20} style={{color:'gray'}}/>,
           text: `分厂排污排名`,
           id:1,
         },
         {
-          icon: 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png',
+          icon: <Icon name={'list-alt'} size={20} style={{color:'gray'}}/>,
           text: `排污规划`,
           id:2,
         },
         {
-          icon: 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png',
-          text: `报警次数`,
+          icon: <Icon name={'align-left'} size={20} style={{color:'gray'}}/>,
+          text: `报警次数排名`,
           id:3,
         },
         {
-          icon: 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png',
-          text: `报警时长`,
+          icon: <Icon name={'align-left'} size={20} style={{color:'gray'}}/>,
+          text: `报警时长排名`,
           id:4,
         },
         {
-          icon: 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png',
-          text: `逾期统计`,
+          icon: <Icon name={'align-right'} size={20} style={{color:'gray'}}/>,
+          text: `逾期统计排名`,
           id:5,
         },
         {
-          icon: 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png',
-          text: `故障次数`,
+          icon: <Icon name={'align-right'} size={20} style={{color:'gray'}}/>,
+          text: `故障次数排名`,
           id:6,
         },
         {
-          icon: 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png',
+          icon: <Icon name={'pie-chart'} size={20} style={{color:'gray'}}/>,
           text: `故障原因`,
           id:7,
         },
         {
-          icon: 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png',
+          icon: <Icon name={'list-alt'} size={20} style={{color:'gray'}}/>,
           text: `员工工作统计`,
           id:8,
         },
       ],
     };
   }
-  /*
-  RankOfStationByEmissions:RankOfStationByEmissions,
-    AlarmingNumberStatistics:AlarmingNumberStatistics,
-    AlarmingTimeStatistics:AlarmingTimeStatistics,
-    BreakdownTimeStatistics:BreakdownTimeStatistics,
-    EmissionsPlan:EmissionsPlan,
-    FailureCauseStatistics:FailureCauseStatistics,
-    OverdueStatistics:OverdueStatistics,
-    RankOfBranchOfficeByEmissions:RankOfBranchOfficeByEmissions,
-    Workmeter:Workmeter,
-  */
 
   render() {
     return (
@@ -122,13 +114,13 @@ class Statistical extends Component {
               this.props.dispatch(NavigationActions.navigate({ routeName: 'AlarmingNumberStatistics' }));
               break;
               case 4:
-              this.props.dispatch(NavigationActions.navigate({ routeName: 'AlarmingTimeStatistics' }));
+              this.props.dispatch(NavigationActions.navigate({ routeName: 'AlarmingDurationStatistics' }));
               break;
               case 5:
               this.props.dispatch(NavigationActions.navigate({ routeName: 'OverdueStatistics' }));
               break;
               case 6:
-              this.props.dispatch(NavigationActions.navigate({ routeName: 'BreakdownTimeStatistics' }));
+              this.props.dispatch(NavigationActions.navigate({ routeName: 'BreakdownNumberStatistics' }));
               break;
               case 7:
               this.props.dispatch(NavigationActions.navigate({ routeName: 'FailureCauseStatistics' }));
@@ -150,7 +142,6 @@ const styles = StyleSheet.create({
     // justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'white',
-    paddingTop: 64,
   },
 });
 

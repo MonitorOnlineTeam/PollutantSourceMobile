@@ -12,6 +12,8 @@ import { NavigationActions } from '../../utils';
 class ProcessFlowDiagram extends Component {
     static navigationOptions =({router,navigation})=>{
         return{
+            title: '工艺流程图',
+            tabBarLabel: '工艺流程图',
             headerLeft:(  
                 <Text  onPress={()=>{
                     navigation.dispatch(NavigationActions.back());
@@ -27,8 +29,7 @@ class ProcessFlowDiagram extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text>ProcessFlowDiagram</Text>
-                <Button text="Go Back" onPress={this.goBack} />
+                <Text>ProcessFlowDiagram 工艺流程图</Text>
             </View>
         );
     }
@@ -40,7 +41,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#2c3e50',
+        backgroundColor: 'lightgrey',
     },
 });
 

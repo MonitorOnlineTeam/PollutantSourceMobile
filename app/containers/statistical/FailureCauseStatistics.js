@@ -12,6 +12,8 @@ import { NavigationActions } from '../../utils';
 class FailureCauseStatistics extends Component {
     static navigationOptions =({router,navigation})=>{
         return{
+            title: '故障原因',
+            tabBarLabel: '故障原因',
             headerLeft:(  
                 <Text  onPress={()=>{
                     navigation.dispatch(NavigationActions.back());
@@ -27,8 +29,9 @@ class FailureCauseStatistics extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text>FailureCauseStatistics</Text>
-                <Button text="Go Back" onPress={this.goBack} />
+                <Text>FailureCauseStatistics
+                故障原因
+                </Text>
             </View>
         );
     }
@@ -40,7 +43,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#2c3e50',
+        backgroundColor: 'lightgrey',
     },
 });
 

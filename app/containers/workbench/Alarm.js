@@ -12,6 +12,8 @@ import { NavigationActions } from '../../utils';
 class Alarm extends Component {
     static navigationOptions =({router,navigation})=>{
         return{
+            title: '报警',
+            tabBarLabel: '报警',
             headerLeft:(  
                 <Text  onPress={()=>{
                     navigation.dispatch(NavigationActions.back());
@@ -27,8 +29,7 @@ class Alarm extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text>Alarm</Text>
-                <Button text="Go Back" onPress={this.goBack} />
+                <Text>Alarm 工作台 报警提醒</Text>
             </View>
         );
     }

@@ -12,6 +12,8 @@ import { NavigationActions } from '../../utils';
 class PowerCutList extends Component {
     static navigationOptions =({router,navigation})=>{
         return{
+            title: '停电记录',
+            tabBarLabel: '停电记录',
             headerLeft:(  
                 <Text  onPress={()=>{
                     navigation.dispatch(NavigationActions.back());
@@ -28,7 +30,6 @@ class PowerCutList extends Component {
         return (
             <View style={styles.container}>
                 <Text>PowerCutList</Text>
-                <Button text="Go Back" onPress={this.goBack} />
             </View>
         );
     }

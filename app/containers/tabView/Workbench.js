@@ -2,10 +2,12 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
+import Icon from 'react-native-vector-icons/dist/FontAwesome';
 
 import wholeSituationStyle from '../../config/wholeSituationStyle';
 import {SCREEN_WIDTH} from '../../config/globalsize';
 import { NavigationActions } from '../../utils';
+import WorkbenchRouter from '../workbench';
 /*
  * Copyright (c) 2018 SDL.All Rights Reserved
  *
@@ -14,7 +16,7 @@ import { NavigationActions } from '../../utils';
  * @Email: houxfmark3955@163.com
  * @Create At: 2018-06-20 14:21:47
  * @Last Modified By: houxfmark3955@163.com
- * @Last Modified At: 2018-06-25 16:46:47
+ * @Last Modified At: 2018-06-27 11:18:53
  * @Description: 工作台.
  */
 
@@ -23,17 +25,18 @@ const stateButtonWidth = SCREEN_WIDTH/5;
 @connect()
 class Workbench extends Component {
   static navigationOptions = {
-    header: null,
+    // header: null,
     title: '工作台',
     tabBarLabel: '工作台',
     tabBarIcon: ({ focused, tintColor }) => (
-      <Image
-        style={[
-          wholeSituationStyle.icon,
-          { tintColor: focused ? tintColor : 'gray' },
-        ]}
-        source={require('../../images/person.png')}
-      />
+      // <Image
+      //   style={[
+      //     wholeSituationStyle.icon,
+      //     { tintColor: focused ? tintColor : 'gray' },
+      //   ]}
+      //   source={require('../../images/person.png')}
+      // />
+      <Icon name={'clipboard'} size={20} style={{color:focused ? tintColor : 'gray'}}/>
     ),
   }
 
@@ -43,7 +46,7 @@ class Workbench extends Component {
       'stateArray':[
         {
           id:'todo',
-          title:'代办',
+          title:'待办',
           count:8,
           'fun':()=>{
             this.props.dispatch(NavigationActions.navigate({ routeName: 'Todo' }));
@@ -130,8 +133,12 @@ class Workbench extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <StatusBar barStyle="light-content"/>
+      <WorkbenchRouter></WorkbenchRouter>
+    );
+  }
+}
+{/*<View style={styles.container}>
+        <StatusBar barStyle="dark-content" style={[{height:24}]}/>
         <View style={[{flexDirection:'row',height:stateButtonWidth*2
         ,backgroundColor:'black',width:SCREEN_WIDTH,
         justifyContent:'center',alignItems:'center',}]}>
@@ -178,10 +185,7 @@ class Workbench extends Component {
             })
           }
         </View>
-      </View>
-    );
-  }
-}
+        </View>*/}
 
 // define your styles
 const styles = StyleSheet.create({

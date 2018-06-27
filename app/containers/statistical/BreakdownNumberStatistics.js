@@ -9,9 +9,11 @@ import { NavigationActions } from '../../utils';
 
 // create a component
 @connect()
-class BreakdownTimeStatistics extends Component {
+class BreakdownNumberStatistics extends Component {
     static navigationOptions =({router,navigation})=>{
         return{
+            title: '故障次数排名',
+            tabBarLabel: '故障次数排名',
             headerLeft:(  
                 <Text  onPress={()=>{
                     navigation.dispatch(NavigationActions.back());
@@ -27,8 +29,9 @@ class BreakdownTimeStatistics extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text>BreakdownTimeStatistics</Text>
-                <Button text="Go Back" onPress={this.goBack} />
+                <Text>BreakdownNumberStatistics
+                故障次数排名
+                </Text>
             </View>
         );
     }
@@ -40,9 +43,9 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#2c3e50',
+        backgroundColor: 'lightgrey',
     },
 });
 
 //make this component available to the app
-export default BreakdownTimeStatistics;
+export default BreakdownNumberStatistics;

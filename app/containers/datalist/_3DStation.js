@@ -12,6 +12,8 @@ import { NavigationActions } from '../../utils';
 class _3DStation extends Component {
     static navigationOptions =({router,navigation})=>{
         return{
+            title: '3D站房',
+            tabBarLabel: '3D站房',
             headerLeft:(  
                 <Text  onPress={()=>{
                     navigation.dispatch(NavigationActions.back());
@@ -27,8 +29,7 @@ class _3DStation extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text>_3DStation</Text>
-                <Button text="Go Back" onPress={this.goBack} />
+                <Text>_3DStation 3D站房</Text>
             </View>
         );
     }
@@ -40,7 +41,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#2c3e50',
+        backgroundColor: 'lightgrey',
     },
 });
 

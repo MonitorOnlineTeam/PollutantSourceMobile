@@ -12,6 +12,8 @@ import { NavigationActions } from '../../utils';
 class Workmeter extends Component {
     static navigationOptions =({router,navigation})=>{
         return{
+            title: '员工工作统计',
+            tabBarLabel: '员工工作统计',
             headerLeft:(  
                 <Text  onPress={()=>{
                     navigation.dispatch(NavigationActions.back());
@@ -27,8 +29,9 @@ class Workmeter extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text>Workmeter</Text>
-                <Button text="Go Back" onPress={this.goBack} />
+                <Text>Workmeter
+                员工工作统计
+                </Text>
             </View>
         );
     }
@@ -40,7 +43,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#2c3e50',
+        backgroundColor: 'lightgrey',
     },
 });
 

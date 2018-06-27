@@ -12,6 +12,8 @@ import { NavigationActions } from '../../utils';
 class HistoricalData extends Component {
     static navigationOptions =({router,navigation})=>{
         return{
+            title: '历史数据',
+            tabBarLabel: '历史数据',
             headerLeft:(  
                 <Text  onPress={()=>{
                     navigation.dispatch(NavigationActions.back());
@@ -27,8 +29,12 @@ class HistoricalData extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text>HistoricalData</Text>
-                <Button text="Go Back" onPress={this.goBack} />
+                <Text>
+                HistoricalData
+                历史数据 
+                以图表和列表形式展示站点的历史数据
+                ppt19
+                </Text>
             </View>
         );
     }
@@ -40,7 +46,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#2c3e50',
+        backgroundColor: 'lightgrey',
     },
 });
 

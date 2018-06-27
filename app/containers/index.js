@@ -23,8 +23,8 @@ import ConsumableManage from './workbench/ConsumableManage';
 
 import RankOfStationByEmissions from './statistical/RankOfStationByEmissions';
 import AlarmingNumberStatistics from './statistical/AlarmingNumberStatistics';
-import AlarmingTimeStatistics from './statistical/AlarmingTimeStatistics';
-import BreakdownTimeStatistics from './statistical/BreakdownTimeStatistics';
+import AlarmingDurationStatistics from './statistical/AlarmingDurationStatistics';
+import BreakdownNumberStatistics from './statistical/BreakdownNumberStatistics';
 import EmissionsPlan from './statistical/EmissionsPlan';
 import FailureCauseStatistics from './statistical/FailureCauseStatistics';
 import OverdueStatistics from './statistical/OverdueStatistics';
@@ -45,7 +45,6 @@ import SparePart from './datalist/SparePart';
 import PowerCut from './datalist/PowerCut';
 import QualityControl from './datalist/QualityControl';
 
-import DetailRouter from './DetailRouter';
 
 
 const MainNavigator = StackNavigator(
@@ -92,8 +91,8 @@ export default StackNavigator(
 
     RankOfStationByEmissions:{ screen:RankOfStationByEmissions},
     AlarmingNumberStatistics:{ screen:AlarmingNumberStatistics},
-    AlarmingTimeStatistics:{ screen:AlarmingTimeStatistics},
-    BreakdownTimeStatistics:{ screen:BreakdownTimeStatistics},
+    AlarmingDurationStatistics:{ screen:AlarmingDurationStatistics},
+    BreakdownNumberStatistics:{ screen:BreakdownNumberStatistics},
     EmissionsPlan:{ screen:EmissionsPlan},
     FailureCauseStatistics:{ screen:FailureCauseStatistics},
     OverdueStatistics:{ screen:OverdueStatistics},

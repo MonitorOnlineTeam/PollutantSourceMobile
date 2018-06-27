@@ -12,6 +12,8 @@ import { NavigationActions } from '../../utils';
 class Message extends Component {
     static navigationOptions =({router,navigation})=>{
         return{
+            title: '消息',
+            tabBarLabel: '消息',
             headerLeft:(  
                 <Text  onPress={()=>{
                     navigation.dispatch(NavigationActions.back());
@@ -27,8 +29,7 @@ class Message extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text>Message</Text>
-                <Button text="Go Back" onPress={this.goBack} />
+                <Text>Message 工作台消息提醒</Text>
             </View>
         );
     }

@@ -12,6 +12,8 @@ import { NavigationActions } from '../../utils';
 class ReserveManage extends Component {
     static navigationOptions =({router,navigation})=>{
         return{
+            title: '库存管理',
+            tabBarLabel: '库存管理',
             headerLeft:(  
                 <Text  onPress={()=>{
                     navigation.dispatch(NavigationActions.back());
@@ -28,7 +30,6 @@ class ReserveManage extends Component {
         return (
             <View style={styles.container}>
                 <Text>ReserveManage</Text>
-                <Button text="Go Back" onPress={this.goBack} />
             </View>
         );
     }

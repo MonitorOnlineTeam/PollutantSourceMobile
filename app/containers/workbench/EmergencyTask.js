@@ -12,6 +12,8 @@ import { NavigationActions } from '../../utils';
 class EmergencyTask extends Component {
     static navigationOptions =({router,navigation})=>{
         return{
+            title: '应急派单',
+            tabBarLabel: '应急派单',
             headerLeft:(  
                 <Text  onPress={()=>{
                     navigation.dispatch(NavigationActions.back());
@@ -28,7 +30,6 @@ class EmergencyTask extends Component {
         return (
             <View style={styles.container}>
                 <Text>EmergencyTask</Text>
-                <Button text="Go Back" onPress={this.goBack} />
             </View>
         );
     }

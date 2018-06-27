@@ -18,7 +18,7 @@ export default TabNavigator(
     Account: { screen: Account },
   },
   {
-    headerMode: 'none',
+    headerMode: 'screen',
     tabBarComponent: TabBarBottom,
     tabBarPosition: 'bottom',
     swipeEnabled: false,

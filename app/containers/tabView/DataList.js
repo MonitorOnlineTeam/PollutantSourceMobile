@@ -2,10 +2,13 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 import { connect } from 'react-redux';
+import Icon from 'react-native-vector-icons/dist/FontAwesome';
 
 import wholeSituationStyle from '../../config/wholeSituationStyle';
 import { Button } from '../../components';
 import { NavigationActions } from '../../utils';
+import TopSelector from '../../components/common/TopSelector';
+import PollutantBar from '../../components/common/PollutantBar';
 /*
  * @Script: Map.js018 SDL.All Rights Reserved
  *
@@ -22,17 +25,18 @@ import { NavigationActions } from '../../utils';
 @connect()
 class DataList extends Component {
   static navigationOptions = {
-    header: null,
-    title: '数据一览',
-    tabBarLabel: '数据一览',
+    // header: null,
+    title: '监控总览',
+    tabBarLabel: '监控总览',
     tabBarIcon: ({ focused, tintColor }) => (
-      <Image
-        style={[
-          wholeSituationStyle.icon,
-          { tintColor: focused ? tintColor : 'gray' },
-        ]}
-        source={require('../../images/person.png')}
-      />
+      // <Image
+      //   style={[
+      //     wholeSituationStyle.icon,
+      //     { tintColor: focused ? tintColor : 'gray' },
+      //   ]}
+      //   source={require('../../images/person.png')}
+      // />
+      <Icon name={'list-ul'} size={20} style={{color:focused ? tintColor : 'gray'}}/>
     ),
   }
 
@@ -48,8 +52,11 @@ class DataList extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>DataList</Text>
-        <Button text="Goto Detail" onPress={this.gotoDetail} />
+        <TopSelector  ref={ref => this._topSelector = ref} showDatePicker={()=>{}}/>
+        <PollutantBar />
+        <Text onPress={this.gotoDetail}>
+          DataList 监控总览 以列表形式显示所有数据，可以调整显示数据的时间类型（实时、分钟、小时、日），切换污染物类型
+        </Text>
       </View>
     );
   }
@@ -59,9 +66,9 @@ class DataList extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    // justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#2c3e50',
+    backgroundColor: 'lightgrey',
   },
 });
 

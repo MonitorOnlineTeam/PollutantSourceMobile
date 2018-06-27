@@ -12,6 +12,8 @@ import { NavigationActions } from '../../utils';
 class Breakdown extends Component {
     static navigationOptions =({router,navigation})=>{
         return{
+            title: '故障记录',
+            tabBarLabel: '故障记录',
             headerLeft:(  
                 <Text  onPress={()=>{
                     navigation.dispatch(NavigationActions.back());
@@ -27,8 +29,7 @@ class Breakdown extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text>Breakdown</Text>
-                <Button text="Go Back" onPress={this.goBack} />
+                <Text>Breakdown 故障记录</Text>
             </View>
         );
     }
@@ -40,7 +41,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#2c3e50',
+        backgroundColor: 'lightgrey',
     },
 });
 

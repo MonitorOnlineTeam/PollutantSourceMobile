@@ -4,6 +4,7 @@ import { View, Text, StyleSheet, Image, } from 'react-native';
 import { Grid } from 'antd-mobile';
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
+import Iconi from 'react-native-vector-icons/dist/Ionicons';
 
 import {SCREEN_WIDTH} from '../../config/globalsize';
 import { NavigationActions } from '../../utils';
@@ -18,62 +19,62 @@ class SingleStationDetail extends Component {
         this.state = {
             featureList:[
                 {
-                    icon: 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png',
+                    icon: <Icon name={'history'} size={20} style={{color:'gray'}}/>,
                     text: `历史数据`,
                     id:0,
                 },
                 {
-                    icon: 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png',
+                    icon: <Iconi name={'md-home'} size={20} style={{color:'gray'}}/>,
                     text: `3D站房`,
                     id:1,
                 },
                 {
-                    icon: 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png',
+                    icon: <Iconi name={'md-git-pull-request'} size={20} style={{color:'gray'}}/>,
                     text: `工艺流程图`,
                     id:2,
                 },
                 {
-                    icon: 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png',
-                    text: `报警`,
+                    icon: <Icon name={'bell'} size={20} style={{color:'gray'}}/>,
+                    text: `报警记录`,
                     id:3,
                 },
                 {
-                    icon: 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png',
-                    text: `预警`,
+                    icon: <Icon name={'bullhorn'} size={20} style={{color: 'gray'}}/>,
+                    text: `预警记录`,
                     id:4,
                 },
                 {
-                    icon: 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png',
-                    text: `巡检`,
+                    icon: <Icon name={'file-text'} size={20} style={{color: 'gray'}}/>,
+                    text: `例行任务`,//巡检
                     id:5,
                 },
                 {
-                    icon: 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png',
-                    text: `应急`,
+                    icon: <Icon name={'free-code-camp'} size={20} style={{color:'gray'}}/>,
+                    text: `应急任务`,
                     id:6,
                 },
                 {
-                    icon: 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png',
-                    text: `故障`,
+                    icon: <Icon name={'bug'} size={20} style={{color:'gray'}}/>,
+                    text: `故障记录`,
                     id:7,
                 },
                 {
-                    icon: 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png',
-                    text: `停产`,
+                    icon: <Icon name={'ban'} size={20} style={{color:'gray'}}/>,
+                    text: `停产记录`,
                     id:8,
                 },
                 {
-                    icon: 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png',
+                    icon: <Icon name={'cubes'} size={20} style={{color:'gray'}}/>,
                     text: `备品备件`,
                     id:9,
                 },
                 {
-                    icon: 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png',
-                    text: `停电`,
+                    icon: <Icon name={'lightbulb-o'} size={20} style={{color:'gray'}}/>,
+                    text: `停电记录`,
                     id:10,
                 },
                 {
-                    icon: 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png',
+                    icon: <Icon name={'user-md'} size={20} style={{color:'gray'}}/>,
                     text: `质控`,
                     id:11,
                 },
@@ -83,6 +84,8 @@ class SingleStationDetail extends Component {
 
     static navigationOptions =({router,navigation})=>{
         return{
+            title: '站点信息',
+            tabBarLabel: '站点信息',
             headerLeft:(  
                 <Text  onPress={()=>{
                     navigation.dispatch(NavigationActions.back());
@@ -101,13 +104,14 @@ class SingleStationDetail extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text>SingleStationDetail</Text>
                 <View style={[{
                     width:SCREEN_WIDTH,
                     flex:1,
-                    backgroundColor:'red'
+                    backgroundColor:'lightgrey'
                 }]}>
-                    <Button text="Go Back" onPress={this.goBack} />
+                    <Text >
+                        {'SingleStationDetail 单一排口数据 ,上部是当前排口的当前监测数据，中部是一段时间的数据图表 ppt11页'}
+                    </Text>
                 </View>
                 <Grid data={this.state.featureList} columnNum={4}
                     activeStyle={{backgroundColor:'red'}}
@@ -190,9 +194,12 @@ class SingleStationDetail extends Component {
                                     },
                                 ]}
                             >
-                                <Image source={require('../../images/person.png')} 
+                                {/*<Image source={require('../../images/person.png')} 
                                     style={[{height:SCREEN_WIDTH/12,
-                                        width:SCREEN_WIDTH/12,}]}/>
+                                    width:SCREEN_WIDTH/12,}]}/>*/}
+                                    {
+                                        el.icon
+                                    }
                             </View>
                             <Text style={[{marginTop:4,fontSize:12}]}>{
                                 el.text
