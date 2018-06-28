@@ -3,6 +3,8 @@ package com.PollutantSourceMobile;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import org.devio.rn.splashscreen.SplashScreenReactPackage;
+import com.github.wuxudong.rncharts.MPAndroidChartPackage;
 import com.imagepicker.ImagePickerPackage;
 import cn.qiuxiang.react.amap3d.AMap3DPackage;
 import com.microsoft.codepush.react.CodePush;
@@ -34,6 +36,8 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new SplashScreenReactPackage(),
+            new MPAndroidChartPackage(),
             new ImagePickerPackage(),
             new AMap3DPackage(),
               new VectorIconsPackage(),

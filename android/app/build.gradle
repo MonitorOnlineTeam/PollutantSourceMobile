@@ -104,6 +104,11 @@ android {
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
+        manifestPlaceholders = [
+                JPUSH_APPKEY: "fd52a76d63e5a004ce58ff06",
+                APP_CHANNEL : "default"
+        ]
+
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
@@ -138,6 +143,10 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-splash-screen')
+    compile project(':react-native-charts-wrapper')
+    compile project(':jcore-react-native')
+    compile project(':jpush-react-native')
     compile project(':react-native-image-picker')
     compile project(':react-native-vector-icons')
     compile project(':react-native-code-push')

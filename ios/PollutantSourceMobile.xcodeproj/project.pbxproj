@@ -92,6 +92,8 @@
 		5E06837F20E3A170006B1876 /* EntryToDictionaryUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E06832A20E3A170006B1876 /* EntryToDictionaryUtils.swift */; };
 		5E06838120E3A1AE006B1876 /* PollutantSourcMobile-Bridging-Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E06838020E3A1AE006B1876 /* PollutantSourcMobile-Bridging-Header.swift */; };
 		5E0684CE20E47427006B1876 /* libRNImagePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E0684CC20E47385006B1876 /* libRNImagePicker.a */; };
+		5E06855520E4BB98006B1876 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E06855420E4BB97006B1876 /* UserNotifications.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		5E0686FE20E522D5006B1876 /* libSplashScreen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E0686FD20E522B6006B1876 /* libSplashScreen.a */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		7AEE8C381D0F415991D2444B /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9B33EA07159641088A61A53B /* Ionicons.ttf */; };
 		7D1480EB172C4A9E8921055B /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6561D4D4C19147B2B069C989 /* Foundation.ttf */; };
@@ -372,6 +374,13 @@
 			remoteGlobalIDString = 014A3B5C1C6CF33500B6D375;
 			remoteInfo = RNImagePicker;
 		};
+		5E0686FC20E522B6006B1876 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5E0686CF20E522B6006B1876 /* SplashScreen.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3D7682761D8E76B80014119E;
+			remoteInfo = SplashScreen;
+		};
 		5E9157321DD0AC6500FF2AA8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */;
@@ -494,6 +503,9 @@
 		5E06838220E3A203006B1876 /* PollutantSourceMobile-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PollutantSourceMobile-Bridging-Header.h"; sourceTree = "<group>"; };
 		5E0684A020E47384006B1876 /* RNImagePicker.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNImagePicker.xcodeproj; path = "../node_modules/react-native-image-picker/ios/RNImagePicker.xcodeproj"; sourceTree = "<group>"; };
 		5E0684CF20E49545006B1876 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		5E06855320E4B95C006B1876 /* PollutantSourceMobile.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = PollutantSourceMobile.entitlements; path = PollutantSourceMobile/PollutantSourceMobile.entitlements; sourceTree = "<group>"; };
+		5E06855420E4BB97006B1876 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		5E0686CF20E522B6006B1876 /* SplashScreen.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SplashScreen.xcodeproj; path = "../node_modules/react-native-splash-screen/ios/SplashScreen.xcodeproj"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		6561D4D4C19147B2B069C989 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		6E58C527E49A42CA81CA6137 /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
@@ -525,6 +537,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E0686FE20E522D5006B1876 /* libSplashScreen.a in Frameworks */,
+				5E06855520E4BB98006B1876 /* UserNotifications.framework in Frameworks */,
 				5E0684CE20E47427006B1876 /* libRNImagePicker.a in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
@@ -654,6 +668,7 @@
 		13B07FAE1A68108700A75B9A /* PollutantSourceMobile */ = {
 			isa = PBXGroup;
 			children = (
+				5E06855320E4B95C006B1876 /* PollutantSourceMobile.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -692,6 +707,7 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5E06855420E4BB97006B1876 /* UserNotifications.framework */,
 				2D16E6891FA4F8E400B85C8A /* libReact.a */,
 				CE4BA7DEC1F7EF0E8AC19631 /* libPods-PollutantSourceMobile.a */,
 				0F123610512E49F5A2E9E03D /* libz.tbd */,
@@ -880,6 +896,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		5E0686D020E522B6006B1876 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5E0686FD20E522B6006B1876 /* libSplashScreen.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		5E91572E1DD0AC6500FF2AA8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -919,6 +943,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				5E0686CF20E522B6006B1876 /* SplashScreen.xcodeproj */,
 				5E0684A020E47384006B1876 /* RNImagePicker.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
@@ -1080,6 +1105,11 @@
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = CY6P5MYML9;
 						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -1163,6 +1193,10 @@
 				{
 					ProductGroup = 5E0682A620E231EB006B1876 /* Products */;
 					ProjectRef = 5B3E80F4B18A4A8385A37E47 /* RNVectorIcons.xcodeproj */;
+				},
+				{
+					ProductGroup = 5E0686D020E522B6006B1876 /* Products */;
+					ProjectRef = 5E0686CF20E522B6006B1876 /* SplashScreen.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -1426,6 +1460,13 @@
 			fileType = archive.ar;
 			path = libRNImagePicker.a;
 			remoteRef = 5E0684CB20E47385006B1876 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5E0686FD20E522B6006B1876 /* libSplashScreen.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libSplashScreen.a;
+			remoteRef = 5E0686FC20E522B6006B1876 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */ = {
@@ -1728,10 +1769,27 @@
 			baseConfigurationReference = D4C28EA14DD93AE4A7E6FA3D /* Pods-PollutantSourceMobile.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = PollutantSourceMobile/PollutantSourceMobile.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer: xiaofeng hou (QVF6ZMQ3JB)";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = CY6P5MYML9;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/AMap3DMap\"",
+					"\"${PODS_ROOT}/Headers/Public/AMapFoundation\"",
+					"\"${PODS_ROOT}/Headers/Public/DoubleConversion\"",
+					"\"${PODS_ROOT}/Headers/Public/JPushRN\"",
+					"\"${PODS_ROOT}/Headers/Public/React\"",
+					"\"${PODS_ROOT}/Headers/Public/glog\"",
+					"\"${PODS_ROOT}/Headers/Public/react-native-amap3d\"",
+					"\"${PODS_ROOT}/Headers/Public/yoga\"",
+					"$(SRCROOT)/../node_modules/jpush-react-native/ios/RCTJPushModule",
+					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
+				);
 				INFOPLIST_FILE = PollutantSourceMobile/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -1754,10 +1812,26 @@
 			baseConfigurationReference = 881A33B96C5547ADBB298B2E /* Pods-PollutantSourceMobile.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = PollutantSourceMobile/PollutantSourceMobile.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing SDL Technology Co.,Ltd. (CY6P5MYML9)";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = CY6P5MYML9;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/AMap3DMap\"",
+					"\"${PODS_ROOT}/Headers/Public/AMapFoundation\"",
+					"\"${PODS_ROOT}/Headers/Public/DoubleConversion\"",
+					"\"${PODS_ROOT}/Headers/Public/JPushRN\"",
+					"\"${PODS_ROOT}/Headers/Public/React\"",
+					"\"${PODS_ROOT}/Headers/Public/glog\"",
+					"\"${PODS_ROOT}/Headers/Public/react-native-amap3d\"",
+					"\"${PODS_ROOT}/Headers/Public/yoga\"",
+					"$(SRCROOT)/../node_modules/jpush-react-native/ios/RCTJPushModule",
+					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
+				);
 				INFOPLIST_FILE = PollutantSourceMobile/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -1767,7 +1841,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.chsdl.pollutantSourceMobile;
 				PRODUCT_NAME = PollutantSourceMobile;
-				PROVISIONING_PROFILE = "5f1389be-a68b-4e61-98f6-a394e43c7fac";
+				PROVISIONING_PROFILE = "b1aab96a-c8d2-43fc-855a-572cf0c0426a";
 				PROVISIONING_PROFILE_SPECIFIER = PollutantSourceMobile_release;
 				SWIFT_OBJC_BRIDGING_HEADER = "PollutantSourceMobile-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
