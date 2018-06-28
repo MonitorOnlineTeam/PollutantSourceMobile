@@ -1,5 +1,5 @@
 platform :ios, '8.0'
-
+# use_frameworks!
 # The target name is most likely the name of your project.
 target 'PollutantSourceMobile' do
   # Your 'node_modules' directory is probably in the root of your project,
@@ -8,9 +8,9 @@ target 'PollutantSourceMobile' do
     'Core',
     'CxxBridge', # Include this for RN >= 0.47
     'DevSupport', # Include this to enable In-App Devmenu if RN >= 0.43
-    'RCTText',
+    # 'RCTText',
     'RCTNetwork',
-    'RCTWebSocket', # needed for debugging
+    # 'RCTWebSocket', # needed for debugging
     # Add any other subspecs you want to use in your project
   ]
   # Explicitly include Yoga if you are using RN >= 0.42.0
@@ -22,6 +22,15 @@ target 'PollutantSourceMobile' do
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
   # pod 'react-native-amap3d', path: '../node_modules/react-native-amap3d/lib/ios'
-  pod 'CodePush', :path => '../node_modules/react-native-code-push'
+  pod 'SwiftyJSON', '4.0.0'      # 4.0.0 #3.1.4
+  pod 'Charts', '3.1.1'          # 3.1.1 #3.0.3
+  # pod 'react-native-image-picker', :path => '../node_modules/react-native-image-picker'
 
 end
+# post_install do |installer|
+#   installer.pods_project.targets.each do |target|
+#     target.build_configurations.each do |config|
+#       config.build_settings['SWIFT_VERSION'] = '3.0'    # 4.0
+#     end
+#   end
+# end

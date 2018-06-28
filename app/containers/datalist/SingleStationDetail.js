@@ -1,10 +1,11 @@
 //import liraries
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Image, } from 'react-native';
+import { View, Text, StyleSheet, Image, processColor, } from 'react-native';
 import { Grid } from 'antd-mobile';
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import Iconi from 'react-native-vector-icons/dist/Ionicons';
+import {BarChart} from 'react-native-charts-wrapper';
 
 import {SCREEN_WIDTH} from '../../config/globalsize';
 import { NavigationActions } from '../../utils';
@@ -79,6 +80,36 @@ class SingleStationDetail extends Component {
                     id:11,
                 },
             ],
+            legend: {
+                enabled: true,
+                textSize: 14,
+                form: 'SQUARE',
+                formSize: 14,
+                xEntrySpace: 10,
+                yEntrySpace: 5,
+                formToTextSpace: 5,
+                wordWrapEnabled: true,
+                maxSizePercent: 0.5
+            },
+            data: {
+                dataSets: [{
+                  values: [{y: 100}, {y: 105}, {y: 102}, {y: 110}, {y: 114}, {y: 109}, {y: 105}, {y: 99}, {y: 95}],
+                  label: 'Bar dataSet',
+                  config: {
+                    color: processColor('teal'),
+                    barSpacePercent: 40,
+                    barShadowColor: processColor('lightgrey'),
+                    highlightAlpha: 90,
+                    highlightColor: processColor('red'),
+                  }
+                }],
+              },
+              highlights: [{x: 3}, {x: 6}],
+              xAxis: {
+                valueFormatter: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
+                granularityEnabled: true,
+                granularity : 1,
+              }
         };
     }
 
@@ -101,6 +132,17 @@ class SingleStationDetail extends Component {
         this.props.dispatch(NavigationActions.back());
     }
 
+    handleSelect(event) {
+        let entry = event.nativeEvent;
+        if (entry == null) {
+            this.setState({...this.state, selectedEntry: null});
+        } else {
+            this.setState({...this.state, selectedEntry: JSON.stringify(entry)});
+        }
+
+        console.log(event.nativeEvent);
+    }
+
     render() {
         return (
             <View style={styles.container}>
@@ -112,6 +154,21 @@ class SingleStationDetail extends Component {
                     <Text >
                         {'SingleStationDetail 单一排口数据 ,上部是当前排口的当前监测数据，中部是一段时间的数据图表 ppt11页'}
                     </Text>
+                    
+                    <BarChart
+                        style={styles.chart}
+                        data={this.state.data}
+                        xAxis={this.state.xAxis}
+                        animation={{durationX: 2000}}
+                        legend={this.state.legend}
+                        gridBackgroundColor={processColor('#ffffff')}
+                        drawBarShadow={false}
+                        drawValueAboveBar={true}
+                        drawHighlightArrow={true}
+                        onSelect={this.handleSelect.bind(this)}
+                        highlights={this.state.highlights}
+                        onChange={(event) => console.log(event.nativeEvent)}
+                    />
                 </View>
                 <Grid data={this.state.featureList} columnNum={4}
                     activeStyle={{backgroundColor:'red'}}
@@ -219,6 +276,9 @@ const styles = StyleSheet.create({
         // justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: 'white',
+    },
+    chart: {
+        flex: 1
     },
 });
 

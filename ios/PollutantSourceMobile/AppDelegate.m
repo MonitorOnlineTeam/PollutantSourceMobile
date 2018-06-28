@@ -19,6 +19,7 @@
 
   
     #ifdef DEBUG
+        [[RCTBundleURLProvider sharedSettings] setJsLocation:@"192.168.31.65"];
         jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
     #else
         jsCodeLocation = [CodePush bundleURL];

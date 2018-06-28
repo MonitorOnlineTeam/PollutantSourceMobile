@@ -3,7 +3,6 @@ import * as authService from '../services/auth';
 import { Model } from '../dvapack';
 import { clearToken, saveToken, saveStorage, loadStorage } from '../dvapack/storage';
 
-console.log(Model);
 export default Model.extend({
   namespace: 'app',
   state: {

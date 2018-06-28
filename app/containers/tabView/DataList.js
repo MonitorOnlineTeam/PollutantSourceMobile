@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
+import ImagePicker from 'react-native-image-picker';
+
 
 import wholeSituationStyle from '../../config/wholeSituationStyle';
 import { Button } from '../../components';
@@ -40,6 +42,13 @@ class DataList extends Component {
     ),
   }
 
+  constructor(props){
+    super(props);
+    this.state = {
+      imageSrc:'',
+    };
+  }
+
   gotoDetail = () => {
     // this.props.dispatch(NavigationActions.navigate({ routeName: 'Detail' }));
     this.props.dispatch(NavigationActions.navigate({ routeName: 'SingleStationDetail' }));
@@ -49,6 +58,57 @@ class DataList extends Component {
     // }));
   }
 
+  //选择图片
+  selectPhotoTapped() {
+    const options = {
+        title: '选择图片', 
+        cancelButtonTitle: '取消',
+        takePhotoButtonTitle: '拍照', 
+        chooseFromLibraryButtonTitle: '选择照片', 
+        customButtons: [
+            // {name: 'fb', title: 'Choose Photo from Facebook'},
+          ],
+        cameraType: 'back',
+        mediaType: 'photo',
+        videoQuality: 'high', 
+        durationLimit: 10, 
+        maxWidth: 300,
+        maxHeight: 300,
+        quality: 0.8, 
+        angle: 0,
+        allowsEditing: false, 
+        noData: false,
+        storageOptions: {
+            skipBackup: true  
+        }
+    };
+
+    ImagePicker.showImagePicker(options, (response) => {
+        console.log('Response = ', response);
+
+        if (response.didCancel) {
+            console.log('User cancelled photo picker');
+        }
+        else if (response.error) {
+            console.log('ImagePicker Error: ', response.error);
+        }
+        else if (response.customButton) {
+            console.log('User tapped custom button: ', response.customButton);
+        }
+        else {
+            let source = { uri: response.uri };
+
+            // You can also display the image using data:
+            // let source = { uri: 'data:image/jpeg;base64,' + response.data };
+
+            this.setState({
+                avatarSource: source,
+                imageSrc:response.uri,
+            });
+        }
+    });
+}
+
   render() {
     return (
       <View style={styles.container}>
@@ -57,6 +117,10 @@ class DataList extends Component {
         <Text onPress={this.gotoDetail}>
           DataList 监控总览 以列表形式显示所有数据，可以调整显示数据的时间类型（实时、分钟、小时、日），切换污染物类型
         </Text>
+        <Text style={[{marginTop:32}]} onPress={()=>{console.log('123');this.selectPhotoTapped();}}>
+          {'选照片'}
+        </Text>
+        <Image style={[{height:100,width:100,}]} defaultSource={require('../../images/person.png')} source={{uri:this.state.imageSrc}}/>
       </View>
     );
   }
