@@ -14,7 +14,7 @@ import {
 import { connect } from 'react-redux';
 import CodePush from 'react-native-code-push';
 import JPushModule from 'jpush-react-native';
-import SplashScreen from 'react-native-splash-screen';
+import SplashScreen from 'react-native-splash-screen'; 
 
 import { getCurrentParams, Event } from './utils';
 import Loading from './containers/Loading';
