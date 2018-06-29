@@ -47,7 +47,7 @@ class Login extends Component {
   static navigationOptions = {
     title: '人员信息',
     headerTintColor: '#fff',
-    headerStyle: { backgroundColor: '#4f6aea',height:0, }
+    headerStyle: { backgroundColor: '#4f6aea', height: 0 },
   }
 
   async componentWillMount() {

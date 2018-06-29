@@ -21,7 +21,11 @@ class Account extends Component {
       //   ]}
       //   source={require('../../images/person.png')}
       // />
-      <Icon name={'address-card'} size={20} style={{color:focused ? tintColor : 'gray'}}/>
+      <Icon
+        name={'address-card'}
+        size={20}
+        style={{ color: focused ? tintColor : 'gray' }}
+      />
     ),
   }
 

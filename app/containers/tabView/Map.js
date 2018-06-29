@@ -6,7 +6,7 @@ import { MapView } from 'react-native-amap3d';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 
 import wholeSituationStyle from '../../config/wholeSituationStyle';
-import {SCREEN_WIDTH} from '../../config/globalsize';
+import { SCREEN_WIDTH } from '../../config/globalsize';
 /*
  * Copyright (c) 2018 SDL.All Rights Reserved
  *
@@ -34,14 +34,18 @@ class Map extends Component {
       //   ]}
       //   source={require('../../images/person.png')}
       // />
-      <Icon name={'map'} size={20} style={{color:focused ? tintColor : 'gray'}}/>
+      <Icon
+        name={'map'}
+        size={20}
+        style={{ color: focused ? tintColor : 'gray' }}
+      />
     ),
   }
 
   render() {
     return (
       <View style={[styles.container]}>
-        <StatusBar barStyle="dark-content" style={[{height:24}]}/>
+        <StatusBar barStyle="dark-content" style={[{ height: 24 }]} />
         <MapView
           style={[styles.container]}
           coordinate={{
@@ -57,7 +61,7 @@ class Map extends Component {
 // define your styles
 const styles = StyleSheet.create({
   container: {
-    width:SCREEN_WIDTH,
+    width: SCREEN_WIDTH,
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',

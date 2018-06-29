@@ -35,58 +35,70 @@ class Statistical extends Component {
       //   ]}
       //   source={require('../../images/person.png')}
       // />
-      <Icon name={'pie-chart'} size={20} style={{color:focused ? tintColor : 'gray'}}/>
+      <Icon
+        name={'pie-chart'}
+        size={20}
+        style={{ color: focused ? tintColor : 'gray' }}
+      />
     ),
   }
 
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
-      rankList:[
+      rankList: [
         {
-          icon: <Icon name={'bar-chart'} size={20} style={{color:'gray'}}/>,
+          icon: <Icon name={'bar-chart'} size={20} style={{ color: 'gray' }} />,
           text: `站点排污排名`,
-          id:0,
+          id: 0,
         },
         {
-          icon: <Icon name={'bar-chart'} size={20} style={{color:'gray'}}/>,
+          icon: <Icon name={'bar-chart'} size={20} style={{ color: 'gray' }} />,
           text: `分厂排污排名`,
-          id:1,
+          id: 1,
         },
         {
-          icon: <Icon name={'list-alt'} size={20} style={{color:'gray'}}/>,
+          icon: <Icon name={'list-alt'} size={20} style={{ color: 'gray' }} />,
           text: `排污规划`,
-          id:2,
+          id: 2,
         },
         {
-          icon: <Icon name={'align-left'} size={20} style={{color:'gray'}}/>,
+          icon: (
+            <Icon name={'align-left'} size={20} style={{ color: 'gray' }} />
+          ),
           text: `报警次数排名`,
-          id:3,
+          id: 3,
         },
         {
-          icon: <Icon name={'align-left'} size={20} style={{color:'gray'}}/>,
+          icon: (
+            <Icon name={'align-left'} size={20} style={{ color: 'gray' }} />
+          ),
           text: `报警时长排名`,
-          id:4,
+          id: 4,
         },
         {
-          icon: <Icon name={'align-right'} size={20} style={{color:'gray'}}/>,
+          icon: (
+            <Icon name={'align-right'} size={20} style={{ color: 'gray' }} />
+          ),
           text: `逾期统计排名`,
-          id:5,
+          id: 5,
         },
         {
-          icon: <Icon name={'align-right'} size={20} style={{color:'gray'}}/>,
+          icon: (
+            <Icon name={'align-right'} size={20} style={{ color: 'gray' }} />
+          ),
           text: `故障次数排名`,
-          id:6,
+          id: 6,
         },
         {
-          icon: <Icon name={'pie-chart'} size={20} style={{color:'gray'}}/>,
+          icon: <Icon name={'pie-chart'} size={20} style={{ color: 'gray' }} />,
           text: `故障原因`,
-          id:7,
+          id: 7,
         },
         {
-          icon: <Icon name={'list-alt'} size={20} style={{color:'gray'}}/>,
+          icon: <Icon name={'list-alt'} size={20} style={{ color: 'gray' }} />,
           text: `员工工作统计`,
-          id:8,
+          id: 8,
         },
       ],
     };
@@ -95,41 +107,74 @@ class Statistical extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <StatusBar barStyle="dark-content"/>
-        <Grid data={this.state.rankList} columnNum={3} 
+        <StatusBar barStyle="dark-content" />
+        <Grid
+          data={this.state.rankList}
+          columnNum={3}
           activeStyle={true}
           onClick={_el => {
             console.log(_el);
-            switch(_el.id) {
+            switch (_el.id) {
               case 0:
-              this.props.dispatch(NavigationActions.navigate({ routeName: 'RankOfStationByEmissions' }));
-              break;
+                this.props.dispatch(
+                  NavigationActions.navigate({
+                    routeName: 'RankOfStationByEmissions',
+                  })
+                );
+                break;
               case 1:
-              this.props.dispatch(NavigationActions.navigate({ routeName: 'RankOfBranchOfficeByEmissions' }));
-              break;
+                this.props.dispatch(
+                  NavigationActions.navigate({
+                    routeName: 'RankOfBranchOfficeByEmissions',
+                  })
+                );
+                break;
               case 2:
-              this.props.dispatch(NavigationActions.navigate({ routeName: 'EmissionsPlan' }));
-              break;
+                this.props.dispatch(
+                  NavigationActions.navigate({ routeName: 'EmissionsPlan' })
+                );
+                break;
               case 3:
-              this.props.dispatch(NavigationActions.navigate({ routeName: 'AlarmingNumberStatistics' }));
-              break;
+                this.props.dispatch(
+                  NavigationActions.navigate({
+                    routeName: 'AlarmingNumberStatistics',
+                  })
+                );
+                break;
               case 4:
-              this.props.dispatch(NavigationActions.navigate({ routeName: 'AlarmingDurationStatistics' }));
-              break;
+                this.props.dispatch(
+                  NavigationActions.navigate({
+                    routeName: 'AlarmingDurationStatistics',
+                  })
+                );
+                break;
               case 5:
-              this.props.dispatch(NavigationActions.navigate({ routeName: 'OverdueStatistics' }));
-              break;
+                this.props.dispatch(
+                  NavigationActions.navigate({ routeName: 'OverdueStatistics' })
+                );
+                break;
               case 6:
-              this.props.dispatch(NavigationActions.navigate({ routeName: 'BreakdownNumberStatistics' }));
-              break;
+                this.props.dispatch(
+                  NavigationActions.navigate({
+                    routeName: 'BreakdownNumberStatistics',
+                  })
+                );
+                break;
               case 7:
-              this.props.dispatch(NavigationActions.navigate({ routeName: 'FailureCauseStatistics' }));
-              break;
+                this.props.dispatch(
+                  NavigationActions.navigate({
+                    routeName: 'FailureCauseStatistics',
+                  })
+                );
+                break;
               case 8:
-              this.props.dispatch(NavigationActions.navigate({ routeName: 'Workmeter' }));
-              break;
+                this.props.dispatch(
+                  NavigationActions.navigate({ routeName: 'Workmeter' })
+                );
+                break;
             }
-          }}/>
+          }}
+        />
       </View>
     );
   }

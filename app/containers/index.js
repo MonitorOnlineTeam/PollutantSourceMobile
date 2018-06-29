@@ -45,8 +45,6 @@ import SparePart from './datalist/SparePart';
 import PowerCut from './datalist/PowerCut';
 import QualityControl from './datalist/QualityControl';
 
-
-
 const MainNavigator = StackNavigator(
   {
     // HomeNavigator: { screen: HomeNavigator },
@@ -63,11 +61,11 @@ const MainNavigator = StackNavigator(
 
 export default StackNavigator(
   {
-    Login: { 
+    Login: {
       screen: Login,
       navigationOptions: {
-        header:null
-      }, 
+        header: null,
+      },
     },
     // Main: { screen: MainNavigator },
     branchOffice: { screen: branchOffice },
@@ -89,29 +87,29 @@ export default StackNavigator(
     PowerCutList: { screen: PowerCutList },
     ConsumableManage: { screen: ConsumableManage },
 
-    RankOfStationByEmissions:{ screen:RankOfStationByEmissions},
-    AlarmingNumberStatistics:{ screen:AlarmingNumberStatistics},
-    AlarmingDurationStatistics:{ screen:AlarmingDurationStatistics},
-    BreakdownNumberStatistics:{ screen:BreakdownNumberStatistics},
-    EmissionsPlan:{ screen:EmissionsPlan},
-    FailureCauseStatistics:{ screen:FailureCauseStatistics},
-    OverdueStatistics:{ screen:OverdueStatistics},
-    RankOfBranchOfficeByEmissions:{ screen:RankOfBranchOfficeByEmissions},
-    Workmeter:{ screen:Workmeter},
+    RankOfStationByEmissions: { screen: RankOfStationByEmissions },
+    AlarmingNumberStatistics: { screen: AlarmingNumberStatistics },
+    AlarmingDurationStatistics: { screen: AlarmingDurationStatistics },
+    BreakdownNumberStatistics: { screen: BreakdownNumberStatistics },
+    EmissionsPlan: { screen: EmissionsPlan },
+    FailureCauseStatistics: { screen: FailureCauseStatistics },
+    OverdueStatistics: { screen: OverdueStatistics },
+    RankOfBranchOfficeByEmissions: { screen: RankOfBranchOfficeByEmissions },
+    Workmeter: { screen: Workmeter },
 
-    SingleStationDetail:{ screen:SingleStationDetail},
-    HistoricalData:{ screen:HistoricalData},
-    _3DStation:{ screen:_3DStation},
-    ProcessFlowDiagram:{ screen:ProcessFlowDiagram},
-    Alarm_:{ screen:Alarm_},
-    EarlyWarning_:{ screen:EarlyWarning_},
-    Patrol:{ screen:Patrol},
-    Emergency:{ screen:Emergency},
-    Breakdown:{ screen:Breakdown},
-    HaltProduction:{ screen:HaltProduction},
-    SparePart:{ screen:SparePart},
-    PowerCut:{ screen:PowerCut},
-    QualityControl:{ screen:QualityControl},
+    SingleStationDetail: { screen: SingleStationDetail },
+    HistoricalData: { screen: HistoricalData },
+    _3DStation: { screen: _3DStation },
+    ProcessFlowDiagram: { screen: ProcessFlowDiagram },
+    Alarm_: { screen: Alarm_ },
+    EarlyWarning_: { screen: EarlyWarning_ },
+    Patrol: { screen: Patrol },
+    Emergency: { screen: Emergency },
+    Breakdown: { screen: Breakdown },
+    HaltProduction: { screen: HaltProduction },
+    SparePart: { screen: SparePart },
+    PowerCut: { screen: PowerCut },
+    QualityControl: { screen: QualityControl },
     // DetailRouter:{ screen:DetailRouter},
   },
   {
