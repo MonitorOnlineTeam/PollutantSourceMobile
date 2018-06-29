@@ -136,7 +136,11 @@ class DataList extends Component {
         <Image
           style={[{ height: 100, width: 100 }]}
           defaultSource={require('../../images/person.png')}
-          source={this.state.imageSrc===''?require('../../images/person.png') : { uri: this.state.imageSrc }}
+          source={
+            this.state.imageSrc === ''
+              ? require('../../images/person.png')
+              : { uri: this.state.imageSrc }
+          }
         />
         <Text
           onPress={() => {
