@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
-import { Grid } from 'antd-mobile';
+import { Grid } from 'antd-mobile-rn';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import Iconi from 'react-native-vector-icons/dist/Ionicons';
 
