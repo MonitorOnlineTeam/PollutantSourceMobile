@@ -1,10 +1,22 @@
 package com.pollutantsourcemobile;
 
+import android.os.Bundle;
+import android.os.PersistableBundle;
+import android.support.annotation.Nullable;
+
 import com.facebook.react.ReactActivity;
 import com.facebook.react.modules.core.PermissionListener;
 import com.imagepicker.permissions.OnImagePickerPermissionsCallback;
 
+import org.devio.rn.splashscreen.SplashScreen;
+
 public class MainActivity extends ReactActivity implements OnImagePickerPermissionsCallback {
+
+  @Override
+  public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
+    SplashScreen.show(this);
+    super.onCreate(savedInstanceState, persistentState);
+  }
 
   private PermissionListener listener; // <- add this attribute
     /**
