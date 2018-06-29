@@ -4,6 +4,7 @@ import { View, Text, StyleSheet, Image } from 'react-native';
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import ImagePicker from 'react-native-image-picker';
+import JPushModule from 'jpush-react-native';
 
 
 import wholeSituationStyle from '../../config/wholeSituationStyle';
@@ -121,6 +122,17 @@ class DataList extends Component {
           {'选照片'}
         </Text>
         <Image style={[{height:100,width:100,}]} defaultSource={require('../../images/person.png')} source={{uri:this.state.imageSrc}}/>
+        <Text onPress={()=>{JPushModule.initPush(); console.log('123');}}>1</Text>
+        <Text onPress={()=>{
+          console.log('345');
+            JPushModule.getAlias(map => {
+              if (map.errorCode === 0) {
+                console.log('Get alias succeed, alias: ' + map.alias);
+              } else {
+                console.log('Get alias failed, errorCode: ' + map.errorCode);
+              }
+            });
+        }}>2</Text>
       </View>
     );
   }
