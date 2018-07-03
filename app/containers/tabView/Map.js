@@ -1,13 +1,23 @@
 // import liraries
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Image, StatusBar, TouchableOpacity } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  StatusBar,
+  TouchableOpacity,
+} from 'react-native';
 import { connect } from 'react-redux';
 import { MapView } from 'react-native-amap3d';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 
 import wholeSituationStyle from '../../config/wholeSituationStyle';
 import { SCREEN_WIDTH } from '../../config/globalsize';
-import { getPointEnterprise, getEnterprise } from '../../mockdata/Base/commonbase';
+import {
+  getPointEnterprise,
+  getEnterprise,
+} from '../../mockdata/Base/commonbase';
 /*
  * Copyright (c) 2018 SDL.All Rights Reserved
  *
@@ -42,55 +52,55 @@ class Map extends Component {
       />
     ),
   }
-  
-  constructor(props){
+
+  constructor(props) {
     super(props);
-    
-    let points,enterprise,_this;
+
+    let points, enterprise, _this;
     _this = this;
-    getPointEnterprise().then(function(data){
+    getPointEnterprise().then(function(data) {
       console.log(data);
       _this.setState({
-        'points':data,
+        points: data,
       });
     });
-    getEnterprise().then(function(data){
+    getEnterprise().then(function(data) {
       console.log(data);
       _this.setState({
-        'enterprise':data,
+        enterprise: data,
       });
     });
     // console.log(points);
     // console.log(enterprise);
     this.state = {
-      'points':[],
-      'enterprise':[],
-      showEnterprise:true,
-      'zoomLevel':5,
-      'mapCoordinateLatitude': 40.334910,
-      'mapCoordinateLongitude': 115.326840,
-    }
+      points: [],
+      enterprise: [],
+      showEnterprise: true,
+      zoomLevel: 5,
+      mapCoordinateLatitude: 40.33491,
+      mapCoordinateLongitude: 115.32684,
+    };
   }
 
   _logStatusChangeCompleteEvent = ({ nativeEvent }) => {
     console.log('onStatusChangeComplete', nativeEvent);
-    if (nativeEvent.zoomLevel>8) {
+    if (nativeEvent.zoomLevel > 8) {
       this.setState({
-        showEnterprise:false,
+        showEnterprise: false,
       });
     } else {
       this.setState({
-        showEnterprise:true,
+        showEnterprise: true,
       });
     }
   }
 
-  _drawPolyline = () =>{
+  _drawPolyline = () => {
     let polylines = [];
-    this.state.enterprise.map((item,key)=>{
+    this.state.enterprise.map((item, key) => {
       let _CoordinateSet = [];
       let CoordinateSet_ = JSON.parse(item.CoordinateSet);
-      CoordinateSet_[0][0].map((item1,key1)=>{
+      CoordinateSet_[0][0].map((item1, key1) => {
         _CoordinateSet.push({
           latitude: item1[1],
           longitude: item1[0],
@@ -100,85 +110,125 @@ class Map extends Component {
         latitude: CoordinateSet_[0][0][0][1],
         longitude: CoordinateSet_[0][0][0][0],
       });
-      polylines.push(<MapView.Polyline
-        key = {key+''+CoordinateSet_[0][0].length}
-        width={2}
-        color="rgba(255, 0, 0, 0.5)"
-        coordinates={_CoordinateSet}
-      />);
+      polylines.push(
+        <MapView.Polyline
+          key={key + '' + CoordinateSet_[0][0].length}
+          width={2}
+          color="rgba(255, 0, 0, 0.5)"
+          coordinates={_CoordinateSet}
+        />
+      );
     });
     // console.log(polylines); 15.5
     return polylines;
   }
-  
+
   _drawPoint = () => {
     let markers = [];
-    this.state.points.map((item,key)=>{
+    this.state.points.map((item, key) => {
       // console.log(item);
       markers.push(
-      <MapView.Marker color="green"
-        key = {key}  
-        coordinate={{
-          latitude: parseFloat(item.Latitude,10),
-          longitude: parseFloat(item.Longitude,10),
-        }}
-      >
-        <TouchableOpacity activeOpacity={0.9} onPress={()=>{}}
-          >
-          <View style={styles.customInfoWindow}>
-            <Text>自定义信息窗口</Text>
-            <Text>{item.EntName}</Text>
-          </View>
-        </TouchableOpacity>
-      </MapView.Marker>);
+        <MapView.Marker
+          color="green"
+          key={key}
+          coordinate={{
+            latitude: parseFloat(item.Latitude, 10),
+            longitude: parseFloat(item.Longitude, 10),
+          }}
+        >
+          <TouchableOpacity activeOpacity={0.9} onPress={() => {}}>
+            <View style={styles.customInfoWindow}>
+              <Text>自定义信息窗口</Text>
+              <Text>{item.EntName}</Text>
+            </View>
+          </TouchableOpacity>
+        </MapView.Marker>
+      );
     });
     return markers;
   }
 
   _showEnterpriseFun = () => {
-    let markers  = [];
+    let markers = [];
     console.log(this.state.enterprise);
-    this.state.enterprise.map((item,key)=>{
-      let count = 0; 
+    this.state.enterprise.map((item, key) => {
+      let count = 0;
       this.state.points.map(point => {
-          if (point.EntCode === item.EntCode) { count++; }
+        if (point.EntCode === item.EntCode) {
+          count++;
+        }
       });
 
       markers.push(
-        <MapView.Marker color="red"
-          key = {key}
+        <MapView.Marker
+          color="red"
+          key={key}
           infoWindowDisabled={true}
           coordinate={{
-            latitude: parseFloat(item.Latitude,10),
-            longitude: parseFloat(item.Longitude,10),
+            latitude: parseFloat(item.Latitude, 10),
+            longitude: parseFloat(item.Longitude, 10),
           }}
-          onPress={()=>{
+          onPress={() => {
             console.log('onPress13');
-            console.log('latitude:'+ parseFloat(item.Latitude,10)+',longitude:'+ parseFloat(item.Longitude,10),);
+            console.log(
+              'latitude:' +
+                parseFloat(item.Latitude, 10) +
+                ',longitude:' +
+                parseFloat(item.Longitude, 10)
+            );
             this.setState({
-              'zoomLevel':this.state.zoomLevel===15?15.1:15,
+              zoomLevel: this.state.zoomLevel === 15 ? 15.1 : 15,
             });
             this.setState({
-              mapCoordinateLatitude: parseFloat(item.Latitude,10),
-              mapCoordinateLongitude: parseFloat(item.Longitude,10),
+              mapCoordinateLatitude: parseFloat(item.Latitude, 10),
+              mapCoordinateLongitude: parseFloat(item.Longitude, 10),
             });
           }}
-          icon={
-            ()=><TouchableOpacity activeOpacity={0.9} 
-          style={[{borderRadius:4,backgroundColor:item.status==0
-          ?"#B0B0B1":item.status==1?"#5BC142":item.status==2?"#E00B0B":item.status==3||item.status==4||item.status==5?"#B9C303":"#B0B0B1",
-          alignItems:'center',justifyContent:'center',minHeight:24,minWidth:40,borderColor:item.status==0?"#B0B0B1":item.status==1?"#5BC142":item.status==2?"#E00B0B":
-          item.status==3||item.status==4||item.status==5?"#B9C303":"#5BC142",}]}
-              >
-              <View style={{flexDirection:'row',}}>
+          icon={() => (
+            <TouchableOpacity
+              activeOpacity={0.9}
+              style={[
+                {
+                  borderRadius: 4,
+                  backgroundColor:
+                    item.status == 0
+                      ? '#B0B0B1'
+                      : item.status == 1
+                        ? '#5BC142'
+                        : item.status == 2
+                          ? '#E00B0B'
+                          : item.status == 3 ||
+                            item.status == 4 ||
+                            item.status == 5
+                            ? '#B9C303'
+                            : '#B0B0B1',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  minHeight: 24,
+                  minWidth: 40,
+                  borderColor:
+                    item.status == 0
+                      ? '#B0B0B1'
+                      : item.status == 1
+                        ? '#5BC142'
+                        : item.status == 2
+                          ? '#E00B0B'
+                          : item.status == 3 ||
+                            item.status == 4 ||
+                            item.status == 5
+                            ? '#B9C303'
+                            : '#5BC142',
+                },
+              ]}
+            >
+              <View style={{ flexDirection: 'row' }}>
                 <Text>{item.EntName}</Text>
                 <Text>[{count}]</Text>
               </View>
             </TouchableOpacity>
-          }
-        >
-          
-        </MapView.Marker>);
+          )}
+        />
+      );
     });
     return markers;
   }
@@ -201,26 +251,21 @@ class Map extends Component {
           showsCompass={false}
           showsScale={false}
         >
-        {
-          this.state.enterprise !==null
-          &&this.state.enterprise.length>0
-          &&!this.state.showEnterprise?
-          this._drawPolyline()
-          :(null)
-        }{
-          this.state.points !==null
-          &&this.state.points.length>0
-          &&!this.state.showEnterprise?
-          this._drawPoint()
-          :(null)
-        }
-        {
-          this.state.enterprise !==null
-          &&this.state.enterprise.length>0
-          &&this.state.showEnterprise?
-          this._showEnterpriseFun()
-          :(null)
-        }
+          {this.state.enterprise !== null &&
+          this.state.enterprise.length > 0 &&
+          !this.state.showEnterprise
+            ? this._drawPolyline()
+            : null}
+          {this.state.points !== null &&
+          this.state.points.length > 0 &&
+          !this.state.showEnterprise
+            ? this._drawPoint()
+            : null}
+          {this.state.enterprise !== null &&
+          this.state.enterprise.length > 0 &&
+          this.state.showEnterprise
+            ? this._showEnterpriseFun()
+            : null}
         </MapView>
       </View>
     );
