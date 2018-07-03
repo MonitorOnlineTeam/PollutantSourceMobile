@@ -3,6 +3,7 @@ package com.pollutantsourcemobile;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.modules.core.PermissionListener;

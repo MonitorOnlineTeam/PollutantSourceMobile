@@ -190,6 +190,7 @@ class Router extends PureComponent {
       console.log('Device register succeed, registrationId ' + registrationId);
     });
     JPushModule.initPush();
+    JPushModule.setStyleBasic();
     initializeListeners('root', this.props.router);
     console.log('初始化完成');
     setTimeout(function() {

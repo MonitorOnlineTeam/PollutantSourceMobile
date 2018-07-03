@@ -2,9 +2,11 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
-      <!-- 实际显示启动也的位置 -->
-      <item name="android:windowBackground">@drawable/launch_screen</item> // 添加这个
+      <!-- Customize your theme here. -->
+      <!--设置透明背景-->
+      <item name="android:windowIsTranslucent">true</item>
     </style>
-
+    <style name="SplashTheme" parent="AppTheme">
+      <!--<item name="android:windowBackground">@drawable/launch_screen</item>-->
+    </style>
 </resources>
