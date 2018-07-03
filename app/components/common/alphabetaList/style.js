@@ -1,10 +1,7 @@
 /**
  * Created by chenqiming on 16/4/16.
  */
-import React, {
-  Dimensions,
-  StyleSheet,
-} from 'react-native';
+import React, { Dimensions, StyleSheet } from 'react-native';
 
 const { height, width } = Dimensions.get('window');
 

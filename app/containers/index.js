@@ -12,10 +12,10 @@ const MainNavigator = StackNavigator(
   {
     HomeNavigator: { screen: HomeNavigator },
     Detail: { screen: Detail },
-    MyPhoneList:{screen:MyPhoneList},
-    knowledgebase:{screen:knowledgebase},
-    FileDOC:{screen:FileDOC},
-    DisplayDOC:{screen:DisplayDOC}
+    MyPhoneList: { screen: MyPhoneList },
+    knowledgebase: { screen: knowledgebase },
+    FileDOC: { screen: FileDOC },
+    DisplayDOC: { screen: DisplayDOC },
   },
   {
     headerMode: 'float',
@@ -26,7 +26,6 @@ export default StackNavigator(
   {
     Login: { screen: Login },
     Main: { screen: MainNavigator },
- 
   },
   {
     headerMode: 'none',
