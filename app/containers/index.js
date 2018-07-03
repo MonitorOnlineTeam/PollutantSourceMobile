@@ -4,11 +4,18 @@ import { Animated, Easing } from 'react-native';
 import HomeNavigator from './tabView';
 import Detail from './Detail';
 import Login from './Login';
-
+import MyPhoneList from './MyPhoneList';
+import knowledgebase from './knowledgebase';
+import FileDOC from './FileDOC';
+import DisplayDOC from './DisplayDOC';
 const MainNavigator = StackNavigator(
   {
     HomeNavigator: { screen: HomeNavigator },
     Detail: { screen: Detail },
+    MyPhoneList:{screen:MyPhoneList},
+    knowledgebase:{screen:knowledgebase},
+    FileDOC:{screen:FileDOC},
+    DisplayDOC:{screen:DisplayDOC}
   },
   {
     headerMode: 'float',
@@ -19,6 +26,7 @@ export default StackNavigator(
   {
     Login: { screen: Login },
     Main: { screen: MainNavigator },
+ 
   },
   {
     headerMode: 'none',
