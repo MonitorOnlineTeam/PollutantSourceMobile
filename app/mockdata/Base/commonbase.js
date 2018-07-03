@@ -4,8 +4,9 @@ import Point_FactoryJson from './Point_Factory.json';
 import Point_ComplexJson from './Point_Complex.json';
 import Point_OperationJson from './Point_Operation.json';
 import relationJson from './Point_MonitorPointBase.json';
-import Cookie from 'js-cookie';
-import ColumnGroup from 'antd/lib/table/ColumnGroup';
+// import Cookie from 'js-cookie';
+// import ColumnGroup from 'antd/lib/table/ColumnGroup';
+import { loadStorage } from '../../dvapack/storage';
 
 const enterpriseArray = Enterprise_AllJson;
 const allpointArray = Point_AllJson;
@@ -37,8 +38,9 @@ function getEnterpriseSon() {
 }
 
 // 登陆用户可查看的企业
-export function getEnterprise() {
-  const user = JSON.parse(Cookie.get('token'));
+export async function getEnterprise() {
+  // const user = JSON.parse(Cookie.get('token'));
+  const user = await loadStorage('loginmsg');
   let result = [];
   // 管理员
   if (user.User_Account === 'system') {
@@ -90,8 +92,9 @@ export function getEnterprise() {
 }
 
 // 登陆用户可查看的点位（附带企业）
-export function getPointEnterprise() {
-  const user = JSON.parse(Cookie.get('token'));
+export async function getPointEnterprise() {
+  // const user = JSON.parse(Cookie.get('token'));
+  const user = await loadStorage('loginmsg');
   let result = [];
 
   let points;

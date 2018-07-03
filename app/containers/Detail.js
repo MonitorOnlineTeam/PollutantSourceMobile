@@ -24,7 +24,6 @@ class Detail extends Component {
     return (
       <View style={styles.container}>
         <Button text="Goto Detail" onPress={this.gotoDetail} />
-        <Button text="Go Back" onPress={this.goBack} />
       </View>
     );
   }

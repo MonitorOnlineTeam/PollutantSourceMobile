@@ -1,0 +1,6 @@
+module Pods_PollutantSourceMobile {
+  umbrella header "Pods-PollutantSourceMobile-umbrella.h"
+
+  export *
+  module * { export * }
+}

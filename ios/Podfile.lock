@@ -1,21 +1,22 @@
 PODS:
-  - Base64 (1.1.2)
   - boost-for-react-native (1.63.0)
-  - CodePush (5.3.4):
-    - Base64 (~> 1.1)
-    - JWT (~> 3.0.0-beta.7)
-    - React
-    - SSZipArchive (~> 2.1)
+  - Charts (3.1.1):
+    - Charts/Core (= 3.1.1)
+  - Charts/Core (3.1.1)
   - DoubleConversion (1.1.5)
   - Folly (2016.09.26.00):
     - boost-for-react-native
     - DoubleConversion
     - glog
   - glog (0.3.4)
-  - JWT (3.0.0-beta.8):
-    - Base64 (~> 1.1.2)
+  - JCoreRN (1.2.6):
+    - React
+  - JPushRN (2.2.3):
+    - React
   - React (0.55.4):
     - React/Core (= 0.55.4)
+  - React/ART (0.55.4):
+    - React/Core
   - React/Core (0.55.4):
     - yoga (= 0.55.4.React)
   - React/CxxBridge (0.55.4):
@@ -36,65 +37,92 @@ PODS:
     - React/PrivateDatabase
   - React/jsinspector (0.55.4)
   - React/PrivateDatabase (0.55.4)
+  - React/RCTActionSheet (0.55.4):
+    - React/Core
+  - React/RCTAnimation (0.55.4):
+    - React/Core
   - React/RCTBlob (0.55.4):
+    - React/Core
+  - React/RCTGeolocation (0.55.4):
+    - React/Core
+  - React/RCTImage (0.55.4):
+    - React/Core
+    - React/RCTNetwork
+  - React/RCTLinkingIOS (0.55.4):
     - React/Core
   - React/RCTNetwork (0.55.4):
     - React/Core
-  - React/RCTText (0.55.4):
+  - React/RCTPushNotification (0.55.4):
+    - React/Core
+  - React/RCTSettings (0.55.4):
+    - React/Core
+  - React/RCTVibration (0.55.4):
     - React/Core
   - React/RCTWebSocket (0.55.4):
     - React/Core
     - React/fishhook
     - React/RCTBlob
-  - SSZipArchive (2.1.2)
+  - SwiftyJSON (4.0.0)
   - yoga (0.55.4.React)
 
 DEPENDENCIES:
-  - CodePush (from `../node_modules/react-native-code-push`)
+  - Charts (= 3.1.1)
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
   - Folly (from `../node_modules/react-native/third-party-podspecs/Folly.podspec`)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
+  - JCoreRN (from `../node_modules/jcore-react-native`)
+  - JPushRN (from `../node_modules/jpush-react-native`)
+  - React/ART (from `../node_modules/react-native`)
   - React/Core (from `../node_modules/react-native`)
   - React/CxxBridge (from `../node_modules/react-native`)
   - React/DevSupport (from `../node_modules/react-native`)
+  - React/RCTActionSheet (from `../node_modules/react-native`)
+  - React/RCTAnimation (from `../node_modules/react-native`)
+  - React/RCTBlob (from `../node_modules/react-native`)
+  - React/RCTGeolocation (from `../node_modules/react-native`)
+  - React/RCTImage (from `../node_modules/react-native`)
+  - React/RCTLinkingIOS (from `../node_modules/react-native`)
   - React/RCTNetwork (from `../node_modules/react-native`)
-  - React/RCTText (from `../node_modules/react-native`)
-  - React/RCTWebSocket (from `../node_modules/react-native`)
+  - React/RCTPushNotification (from `../node_modules/react-native`)
+  - React/RCTSettings (from `../node_modules/react-native`)
+  - React/RCTVibration (from `../node_modules/react-native`)
+  - SwiftyJSON (= 4.0.0)
   - yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
-    - Base64
     - boost-for-react-native
-    - JWT
-    - SSZipArchive
+    - Charts
+    - SwiftyJSON
 
 EXTERNAL SOURCES:
-  CodePush:
-    :path: "../node_modules/react-native-code-push"
   DoubleConversion:
     :podspec: "../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec"
   Folly:
     :podspec: "../node_modules/react-native/third-party-podspecs/Folly.podspec"
   glog:
     :podspec: "../node_modules/react-native/third-party-podspecs/glog.podspec"
+  JCoreRN:
+    :path: "../node_modules/jcore-react-native"
+  JPushRN:
+    :path: "../node_modules/jpush-react-native"
   React:
     :path: "../node_modules/react-native"
   yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
-  Base64: cecfb41a004124895a7bcee567a89bae5a89d49b
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
-  CodePush: f6b348759cdc42c734d9c3a46ceb2997c270b12e
+  Charts: 90a4d61da0f6e06684c591e3bcab11940fe61736
   DoubleConversion: e22e0762848812a87afd67ffda3998d9ef29170c
   Folly: 211775e49d8da0ca658aebc8eab89d642935755c
   glog: 1de0bb937dccdc981596d3b5825ebfb765017ded
-  JWT: 6e7ec473b6febcb7498affc84f0e75d393914411
+  JCoreRN: 5dff1e0264ee9fd57a0bc9b8cb2411b3c553e241
+  JPushRN: bdaefc1f0442d90ef4035f47e29e4268ee6a11f2
   React: aa2040dbb6f317b95314968021bd2888816e03d5
-  SSZipArchive: d4009d2ce5520a421f231fd97028cc0e2667eed8
+  SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
   yoga: a23273df0088bf7f2bb7e5d7b00044ea57a2a54a
 
-PODFILE CHECKSUM: b42f9c3571cc1f397bbdd3595835a4b42a18b9c8
+PODFILE CHECKSUM: d5fe4303e0df5045af30983534a598db6ed4282b
 
 COCOAPODS: 1.5.2

@@ -1,10 +1,16 @@
-package com.PollutantSourceMobile;
+package com.pollutantsourcemobile;
 
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
-import cn.qiuxiang.react.amap3d.AMap3DPackage;
+import com.oblador.vectoricons.VectorIconsPackage;
+import org.devio.rn.splashscreen.SplashScreenReactPackage;
+import com.imagepicker.ImagePickerPackage;
 import com.microsoft.codepush.react.CodePush;
+import com.github.wuxudong.rncharts.MPAndroidChartPackage;
+
+import cn.jpush.reactnativejpush.JPushPackage;
+import cn.qiuxiang.react.amap3d.AMap3DPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
@@ -14,6 +20,9 @@ import java.util.Arrays;
 import java.util.List;
 
 public class MainApplication extends Application implements ReactApplication {
+
+  private boolean SHUTDOWN_TOAST = false;
+  private boolean SHUTDOWN_LOG = false;
 
   private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
 
@@ -30,9 +39,14 @@ public class MainApplication extends Application implements ReactApplication {
     @Override
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
-          new MainReactPackage(),
-            new AMap3DPackage(),
-            new CodePush(getResources().getString(R.string.reactNativeCodePush_androidDeploymentKey), getApplicationContext(), BuildConfig.DEBUG)
+            new MainReactPackage(),
+            new VectorIconsPackage(),
+            new SplashScreenReactPackage(),
+            new ImagePickerPackage(),
+            new CodePush(getResources().getString(R.string.reactNativeCodePush_androidDeploymentKey), getApplicationContext(), BuildConfig.DEBUG),
+            new MPAndroidChartPackage(),
+            new JPushPackage(SHUTDOWN_TOAST, SHUTDOWN_LOG),
+            new AMap3DPackage()
       );
     }
 

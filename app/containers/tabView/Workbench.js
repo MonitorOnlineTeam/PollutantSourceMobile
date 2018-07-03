@@ -1,6 +1,13 @@
 // import liraries
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  StatusBar,
+} from 'react-native';
 import { connect } from 'react-redux';
 import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
 import wholeSituationStyle from '../../config/wholeSituationStyle';
@@ -14,7 +21,7 @@ import { Menu, ActivityIndicator, NavBar } from 'antd-mobile';
  * @Email: houxfmark3955@163.com
  * @Create At: 2018-06-20 14:21:47
  * @Last Modified By: houxfmark3955@163.com
- * @Last Modified At: 2018-06-20 15:12:26
+ * @Last Modified At: 2018-06-27 11:18:53
  * @Description: 工作台.
  */
 LocaleConfig.locales['fr'] = {
@@ -60,6 +67,7 @@ LocaleConfig.locales['fr'] = {
 
 LocaleConfig.defaultLocale = 'fr';
 // create a component
+const stateButtonWidth = SCREEN_WIDTH / 5;
 @connect()
 class Workbench extends Component {
   static navigationOptions = ({ navigation }) => ({
@@ -89,12 +97,17 @@ class Workbench extends Component {
     //    </TouchableOpacity>
     //  ),
     tabBarIcon: ({ focused, tintColor }) => (
-      <Image
-        style={[
-          wholeSituationStyle.icon,
-          { tintColor: focused ? tintColor : 'gray' },
-        ]}
-        source={require('../../images/person.png')}
+      // <Image
+      //   style={[
+      //     wholeSituationStyle.icon,
+      //     { tintColor: focused ? tintColor : 'gray' },
+      //   ]}
+      //   source={require('../../images/person.png')}
+      // />
+      <Icon
+        name={'clipboard'}
+        size={20}
+        style={{ color: focused ? tintColor : 'gray' }}
       />
     ),
   })
@@ -190,14 +203,65 @@ class Workbench extends Component {
     );
   }
 }
+{
+  /*<View style={styles.container}>
+        <StatusBar barStyle="dark-content" style={[{height:24}]}/>
+        <View style={[{flexDirection:'row',height:stateButtonWidth*2
+        ,backgroundColor:'black',width:SCREEN_WIDTH,
+        justifyContent:'center',alignItems:'center',}]}>
+          {
+            this.state.stateArray.map((item,key)=>{
+              return <TouchableOpacity key={item.id} style={[{marginLeft:4,marginRight:4}]}
+                onPress={item.fun}>
+                <View style={[
+                  {width:stateButtonWidth,height:stateButtonWidth,
+                    justifyContent:'center',alignItems:'center',
+                  backgroundColor:item.id==='todo'?'lightblue':
+                  item.id==='earlywarning'?'orange':
+                  item.id==='message'?'yellow':
+                  item.id==='alarm'?'red':'white',}]}>
+                  <Text style={[{color:'white'}]}>{item.title}</Text>
+                  <Text style={[{color:'white'}]}>{item.count}</Text>
+                </View>
+              </TouchableOpacity>;
+            })
+          }
+        </View>
+        <View style={[{
+          width:SCREEN_WIDTH,
+          flex:1,flexDirection:'row',
+          flexWrap:'wrap',
+          paddingLeft:stateButtonWidth/3,
+          paddingRight:stateButtonWidth/3,
+        }]}>
+          {
+            this.state.functionArray.map((item,key)=>{
+              return <TouchableOpacity key={item.id}
+                onPress={item.fun}
+                style={[
+                {marginLeft:stateButtonWidth/48,
+                  marginRight:stateButtonWidth/48,
+                marginTop:stateButtonWidth/3}]}>
+              <View style={[
+                {width:stateButtonWidth,height:stateButtonWidth,
+                  justifyContent:'center',alignItems:'center',
+                backgroundColor:'red',}]}>
+                <Text style={[{color:'white'}]}>{item.title}</Text>
+              </View>
+            </TouchableOpacity>;
+            })
+          }
+        </View>
+        </View>*/
+}
 
 // define your styles
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    // justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#2c3e50',
+    backgroundColor: 'white',
   },
   item: {
     backgroundColor: 'white',

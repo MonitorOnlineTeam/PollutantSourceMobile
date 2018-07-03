@@ -1,5 +1,11 @@
 import React, { PureComponent } from 'react';
-import { BackHandler, Animated, Easing } from 'react-native';
+import {
+  BackHandler,
+  Animated,
+  Easing,
+  NativeAppEventEmitter,
+  Platform,
+} from 'react-native';
 import {
   StackNavigator,
   TabNavigator,
@@ -13,6 +19,8 @@ import {
 } from 'react-navigation-redux-helpers';
 import { connect } from 'react-redux';
 import CodePush from 'react-native-code-push';
+import JPushModule from 'jpush-react-native';
+import SplashScreen from 'react-native-splash-screen';
 
 import { getCurrentParams, Event } from './utils';
 import Loading from './containers/Loading';
@@ -137,7 +145,58 @@ class Router extends PureComponent {
   componentDidMount() {
     CodePush.notifyAppReady();
     doUpdate(syncStatus => {}, progress => {});
+    if (Platform.OS === 'android') {
+      JPushModule.initPush();
+      JPushModule.getInfo(map => {
+        this.setState({
+          appkey: map.myAppKey,
+          imei: map.myImei,
+          package: map.myPackageName,
+          deviceId: map.myDeviceId,
+          version: map.myVersion,
+        });
+      });
+      JPushModule.notifyJSDidLoad(resultCode => {
+        if (resultCode === 0) {
+        }
+      });
+    } else {
+      JPushModule.setupPush();
+    }
+
+    JPushModule.addReceiveCustomMsgListener(map => {
+      this.setState({
+        pushMsg: map.message,
+      });
+      console.log('extras: ' + map.extras);
+    });
+
+    JPushModule.addReceiveNotificationListener(map => {
+      console.log('alertContent: ' + map.alertContent);
+      console.log('extras: ' + map.extras);
+      // var extra = JSON.parse(map.extras);
+      // console.log(extra.key + ": " + extra.value);
+    });
+
+    JPushModule.addReceiveOpenNotificationListener(map => {
+      console.log('Opening notification!');
+      console.log('map.extra: ' + map.extras);
+      // 跳转到指定页面
+      // this.jumpSecondActivity();
+      // JPushModule.jumpToPushActivity("SecondActivity");
+    });
+
+    JPushModule.addGetRegistrationIdListener(registrationId => {
+      console.log('Device register succeed, registrationId ' + registrationId);
+    });
+    JPushModule.initPush();
+    JPushModule.setStyleBasic();
     initializeListeners('root', this.props.router);
+    console.log('初始化完成');
+    setTimeout(function() {
+      SplashScreen.hide();
+    }, 5000);
+    console.log('关闭启动页');
   }
 
   componentWillUnmount() {
