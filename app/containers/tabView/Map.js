@@ -136,7 +136,7 @@ class Map extends Component {
             longitude: parseFloat(item.Longitude, 10),
           }}
         >
-          <TouchableOpacity activeOpacity={0.9} onPress={() => {}}>
+          <TouchableOpacity activeOpacity={0.9} style={{backgroundColor:"#fbfbfb"}} onPress={() => {}}>
             <View style={styles.customInfoWindow}>
               <Text>自定义信息窗口</Text>
               <Text>{item.EntName}</Text>

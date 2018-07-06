@@ -57,10 +57,7 @@ const MainNavigator = StackNavigator(
     groupCompany: { screen: groupCompany },
     system: { screen: system },
     Detail: { screen: Detail },
-    MyPhoneList: { screen: MyPhoneList },
-    knowledgebase: { screen: knowledgebase },
-    FileDOC: { screen: FileDOC },
-    DisplayDOC: { screen: DisplayDOC },
+    
   },
   {
     headerMode: 'float',
@@ -119,6 +116,11 @@ export default StackNavigator(
     PowerCut: { screen: PowerCut },
     QualityControl: { screen: QualityControl },
     // DetailRouter:{ screen:DetailRouter},
+
+    MyPhoneList: { screen: MyPhoneList },
+    knowledgebase: { screen: knowledgebase },
+    FileDOC: { screen: FileDOC },
+    DisplayDOC: { screen: DisplayDOC },
   },
   {
     lazyLoad: true,

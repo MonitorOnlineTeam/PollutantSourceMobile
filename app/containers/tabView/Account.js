@@ -38,6 +38,7 @@ class Account extends Component {
         update: '',
         text: '知识库',
         onPress: (phoneList = () => {
+      
           this.props.dispatch(
             NavigationActions.navigate({ routeName: 'knowledgebase' })
           );
@@ -48,7 +49,9 @@ class Account extends Component {
         update: '',
         text: '通讯录',
         onPress: (phoneList = () => {
+       
           this.props.dispatch(
+          
             NavigationActions.navigate({ routeName: 'MyPhoneList' })
           );
         }),

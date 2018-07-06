@@ -13,6 +13,16 @@ import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
 import wholeSituationStyle from '../../config/wholeSituationStyle';
 import { LocaleConfig } from 'react-native-calendars';
 import { Menu, ActivityIndicator, NavBar } from 'antd-mobile';
+import { SCREEN_WIDTH } from '../../config/globalsize';
+import Icon from 'react-native-vector-icons/dist/FontAwesome';
+import { Modal} from 'antd-mobile-rn';
+
+import Point_All from '../../mockdata/Base/Point_All.json';
+import moment from 'moment';
+import alarm from '../../mockdata/Workbench/alarm.json';
+import earlywarning from '../../mockdata/Workbench/earlywarning.json';
+import operation from '../../mockdata/Workbench/operation.json';
+import todolist from '../../mockdata/Workbench/todolist.json';
 /*
  * Copyright (c) 2018 SDL.All Rights Reserved
  *
@@ -24,6 +34,7 @@ import { Menu, ActivityIndicator, NavBar } from 'antd-mobile';
  * @Last Modified At: 2018-06-27 11:18:53
  * @Description: 工作台.
  */
+
 LocaleConfig.locales['fr'] = {
   monthNames: [
     '一月',
@@ -62,12 +73,14 @@ LocaleConfig.locales['fr'] = {
     '星期五',
     '星期六',
   ],
-  dayNamesShort: ['一', '二', '三', '四', '五', '六', '日'],
+  dayNamesShort: ['日','一', '二', '三', '四', '五', '六'],
 };
-
+let type="all",_day ={timestamp:new Date().getTime()} ;
 LocaleConfig.defaultLocale = 'fr';
 // create a component
 const stateButtonWidth = SCREEN_WIDTH / 5;
+const data=alarm;
+let _this;
 @connect()
 class Workbench extends Component {
   static navigationOptions = ({ navigation }) => ({
@@ -76,34 +89,59 @@ class Workbench extends Component {
     headerBackTitle: null,
     headerTintColor: '#000',
     headerStyle: { backgroundColor: '#fff' },
-    //  headerRight: (
-    //    <TouchableOpacity
-    //      style={{ width: 30 }}
-    //      onPress={() => {
-    //        navigation.dispatch(NavigationActions.navigate({ routeName: 'QRCodeScreen' }))
-    //      }}
-    //    >
-    //      <Icon name="ios-qr-scanner" size={28} color="#fff" />
-    //    </TouchableOpacity>
-    //  ),
-    //  headerLeft: (
-    //    <TouchableOpacity
-    //      style={{ width: 30, marginLeft: 10 }}
-    //      onPress={() => {
-    //        navigation.dispatch(NavigationActions.navigate({ routeName: 'Search' }))
-    //      }}
-    //    >
-    //      <Icon name="ios-search" size={28} color="#fff" />
-    //    </TouchableOpacity>
-    //  ),
+     headerRight: (
+       <TouchableOpacity
+         style={{ width: 30 }}
+         onPress={() => {
+          Modal.operation([
+            { text: '全部', onPress: () =>{ type="all";
+            _this.setState({'items':{}}); _this.loadItems(_day);
+          }},
+            { text: '待办', onPress: () => {
+              _this.setState({'items':{}});
+              type="todolist";
+            // = {
+            //   items:{}
+            // };
+         
+            setTimeout(() => {
+              _this.loadItems(_day);
+
+            },1000);
+
+            
+           
+          } },
+            { text: '消息', onPress: () => { type="opertation";
+            _this.setState({'items':{}}
+          );   setTimeout(() => {
+            _this.loadItems(_day);
+
+          },1000);
+          } },
+            { text: '报警', onPress: () => {type="alarm";
+            _this.setState({'items':{}});   setTimeout(() => {
+              _this.loadItems(_day);
+
+            },1000);
+          }},
+            { text: '预警', onPress: () => {type="earlywarning";
+            _this.setState({'items':{}});   setTimeout(() => {
+              _this.loadItems(_day);
+
+            },1000);} },
+          ]);
+         }}
+       >
+        <Icon
+          name={'align-justify'}
+          size={20}
+          style={{ color: 'gray' }}
+        />
+       </TouchableOpacity>
+     ),
+    
     tabBarIcon: ({ focused, tintColor }) => (
-      // <Image
-      //   style={[
-      //     wholeSituationStyle.icon,
-      //     { tintColor: focused ? tintColor : 'gray' },
-      //   ]}
-      //   source={require('../../images/person.png')}
-      // />
       <Icon
         name={'clipboard'}
         size={20}
@@ -111,57 +149,464 @@ class Workbench extends Component {
       />
     ),
   })
-  constructor(props) {
+  constructor(props) {             
     super(props);
+    _this = this;
     this.state = {
       items: {},
     };
   }
+  getalarm= (day,i)=>{
+   
+      const time = day.timestamp + i * 24 * 60 * 60 * 1000;
+      const strTime = this.timeToString(time);
+      // const date = new Date(time);
+      if (!this.state.items[strTime]) {
+        this.state.items[strTime] = [];
+       }
 
+      alarm.map((item,key)=>{
+        const date=moment(item.date).format('YYYY-MM-DD');
+       if(date===strTime){
+        Point_All.map((pointitem,pointkey)=>{
+          if(pointitem.DGIMN==item.DGIMN){
+            const alarmtype="";
+            if(item.alarmtype===1){
+              alarmtype="限值报警";
+            }else 
+            if(item.alarmtype===2)
+            {
+              alarmtype="零值报警";
+            }else 
+            if(item.alarmtype===3)
+            {
+              alarmtype="连续值报警";
+            }else 
+            if(item.alarmtype===4)
+            {
+              alarmtype="离线报警";
+            }else 
+            if(item.alarmtype===5)
+            {
+              alarmtype="设备报警";
+            }else 
+            if(item.alarmtype===6)
+            {
+              alarmtype="其他报警";
+            }
+        
+            this.state.items[strTime].push({
+              "type":"alarm",
+              "name":pointitem.PointName,
+              marked: true, 
+              "date":item.date,
+              "poll":item.PollutantName,
+              "alarmtype":alarmtype,
+              "cnt":item.cnt,
+              "standard":item.standard,
+              "Strength":item.Strength
+            });
+      }
+        });
+      }
+       });  
+
+  }
+  getoperation= (day,i)=>{
+  
+      const time = day.timestamp + i * 24 * 60 * 60 * 1000;
+      const strTime = this.timeToString(time);
+      // const date = new Date(time);
+      if (!this.state.items[strTime]) {
+        this.state.items[strTime] = [];
+       }
+      operation.map((item,key)=>{
+        const date=moment(item.date).format('YYYY-MM-DD');
+       if(date===strTime){
+        Point_All.map((pointitem,pointkey)=>{
+          if(pointitem.DGIMN==item.DGIMN){
+           const operationaction="";
+           if(item.operationaction===1)
+           {
+            operationaction="例行运维";
+           }else
+           if(item.operationaction===2)
+           {
+            operationaction="应急运维";
+           }else
+           if(item.operationaction===3)
+           {
+            operationaction="运维审核";
+           }else
+           if(item.operationaction===4)
+           {
+            operationaction="备件更换";
+           }else
+           if(item.operationaction===5)
+           {
+            operationaction="备件过期";
+           }else
+           if(item.operationaction===6)
+           {
+            operationaction="运维催办";
+           }
+
+            this.state.items[strTime].push({
+              "type":"operation",
+              "name":pointitem.PointName,
+              marked: true, 
+              "date":item.date,
+              "operationaction":operationaction,
+             
+            });
+      }
+        });
+      }
+       });  
+
+  }
+
+
+   getearlywarning=(day,i)=>{
+   
+      const time = day.timestamp + i * 24 * 60 * 60 * 1000;
+      const strTime = this.timeToString(time);
+      // const date = new Date(time);
+      if (!this.state.items[strTime]) {
+       this.state.items[strTime] = [];
+      }
+      earlywarning.map((item,key)=>{
+        
+        const date=moment(item.date).format('YYYY-MM-DD');
+       if(date===strTime){
+        Point_All.map((pointitem,pointkey)=>{
+          if(pointitem.DGIMN==item.DGIMN){
+            const earlytype="";
+            if(item.earlytype===1)
+            {
+              earlytype="参数预警";
+            }else{
+              earlytype="对比预警";
+            }
+ 
+            this.state.items[strTime].push({
+         
+              "type":"early",
+              "name":pointitem.PointName,
+              marked: true, 
+              "date":item.date,
+              "poll":item.PollutantName,
+              "earlytype":earlytype,
+              "standard":item.standard,
+              "Strength":item.Strength
+            });
+      }
+        });
+      }
+       });  
+  
+   }
+   gettodolist=(day,i)=>{
+   
+      const time = day.timestamp + i * 24 * 60 * 60 * 1000;
+      const strTime = this.timeToString(time);
+      // const date = new Date(time);
+      if (!this.state.items[strTime]) {
+       this.state.items[strTime] = [];
+      }
+      todolist.map((item,key)=>{
+        
+        const date=moment(item.date).format('YYYY-MM-DD');
+       if(date===strTime){
+        Point_All.map((pointitem,pointkey)=>{
+          if(pointitem.DGIMN==item.DGIMN){
+           const operationaction="";
+            if(item.operationaction===1)
+            {
+             operationaction="例行运维";
+            }else
+            if(item.operationaction===2)
+            {
+             operationaction="应急运维";
+            }else
+            if(item.operationaction===3)
+            {
+             operationaction="运维审核";
+            }else
+            if(item.operationaction===4)
+            {
+             operationaction="备件更换";
+            }else
+            if(item.operationaction===5)
+            {
+             operationaction="备件过期";
+            }else
+            if(item.operationaction===6)
+            {
+             operationaction="运维催办";
+            }
+         
+            this.state.items[strTime].push({
+              "type":"todolist",
+              "name":pointitem.PointName,
+               marked: true, 
+              "date":item.date,
+              "operationaction":operationaction,
+            });
+      }
+        });
+      }
+       });  
+  
+   }
   loadItems(day) {
-    setTimeout(() => {
-      // for (let i = -15; i < 85; i++) {
-      //   const time = day.timestamp + i * 24 * 60 * 60 * 1000;
-      //   const strTime = this.timeToString(time);
-      //   if (!this.state.items[strTime]) {
-      //     this.state.items[strTime] = [];
-      //     const numItems = Math.floor(Math.random() * 5);
-      //     for (let j = 0; j < numItems; j++) {
-      //       this.state.items[strTime].push({
-      //         name: 'Item for ' + strTime,
-      //         height: Math.max(50, Math.floor(Math.random() * 150))
-      //       });
-      //     }
-      //   }
-      // }
-      // console.log("1111");
-      // console.log(this.state.items);
-      const newitem = {
-        '2018-07-03': [{ name: 'i111111111', height: 50, marked: true }],
-      };
+   
+    for (let i = -15; i < 50; i++) {
+      const time = day.timestamp + i * 24 * 60 * 60 * 1000;
+      const strTime = this.timeToString(time);
+      this.state.items[strTime] = [];
+    }
+    
+       if(type==="all"){
+      for (let i = -15; i < 50; i++) {
+       this.getalarm(day,i);
+       this.getearlywarning(day,i);
+       this.getoperation(day,i);
+       this.gettodolist(day,i);
+      }
+    }
+    if(type==="opertation")
+    { 
+      for (let i = -15; i < 50; i++) {
+      this.getoperation(day,i);
+    }
+    }
+    if(type==="alarm")
+    {  
+      for (let i = -15; i < 50; i++) {
+      this.getalarm(day,i);
+      }
+    }
+    if(type==="earlywarning")
+    { 
+      for (let i = -15; i < 50; i++) {
+      this.getearlywarning(day,i);
+      }
+    }
+    if(type==="todolist")
+    {  
+       for (let i = -15; i < 50; i++) {
+      this.gettodolist(day,i);
+    }
+    }
+      console.log("1111");
+      console.log(this.state.items);
+
+      // const newitem = {
+      //   '2018-07-02': [{ name: '', height: 500, marked: true }],
+      //   '2018-07-03': [{ name: '', height: 500, marked: true }],
+      //   '2018-07-04': []
+      // };
+
       const newItems = {};
-      Object.keys(newitem).forEach(key => {
-        newItems[key] = newitem[key];
+      Object.keys(this.state.items).forEach(key => {
+        newItems[key] = this.state.items[key];
       });
       this.setState({
         items: newItems,
       });
-    }, 1000);
+  
     // console.log(`Load Items for ${day.year}-${day.month}`);
   }
+  phoneList =()=>{
 
+    alert();
+   }
   renderItem(item) {
+    if(item.type==="alarm"){
     return (
-      <View style={[styles.item, { height: item.height }]}>
-        <Text>{item.name}</Text>
+    
+      <View style={{flexDirection:'row' }}>
+
+      <View style={{ backgroundColor: 'white',
+    flex: 1,
+    borderRadius: 10,
+    padding: 10,
+    marginRight: 10,
+    marginTop: 17,paddingBottom:20}}>
+      <View style={{flexDirection:'row',padding:5}}>
+      <Image  source={require("../../images/gzbj.png")} style={{width:19,height:19}} tintColor="#ff414e"></Image>
+      <Text style={{alignSelf:"center",alignItems:"center",color:"#ff414e",fontSize:15}}>{item.name}</Text>
+        </View> 
+        <View style={{flexDirection:'row',marginTop:3,marginLeft:21}}>
+        <Text style={{color:'#797979',fontSize:14}}>时间:</Text>
+        <Text style={{color:'#252525',fontSize:14}}> {item.date}</Text>
+        </View>
+        <View style={{flexDirection:'row',marginTop:3,marginLeft:21}}>
+      
+        <Text style={{color:'#797979',fontSize:14}}>污染物：</Text>
+        <Text style={{color:'#252525',fontSize:14}}> {item.poll}</Text>
+        </View>
+        <View style={{flexDirection:'row',marginTop:3,marginLeft:21}}>
+      
+      <Text style={{color:'#797979',fontSize:14}}>报警次数：</Text>
+      <Text style={{color:'#252525',fontSize:14}}> {item.cnt}次</Text>
       </View>
+      <View style={{flexDirection:'row',marginTop:3,marginLeft:21}}>
+      
+      <Text style={{color:'#797979',fontSize:14}}>报警类型：</Text>
+      <Text style={{color:'#252525',fontSize:14}}> {item. alarmtype}</Text>
+      </View>
+      
+      <View style={{flexDirection:'row',marginTop:3,marginLeft:21}}>
+     
+      <Text style={{color:'#797979',fontSize:14}}>标准值：</Text>
+      <Text style={{color:'#252525',fontSize:14}}> {item.standard}</Text>
+      </View>
+        <View style={{flexDirection:"row",marginTop:3,marginLeft:21}}>
+          
+        <Text style={{color:'#797979',fontSize:14}}>值：</Text>
+        <Text style={{color:'#252525',fontSize:14}}> {item.Strength}</Text>
+        </View>
+        
+        <TouchableOpacity style={{borderTopColor:"#f5f5f5",borderTopWidth:1,marginTop:10}} onPress={this.phoneList}>    
+            <View style={{flexDirection:"row",marginTop:10,marginLeft:21,}}>
+         <Text style={{color:'#d2d2d2'}}>详情信息</Text>
+         <Image  source={require("../../images/sjt.png")}tintColor="#d2d2d2"
+          style={{width:15,height:15,alignItems:"center",alignSelf:'center',marginLeft:5}} ></Image>
+     </View>
+  
+        </TouchableOpacity>
+        </View>
+      </View>
+   
     );
+  }if (item.type==="early"){
+    return(  <View style={{flexDirection:'row' }}>
+
+    <View style={{ backgroundColor: 'white',
+  flex: 1,
+  borderRadius: 10,
+  padding: 10,
+  marginRight: 10,
+  marginTop: 17,paddingBottom:20}}>
+    <View style={{flexDirection:'row',padding:5}}>
+    <Image  source={require("../../images/gzyj.png")} style={{width:15,height:15,alignSelf:"center"}} tintColor="#faaa00"></Image>
+    <Text style={{alignSelf:"center",alignItems:"center",color:"#faaa00",fontSize:15,marginLeft:5}}>{item.name}</Text>
+      </View> 
+      <View style={{flexDirection:'row',marginTop:3,marginLeft:21}}>
+      <Text style={{color:'#797979',fontSize:14}}>时间:</Text>
+      <Text style={{color:'#252525',fontSize:14}}> {item.date}</Text>
+      </View>
+      <View style={{flexDirection:'row',marginTop:3,marginLeft:21}}>
+    
+      <Text style={{color:'#797979',fontSize:14}}>污染物：</Text>
+      <Text style={{color:'#252525',fontSize:14}}> {item.poll}</Text>
+      </View>
+      <View style={{flexDirection:'row',marginTop:3,marginLeft:21}}>
+    
+    <Text style={{color:'#797979',fontSize:14}}>预警类型</Text>
+    <Text style={{color:'#252525',fontSize:14}}> {item.earlytype}</Text>
+    </View>
+    <View style={{flexDirection:'row',marginTop:3,marginLeft:21}}>
+    
+    <Text style={{color:'#797979',fontSize:14}}>标准值：</Text>
+    <Text style={{color:'#252525',fontSize:14}}> {item.standard}</Text>
+    </View>
+      <View style={{flexDirection:"row",marginTop:3,marginLeft:21}}>
+        
+      <Text style={{color:'#797979',fontSize:14}}>值：</Text>
+      <Text style={{color:'#252525',fontSize:14}}> {item.Strength}</Text>
+      </View>
+      
+      <TouchableOpacity style={{borderTopColor:"#f5f5f5",borderTopWidth:1,marginTop:10}} onPress={this.phoneList}>    
+          <View style={{flexDirection:"row",marginTop:10,marginLeft:21,}}>
+       <Text style={{color:'#d2d2d2'}}>详情信息</Text>
+       <Image  source={require("../../images/sjt.png")}tintColor="#d2d2d2"
+        style={{width:15,height:15,alignItems:"center",alignSelf:'center',marginLeft:5}} ></Image>
+   </View>
+
+      </TouchableOpacity>
+      </View>
+    </View>);
+   }else if(item.type==="operation")
+   {
+      return(
+        <View style={{flexDirection:'row' }}>
+
+        <View style={{ backgroundColor: 'white',
+      flex: 1,
+      borderRadius: 10,
+      padding: 10,
+      marginRight: 10,
+      marginTop: 17,paddingBottom:20}}>
+        <View style={{flexDirection:'row',padding:5}}>
+        <Image  source={require("../../images/gzxx.png")} style={{width:15,height:15,alignSelf:"center"}} tintColor="#2ebf83"></Image>
+        <Text style={{alignSelf:"center",alignItems:"center",color:"#2ebf83",fontSize:15,marginLeft:5}}>{item.name}</Text>
+          </View> 
+          <View style={{flexDirection:'row',marginTop:3,marginLeft:21}}>
+          <Text style={{color:'#797979',fontSize:14}}>时间:</Text>
+          <Text style={{color:'#252525',fontSize:14}}> {item.date}</Text>
+          </View>
+          <View style={{flexDirection:"row",marginTop:3,marginLeft:21}}>
+          <Text style={{color:'#797979',fontSize:14}}>运维活动:</Text>
+          <Text style={{color:'#252525',fontSize:14}}> {item.operationaction}</Text>
+          </View>
+          <TouchableOpacity style={{borderTopColor:"#f5f5f5",borderTopWidth:1,marginTop:10}} onPress={this.phoneList}>    
+              <View style={{flexDirection:"row",marginTop:10,marginLeft:21,}}>
+           <Text style={{color:'#d2d2d2'}}>详情信息</Text>
+           <Image  source={require("../../images/sjt.png")}tintColor="#d2d2d2"
+            style={{width:15,height:15,alignItems:"center",alignSelf:'center',marginLeft:5}} ></Image>
+       </View>
+    
+          </TouchableOpacity>
+          </View>
+        </View>
+      );
+
+    }else
+    { 
+      return( <View style={{flexDirection:'row' }}>
+
+      <View style={{ backgroundColor: 'white',
+    flex: 1,
+    borderRadius: 10,
+    padding: 10,
+    marginRight: 10,
+    marginTop: 17,paddingBottom:20}}>
+      <View style={{flexDirection:'row',padding:5}}>
+      <Image  source={require("../../images/gzdb.png")} style={{width:15,height:15,alignSelf:"center"}} tintColor="#00a9bd"></Image>
+      <Text style={{alignSelf:"center",alignItems:"center",color:"#00a9bd",fontSize:15,marginLeft:5}}>{item.name}</Text>
+        </View> 
+        <View style={{flexDirection:'row',marginTop:3,marginLeft:21}}>
+        <Text style={{color:'#797979',fontSize:14}}>时间:</Text>
+        <Text style={{color:'#252525',fontSize:14}}> {item.date}</Text>
+        </View>
+        <View style={{flexDirection:"row",marginTop:3,marginLeft:21}}>
+        <Text style={{color:'#797979',fontSize:14}}>运维活动:</Text>
+        <Text style={{color:'#252525',fontSize:14}}> {item.operationaction}</Text>
+        </View>
+        <TouchableOpacity style={{borderTopColor:"#f5f5f5",borderTopWidth:1,marginTop:10}} onPress={this.phoneList}>    
+            <View style={{flexDirection:"row",marginTop:10,marginLeft:21,}}>
+         <Text style={{color:'#d2d2d2'}}>详情信息</Text>
+         <Image  source={require("../../images/sjt.png")}tintColor="#d2d2d2"
+          style={{width:15,height:15,alignItems:"center",alignSelf:'center',marginLeft:5}} ></Image>
+     </View>
+  
+        </TouchableOpacity>
+        </View>
+      </View>);}
   }
 
   renderEmptyDate() {
     return (
-      <View style={styles.emptyDate}>
-        <Text>这是空的日期。</Text>
+
+      <View style={{alignContent:"center",alignSelf:"center",alignItems:"center"}}>
+        <View style={{borderRadius:100,backgroundColor:"#eaeaea",padding:5,marginTop:50}}>
+
+        <Text style={{alignContent:"center",color:"#b7b7b7",alignSelf:"center",alignItems:"center",fontSize:11}}>暂无数据</Text>
+        </View>
+        
       </View>
     );
   }
@@ -180,11 +625,15 @@ class Workbench extends Component {
         <Agenda
           items={this.state.items}
           loadItemsForMonth={this.loadItems.bind(this)}
-          selected={Date.date}
+          selected={Date.Date}
           renderItem={this.renderItem.bind(this)}
           renderEmptyDate={this.renderEmptyDate.bind(this)}
           rowHasChanged={this.rowHasChanged.bind(this)}
           style={{ width: '100%' }}
+          onDayChange={(day)=>{
+            _day = day;
+          }}
+   
           // markingType={'period'
           // markedDates={{
           //    '2018-07-03': {textColor: '#666'},
@@ -264,12 +713,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   item: {
-    backgroundColor: 'white',
-    flex: 1,
-    borderRadius: 5,
-    padding: 10,
-    marginRight: 10,
-    marginTop: 17,
+ 
   },
   emptyDate: {
     height: 15,

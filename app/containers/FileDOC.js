@@ -15,6 +15,7 @@ import Input from '../../node_modules/antd-mobile-rn/lib/input-item/Input.native
 import { connect } from 'react-redux';
 let navigationData;
 let thisData = this;
+let thisLength=0;
 @connect()
 class FileDOC extends Component {
   static navigationOptions = ({ router, navigation }) => {
@@ -40,6 +41,19 @@ class FileDOC extends Component {
     console.log(this);
   }
   renderRow(rowData, sectionID, rowID, highlightRow) {
+    console.log("---------------------------");
+    console.log(thisData.state.dataSource);
+    console.log("-------------------全局");
+    console.log(thisLength);
+    console.log("-------------------数据");
+    console.log(thisData.state.dataSource.rowIdentities[0].length);
+    if(thisLength>=thisData.state.dataSource.rowIdentities[0].length){
+      
+      thisLength=0;
+    }
+    thisLength=thisLength+1;
+  
+    
     if (navigationData.state.params.id === rowData.id) {
       return (
         <View>
@@ -120,20 +134,28 @@ class FileDOC extends Component {
         </View>
       );
     } else {
+      
+      if(thisLength===thisData.state.dataSource.rowIdentities.length){
+      return (
+        <View style={{alignContent:"center",alignSelf:"center",alignItems:"center"}}>
+        <View style={{borderRadius:100,padding:5,marginTop:50}}>
+
+        <Text style={{alignContent:"center",color:"#b7b7b7",alignSelf:"center",alignItems:"center",fontSize:11}}>暂无数据</Text>
+        </View>
+        
+      </View>
+      );
+    }else{
+
       return (
         <View
-          style={{
-            alignContent: 'center',
-            alignSelf: 'center',
-            alignContent: 'center',
-            marginLeft: 20,
-            marginBottom: 25,
-            marginTop: 30,
-          }}
+         
         >
-          <Text />
+          
         </View>
       );
+
+    }
     }
   }
 
