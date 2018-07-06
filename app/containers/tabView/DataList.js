@@ -165,7 +165,12 @@ class DataList extends Component {
         >
           2
         </Text>
-        <FlashPoint ><Image style={[styles.pointStyle]} source={require('../../images/gisover.png')} /></FlashPoint>
+        <FlashPoint>
+          <Image
+            style={[styles.pointStyle]}
+            source={require('../../images/gisover.png')}
+          />
+        </FlashPoint>
       </View>
     );
   }

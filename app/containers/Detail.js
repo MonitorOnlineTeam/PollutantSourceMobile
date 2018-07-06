@@ -10,17 +10,19 @@ import { NavigationActions } from '../utils';
 @connect()
 class Detail extends Component {
   static navigationOptions = ({ router, navigation }) => {
-    return {title: 'Detail',
-    headerLeft: (
-      <Text
-        onPress={() => {
-          navigation.dispatch(NavigationActions.back());
-        }}
-        style={{ marginLeft: 5, width: 32, height: 32, textAlign: 'center' }}
-      >
-        <Icon name={'angle-left'} size={32} style={{ color: 'black' }} />
-      </Text>
-    ),}
+    return {
+      title: 'Detail',
+      headerLeft: (
+        <Text
+          onPress={() => {
+            navigation.dispatch(NavigationActions.back());
+          }}
+          style={{ marginLeft: 5, width: 32, height: 32, textAlign: 'center' }}
+        >
+          <Icon name={'angle-left'} size={32} style={{ color: 'black' }} />
+        </Text>
+      ),
+    };
   }
 
   gotoDetail = () => {

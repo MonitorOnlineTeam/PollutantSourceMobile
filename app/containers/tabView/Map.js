@@ -10,7 +10,7 @@ import {
   Platform,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { MapView,Marker } from 'react-native-amap3d';
+import { MapView, Marker } from 'react-native-amap3d';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import Iconi from 'react-native-vector-icons/dist/Ionicons';
 import { SegmentedControl } from 'antd-mobile';
@@ -22,7 +22,7 @@ import {
   getEnterprise,
 } from '../../mockdata/Base/commonbase';
 import { NavigationActions } from '../../utils';
-import markersInfo from '../../mockdata/OverView/markersInfo.json'
+import markersInfo from '../../mockdata/OverView/markersInfo.json';
 import SuspensionLoadingComponent from '../../components/common/SuspensionLoadingComponent';
 import FlashPoint from '../../components/map/FlashPoint';
 import Button from '../../components/common/Button';
@@ -86,8 +86,8 @@ class Map extends Component {
       zoomLevel: 5,
       mapCoordinateLatitude: 40.33491,
       mapCoordinateLongitude: 115.32684,
-      special:'monitor',
-      selectMapLegend:'',
+      special: 'monitor',
+      selectMapLegend: '',
     };
     console.log(markersInfo);
   }
@@ -101,12 +101,12 @@ class Map extends Component {
         });
         loading = true;
         let _this = this;
-        setTimeout(function(){
+        setTimeout(function() {
           loading = false;
           _this.setState({
             showEnterprise: false,
           });
-        },3000);
+        }, 3000);
       }
     } else {
       if (this.state.showEnterprise === false) {
@@ -115,12 +115,12 @@ class Map extends Component {
         });
         loading = true;
         let _this = this;
-        setTimeout(function(){
+        setTimeout(function() {
           loading = false;
           _this.setState({
             showEnterprise: true,
           });
-        },3000);
+        }, 3000);
       }
     }
   }
@@ -143,8 +143,7 @@ class Map extends Component {
       polylines.push(
         <MapView.Polyline
           key={key + '' + CoordinateSet_[0][0].length}
-          width={
-          !this.state.showEnterprise?1:0}
+          width={!this.state.showEnterprise ? 1 : 0}
           color="#FF33FF"
           coordinates={_CoordinateSet}
         />
@@ -165,7 +164,7 @@ class Map extends Component {
           longitude: item1[0],
         });
       });
-      
+
       polygons.push(
         <MapView.Polygon
           key={key + '' + CoordinateSet_[0][0].length}
@@ -176,7 +175,7 @@ class Map extends Component {
         />
       );
     });
-    
+
     return polygons;
   }
 
@@ -186,74 +185,72 @@ class Map extends Component {
       let imageName = this._getIconName(item);
       console.log(imageName);
       let ImageView;
-      switch(imageName) {
+      switch (imageName) {
         case 'gisnormal':
-          ImageView = <Image style={[styles.pointStyle]} source={require('../../images/gisnormal.png')} />
-        break;
+          ImageView = (
+            <Image
+              style={[styles.pointStyle]}
+              source={require('../../images/gisnormal.png')}
+            />
+          );
+          break;
         case 'gisexception':
-          ImageView = <Image style={[styles.pointStyle]} source={require('../../images/gisexception.png')} />
-        break;
+          ImageView = (
+            <Image
+              style={[styles.pointStyle]}
+              source={require('../../images/gisexception.png')}
+            />
+          );
+          break;
         case 'gisfault':
-          ImageView = <Image style={[styles.pointStyle]} source={require('../../images/gisfault.png')} />
-        break;
+          ImageView = (
+            <Image
+              style={[styles.pointStyle]}
+              source={require('../../images/gisfault.png')}
+            />
+          );
+          break;
         case 'gisoperation':
-          ImageView = <Image style={[styles.pointStyle]} source={require('../../images/gisoperation.png')} />
-        break;
+          ImageView = (
+            <Image
+              style={[styles.pointStyle]}
+              source={require('../../images/gisoperation.png')}
+            />
+          );
+          break;
         case 'gisover':
           //  ImageView = <FlashPoint ><Image style={[styles.pointStyle]} source={require('../../images/gisover.png')} /></FlashPoint>
-          ImageView = <Image style={[styles.pointStyle]} source={require('../../images/gisover.png')} />
-        break;
+          ImageView = (
+            <Image
+              style={[styles.pointStyle]}
+              source={require('../../images/gisover.png')}
+            />
+          );
+          break;
         case 'gisoverdue':
-          ImageView = <Image style={[styles.pointStyle]} source={require('../../images/gisoverdue.png')} />
-        break;
+          ImageView = (
+            <Image
+              style={[styles.pointStyle]}
+              source={require('../../images/gisoverdue.png')}
+            />
+          );
+          break;
         case 'gisquality':
-          ImageView = <Image style={[styles.pointStyle]} source={require('../../images/gisquality.png')} />
-        break;
+          ImageView = (
+            <Image
+              style={[styles.pointStyle]}
+              source={require('../../images/gisquality.png')}
+            />
+          );
+          break;
         case 'gisunline':
-
-        break;
+          break;
       }
-      
+
       if (this.state.selectMapLegend === '') {
         markers.push(
           <MapView.Marker
-          style={{height:20,width:20}}
-          infoWindowDisabled={true}
-          key={key}
-          /* image={imageName} */
-          icon={() => ImageView}
-          coordinate={{
-            latitude: parseFloat(item.Latitude, 10),
-            longitude: parseFloat(item.Longitude, 10),
-          }}
-          onPress={()=>{
-            // this.props.dispatch(NavigationActions.navigate({ routeName: 'Detail' }));
-            this.props.dispatch(NavigationActions.navigate({ routeName: 'SingleStationDetail' }));
-          }}
-        />
-        );
-      } else {
-        //假数据逻辑
-        if (((this.state.selectMapLegend === '正常'
-        ||this.state.selectMapLegend === '一级')&&imageName === 'gisnormal')  
-
-        || ((this.state.selectMapLegend === '超标'
-        ||this.state.selectMapLegend === '二级')&&imageName === 'gisover') 
-
-        || ((this.state.selectMapLegend === '离线'
-        ||this.state.selectMapLegend === '三级')&&imageName === 'gisunline') 
-        
-        ||((this.state.selectMapLegend === '异常'
-        ||this.state.selectMapLegend === '停产'
-        ||this.state.selectMapLegend === '四级')&&imageName === 'gisexception') 
-        
-        ||((this.state.selectMapLegend === '运维'
-        ||this.state.selectMapLegend === '故障')&&imageName === 'gisoperation')
-        
-        ||((this.state.selectMapLegend === '质控')
-        &&imageName === 'gisquality')) {
-          markers.push(
-            <MapView.Marker
+            style={{ height: 20, width: 20 }}
             infoWindowDisabled={true}
             key={key}
             /* image={imageName} */
@@ -262,15 +259,57 @@ class Map extends Component {
               latitude: parseFloat(item.Latitude, 10),
               longitude: parseFloat(item.Longitude, 10),
             }}
-            onPress={()=>{
+            onPress={() => {
               // this.props.dispatch(NavigationActions.navigate({ routeName: 'Detail' }));
-              this.props.dispatch(NavigationActions.navigate({ routeName: 'SingleStationDetail' }));
+              this.props.dispatch(
+                NavigationActions.navigate({ routeName: 'SingleStationDetail' })
+              );
             }}
           />
+        );
+      } else {
+        //假数据逻辑
+        if (
+          ((this.state.selectMapLegend === '正常' ||
+            this.state.selectMapLegend === '一级') &&
+            imageName === 'gisnormal') ||
+          ((this.state.selectMapLegend === '超标' ||
+            this.state.selectMapLegend === '二级') &&
+            imageName === 'gisover') ||
+          ((this.state.selectMapLegend === '离线' ||
+            this.state.selectMapLegend === '三级') &&
+            imageName === 'gisunline') ||
+          ((this.state.selectMapLegend === '异常' ||
+            this.state.selectMapLegend === '停产' ||
+            this.state.selectMapLegend === '四级') &&
+            imageName === 'gisexception') ||
+          ((this.state.selectMapLegend === '运维' ||
+            this.state.selectMapLegend === '故障') &&
+            imageName === 'gisoperation') ||
+          (this.state.selectMapLegend === '质控' && imageName === 'gisquality')
+        ) {
+          markers.push(
+            <MapView.Marker
+              infoWindowDisabled={true}
+              key={key}
+              /* image={imageName} */
+              icon={() => ImageView}
+              coordinate={{
+                latitude: parseFloat(item.Latitude, 10),
+                longitude: parseFloat(item.Longitude, 10),
+              }}
+              onPress={() => {
+                // this.props.dispatch(NavigationActions.navigate({ routeName: 'Detail' }));
+                this.props.dispatch(
+                  NavigationActions.navigate({
+                    routeName: 'SingleStationDetail',
+                  })
+                );
+              }}
+            />
           );
         }
       }
-      
     });
     // this.state.points.map((item, key) => {
     //   // console.log(item);
@@ -293,43 +332,69 @@ class Map extends Component {
     // });
     return markers;
   }
-  _getIconName = (extData) => {
+  _getIconName = extData => {
     let _name = 'gisnormal';
     if (this.state.special === 'monitor') {
-        if (extData.DGIMN === 'bjldgn01' || extData.DGIMN === 'dtgjhh11102' || extData.DGIMN === 'dtgrjx110') {
-            _name = 'gisover';
-        } else if (extData.DGIMN === 'dtgrjx103' || extData.DGIMN === 'lywjfd03') {
-            _name = 'gisexception';
-        } else {
-            _name = 'gisnormal';
-        }
+      if (
+        extData.DGIMN === 'bjldgn01' ||
+        extData.DGIMN === 'dtgjhh11102' ||
+        extData.DGIMN === 'dtgrjx110'
+      ) {
+        _name = 'gisover';
+      } else if (
+        extData.DGIMN === 'dtgrjx103' ||
+        extData.DGIMN === 'lywjfd03'
+      ) {
+        _name = 'gisexception';
+      } else {
+        _name = 'gisnormal';
+      }
     } else if (this.state.special === 'operation') {
-        if (extData.DGIMN === 'bjldgn01' || extData.DGIMN === 'dtgjhh11102' || extData.DGIMN === 'dtgrjx110') {
-            _name = 'gisexception';
-        } else if (extData.DGIMN === 'dtgrjx103' || extData.DGIMN === 'lywjfd03') {
-            _name = 'gisoperation';
-        } else {
-            _name = 'gisnormal';
-        }
+      if (
+        extData.DGIMN === 'bjldgn01' ||
+        extData.DGIMN === 'dtgjhh11102' ||
+        extData.DGIMN === 'dtgrjx110'
+      ) {
+        _name = 'gisexception';
+      } else if (
+        extData.DGIMN === 'dtgrjx103' ||
+        extData.DGIMN === 'lywjfd03'
+      ) {
+        _name = 'gisoperation';
+      } else {
+        _name = 'gisnormal';
+      }
     } else if (this.state.special === 'sewage') {
-      if (extData.DGIMN === 'bjldgn01' || extData.DGIMN === 'dtgjhh11102' || extData.DGIMN === 'dtgrjx110') {
-            _name = 'gisover';
-        } else if (extData.DGIMN === 'dtgrjx103' || extData.DGIMN === 'lywjfd03') {
-            _name = 'gisexception';
-        } else {
-            _name = 'gisnormal';
-        }
+      if (
+        extData.DGIMN === 'bjldgn01' ||
+        extData.DGIMN === 'dtgjhh11102' ||
+        extData.DGIMN === 'dtgrjx110'
+      ) {
+        _name = 'gisover';
+      } else if (
+        extData.DGIMN === 'dtgrjx103' ||
+        extData.DGIMN === 'lywjfd03'
+      ) {
+        _name = 'gisexception';
+      } else {
+        _name = 'gisnormal';
+      }
     } else {
-        if (extData.DGIMN === 'bjldgn01' || extData.DGIMN === 'dtgjhh11102' || extData.DGIMN === 'dtgrjx110'
-        || extData.DGIMN === 'dtgrjx103' || extData.DGIMN === 'lywjfd03') {
-            _name = 'gisquality';
-        } else {
-            _name = 'gisnormal';
-        }
+      if (
+        extData.DGIMN === 'bjldgn01' ||
+        extData.DGIMN === 'dtgjhh11102' ||
+        extData.DGIMN === 'dtgrjx110' ||
+        extData.DGIMN === 'dtgrjx103' ||
+        extData.DGIMN === 'lywjfd03'
+      ) {
+        _name = 'gisquality';
+      } else {
+        _name = 'gisnormal';
+      }
     }
     return _name;
-  } 
-/**
+  }
+  /**
  * icon={()=>{
           return <Image source={require('../../images/gisnormal.png')} style={[{height:16,width:16}]} />
         }}
@@ -337,93 +402,95 @@ class Map extends Component {
   _showEnterpriseFun = () => {
     let markers = [];
     this.state.enterprise.map((item, key) => {
-      let count = 0,imageName,arrayCount;
+      let count = 0,
+        imageName,
+        arrayCount;
       if (this.state.special === 'monitor') {
         arrayCount = [
           {
-              "defaultValue":"正常",
-              'count':0,
-              "bgcolor":"#79C403"
+            defaultValue: '正常',
+            count: 0,
+            bgcolor: '#79C403',
           },
           {
-              "defaultValue":"超标",
-              'count':0,
-              "bgcolor":"#F40000"
+            defaultValue: '超标',
+            count: 0,
+            bgcolor: '#F40000',
           },
           {
-              "defaultValue":"离线",
-              'count':0,
-              "bgcolor":"#A8A6A5"
+            defaultValue: '离线',
+            count: 0,
+            bgcolor: '#A8A6A5',
           },
           {
-              "defaultValue":"异常",
-              'count':0,
-              "bgcolor":"#FADE00"
-          }
+            defaultValue: '异常',
+            count: 0,
+            bgcolor: '#FADE00',
+          },
         ];
       } else if (this.state.special === 'operation') {
         arrayCount = [
           {
-              "defaultValue":"正常",
-              'count':0,
-              "bgcolor":"#79C403"
+            defaultValue: '正常',
+            count: 0,
+            bgcolor: '#79C403',
           },
           {
-              "defaultValue":"运维",
-              'count':0,
-              "bgcolor":"#F29C26"
+            defaultValue: '运维',
+            count: 0,
+            bgcolor: '#F29C26',
           },
           {
-              "defaultValue":"逾期",
-              'count':0,
-              "bgcolor":"#970258"
+            defaultValue: '逾期',
+            count: 0,
+            bgcolor: '#970258',
           },
           {
-              "defaultValue":"故障",
-              'count':0,
-              "bgcolor":"#F8AD00"
+            defaultValue: '故障',
+            count: 0,
+            bgcolor: '#F8AD00',
           },
           {
-              "defaultValue":"停产",
-              'count':0,
-              "bgcolor":"#FADE00"
-          }
+            defaultValue: '停产',
+            count: 0,
+            bgcolor: '#FADE00',
+          },
         ];
       } else if (this.state.special === 'sewage') {
         arrayCount = [
           {
-              "defaultValue":"一级",
-              'count':0,
-              "bgcolor":"#79C403"
+            defaultValue: '一级',
+            count: 0,
+            bgcolor: '#79C403',
           },
           {
-              "defaultValue":"二级",
-              'count':0,
-              "bgcolor":"#F40000"
+            defaultValue: '二级',
+            count: 0,
+            bgcolor: '#F40000',
           },
           {
-              "defaultValue":"三级",
-              'count':0,
-              "bgcolor":"#A8A6A5"
+            defaultValue: '三级',
+            count: 0,
+            bgcolor: '#A8A6A5',
           },
           {
-              "defaultValue":"四级",
-              'count':0,
-              "bgcolor":"#FADE00"
-          }
+            defaultValue: '四级',
+            count: 0,
+            bgcolor: '#FADE00',
+          },
         ];
       } else {
         arrayCount = [
           {
-              "defaultValue":"正常",
-              'count':0,
-              "bgcolor":"#79C403"
+            defaultValue: '正常',
+            count: 0,
+            bgcolor: '#79C403',
           },
           {
-              "defaultValue":"质控",
-              'count':0,
-              "bgcolor":"#3F8AA0"
-          }
+            defaultValue: '质控',
+            count: 0,
+            bgcolor: '#3F8AA0',
+          },
         ];
       }
       this.state.points.map(point => {
@@ -431,41 +498,56 @@ class Map extends Component {
           count++;
           imageName = this._getIconName(point);
           if (this.state.special === 'monitor') {
-            if (imageName === 'gisnormal') {//正常
+            if (imageName === 'gisnormal') {
+              //正常
               arrayCount[0].count = arrayCount[0].count + 1;
-            } else if (imageName === 'gisover') {//超标
+            } else if (imageName === 'gisover') {
+              //超标
               arrayCount[1].count = arrayCount[1].count + 1;
-            } else if (imageName === 'gisunline') {//离线
+            } else if (imageName === 'gisunline') {
+              //离线
               arrayCount[2].count = arrayCount[2].count + 1;
-            } else if (imageName === 'gisexception') {//异常
+            } else if (imageName === 'gisexception') {
+              //异常
               arrayCount[3].count = arrayCount[3].count + 1;
             }
           } else if (this.state.special === 'operation') {
-            if (imageName === 'gisnormal') {//正常
+            if (imageName === 'gisnormal') {
+              //正常
               arrayCount[0].count = arrayCount[0].count + 1;
-            }  else if (imageName === 'gisexception') {//停产
+            } else if (imageName === 'gisexception') {
+              //停产
               arrayCount[4].count = arrayCount[4].count + 1;
-            } else if (imageName === 'gisoperation') {//运维
+            } else if (imageName === 'gisoperation') {
+              //运维
               arrayCount[1].count = arrayCount[1].count + 1;
-            } else if (imageName === 'gisoperation') {//故障
+            } else if (imageName === 'gisoperation') {
+              //故障
               arrayCount[3].count = arrayCount[3].count + 1;
-            } else if (imageName === 'gisoverdue') {//逾期
+            } else if (imageName === 'gisoverdue') {
+              //逾期
               arrayCount[2].count = arrayCount[2].count + 1;
             }
           } else if (this.state.special === 'sewage') {
-            if (imageName === 'gisnormal') {//正常
+            if (imageName === 'gisnormal') {
+              //正常
               arrayCount[0].count = arrayCount[0].count + 1;
-            } else if (imageName === 'gisover') {//二级
+            } else if (imageName === 'gisover') {
+              //二级
               arrayCount[1].count = arrayCount[1].count + 1;
-            } else if (imageName === 'gisunline') {//三级
+            } else if (imageName === 'gisunline') {
+              //三级
               arrayCount[2].count = arrayCount[2].count + 1;
-            } else if (imageName === 'gisexception') {//四级
+            } else if (imageName === 'gisexception') {
+              //四级
               arrayCount[3].count = arrayCount[3].count + 1;
             }
           } else {
-            if (imageName === 'gisnormal') {//正常
+            if (imageName === 'gisnormal') {
+              //正常
               arrayCount[0].count = arrayCount[0].count + 1;
-            } else if (imageName === 'gisquality') {//质控
+            } else if (imageName === 'gisquality') {
+              //质控
               arrayCount[1].count = arrayCount[1].count + 1;
             }
           }
@@ -499,87 +581,156 @@ class Map extends Component {
                 zoomLevel: this.state.zoomLevel === 15 ? 15.1 : 15,
               });
             }
-            
           }}
           icon={() => {
-            if((this.state.special === 'monitor'&&arrayCount[1].count>0)
-            ||(this.state.special === 'sewage'&&arrayCount[1].count>0)) {
+            if (
+              (this.state.special === 'monitor' && arrayCount[1].count > 0) ||
+              (this.state.special === 'sewage' && arrayCount[1].count > 0)
+            ) {
               return (
                 <TouchableOpacity
                   activeOpacity={0.9}
                   style={[
                     {
                       borderRadius: 4,
-                      backgroundColor:'white',
+                      backgroundColor: 'white',
                       alignItems: 'center',
                       justifyContent: 'center',
                       minHeight: 24,
                       minWidth: 40,
-                      borderColor:'white',
+                      borderColor: 'white',
                     },
                   ]}
                 >
-                <View>
-                  <View style={{ flexDirection: 'row' ,borderBottomColor:'grey',borderBottomWidth:0.5,
-                    justifyContent:'center',alignItems:'center',marginTop:4}}>
-                    <Text style={[{marginLeft:8,marginRight:2,marginBottom:2}]}>
-                      <Iconi
-                        name={'ios-home-outline'}
-                        size={20}
-                        style={{ color: 'gray' }}/>
-                    </Text>
-                    <Text>{item.EntName.length>4?item.EntName.slice(0,4):item.EntName}</Text>
-                    <Text style={[{marginRight:8}]}>（{count}）</Text>
+                  <View>
+                    <View
+                      style={{
+                        flexDirection: 'row',
+                        borderBottomColor: 'grey',
+                        borderBottomWidth: 0.5,
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        marginTop: 4,
+                      }}
+                    >
+                      <Text
+                        style={[
+                          { marginLeft: 8, marginRight: 2, marginBottom: 2 },
+                        ]}
+                      >
+                        <Iconi
+                          name={'ios-home-outline'}
+                          size={20}
+                          style={{ color: 'gray' }}
+                        />
+                      </Text>
+                      <Text>
+                        {item.EntName.length > 4
+                          ? item.EntName.slice(0, 4)
+                          : item.EntName}
+                      </Text>
+                      <Text style={[{ marginRight: 8 }]}>（{count}）</Text>
+                    </View>
+                    <View
+                      style={{
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                        marginRight: 8,
+                        marginLeft: 8,
+                        marginBottom: 4,
+                      }}
+                    >
+                      {arrayCount.map((item, key) => {
+                        return (
+                          <Text
+                            key={this.state.special + key}
+                            style={[
+                              styles.countBackground,
+                              { backgroundColor: item.bgcolor },
+                            ]}
+                          >
+                            {item.count}
+                          </Text>
+                        );
+                      })}
+                    </View>
                   </View>
-                  <View style={{ flexDirection: 'row' ,alignItems:'center',marginRight:8,marginLeft:8,marginBottom:4}}>
-                  {arrayCount.map((item,key)=>{
-                    return <Text key={this.state.special+ key} style={[styles.countBackground,{backgroundColor:item.bgcolor}]}>{item.count}</Text>
-                  })}
-                  </View>
-                </View>
-                  
                 </TouchableOpacity>
               );
             } else {
-              return <TouchableOpacity
-                activeOpacity={0.9}
-                style={[
-                  {
-                    borderRadius: 4,
-                    backgroundColor:'white',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    minHeight: 24,
-                    minWidth: 40,
-                    borderColor:'white',
-                  },
-                ]}
-              >
-              <View>
-                <View style={{ flexDirection: 'row' ,borderBottomColor:'grey',borderBottomWidth:0.5,
-                  justifyContent:'center',alignItems:'center',marginTop:4}}>
-                  <Text style={[{marginLeft:8,marginRight:2,marginBottom:2}]}>
-                    <Iconi
-                      name={'ios-home-outline'}
-                      size={20}
-                      style={{ color: 'gray' }}/>
-                  </Text>
-                  <Text>{item.EntName.length>4?item.EntName.slice(0,4):item.EntName}</Text>
-                  <Text style={[{marginRight:8}]}>（{count}）</Text>
-                </View>
-                <View style={{ flexDirection: 'row' ,alignItems:'center',marginRight:8,marginLeft:8,marginBottom:4}}>
-                {arrayCount.map((item,key)=>{
-                  return <Text key={this.state.special+ key} style={[styles.countBackground,{backgroundColor:item.bgcolor}]}>{item.count}</Text>
-                })}
-                </View>
-              </View>
-                
-              </TouchableOpacity>
+              return (
+                <TouchableOpacity
+                  activeOpacity={0.9}
+                  style={[
+                    {
+                      borderRadius: 4,
+                      backgroundColor: 'white',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      minHeight: 24,
+                      minWidth: 40,
+                      borderColor: 'white',
+                    },
+                  ]}
+                >
+                  <View>
+                    <View
+                      style={{
+                        flexDirection: 'row',
+                        borderBottomColor: 'grey',
+                        borderBottomWidth: 0.5,
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        marginTop: 4,
+                      }}
+                    >
+                      <Text
+                        style={[
+                          { marginLeft: 8, marginRight: 2, marginBottom: 2 },
+                        ]}
+                      >
+                        <Iconi
+                          name={'ios-home-outline'}
+                          size={20}
+                          style={{ color: 'gray' }}
+                        />
+                      </Text>
+                      <Text>
+                        {item.EntName.length > 4
+                          ? item.EntName.slice(0, 4)
+                          : item.EntName}
+                      </Text>
+                      <Text style={[{ marginRight: 8 }]}>（{count}）</Text>
+                    </View>
+                    <View
+                      style={{
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                        marginRight: 8,
+                        marginLeft: 8,
+                        marginBottom: 4,
+                      }}
+                    >
+                      {arrayCount.map((item, key) => {
+                        return (
+                          <Text
+                            key={this.state.special + key}
+                            style={[
+                              styles.countBackground,
+                              { backgroundColor: item.bgcolor },
+                            ]}
+                          >
+                            {item.count}
+                          </Text>
+                        );
+                      })}
+                    </View>
+                  </View>
+                </TouchableOpacity>
+              );
             }
-            
           }}
-        >
-        </Marker>
+        />
       );
     });
     // this.setState({
@@ -588,30 +739,30 @@ class Map extends Component {
     return markers;
   }
 
-  SegmentedChange = (e) => {
+  SegmentedChange = e => {
     // console.log(`selectedIndex:${e.nativeEvent.selectedSegmentIndex}`);
     switch (e.nativeEvent.selectedSegmentIndex) {
       case 0:
-        this.setState({'special':'monitor'});
-      break;
+        this.setState({ special: 'monitor' });
+        break;
       case 1:
-        this.setState({'special':'operation'});
-      break;
+        this.setState({ special: 'operation' });
+        break;
       case 2:
-        this.setState({'special':'sewage'});
-      break;
+        this.setState({ special: 'sewage' });
+        break;
       case 3:
-        this.setState({'special':'quality'});
-      break;
+        this.setState({ special: 'quality' });
+        break;
     }
   }
 
-  SegmentedValueChange = (value) => {
+  SegmentedValueChange = value => {
     // console.log(value);
   }
 
-  _renderMapLegend = () =>{
-    let maplegends = markersInfo.maplegend[0];//monitor,operation,quality,sewage
+  _renderMapLegend = () => {
+    let maplegends = markersInfo.maplegend[0]; //monitor,operation,quality,sewage
     let currentMaplegend;
     if (this.state.special === 'monitor') {
       currentMaplegend = maplegends.monitor;
@@ -624,71 +775,139 @@ class Map extends Component {
     } else {
       currentMaplegend = maplegends.monitor;
     }
-    return <View style={[{flexDirection:'row',backgroundColor:'white',
-      position:'absolute',bottom:0,left:0,
-      borderBottomLeftRadius:4,
-      borderBottomRightRadius:4,
-      borderTopLeftRadius:4,
-      borderTopRightRadius:4,
-      borderWidth:1,
-      borderColor:'white',
-      justifyContent:'center',
-      alignItems:'center'
-    }]}>
-      {
-        currentMaplegend.map((item,key)=>{
-          if (key===0) {
-            return<View key={key} style={[styles.tabSize,{borderBottomLeftRadius:2,
-              borderTopLeftRadius:2,backgroundColor:item.bgcolor,}]}>
-                <Text><Iconi  name={'ios-checkmark-outline'}
-                      size={item.defaultValue ===this.state.selectMapLegend?20:0}
-                      style={{ color: 'white' }}/></Text>
-                <Text 
-                  onPress={()=>{
+    return (
+      <View
+        style={[
+          {
+            flexDirection: 'row',
+            backgroundColor: 'white',
+            position: 'absolute',
+            bottom: 0,
+            left: 0,
+            borderBottomLeftRadius: 4,
+            borderBottomRightRadius: 4,
+            borderTopLeftRadius: 4,
+            borderTopRightRadius: 4,
+            borderWidth: 1,
+            borderColor: 'white',
+            justifyContent: 'center',
+            alignItems: 'center',
+          },
+        ]}
+      >
+        {currentMaplegend.map((item, key) => {
+          if (key === 0) {
+            return (
+              <View
+                key={key}
+                style={[
+                  styles.tabSize,
+                  {
+                    borderBottomLeftRadius: 2,
+                    borderTopLeftRadius: 2,
+                    backgroundColor: item.bgcolor,
+                  },
+                ]}
+              >
+                <Text>
+                  <Iconi
+                    name={'ios-checkmark-outline'}
+                    size={
+                      item.defaultValue === this.state.selectMapLegend ? 20 : 0
+                    }
+                    style={{ color: 'white' }}
+                  />
+                </Text>
+                <Text
+                  onPress={() => {
                     this._selectMapLegend(item);
                   }}
-                  style={[styles.textStyle]}>{item.defaultValue}</Text>
-              </View >
-          } else if (key==maplegends.monitor.length-1) {
-            return<View key={key} style={[styles.tabSize,{borderTopRightRadius:2,
-              borderLeftWidth:1,borderLeftColor:'white',
-              borderBottomRightRadius:2,backgroundColor:item.bgcolor}]}>
-                <Text><Iconi  name={'ios-checkmark-outline'}
-                      size={item.defaultValue ===this.state.selectMapLegend?20:0}
-                      style={{ color: 'white' }}/></Text>
-                <Text  
-                  onPress={()=>{
+                  style={[styles.textStyle]}
+                >
+                  {item.defaultValue}
+                </Text>
+              </View>
+            );
+          } else if (key == maplegends.monitor.length - 1) {
+            return (
+              <View
+                key={key}
+                style={[
+                  styles.tabSize,
+                  {
+                    borderTopRightRadius: 2,
+                    borderLeftWidth: 1,
+                    borderLeftColor: 'white',
+                    borderBottomRightRadius: 2,
+                    backgroundColor: item.bgcolor,
+                  },
+                ]}
+              >
+                <Text>
+                  <Iconi
+                    name={'ios-checkmark-outline'}
+                    size={
+                      item.defaultValue === this.state.selectMapLegend ? 20 : 0
+                    }
+                    style={{ color: 'white' }}
+                  />
+                </Text>
+                <Text
+                  onPress={() => {
                     this._selectMapLegend(item);
                   }}
-                  style={[styles.textStyle]}>{item.defaultValue}</Text>
-              </View >
+                  style={[styles.textStyle]}
+                >
+                  {item.defaultValue}
+                </Text>
+              </View>
+            );
           } else {
-            return<View key={key} style={[styles.tabSize,{borderLeftWidth:1
-              ,borderLeftColor:'white',backgroundColor:item.bgcolor}]}>
-                <Text><Iconi  name={'ios-checkmark-outline'}
-                      size={item.defaultValue ===this.state.selectMapLegend?20:0}
-                      style={{ color: 'white' }}/></Text>
-                <Text  
-                  onPress={()=>{
+            return (
+              <View
+                key={key}
+                style={[
+                  styles.tabSize,
+                  {
+                    borderLeftWidth: 1,
+                    borderLeftColor: 'white',
+                    backgroundColor: item.bgcolor,
+                  },
+                ]}
+              >
+                <Text>
+                  <Iconi
+                    name={'ios-checkmark-outline'}
+                    size={
+                      item.defaultValue === this.state.selectMapLegend ? 20 : 0
+                    }
+                    style={{ color: 'white' }}
+                  />
+                </Text>
+                <Text
+                  onPress={() => {
                     this._selectMapLegend(item);
                   }}
-                  style={[styles.textStyle]}>{item.defaultValue}</Text>
-              </View >
+                  style={[styles.textStyle]}
+                >
+                  {item.defaultValue}
+                </Text>
+              </View>
+            );
           }
-        })
-      }
-    </View>
+        })}
+      </View>
+    );
   }
 
-  _selectMapLegend = (item) => {
-    
+  _selectMapLegend = item => {
     if (item.defaultValue !== this.state.selectMapLegend) {
       this.setState({
-        'selectMapLegend':item.defaultValue,
+        selectMapLegend: item.defaultValue,
       });
     } else {
       this.setState({
-        'selectMapLegend':'',
+        selectMapLegend: '',
       });
     }
     if (Platform.OS === 'android') {
@@ -719,10 +938,7 @@ class Map extends Component {
     return (
       <View style={[styles.container]}>
         <StatusBar barStyle="dark-content" style={[{ height: 24 }]} />
-        {
-            loading?
-                <SuspensionLoadingComponent />:(null)
-        }
+        {loading ? <SuspensionLoadingComponent /> : null}
         <MapView
           coordinate={{
             latitude: this.state.mapCoordinateLatitude,
@@ -737,22 +953,21 @@ class Map extends Component {
           showsScale={false}
           showsLabels={false}
         >
-        
-        {this.state.enterprise !== null &&
-          this.state.enterprise.length > 0 
-          &&(!this.state.showEnterprise||this.state.selectMapLegend!=='')
+          {this.state.enterprise !== null &&
+          this.state.enterprise.length > 0 &&
+          (!this.state.showEnterprise || this.state.selectMapLegend !== '')
             ? this._drawPolygon()
-            : (null)}
-        {this.state.points !== null &&
+            : null}
+          {this.state.points !== null &&
           this.state.points.length > 0 &&
-          (!this.state.showEnterprise||this.state.selectMapLegend!=='')
+          (!this.state.showEnterprise || this.state.selectMapLegend !== '')
             ? this._drawPoint()
             : null}
-        {this.state.enterprise !== null &&
-        this.state.enterprise.length > 0 &&
-        (this.state.showEnterprise&&this.state.selectMapLegend === '')
-          ? this._showEnterpriseFun()
-          : null}
+          {this.state.enterprise !== null &&
+          this.state.enterprise.length > 0 &&
+          (this.state.showEnterprise && this.state.selectMapLegend === '')
+            ? this._showEnterpriseFun()
+            : null}
         </MapView>
         {/*<View style={[{flexDirection:'row',backgroundColor:'white',
           position:'absolute',bottom:32,left:24,
@@ -775,43 +990,52 @@ class Map extends Component {
             borderBottomRightRadius:2,backgroundColor:'#fedf00'}]}>异常</Text>
         </View>*/}
         {this._renderMapLegend()}
-          <SegmentedControl
-            style={{
-              position:'absolute',top:16,left:16,
-              backgroundColor:'white',
-              height: 32, width: 200
-              }}
-            values={['监控', '运维', '排污','质控',]}
-            onChange={this.SegmentedChange}
-            onValueChange={this.SegmentedValueChange}
-          />
-          <Button style={[{height: 32, width: 50,
-            position:'absolute',top:16,right:16,
-            backgroundColor:'white',}]}
-              text='全国'
-              textStyle={{fontSize:12,}}
-            onPress={
-              ()=>{
-                if (Platform.OS === 'android') {
-                  this.setState({
-                    zoomLevel: this.state.zoomLevel === 4 ? 4.1 : 4,
-                  });
-                  this.setState({
-                    mapCoordinateLatitude: 43.540557,
-                    mapCoordinateLongitude: 113.293493,
-                  });
-                } else {
-                  this.setState({
-                    mapCoordinateLatitude: 43.540557,
-                    mapCoordinateLongitude: 113.293493,
-                  });
-                  this.setState({
-                    zoomLevel: this.state.zoomLevel === 4 ? 4.1 : 4,
-                  });
-                }
-              }
-            }></Button>
-        
+        <SegmentedControl
+          style={{
+            position: 'absolute',
+            top: 16,
+            left: 16,
+            backgroundColor: 'white',
+            height: 32,
+            width: 200,
+          }}
+          values={['监控', '运维', '排污', '质控']}
+          onChange={this.SegmentedChange}
+          onValueChange={this.SegmentedValueChange}
+        />
+        <Button
+          style={[
+            {
+              height: 32,
+              width: 50,
+              position: 'absolute',
+              top: 16,
+              right: 16,
+              backgroundColor: 'white',
+            },
+          ]}
+          text="全国"
+          textStyle={{ fontSize: 12 }}
+          onPress={() => {
+            if (Platform.OS === 'android') {
+              this.setState({
+                zoomLevel: this.state.zoomLevel === 4 ? 4.1 : 4,
+              });
+              this.setState({
+                mapCoordinateLatitude: 43.540557,
+                mapCoordinateLongitude: 113.293493,
+              });
+            } else {
+              this.setState({
+                mapCoordinateLatitude: 43.540557,
+                mapCoordinateLongitude: 113.293493,
+              });
+              this.setState({
+                zoomLevel: this.state.zoomLevel === 4 ? 4.1 : 4,
+              });
+            }
+          }}
+        />
       </View>
     );
   }
@@ -843,25 +1067,35 @@ const styles = StyleSheet.create({
     flex: 1,
     // backgroundColor: '#2c3e50',
   },
-  countBackground:{height:16,width:16,
-    borderBottomLeftRadius:2,borderBottomRightRadius:2,
-    borderTopLeftRadius:2,borderTopRightRadius:2,
-    margin:2,textAlign:'center',
-    color:'white',fontSize:12,
+  countBackground: {
+    height: 16,
+    width: 16,
+    borderBottomLeftRadius: 2,
+    borderBottomRightRadius: 2,
+    borderTopLeftRadius: 2,
+    borderTopRightRadius: 2,
+    margin: 2,
+    textAlign: 'center',
+    color: 'white',
+    fontSize: 12,
   },
-  tabSize:{
-    height:24,minWidth:48,
-    flexDirection:'row',
-    justifyContent:'center',alignItems:'center'
+  tabSize: {
+    height: 24,
+    minWidth: 48,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  textStyle:{
-    textAlign:'center',
-    lineHeight:24,
-    color:'white'
+  textStyle: {
+    textAlign: 'center',
+    lineHeight: 24,
+    color: 'white',
   },
-  pointStyle:{
-    height:16,width:16,borderRadius:8
-  }
+  pointStyle: {
+    height: 16,
+    width: 16,
+    borderRadius: 8,
+  },
 });
 
 // make this component available to the app
