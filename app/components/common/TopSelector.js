@@ -40,7 +40,11 @@ class TopSelector extends PureComponent {
   }
 
   _search = () => {
-    this.props.showDatePicker();
+    this.props.dispatch(
+      createAction('router/setModalVisible')({
+        modalVisible: !this.props.modalVisible,
+      })
+    );
   }
 
   render() {

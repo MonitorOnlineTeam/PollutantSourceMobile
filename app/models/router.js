@@ -12,11 +12,16 @@ const isPushAction = action =>
 export default {
   namespace: 'router',
   state: {
+    //日期选择的这招是否显示
+    modalVisible: false,
     ...routerReducer(),
   },
   reducers: {
     apply(state, { payload: action }) {
       return routerReducer(state, action);
+    },
+    setModalVisible(state, { payload }) {
+      return { ...state, ...payload };
     },
   },
   effects: {

@@ -26,40 +26,6 @@ if (!__DEV__) {
   };
 }
 
-// const dvaEnhancer = {
-//   onEffect: (effect, sagaEffects, model) => function * effectEnhancer(...args) {
-//     // let config = getUseNetConfig();
-//     const httpsNetUrl = 'https://api.chsdl.cn/wry';
-//     let url = `${httpsNetUrl + api.system.nettest}`;
-//     let result = yield test(url, {}).then(async data => true, json => false);
-//     const CNConfig = [];
-//     const NetConfig = getNetConfig();
-//     if (result) {
-//       yield effect(...args);
-//     } else {
-//       let newconfig = [];
-//       NetConfigJSON.Config.map((item, key) => {
-//         let netitem = {};
-//         netitem.neturl = `http://${item.configIp}:${item.configPort}`;
-//         netitem.isuse = true;
-
-//         if (config.neturl != netitem.neturl) {
-//           newconfig.push(netitem);
-//         }
-//       });
-//       yield saveNetConfig(newconfig);
-//       config = getUseNetConfig();
-//       url = `${config.neturl + api.system.nettest}`;
-//       result = yield test(url, {}).then(async data => true, json => false);
-//         if (result) {
-//           yield effect(...args);
-//         } else {
-//           // ShowToast('网络断开，请重试');
-//         }
-//   }
-//   }
-// };
-
 const app = dva({
   initialState: {},
   models: [],
