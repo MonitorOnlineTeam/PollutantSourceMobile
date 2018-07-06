@@ -71,7 +71,7 @@
 
   
     #ifdef DEBUG
-        [[RCTBundleURLProvider sharedSettings] setJsLocation:@"192.168.31.65"];
+//        [[RCTBundleURLProvider sharedSettings] setJsLocation:@"192.168.31.65"];
         jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
     #else
         jsCodeLocation = [CodePush bundleURL];
@@ -88,7 +88,7 @@
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
-  [SplashScreen show];  // here
+//  [SplashScreen show];  // here
   return YES;
 }
 

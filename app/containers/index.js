@@ -45,19 +45,19 @@ import SparePart from './datalist/SparePart';
 import PowerCut from './datalist/PowerCut';
 import QualityControl from './datalist/QualityControl';
 
-const MainNavigator = StackNavigator(
-  {
-    // HomeNavigator: { screen: HomeNavigator },
-    branchOffice: { screen: branchOffice },
-    operationsStaff: { screen: operationsStaff },
-    groupCompany: { screen: groupCompany },
-    system: { screen: system },
-    Detail: { screen: Detail },
-  },
-  {
-    headerMode: 'float',
-  }
-);
+// const MainNavigator = StackNavigator(
+//   {
+//     // HomeNavigator: { screen: HomeNavigator },
+//     branchOffice: { screen: branchOffice },
+//     operationsStaff: { screen: operationsStaff },
+//     groupCompany: { screen: groupCompany },
+//     system: { screen: system },
+//     Detail: { screen: Detail },
+//   },
+//   {
+//     headerMode: 'float',
+//   }
+// );
 
 export default StackNavigator(
   {

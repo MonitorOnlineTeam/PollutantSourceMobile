@@ -6,7 +6,7 @@ import Icon from 'react-native-vector-icons/dist/FontAwesome';
 
 import { Button } from '../../components';
 import { NavigationActions } from '../../utils';
-
+import GridItem from '../../components/RankOfStationByEmissions/GridItem';
 // create a component
 @connect()
 class RankOfStationByEmissions extends Component {
@@ -26,27 +26,62 @@ class RankOfStationByEmissions extends Component {
       ),
     };
   }
+  constructor(props) {
+    super(props);
+    this.state = {
+      rankList: [
+         {
+          iconame:'bar-chart',
+          title:'first',
+          color:'red'
+         },
+         {
+          iconame:'list-alt',
+          title:'second',
+          color:'#a324fb'
+         },
+         {
+          iconame:'align-right',
+          title:'third',
+          color:'blue'
+         },
+         {
+          iconame:'align-right',
+          title:'forth',
+          color:'grey'
+         },
+         {
+          iconame:'pie-chart',
+          title:'fiv',
+          color:'#23ea89'
+         }
+      ],
+    };
+  }
+
   goBack = () => {
     this.props.dispatch(NavigationActions.back({ routeName: 'Account' }));
   }
   render() {
     return (
-      <View style={styles.container}>
-        <Text>RankOfStationByEmissions 站点排污排名</Text>
+      <View style={{flexDirection:'row',flexWrap:'wrap'}}>
+        {
+          this.renderItems()
+        }
       </View>
     );
   }
+  renderItems=()=>{
+    const result=[];
+    this.state.rankList.map((item,key)=>{
+      result.push(<GridItem onClick={()=>{
+        alert(item.title);
+      }} key={key} iconame={item.iconame} color={item.color} title={item.title}  />);
+    });
+    return result;
+  }
 }
-
-// define your styles
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'lightgrey',
-  },
-});
+ 
 
 //make this component available to the app
 export default RankOfStationByEmissions;

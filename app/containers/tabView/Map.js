@@ -26,7 +26,7 @@ import {
  * @Email: houxfmark3955@163.com
  * @Create At: 2018-06-20 14:39:35
  * @Last Modified By: houxfmark3955@163.com
- * @Last Modified At: 2018-06-27 10:33:31
+ * @Last Modified At: 2018-07-03 13:36:09
  * @Description: 地图一览.
  */
 
@@ -176,12 +176,13 @@ class Map extends Component {
                 ',longitude:' +
                 parseFloat(item.Longitude, 10)
             );
-            this.setState({
-              zoomLevel: this.state.zoomLevel === 15 ? 15.1 : 15,
-            });
+            
             this.setState({
               mapCoordinateLatitude: parseFloat(item.Latitude, 10),
               mapCoordinateLongitude: parseFloat(item.Longitude, 10),
+            });
+            this.setState({
+              zoomLevel: this.state.zoomLevel === 15 ? 15.1 : 15,
             });
           }}
           icon={() => (
