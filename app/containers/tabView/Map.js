@@ -176,7 +176,7 @@ class Map extends Component {
                 ',longitude:' +
                 parseFloat(item.Longitude, 10)
             );
-            
+
             this.setState({
               mapCoordinateLatitude: parseFloat(item.Latitude, 10),
               mapCoordinateLongitude: parseFloat(item.Longitude, 10),

@@ -39,9 +39,13 @@ class TopSelector extends PureComponent {
     // this.props.dispatch(createAction('datapreview/loadPointWithData')({}));
   }
 
-  _search = () =>{
-    this.props.dispatch(createAction('router/setModalVisible')({modalVisible:!this.props.modalVisible,}));
-}
+  _search = () => {
+    this.props.dispatch(
+      createAction('router/setModalVisible')({
+        modalVisible: !this.props.modalVisible,
+      })
+    );
+  }
 
   render() {
     return (

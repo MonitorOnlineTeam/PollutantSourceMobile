@@ -26,7 +26,6 @@ if (!__DEV__) {
   };
 }
 
-
 const app = dva({
   initialState: {},
   models: [],

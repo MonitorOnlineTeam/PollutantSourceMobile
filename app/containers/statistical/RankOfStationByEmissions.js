@@ -30,31 +30,31 @@ class RankOfStationByEmissions extends Component {
     super(props);
     this.state = {
       rankList: [
-         {
-          iconame:'bar-chart',
-          title:'first',
-          color:'red'
-         },
-         {
-          iconame:'list-alt',
-          title:'second',
-          color:'#a324fb'
-         },
-         {
-          iconame:'align-right',
-          title:'third',
-          color:'blue'
-         },
-         {
-          iconame:'align-right',
-          title:'forth',
-          color:'grey'
-         },
-         {
-          iconame:'pie-chart',
-          title:'fiv',
-          color:'#23ea89'
-         }
+        {
+          iconame: 'bar-chart',
+          title: 'first',
+          color: 'red',
+        },
+        {
+          iconame: 'list-alt',
+          title: 'second',
+          color: '#a324fb',
+        },
+        {
+          iconame: 'align-right',
+          title: 'third',
+          color: 'blue',
+        },
+        {
+          iconame: 'align-right',
+          title: 'forth',
+          color: 'grey',
+        },
+        {
+          iconame: 'pie-chart',
+          title: 'fiv',
+          color: '#23ea89',
+        },
       ],
     };
   }
@@ -64,24 +64,29 @@ class RankOfStationByEmissions extends Component {
   }
   render() {
     return (
-      <View style={{flexDirection:'row',flexWrap:'wrap'}}>
-        {
-          this.renderItems()
-        }
+      <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
+        {this.renderItems()}
       </View>
     );
   }
-  renderItems=()=>{
-    const result=[];
-    this.state.rankList.map((item,key)=>{
-      result.push(<GridItem onClick={()=>{
-        alert(item.title);
-      }} key={key} iconame={item.iconame} color={item.color} title={item.title}  />);
+  renderItems = () => {
+    const result = [];
+    this.state.rankList.map((item, key) => {
+      result.push(
+        <GridItem
+          onClick={() => {
+            alert(item.title);
+          }}
+          key={key}
+          iconame={item.iconame}
+          color={item.color}
+          title={item.title}
+        />
+      );
     });
     return result;
   }
 }
- 
 
 //make this component available to the app
 export default RankOfStationByEmissions;
