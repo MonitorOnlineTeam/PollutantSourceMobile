@@ -8,6 +8,10 @@ import groupCompany from './tabView/groupCompany';
 import system from './tabView/system';
 import Detail from './Detail';
 import Login from './Login';
+import MyPhoneList from './MyPhoneList';
+import knowledgebase from './knowledgebase';
+import FileDOC from './FileDOC';
+import DisplayDOC from './DisplayDOC';
 import Todo from './workbench/Todo';
 import Alarm from './workbench/Alarm';
 import Message from './workbench/Message';
@@ -53,6 +57,10 @@ const MainNavigator = StackNavigator(
     groupCompany: { screen: groupCompany },
     system: { screen: system },
     Detail: { screen: Detail },
+    MyPhoneList: { screen: MyPhoneList },
+    knowledgebase: { screen: knowledgebase },
+    FileDOC: { screen: FileDOC },
+    DisplayDOC: { screen: DisplayDOC },
   },
   {
     headerMode: 'float',

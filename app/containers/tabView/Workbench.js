@@ -9,12 +9,10 @@ import {
   StatusBar,
 } from 'react-native';
 import { connect } from 'react-redux';
-import Icon from 'react-native-vector-icons/dist/FontAwesome';
-
+import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
 import wholeSituationStyle from '../../config/wholeSituationStyle';
-import { SCREEN_WIDTH } from '../../config/globalsize';
-import { NavigationActions } from '../../utils';
-import WorkbenchRouter from '../workbench';
+import { LocaleConfig } from 'react-native-calendars';
+import { Menu, ActivityIndicator, NavBar } from 'antd-mobile';
 /*
  * Copyright (c) 2018 SDL.All Rights Reserved
  *
@@ -26,15 +24,78 @@ import WorkbenchRouter from '../workbench';
  * @Last Modified At: 2018-06-27 11:18:53
  * @Description: 工作台.
  */
+LocaleConfig.locales['fr'] = {
+  monthNames: [
+    '一月',
+    '二月',
+    '三月',
+    '四月',
+    '五月',
+    '六月',
+    '七月',
+    '八月',
+    '九月',
+    '十月',
+    '十一月',
+    '十二月',
+  ],
+  monthNamesShort: [
+    '一月',
+    '二月',
+    '三月',
+    '四月',
+    '五月',
+    '六月',
+    '七月',
+    '八月',
+    '九月',
+    '十月',
+    '十一月',
+    '十二月',
+  ],
+  dayNames: [
+    '星期天',
+    '星期一',
+    '星期二',
+    '星期三',
+    '星期四',
+    '星期五',
+    '星期六',
+  ],
+  dayNamesShort: ['一', '二', '三', '四', '五', '六', '日'],
+};
 
+LocaleConfig.defaultLocale = 'fr';
 // create a component
 const stateButtonWidth = SCREEN_WIDTH / 5;
 @connect()
 class Workbench extends Component {
-  static navigationOptions = {
-    // header: null,
+  static navigationOptions = ({ navigation }) => ({
     title: '工作台',
-    tabBarLabel: '工作台',
+    tabBarLable: '工作台',
+    headerBackTitle: null,
+    headerTintColor: '#000',
+    headerStyle: { backgroundColor: '#fff' },
+    //  headerRight: (
+    //    <TouchableOpacity
+    //      style={{ width: 30 }}
+    //      onPress={() => {
+    //        navigation.dispatch(NavigationActions.navigate({ routeName: 'QRCodeScreen' }))
+    //      }}
+    //    >
+    //      <Icon name="ios-qr-scanner" size={28} color="#fff" />
+    //    </TouchableOpacity>
+    //  ),
+    //  headerLeft: (
+    //    <TouchableOpacity
+    //      style={{ width: 30, marginLeft: 10 }}
+    //      onPress={() => {
+    //        navigation.dispatch(NavigationActions.navigate({ routeName: 'Search' }))
+    //      }}
+    //    >
+    //      <Icon name="ios-search" size={28} color="#fff" />
+    //    </TouchableOpacity>
+    //  ),
     tabBarIcon: ({ focused, tintColor }) => (
       // <Image
       //   style={[
@@ -49,123 +110,97 @@ class Workbench extends Component {
         style={{ color: focused ? tintColor : 'gray' }}
       />
     ),
-  }
-
+  })
   constructor(props) {
     super(props);
     this.state = {
-      stateArray: [
-        {
-          id: 'todo',
-          title: '待办',
-          count: 8,
-          fun: () => {
-            this.props.dispatch(
-              NavigationActions.navigate({ routeName: 'Todo' })
-            );
-          },
-        },
-        {
-          id: 'earlywarning',
-          title: '预警',
-          count: 110,
-          fun: () => {
-            this.props.dispatch(
-              NavigationActions.navigate({ routeName: 'EarlyWarning' })
-            );
-          },
-        },
-        {
-          id: 'message',
-          title: '消息',
-          count: 0,
-          fun: () => {
-            this.props.dispatch(
-              NavigationActions.navigate({ routeName: 'Message' })
-            );
-          },
-        },
-        {
-          id: 'alarm',
-          title: '报警',
-          count: 3,
-          fun: () => {
-            this.props.dispatch(
-              NavigationActions.navigate({ routeName: 'Alarm' })
-            );
-          },
-        },
-      ],
-      functionArray: [
-        {
-          id: 'emergencytask',
-          title: '应急派单',
-          fun: () => {
-            this.props.dispatch(
-              NavigationActions.navigate({ routeName: 'EmergencyTask' })
-            );
-          },
-        },
-        {
-          id: 'workplan',
-          title: '工作计划',
-          fun: () => {
-            this.props.dispatch(
-              NavigationActions.navigate({ routeName: 'WorkPlan' })
-            );
-          },
-        },
-        {
-          id: 'taskmanage',
-          title: '任务管理',
-          fun: () => {
-            this.props.dispatch(
-              NavigationActions.navigate({ routeName: 'TaskManage' })
-            );
-          },
-        },
-        {
-          id: 'reservemanage',
-          title: '库存管理',
-          fun: () => {
-            this.props.dispatch(
-              NavigationActions.navigate({ routeName: 'ReserveManage' })
-            );
-          },
-        },
-        {
-          id: 'breakdownlist',
-          title: '故障记录',
-          fun: () => {
-            this.props.dispatch(
-              NavigationActions.navigate({ routeName: 'BreakdownList' })
-            );
-          },
-        },
-        {
-          id: 'powercutlist',
-          title: '停电记录',
-          fun: () => {
-            this.props.dispatch(
-              NavigationActions.navigate({ routeName: 'PowerCutList' })
-            );
-          },
-        },
-        {
-          id: 'consumablemanage',
-          title: '耗材统计',
-          fun: () => {
-            this.props.dispatch(
-              NavigationActions.navigate({ routeName: 'ConsumableManage' })
-            );
-          },
-        },
-      ],
+      items: {},
     };
   }
 
+  loadItems(day) {
+    setTimeout(() => {
+      // for (let i = -15; i < 85; i++) {
+      //   const time = day.timestamp + i * 24 * 60 * 60 * 1000;
+      //   const strTime = this.timeToString(time);
+      //   if (!this.state.items[strTime]) {
+      //     this.state.items[strTime] = [];
+      //     const numItems = Math.floor(Math.random() * 5);
+      //     for (let j = 0; j < numItems; j++) {
+      //       this.state.items[strTime].push({
+      //         name: 'Item for ' + strTime,
+      //         height: Math.max(50, Math.floor(Math.random() * 150))
+      //       });
+      //     }
+      //   }
+      // }
+      // console.log("1111");
+      // console.log(this.state.items);
+      const newitem = {
+        '2018-07-03': [{ name: 'i111111111', height: 50, marked: true }],
+      };
+      const newItems = {};
+      Object.keys(newitem).forEach(key => {
+        newItems[key] = newitem[key];
+      });
+      this.setState({
+        items: newItems,
+      });
+    }, 1000);
+    // console.log(`Load Items for ${day.year}-${day.month}`);
+  }
+
+  renderItem(item) {
+    return (
+      <View style={[styles.item, { height: item.height }]}>
+        <Text>{item.name}</Text>
+      </View>
+    );
+  }
+
+  renderEmptyDate() {
+    return (
+      <View style={styles.emptyDate}>
+        <Text>这是空的日期。</Text>
+      </View>
+    );
+  }
+
+  rowHasChanged(r1, r2) {
+    return r1.name !== r2.name;
+  }
+
+  timeToString(time) {
+    const date = new Date(time);
+    return date.toISOString().split('T')[0];
+  }
   render() {
-    return <WorkbenchRouter />;
+    return (
+      <View style={styles.container}>
+        <Agenda
+          items={this.state.items}
+          loadItemsForMonth={this.loadItems.bind(this)}
+          selected={Date.date}
+          renderItem={this.renderItem.bind(this)}
+          renderEmptyDate={this.renderEmptyDate.bind(this)}
+          rowHasChanged={this.rowHasChanged.bind(this)}
+          style={{ width: '100%' }}
+          // markingType={'period'
+          // markedDates={{
+          //    '2018-07-03': {textColor: '#666'},
+          //    '2017-05-09': {textColor: '#666'},
+          //    '2017-05-14': {startingDay: true, endingDay: true, color: 'blue'},
+          //    '2017-05-21': {startingDay: true, color: 'blue'},
+          //    '2017-05-22': {endingDay: true, color: 'gray'},
+          //    '2017-05-24': {startingDay: true, color: 'gray'},
+          //    '2017-05-25': {color: 'gray'},
+          //    '2017-05-26': {endingDay: true, color: 'gray'}}}
+          //  monthFormat={'yyyy'}
+          // theme={{calendarBackground: 'red', agendaKnobColor: 'green'}}
+          //renderDayrenderDay={(day, item) => (<Text>{day ? day.day: 'item'}</Text>)}
+        />
+      </View>
+    );
   }
 }
 {
@@ -228,7 +263,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'white',
   },
-  stateContainer: {},
+  item: {
+    backgroundColor: 'white',
+    flex: 1,
+    borderRadius: 5,
+    padding: 10,
+    marginRight: 10,
+    marginTop: 17,
+  },
+  emptyDate: {
+    height: 15,
+    flex: 1,
+    paddingTop: 30,
+  },
 });
 
 // make this component available to the app
