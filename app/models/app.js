@@ -28,12 +28,11 @@ export default Model.extend({
      * @param {any} { call, put, update }
      */
     *loadglobalvariable({ payload }, { call, put, update, take }) {
-     
       const { user } = payload;
       const account = user.User_Account;
       let data = 'operationsStaff';
       let globalConfig = yield loadStorage('globalconfig');
-   
+
       if (account === 'system') {
         data = 'system';
       } else if (account === 'wangnailin') {
@@ -74,7 +73,6 @@ export default Model.extend({
       yield put(createAction('updateState')({ login, loading: false }));
     },
     *login({ payload }, { call, put, take }) {
-
       yield put(createAction('updateState')({ fetching: true }));
       console.log(payload);
       if (
@@ -89,7 +87,6 @@ export default Model.extend({
         if (result == null) {
           ShowToast('登录失败');
         } else if (result != null && result.requstresult == '1') {
-         
           let user = result.data;
           if (user !== null) {
             yield saveToken(user);

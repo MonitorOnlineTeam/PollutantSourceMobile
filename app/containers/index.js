@@ -57,7 +57,6 @@ const MainNavigator = StackNavigator(
     groupCompany: { screen: groupCompany },
     system: { screen: system },
     Detail: { screen: Detail },
-    
   },
   {
     headerMode: 'float',

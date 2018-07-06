@@ -7,7 +7,6 @@ const token = observable(null);
 const netconfig = observable(null);
 
 export function saveStorage(key, obj) {
-
   return global.storage.save({ key, data: JSON.stringify(obj) });
 }
 export async function loadStorage(key) {

@@ -1,7 +1,14 @@
 //import liraries
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Image, processColor,ScrollView } from 'react-native';
-import { Grid ,Tabs} from 'antd-mobile-rn';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  processColor,
+  ScrollView,
+} from 'react-native';
+import { Grid, Tabs } from 'antd-mobile-rn';
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import Iconi from 'react-native-vector-icons/dist/Ionicons';
@@ -16,8 +23,6 @@ class SingleStationDetail extends Component {
   constructor(props) {
     super(props);
     this.state = {
-
-    
       featureList: [
         {
           icon: <Icon name={'history'} size={20} style={{ color: 'gray' }} />,
@@ -175,204 +180,196 @@ class SingleStationDetail extends Component {
     }
 
     console.log(event.nativeEvent);
-  }// <View style={styles.container}>
-      //   <View
-      //     style={[
-      //       {
-      //         width: SCREEN_WIDTH,
-      //         flex: 1,
-      //         backgroundColor: 'lightgrey',
-      //       },
-      //     ]}
-      //   >
-      //     <Text>
-      //       {
-      //         'SingleStationDetail 单一排口数据 ,上部是当前排口的当前监测数据，中部是一段时间的数据图表 ppt11页'
-      //       }
-      //     </Text>
+  } // <View style={styles.container}>
+  //   <View
+  //     style={[
+  //       {
+  //         width: SCREEN_WIDTH,
+  //         flex: 1,
+  //         backgroundColor: 'lightgrey',
+  //       },
+  //     ]}
+  //   >
+  //     <Text>
+  //       {
+  //         'SingleStationDetail 单一排口数据 ,上部是当前排口的当前监测数据，中部是一段时间的数据图表 ppt11页'
+  //       }
+  //     </Text>
 
-      //     <BarChart
-      //       style={styles.chart}
-      //       data={this.state.data}
-      //       xAxis={this.state.xAxis}
-      //       animation={{ durationX: 2000 }}
-      //       legend={this.state.legend}
-      //       gridBackgroundColor={processColor('#ffffff')}
-      //       drawBarShadow={false}
-      //       drawValueAboveBar={true}
-      //       drawHighlightArrow={true}
-      //       onSelect={this.handleSelect.bind(this)}
-      //       highlights={this.state.highlights}
-      //       onChange={event => console.log(event.nativeEvent)}
-      //     />
-      //   </View>
-      //   <Grid
-      //     data={this.state.featureList}
-      //     columnNum={4}
-      //     activeStyle={{ backgroundColor: 'red' }}
-      //     hasLine={false}
-      //     square={false}
-      //     onClick={_el => {
-      //       switch (_el.id) {
-      //         case 0:
-      //           console.log('历史数据');
-      //           this.props.dispatch(
-      //             NavigationActions.navigate({ routeName: 'HistoricalData' })
-      //           );
-      //           break;
-      //         case 1:
-      //           // 3d站房
-      //           this.props.dispatch(
-      //             NavigationActions.navigate({ routeName: '_3DStation' })
-      //           );
-      //           break;
-      //         case 2:
-      //           // 工艺流程图
-      //           this.props.dispatch(
-      //             NavigationActions.navigate({
-      //               routeName: 'ProcessFlowDiagram',
-      //             })
-      //           );
-      //           break;
-      //         case 3:
-      //           // 报警
-      //           this.props.dispatch(
-      //             NavigationActions.navigate({ routeName: 'Alarm_' })
-      //           );
-      //           break;
-      //         case 4:
-      //           // 预警
-      //           this.props.dispatch(
-      //             NavigationActions.navigate({ routeName: 'EarlyWarning_' })
-      //           );
-      //           break;
-      //         case 5:
-      //           // 巡检
-      //           this.props.dispatch(
-      //             NavigationActions.navigate({ routeName: 'Patrol' })
-      //           );
-      //           break;
-      //         case 6:
-      //           // 应急
-      //           this.props.dispatch(
-      //             NavigationActions.navigate({ routeName: 'Emergency' })
-      //           );
-      //           break;
-      //         case 7:
-      //           // 故障
-      //           this.props.dispatch(
-      //             NavigationActions.navigate({ routeName: 'Breakdown' })
-      //           );
-      //           break;
-      //         case 8:
-      //           // 停产
-      //           this.props.dispatch(
-      //             NavigationActions.navigate({ routeName: 'HaltProduction' })
-      //           );
-      //           break;
-      //         case 9:
-      //           // 备品备件
-      //           this.props.dispatch(
-      //             NavigationActions.navigate({ routeName: 'SparePart' })
-      //           );
-      //           break;
-      //         case 10:
-      //           // 停电
-      //           this.props.dispatch(
-      //             NavigationActions.navigate({ routeName: 'PowerCut' })
-      //           );
-      //           break;
-      //         case 11:
-      //           // 质控
-      //           this.props.dispatch(
-      //             NavigationActions.navigate({ routeName: 'QualityControl' })
-      //           );
-      //           break;
-      //       }
-      //     }}
-      //     itemStyle={{
-      //       height: SCREEN_WIDTH / 6,
-      //       width: SCREEN_WIDTH / 4,
-      //     }}
-      //     renderItem={(el, index) => {
-      //       return (
-      //         <View
-      //           style={[
-      //             {
-      //               height: SCREEN_WIDTH / 6,
-      //               width: SCREEN_WIDTH / 4,
-      //               justifyContent: 'center',
-      //               alignItems: 'center',
-      //             },
-      //           ]}
-      //         >
-      //           <View
-      //             style={[
-      //               {
-      //                 height: SCREEN_WIDTH / 10,
-      //                 width: SCREEN_WIDTH / 10,
-      //                 backgroundColor: 'lightblue',
-      //                 borderRadius: SCREEN_WIDTH / 16,
-      //                 justifyContent: 'center',
-      //                 alignItems: 'center',
-      //               },
-      //             ]}
-      //           >
-      //             {/*<Image source={require('../../images/person.png')} 
-      //                               style={[{height:SCREEN_WIDTH/12,
-      //                               width:SCREEN_WIDTH/12,}]}/>*/}
-      //             {el.icon}
-      //           </View>
-      //           <Text style={[{ marginTop: 4, fontSize: 12 }]}>{el.text}</Text>
-      //         </View>
-      //       );
-      //     }}
-      //   />
-      // </View>
-    
+  //     <BarChart
+  //       style={styles.chart}
+  //       data={this.state.data}
+  //       xAxis={this.state.xAxis}
+  //       animation={{ durationX: 2000 }}
+  //       legend={this.state.legend}
+  //       gridBackgroundColor={processColor('#ffffff')}
+  //       drawBarShadow={false}
+  //       drawValueAboveBar={true}
+  //       drawHighlightArrow={true}
+  //       onSelect={this.handleSelect.bind(this)}
+  //       highlights={this.state.highlights}
+  //       onChange={event => console.log(event.nativeEvent)}
+  //     />
+  //   </View>
+  //   <Grid
+  //     data={this.state.featureList}
+  //     columnNum={4}
+  //     activeStyle={{ backgroundColor: 'red' }}
+  //     hasLine={false}
+  //     square={false}
+  //     onClick={_el => {
+  //       switch (_el.id) {
+  //         case 0:
+  //           console.log('历史数据');
+  //           this.props.dispatch(
+  //             NavigationActions.navigate({ routeName: 'HistoricalData' })
+  //           );
+  //           break;
+  //         case 1:
+  //           // 3d站房
+  //           this.props.dispatch(
+  //             NavigationActions.navigate({ routeName: '_3DStation' })
+  //           );
+  //           break;
+  //         case 2:
+  //           // 工艺流程图
+  //           this.props.dispatch(
+  //             NavigationActions.navigate({
+  //               routeName: 'ProcessFlowDiagram',
+  //             })
+  //           );
+  //           break;
+  //         case 3:
+  //           // 报警
+  //           this.props.dispatch(
+  //             NavigationActions.navigate({ routeName: 'Alarm_' })
+  //           );
+  //           break;
+  //         case 4:
+  //           // 预警
+  //           this.props.dispatch(
+  //             NavigationActions.navigate({ routeName: 'EarlyWarning_' })
+  //           );
+  //           break;
+  //         case 5:
+  //           // 巡检
+  //           this.props.dispatch(
+  //             NavigationActions.navigate({ routeName: 'Patrol' })
+  //           );
+  //           break;
+  //         case 6:
+  //           // 应急
+  //           this.props.dispatch(
+  //             NavigationActions.navigate({ routeName: 'Emergency' })
+  //           );
+  //           break;
+  //         case 7:
+  //           // 故障
+  //           this.props.dispatch(
+  //             NavigationActions.navigate({ routeName: 'Breakdown' })
+  //           );
+  //           break;
+  //         case 8:
+  //           // 停产
+  //           this.props.dispatch(
+  //             NavigationActions.navigate({ routeName: 'HaltProduction' })
+  //           );
+  //           break;
+  //         case 9:
+  //           // 备品备件
+  //           this.props.dispatch(
+  //             NavigationActions.navigate({ routeName: 'SparePart' })
+  //           );
+  //           break;
+  //         case 10:
+  //           // 停电
+  //           this.props.dispatch(
+  //             NavigationActions.navigate({ routeName: 'PowerCut' })
+  //           );
+  //           break;
+  //         case 11:
+  //           // 质控
+  //           this.props.dispatch(
+  //             NavigationActions.navigate({ routeName: 'QualityControl' })
+  //           );
+  //           break;
+  //       }
+  //     }}
+  //     itemStyle={{
+  //       height: SCREEN_WIDTH / 6,
+  //       width: SCREEN_WIDTH / 4,
+  //     }}
+  //     renderItem={(el, index) => {
+  //       return (
+  //         <View
+  //           style={[
+  //             {
+  //               height: SCREEN_WIDTH / 6,
+  //               width: SCREEN_WIDTH / 4,
+  //               justifyContent: 'center',
+  //               alignItems: 'center',
+  //             },
+  //           ]}
+  //         >
+  //           <View
+  //             style={[
+  //               {
+  //                 height: SCREEN_WIDTH / 10,
+  //                 width: SCREEN_WIDTH / 10,
+  //                 backgroundColor: 'lightblue',
+  //                 borderRadius: SCREEN_WIDTH / 16,
+  //                 justifyContent: 'center',
+  //                 alignItems: 'center',
+  //               },
+  //             ]}
+  //           >
+  //             {/*<Image source={require('../../images/person.png')}
+  //                               style={[{height:SCREEN_WIDTH/12,
+  //                               width:SCREEN_WIDTH/12,}]}/>*/}
+  //             {el.icon}
+  //           </View>
+  //           <Text style={[{ marginTop: 4, fontSize: 12 }]}>{el.text}</Text>
+  //         </View>
+  //       );
+  //     }}
+  //   />
+  // </View>
+
   render() {
-   
     const tabs = [
       { title: '监控' },
       { title: '运维' },
       { title: '排污' },
-      { title: '质控' }
+      { title: '质控' },
     ];
-  
-    return (
-      <View style={{flex:1}}>
 
-     <Tabs tabs={tabs} initialPage={0} >
+    return (
+      <View style={{ flex: 1 }}>
+        <Tabs tabs={tabs} initialPage={0}>
           <View style={style}>
-           <View style={{backgroundColor:'#8adff8',width:'100%',height:300}}>
-             <View style={{margin:5}}>
-             <Text>站点信息</Text>
-             </View>
-             
-            </View> 
+            <View
+              style={{ backgroundColor: '#8adff8', width: '100%', height: 300 }}
+            >
+              <View style={{ margin: 5 }}>
+                <Text>站点信息</Text>
+              </View>
+            </View>
           </View>
-          <View style={style}>
-            
-          </View>
-          <View style={style}>
-            
-          </View>
-          <View style={style}>
-            
-          </View>
+          <View style={style} />
+          <View style={style} />
+          <View style={style} />
         </Tabs>
-       
       </View>
     );
   }
 }
 const style = {
-  width:"100%",
+  width: '100%',
   alignItems: 'center',
   justifyContent: 'center',
 
   backgroundColor: '#e1e1e1',
-} ;
+};
 // define your styles
 const styles = StyleSheet.create({
   container: {
