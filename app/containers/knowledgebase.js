@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
-import { Grid } from 'antd-mobile';
+import { Grid } from 'antd-mobile-rn';
 import { connect } from 'react-redux';
 
 import { NavigationActions } from '../utils';

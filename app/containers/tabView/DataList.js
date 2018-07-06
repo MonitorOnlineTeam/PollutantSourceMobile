@@ -11,6 +11,7 @@ import { Button } from '../../components';
 import { NavigationActions } from '../../utils';
 import TopSelector from '../../components/common/TopSelector';
 import PollutantBar from '../../components/common/PollutantBar';
+import FlashPoint from '../../components/map/FlashPoint';
 /*
  * @Script: Map.js018 SDL.All Rights Reserved
  *
@@ -164,6 +165,12 @@ class DataList extends Component {
         >
           2
         </Text>
+        <FlashPoint>
+          <Image
+            style={[styles.pointStyle]}
+            source={require('../../images/gisover.png')}
+          />
+        </FlashPoint>
       </View>
     );
   }
