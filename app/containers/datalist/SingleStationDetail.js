@@ -348,7 +348,7 @@ class SingleStationDetail extends Component {
         <Tabs tabs={tabs} initialPage={0}>
           <View style={style}>
             <View
-              style={{ backgroundColor: '#8adff8', width: '100%', height: 300 }}
+              style={{ backgroundColor: '#fefefe', width: '100%', height: 300 }}
             >
               <View style={{ margin: 5 }}>
                 <Text>站点信息</Text>
