@@ -8,6 +8,10 @@ import groupCompany from './tabView/groupCompany';
 import system from './tabView/system';
 import Detail from './Detail';
 import Login from './Login';
+import MyPhoneList from './MyPhoneList';
+import knowledgebase from './knowledgebase';
+import FileDOC from './FileDOC';
+import DisplayDOC from './DisplayDOC';
 import Todo from './workbench/Todo';
 import Alarm from './workbench/Alarm';
 import Message from './workbench/Message';
@@ -111,6 +115,11 @@ export default StackNavigator(
     PowerCut: { screen: PowerCut },
     QualityControl: { screen: QualityControl },
     // DetailRouter:{ screen:DetailRouter},
+
+    MyPhoneList: { screen: MyPhoneList },
+    knowledgebase: { screen: knowledgebase },
+    FileDOC: { screen: FileDOC },
+    DisplayDOC: { screen: DisplayDOC },
   },
   {
     lazyLoad: true,

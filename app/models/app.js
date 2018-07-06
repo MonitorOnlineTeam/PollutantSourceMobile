@@ -32,6 +32,7 @@ export default Model.extend({
       const account = user.User_Account;
       let data = 'operationsStaff';
       let globalConfig = yield loadStorage('globalconfig');
+
       if (account === 'system') {
         data = 'system';
       } else if (account === 'wangnailin') {
