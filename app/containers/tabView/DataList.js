@@ -428,12 +428,6 @@ class DataList extends Component {
                       width: defaultPollutantCodes
                         ? (defaultPollutantCodes.length * SCREEN_WIDTH) / 3
                         : 33,
-<<<<<<< HEAD
-                      width: this.state.cityNameLst
-                        ? SCREEN_WIDTH / 3 * this.state.cityNameLst.length
-                        : 0,
-=======
->>>>>>> a903a26f372e42016778802a75a7aa40f6241cb1
                       backgroundColor: 'white',
                     },
                   ]}
@@ -452,15 +446,10 @@ class DataList extends Component {
                         style={[
                           {
                             height: 60,
-<<<<<<< HEAD
-                            width:
-                              SCREEN_WIDTH / 3 * this.state.cityNameLst.length,
-=======
                             width: defaultPollutantCodes
                               ? (defaultPollutantCodes.length * SCREEN_WIDTH) /
                                 3
                               : 33,
->>>>>>> a903a26f372e42016778802a75a7aa40f6241cb1
                             flexDirection: 'row',
                           },
                           styles.myBorderBottom,
