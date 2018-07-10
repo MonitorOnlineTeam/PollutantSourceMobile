@@ -203,7 +203,7 @@ class DataList extends Component {
             </View>
             <ScrollView
               ref={ref => (this.titleScrollView = ref)}
-              style={[{ width: (SCREEN_WIDTH * 2) / 3, height: 33 }]}
+              style={[{ width: SCREEN_WIDTH * 2 / 3, height: 33 }]}
               horizontal={true}
               showsHorizontalScrollIndicator={false}
               scrollEnabled={false}
@@ -330,7 +330,7 @@ class DataList extends Component {
                         ? 33 + this.state.cityNameLst.length * 40
                         : 33,
                       width: this.state.cityNameLst
-                        ? (SCREEN_WIDTH / 3) * this.state.cityNameLst.length
+                        ? SCREEN_WIDTH / 3 * this.state.cityNameLst.length
                         : 0,
                       backgroundColor: 'white',
                     },
@@ -344,8 +344,7 @@ class DataList extends Component {
                           {
                             height: 60,
                             width:
-                              (SCREEN_WIDTH / 3) *
-                              this.state.cityNameLst.length,
+                              SCREEN_WIDTH / 3 * this.state.cityNameLst.length,
                             flexDirection: 'row',
                           },
                           styles.myBorderBottom,
