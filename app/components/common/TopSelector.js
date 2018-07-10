@@ -23,12 +23,17 @@ import { createAction } from '../../utils';
 class TopSelector extends PureComponent {
   constructor(props) {
     super(props);
-     let myDate = new Date();
-     let prefixDate = myDate.getFullYear()+'-'+(myDate.getMonth()+1)+'-'+myDate.getDate();
+    let myDate = new Date();
+    let prefixDate =
+      myDate.getFullYear() +
+      '-' +
+      (myDate.getMonth() + 1) +
+      '-' +
+      myDate.getDate();
     this.state = {
       datePickerVisible: false,
       selectOption: 2,
-      textDate:prefixDate+' '+myDate.getHours()+":00:00",
+      textDate: prefixDate + ' ' + myDate.getHours() + ':00:00',
     };
   }
   getSelectOption = () => {
@@ -44,8 +49,8 @@ class TopSelector extends PureComponent {
     this._updateTime(searchTime);
   }
 
-   _updateTime (date){
-    this.setState({textDate : date});
+  _updateTime(date) {
+    this.setState({ textDate: date });
   }
   _search = () => {
     this.props.dispatch(
@@ -83,7 +88,6 @@ class TopSelector extends PureComponent {
             },
           ]}
         >
-       
           <TouchableOpacity
             style={[styles.optionStyle]}
             onPress={() => {
@@ -101,7 +105,7 @@ class TopSelector extends PureComponent {
                 },
               ]}
             >
-            {this.state.textDate}
+              {this.state.textDate}
             </Text>
           </TouchableOpacity>
         </View>
