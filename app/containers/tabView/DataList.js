@@ -161,7 +161,11 @@ class DataList extends Component {
     });
   }
   render() {
-    return<View><Text>123</Text></View>;
+    return (
+      <View>
+        <Text>123</Text>
+      </View>
+    );
     // return (
     //   <View style={styles.container}>
     //     <TopSelector
@@ -461,7 +465,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   HorizontalList: {
-    width: (SCREEN_WIDTH * 2) / 3,
+    width: SCREEN_WIDTH * 2 / 3,
   },
   myBorderBottom: {
     borderBottomColor: globalcolor.borderLightGreyColor,
