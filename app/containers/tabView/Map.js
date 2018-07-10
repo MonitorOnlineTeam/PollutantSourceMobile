@@ -627,8 +627,8 @@ class Map extends Component {
                       minHeight: 24,
                       minWidth: 40,
                       borderColor: 'white',
-                      borderWidth:2,
-                      borderColor:'red',
+                      borderWidth: 2,
+                      borderColor: 'red',
                     },
                   ]}
                 >
