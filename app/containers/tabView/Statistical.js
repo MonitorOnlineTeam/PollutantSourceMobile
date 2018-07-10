@@ -113,7 +113,6 @@ class Statistical extends Component {
           columnNum={3}
           activeStyle={true}
           onClick={_el => {
-            console.log(_el);
             switch (_el.id) {
               case 0:
                 this.props.dispatch(

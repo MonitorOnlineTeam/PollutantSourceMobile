@@ -39,7 +39,7 @@ import Button from '../../components/common/Button';
  */
 
 // create a component
-let loading = false;
+let loading = false,lastClickTime = 0;
 @connect()
 class Map extends Component {
   static navigationOptions = {
@@ -68,13 +68,11 @@ class Map extends Component {
     let points, enterprise, _this;
     _this = this;
     getPointEnterprise().then(function(data) {
-      console.log(data);
       _this.setState({
         points: data,
       });
     });
     getEnterprise().then(function(data) {
-      console.log(data);
       _this.setState({
         enterprise: data,
       });
@@ -89,11 +87,9 @@ class Map extends Component {
       special: 'monitor',
       selectMapLegend: '',
     };
-    console.log(markersInfo);
   }
 
   _logStatusChangeCompleteEvent = ({ nativeEvent }) => {
-    console.log('onStatusChangeComplete', nativeEvent);
     if (nativeEvent.zoomLevel > 8) {
       if (this.state.showEnterprise === true) {
         this.setState({
@@ -106,7 +102,7 @@ class Map extends Component {
           _this.setState({
             showEnterprise: false,
           });
-        }, 3000);
+        }, 1000);
       }
     } else {
       if (this.state.showEnterprise === false) {
@@ -120,7 +116,7 @@ class Map extends Component {
           _this.setState({
             showEnterprise: true,
           });
-        }, 3000);
+        }, 1000);
       }
     }
   }
@@ -149,7 +145,6 @@ class Map extends Component {
         />
       );
     });
-    // console.log(polylines); 15.5
     return polylines;
   }
 
@@ -183,7 +178,6 @@ class Map extends Component {
     let markers = [];
     this.state.points.map((item, key) => {
       let imageName = this._getIconName(item);
-      console.log(imageName);
       let ImageView;
       switch (imageName) {
         case 'gisnormal':
@@ -248,25 +242,49 @@ class Map extends Component {
       }
 
       if (this.state.selectMapLegend === '') {
-        markers.push(
-          <MapView.Marker
-            style={{ height: 20, width: 20 }}
-            infoWindowDisabled={true}
-            key={key}
-            /* image={imageName} */
-            icon={() => ImageView}
-            coordinate={{
-              latitude: parseFloat(item.Latitude, 10),
-              longitude: parseFloat(item.Longitude, 10),
-            }}
-            onPress={() => {
-              // this.props.dispatch(NavigationActions.navigate({ routeName: 'Detail' }));
-              this.props.dispatch(
-                NavigationActions.navigate({ routeName: 'SingleStationDetail' })
-              );
-            }}
-          />
-        );
+        if (imageName !== 'gisnormal') {
+          markers.push(
+            <MapView.Marker
+              style={{ height: 20, width: 20 }}
+              infoWindowDisabled={true}
+              key={key}
+              /* image={imageName} */
+              /* icon={() => ImageView} */
+              gif={['gisover','gisfault','gisexception']}
+              coordinate={{
+                latitude: parseFloat(item.Latitude, 10),
+                longitude: parseFloat(item.Longitude, 10),
+              }}
+              onPress={() => {
+                // this.props.dispatch(NavigationActions.navigate({ routeName: 'Detail' }));
+                this.props.dispatch(
+                  NavigationActions.navigate({ routeName: 'SingleStationDetail' })
+                );
+              }}
+            />
+          );
+        } else {
+          markers.push(
+            <MapView.Marker
+              style={{ height: 20, width: 20 }}
+              infoWindowDisabled={true}
+              key={key}
+              image={imageName}
+              /* icon={() => ImageView} */
+              /* gif={['gisover','gisfault','gisexception']} */
+              coordinate={{
+                latitude: parseFloat(item.Latitude, 10),
+                longitude: parseFloat(item.Longitude, 10),
+              }}
+              onPress={() => {
+                // this.props.dispatch(NavigationActions.navigate({ routeName: 'Detail' }));
+                this.props.dispatch(
+                  NavigationActions.navigate({ routeName: 'SingleStationDetail' })
+                );
+              }}
+            />
+          );
+        }
       } else {
         //假数据逻辑
         if (
@@ -288,48 +306,52 @@ class Map extends Component {
             imageName === 'gisoperation') ||
           (this.state.selectMapLegend === '质控' && imageName === 'gisquality')
         ) {
-          markers.push(
-            <MapView.Marker
-              infoWindowDisabled={true}
-              key={key}
-              /* image={imageName} */
-              icon={() => ImageView}
-              coordinate={{
-                latitude: parseFloat(item.Latitude, 10),
-                longitude: parseFloat(item.Longitude, 10),
-              }}
-              onPress={() => {
-                // this.props.dispatch(NavigationActions.navigate({ routeName: 'Detail' }));
-                this.props.dispatch(
-                  NavigationActions.navigate({
-                    routeName: 'SingleStationDetail',
-                  })
-                );
-              }}
-            />
-          );
+          if (imageName !== 'gisnormal') {
+            markers.push(
+              <MapView.Marker
+                style={{ height: 20, width: 20 }}
+                infoWindowDisabled={true}
+                key={key}
+                /* image={imageName} */
+                /* icon={() => ImageView} */
+                gif={['gisover','gisfault','gisexception']}
+                coordinate={{
+                  latitude: parseFloat(item.Latitude, 10),
+                  longitude: parseFloat(item.Longitude, 10),
+                }}
+                onPress={() => {
+                  // this.props.dispatch(NavigationActions.navigate({ routeName: 'Detail' }));
+                  this.props.dispatch(
+                    NavigationActions.navigate({ routeName: 'SingleStationDetail' })
+                  );
+                }}
+              />
+            );
+          } else {
+            markers.push(
+              <MapView.Marker
+                style={{ height: 20, width: 20 }}
+                infoWindowDisabled={true}
+                key={key}
+                image={imageName}
+                /* icon={() => ImageView} */
+                /* gif={['gisover','gisfault','gisexception']} */
+                coordinate={{
+                  latitude: parseFloat(item.Latitude, 10),
+                  longitude: parseFloat(item.Longitude, 10),
+                }}
+                onPress={() => {
+                  // this.props.dispatch(NavigationActions.navigate({ routeName: 'Detail' }));
+                  this.props.dispatch(
+                    NavigationActions.navigate({ routeName: 'SingleStationDetail' })
+                  );
+                }}
+              />
+            );
+          }
         }
       }
     });
-    // this.state.points.map((item, key) => {
-    //   // console.log(item);
-    //   markers.push(
-    //     <MapView.Marker
-    //     key={key}
-    //     coordinate={{
-    //       latitude: parseFloat(item.Latitude, 10),
-    //       longitude: parseFloat(item.Longitude, 10),
-    //     }}
-    //     icon={()=>{
-    //         return <Image source={require('../../images/gisnormal.png')}
-    //           style={[{width:!this.state.showEnterprise?16:0,height:!this.state.showEnterprise?16:0}]} />
-    //     }}
-    //   />
-    //   );
-    // });
-    // this.setState({
-    //   'loading':false,
-    // });
     return markers;
   }
   _getIconName = extData => {
@@ -566,7 +588,7 @@ class Map extends Component {
           onPress={() => {
             if (Platform.OS === 'android') {
               this.setState({
-                zoomLevel: this.state.zoomLevel === 17 ? 17.1 : 17,
+                zoomLevel:  17,
               });
               this.setState({
                 mapCoordinateLatitude: parseFloat(item.Latitude, 10),
@@ -578,7 +600,7 @@ class Map extends Component {
                 mapCoordinateLongitude: parseFloat(item.Longitude, 10),
               });
               this.setState({
-                zoomLevel: this.state.zoomLevel === 15 ? 15.1 : 15,
+                zoomLevel:  15,
               });
             }
           }}
@@ -733,14 +755,10 @@ class Map extends Component {
         />
       );
     });
-    // this.setState({
-    //   'loading':false,
-    // });
     return markers;
   }
 
   SegmentedChange = e => {
-    // console.log(`selectedIndex:${e.nativeEvent.selectedSegmentIndex}`);
     switch (e.nativeEvent.selectedSegmentIndex) {
       case 0:
         this.setState({ special: 'monitor' });
@@ -758,7 +776,7 @@ class Map extends Component {
   }
 
   SegmentedValueChange = value => {
-    // console.log(value);
+
   }
 
   _renderMapLegend = () => {
@@ -820,6 +838,7 @@ class Map extends Component {
                 </Text>
                 <Text
                   onPress={() => {
+                    loading = false;
                     this._selectMapLegend(item);
                   }}
                   style={[styles.textStyle]}
@@ -901,40 +920,46 @@ class Map extends Component {
   }
 
   _selectMapLegend = item => {
-    if (item.defaultValue !== this.state.selectMapLegend) {
-      this.setState({
-        selectMapLegend: item.defaultValue,
-      });
-    } else {
-      this.setState({
-        selectMapLegend: '',
-      });
+    let time = new Date().getTime();
+    if (time - lastClickTime>1000) {
+      if (item.defaultValue !== this.state.selectMapLegend) {
+        this.setState({
+          selectMapLegend: item.defaultValue,
+        });
+      } else {
+        this.setState({
+          selectMapLegend: '',
+        });
+      }
+      if (Platform.OS === 'android') {
+        this.setState({
+          zoomLevel:  4,
+        });
+        this.setState({
+          mapCoordinateLatitude: 43.540557,
+          mapCoordinateLongitude: 113.293493,
+        });
+      } else {
+        this.setState({
+          mapCoordinateLatitude: 43.540557,
+          mapCoordinateLongitude: 113.293493,
+        });
+        this.setState({
+          zoomLevel:  4,
+        });
+      }
     }
-    if (Platform.OS === 'android') {
-      this.setState({
-        zoomLevel: this.state.zoomLevel === 4 ? 4.1 : 4,
-      });
-      this.setState({
-        mapCoordinateLatitude: 43.540557,
-        mapCoordinateLongitude: 113.293493,
-      });
-    } else {
-      this.setState({
-        mapCoordinateLatitude: 43.540557,
-        mapCoordinateLongitude: 113.293493,
-      });
-      this.setState({
-        zoomLevel: this.state.zoomLevel === 4 ? 4.1 : 4,
-      });
-    }
+    lastClickTime = time;
   }
 
-  componentwillmount() {
-    loading = false;
+  componentWillMount() {
+    // loading = false;
+  }
+  coomponentDidMount() {
+    // loading = true;
   }
 
   render() {
-    console.log(this.state.mapCoordinateLatitude);
     return (
       <View style={[styles.container]}>
         <StatusBar barStyle="dark-content" style={[{ height: 24 }]} />
@@ -1017,23 +1042,31 @@ class Map extends Component {
           text="全国"
           textStyle={{ fontSize: 12 }}
           onPress={() => {
-            if (Platform.OS === 'android') {
-              this.setState({
-                zoomLevel: this.state.zoomLevel === 4 ? 4.1 : 4,
-              });
-              this.setState({
-                mapCoordinateLatitude: 43.540557,
-                mapCoordinateLongitude: 113.293493,
-              });
+            loading = false;
+            let time = new Date().getTime();
+            if (time - lastClickTime>1000) {
+              if (Platform.OS === 'android') {
+                this.setState({
+                  zoomLevel:  this.state.zoomLevel===4?4.1: 4,
+                });
+                this.setState({
+                  mapCoordinateLatitude: 43.540557,
+                  mapCoordinateLongitude: 113.293493,
+                });
+              } else {
+                this.setState({
+                  mapCoordinateLatitude: 43.540557,
+                  mapCoordinateLongitude: 113.293493,
+                });
+                this.setState({
+                  zoomLevel:  4,
+                });
+              }
             } else {
-              this.setState({
-                mapCoordinateLatitude: 43.540557,
-                mapCoordinateLongitude: 113.293493,
-              });
-              this.setState({
-                zoomLevel: this.state.zoomLevel === 4 ? 4.1 : 4,
-              });
+              // console.log('不能连续切换');
             }
+            lastClickTime = time;
+              
           }}
         />
       </View>
