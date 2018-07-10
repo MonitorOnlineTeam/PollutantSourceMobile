@@ -14,6 +14,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
+import Iconi from 'react-native-vector-icons/dist/Ionicons';
 import ImagePicker from 'react-native-image-picker';
 import JPushModule from 'jpush-react-native';
 import Icon1 from 'react-native-vector-icons/Ionicons';
@@ -197,6 +198,7 @@ class DataList extends Component {
     });
   }
   render() {
+    // return <Text>123</Text>;
     return (
       <View style={styles.container}>
         <TouchableOpacity
@@ -223,7 +225,6 @@ class DataList extends Component {
               >
                 <Text style={[{ fontSize: little_font_size }]}>监测点</Text>
               </View>
-              }
               <TouchableOpacity
                 style={{
                   marginLeft: 4,
@@ -238,7 +239,6 @@ class DataList extends Component {
                   size={24}
                   style={[{ color: globalcolor.titleBlue }]}
                 />
-                {/*<Image source={require('../../../../images/ic_no_minitor.png')} style={[{width:24,height:24,}]}/>*/}
               </TouchableOpacity>
             </View>
             <ScrollView
@@ -550,7 +550,6 @@ class DataList extends Component {
 const getAllData = async dataType => {
   let datalist = [];
   const getdata = await getAllConcentration({ dataType: dataType });
-  debugger;
   getdata.map(item => {
     let data = {
       key: item.DGIMN,
@@ -606,7 +605,6 @@ const getAllData = async dataType => {
     datalist.push(data);
   });
   console.log(datalist);
-  debugger;
   return datalist;
 };
 

@@ -168,35 +168,35 @@ class Router extends PureComponent {
       this.setState({
         pushMsg: map.message,
       });
-      console.log('extras: ' + map.extras);
+      // console.log('extras: ' + map.extras);
     });
 
     JPushModule.addReceiveNotificationListener(map => {
-      console.log('alertContent: ' + map.alertContent);
-      console.log('extras: ' + map.extras);
+      // console.log('alertContent: ' + map.alertContent);
+      // console.log('extras: ' + map.extras);
       // var extra = JSON.parse(map.extras);
       // console.log(extra.key + ": " + extra.value);
     });
 
     JPushModule.addReceiveOpenNotificationListener(map => {
-      console.log('Opening notification!');
-      console.log('map.extra: ' + map.extras);
+      // console.log('Opening notification!');
+      // console.log('map.extra: ' + map.extras);
       // 跳转到指定页面
       // this.jumpSecondActivity();
       // JPushModule.jumpToPushActivity("SecondActivity");
     });
 
     JPushModule.addGetRegistrationIdListener(registrationId => {
-      console.log('Device register succeed, registrationId ' + registrationId);
+      // console.log('Device register succeed, registrationId ' + registrationId);
     });
     JPushModule.initPush();
     // JPushModule.setStyleBasic();
     initializeListeners('root', this.props.router);
-    console.log('初始化完成');
+    // console.log('初始化完成');
     setTimeout(function() {
       SplashScreen.hide();
     }, 5000);
-    console.log('关闭启动页');
+    // console.log('关闭启动页');
   }
 
   componentWillUnmount() {

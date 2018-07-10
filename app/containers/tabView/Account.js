@@ -86,7 +86,6 @@ class Account extends Component {
         }),
       },
     ];
-    console.log(array);
     return (
       <View
         style={{ flexDirection: 'column', backgroundColor: '#E3E3E3', flex: 1 }}
@@ -104,7 +103,7 @@ class Account extends Component {
             },
           ]}
         >
-          <Text style={[{ color: '#FFFFFF', fontSize: 20 }]} />
+          <Text style={[{ color: '#FFFFFF', fontSize: 20 }]}>{''}</Text>
         </View>
         <View
           style={{
