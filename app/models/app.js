@@ -74,7 +74,6 @@ export default Model.extend({
     },
     *login({ payload }, { call, put, take }) {
       yield put(createAction('updateState')({ fetching: true }));
-      console.log(payload);
       if (
         payload.User_Account === '' ||
         payload.User_Pwd === '' ||

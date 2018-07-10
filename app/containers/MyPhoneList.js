@@ -78,5 +78,4 @@ class MyPhoneList extends PureComponent {
     }
   }
 }
-console.log('123');
 export default MyPhoneList;
