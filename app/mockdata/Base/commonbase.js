@@ -143,7 +143,7 @@ export const defaultPollutantCodes = [
   {
     Value: '00',
     Name: '时间',
-    Unit: 'mg/m3',
+    Unit: '年/月/日',
     Min: 1,
     Max: 35,
     Standard: 25,

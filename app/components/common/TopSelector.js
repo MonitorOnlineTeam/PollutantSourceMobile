@@ -23,22 +23,35 @@ import { createAction } from '../../utils';
 class TopSelector extends PureComponent {
   constructor(props) {
     super(props);
+    let myDate = new Date();
+    let prefixDate =
+      myDate.getFullYear() +
+      '-' +
+      (myDate.getMonth() + 1) +
+      '-' +
+      myDate.getDate();
     this.state = {
       datePickerVisible: false,
       selectOption: 2,
+      textDate: prefixDate + ' ' + myDate.getHours() + ':00:00',
     };
   }
   getSelectOption = () => {
     // return this.props.selectOption;
     return this.state.selectOption;
   }
-  _changeMTag(index, searchTime) {
+  _changeMTag = (index, searchTime) => {
     //更新数据
+    console.log('_changeMTag');
     // this.props.dispatch(createAction('datapreview/updateState')({textDate:searchTime,selectOption:index}));
     this.setState({ selectOption: index });
     // this.props.dispatch(createAction('datapreview/loadPointWithData')({}));
+    this._updateTime(searchTime);
   }
 
+  _updateTime(date) {
+    this.setState({ textDate: date });
+  }
   _search = () => {
     this.props.dispatch(
       createAction('router/setModalVisible')({
@@ -78,96 +91,6 @@ class TopSelector extends PureComponent {
           <TouchableOpacity
             style={[styles.optionStyle]}
             onPress={() => {
-              this._changeMTag(0, -1);
-            }}
-          >
-            <View style={[styles.optionStyle, { backgroundColor: 'white' }]}>
-              <Text
-                style={[
-                  {
-                    color:
-                      this.state.selectOption == 0
-                        ? globalcolor.titleBlue
-                        : globalcolor.textBlack,
-                    height: 40,
-                    lineHeight: 40,
-                    fontSize: normal_font_size,
-                  },
-                ]}
-              >
-                实时
-              </Text>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[styles.optionStyle]}
-            onPress={() => {
-              this._changeMTag(1, -1);
-            }}
-          >
-            <Text
-              style={[
-                {
-                  color:
-                    this.state.selectOption == 1
-                      ? globalcolor.titleBlue
-                      : globalcolor.textBlack,
-                  height: 40,
-                  lineHeight: 40,
-                  fontSize: normal_font_size,
-                },
-              ]}
-            >
-              分钟
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[styles.optionStyle]}
-            onPress={() => {
-              this._changeMTag(2, -1);
-            }}
-          >
-            <Text
-              style={[
-                {
-                  color:
-                    this.state.selectOption == 2
-                      ? globalcolor.titleBlue
-                      : globalcolor.textBlack,
-                  height: 40,
-                  lineHeight: 40,
-                  fontSize: normal_font_size,
-                },
-              ]}
-            >
-              小时
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[styles.optionStyle]}
-            onPress={() => {
-              this._changeMTag(3, -1);
-            }}
-          >
-            <Text
-              style={[
-                {
-                  color:
-                    this.state.selectOption == 3
-                      ? globalcolor.titleBlue
-                      : globalcolor.textBlack,
-                  height: 40,
-                  lineHeight: 40,
-                  fontSize: normal_font_size,
-                },
-              ]}
-            >
-              日均
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[styles.optionStyle]}
-            onPress={() => {
               this._search();
             }}
           >
@@ -182,7 +105,7 @@ class TopSelector extends PureComponent {
                 },
               ]}
             >
-              查询
+              {this.state.textDate}
             </Text>
           </TouchableOpacity>
         </View>

@@ -17,15 +17,18 @@ import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import Iconi from 'react-native-vector-icons/dist/Ionicons';
 import ImagePicker from 'react-native-image-picker';
 import JPushModule from 'jpush-react-native';
-
+import Icon1 from 'react-native-vector-icons/Ionicons';
 import wholeSituationStyle from '../../config/wholeSituationStyle';
 import { Button } from '../../components';
-import { NavigationActions } from '../../utils';
+import { NavigationActions, createAction } from '../../utils';
 import TopSelector from '../../components/common/TopSelector';
 import PollutantBar from '../../components/common/PollutantBar';
 import globalcolor from '../../config/globalcolor';
 import moment from 'moment';
 import LabelHeadView from '../../components/common/LabelHeadView';
+import Alert from '../../components/common/Alert';
+import GroupList from '../../components/common/GroupList';
+
 import {
   getAllConcentration,
   defaultPollutantCodes,
@@ -51,7 +54,10 @@ import {
  */
 
 // create a component
-@connect()
+@connect(({ router, datapreview }) => ({
+  modalVisible: router.modalVisible,
+  pullToRefreshing: datapreview.pullToRefreshing,
+}))
 class DataList extends Component {
   static navigationOptions = {
     // header: null,
@@ -75,10 +81,18 @@ class DataList extends Component {
 
   constructor(props) {
     super(props);
-
+    let myDate = new Date();
+    let prefixDate =
+      myDate.getFullYear() +
+      '-' +
+      (myDate.getMonth() + 1) +
+      '-' +
+      myDate.getDate();
     this.state = {
       imageSrc: '',
       cityNameLst: [],
+      textDate: prefixDate + ' ' + myDate.getHours() + ':00:00',
+      datePickerVisible: false,
     };
 
     getAllData('hour').then(value => {
@@ -95,8 +109,30 @@ class DataList extends Component {
       console.log('上传滑动到底部事件');
     }
   }
+  getStatusColor(status) {
+    switch (status) {
+      case 0:
+        return '#B0B0B1'; //离线
+      case 1:
+        return '#5BC142'; //在线
+      case 2:
+        return '#E00B0B'; //超标
+      case 3:
+      case 4:
+      case 5:
+        return '#B9C303'; //异常
+    }
+    return '#B0B0B1'; //离线
+  }
 
-  gotoDetail = () => {
+  _search = () => {
+    this.props.dispatch(
+      createAction('router/setModalVisible')({
+        modalVisible: !this.props.modalVisible,
+      })
+    );
+  }
+  _gotoDetail = () => {
     // this.props.dispatch(NavigationActions.navigate({ routeName: 'Detail' }));
     this.props.dispatch(
       NavigationActions.navigate({ routeName: 'SingleStationDetail' })
@@ -164,10 +200,19 @@ class DataList extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <TopSelector
-          ref={ref => (this._topSelector = ref)}
-          showDatePicker={() => {}}
-        />
+        <TouchableOpacity
+          style={[styles.optionStyle]}
+          onPress={() => {
+            this._search();
+          }}
+        >
+          <TopSelector
+            ref={ref => (this._topSelector = ref)}
+            showDatePicker={() => {
+              this._search();
+            }}
+          />
+        </TouchableOpacity>
 
         <View style={[{ width: SCREEN_WIDTH, flex: 1 }]}>
           <View
@@ -186,15 +231,9 @@ class DataList extends Component {
                   height: 24,
                   justifyContent: 'center',
                 }}
-                onPress={() => {
-                  this.props.dispatch(
-                    createAction('datapreview/setState')({
-                      groupSelectorVisible: true,
-                    })
-                  );
-                }}
+                onPress={() => {}}
               >
-                <Iconi
+                <Icon1
                   name={'md-arrow-dropdown'}
                   size={24}
                   style={[{ color: globalcolor.titleBlue }]}
@@ -216,7 +255,7 @@ class DataList extends Component {
             style={[{ height: 80, width: SCREEN_WIDTH }]}
             refreshControl={
               <RefreshControl
-                refreshing={false}
+                refreshing={this.props.pullToRefreshing}
                 onRefresh={this._onRefresh}
                 tintColor="#716b6a"
                 title="Loading..."
@@ -235,7 +274,11 @@ class DataList extends Component {
                     <TouchableOpacity
                       key={item.key}
                       onPress={() => {
-                        console.log('onPress');
+                        this.props.dispatch(
+                          NavigationActions.navigate({
+                            routeName: 'SingleStationDetail',
+                          })
+                        );
                       }}
                       style={[
                         {
@@ -258,7 +301,8 @@ class DataList extends Component {
                               width: little_font_size2,
                               height: little_font_size2,
                               borderRadius: 5,
-                              backgroundColor: '#5BC142',
+
+                              backgroundColor: this.getStatusColor(item.status),
                               marginRight: 5,
                             },
                           ]}
@@ -271,11 +315,25 @@ class DataList extends Component {
                             },
                           ]}
                         >
-                          {item.entName}
+                          {item.Abbreviation}
                         </Text>
                       </View>
-
-                      {item.entName === '大唐集团' ? (
+                      <Text
+                        style={[
+                          {
+                            fontSize: 11,
+                            width: SCREEN_WIDTH / 3 - little_font_size2,
+                            color: globalcolor.air_quality_color,
+                            marginTop: 5,
+                            marginLeft: little_font_size2 + 5,
+                          },
+                        ]}
+                      >
+                        {item.pointName}
+                      </Text>
+                      {item.key === 'dtgrjx110' ||
+                      item.key === 'dtgrjx103' ||
+                      item.key === 'lywjfd03' ? (
                         <View
                           style={{
                             height: 15,
@@ -283,24 +341,53 @@ class DataList extends Component {
                             alignItems: 'center',
                             justifyContent: 'center',
                             flexDirection: 'row',
-                            marginTop: 1,
+                            marginTop: 3,
                             borderWidth: 1,
                             borderColor: '#ff4500',
                             borderRadius: 3,
+                            marginLeft: little_font_size2 + 5,
                           }}
                         >
-                          <Text
-                            style={[
-                              {
-                                fontSize: 10,
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                color: '#ff4500',
-                              },
-                            ]}
-                          >
-                            维护
-                          </Text>
+                          {item.key === 'dtgrjx110' ? (
+                            <Text
+                              style={[
+                                {
+                                  fontSize: 10,
+                                  alignItems: 'center',
+                                  justifyContent: 'center',
+                                  color: '#ff4500',
+                                },
+                              ]}
+                            >
+                              运维
+                            </Text>
+                          ) : item.key === 'dtgrjx103' ? (
+                            <Text
+                              style={[
+                                {
+                                  fontSize: 10,
+                                  alignItems: 'center',
+                                  justifyContent: 'center',
+                                  color: '#ff4500',
+                                },
+                              ]}
+                            >
+                              故障
+                            </Text>
+                          ) : item.key === 'lywjfd03' ? (
+                            <Text
+                              style={[
+                                {
+                                  fontSize: 10,
+                                  alignItems: 'center',
+                                  justifyContent: 'center',
+                                  color: '#ff4500',
+                                },
+                              ]}
+                            >
+                              停运
+                            </Text>
+                          ) : null}
                         </View>
                       ) : (
                         <View />
@@ -321,17 +408,32 @@ class DataList extends Component {
                 showsHorizontalScrollIndicator={false}
                 showsVerticalScrollIndicator={false}
                 horizontal={true}
-                style={[styles.HorizontalList, { height: 1000 }]}
+                style={[
+                  {
+                    height: this.state.cityNameLst
+                      ? this.state.cityNameLst.length * 60
+                      : 33,
+                    width: defaultPollutantCodes
+                      ? (defaultPollutantCodes.length * SCREEN_WIDTH) / 3
+                      : 33,
+                  },
+                ]}
               >
                 <View
                   style={[
                     {
                       height: this.state.cityNameLst
-                        ? 33 + this.state.cityNameLst.length * 40
+                        ? this.state.cityNameLst.length * 60
                         : 33,
+                      width: defaultPollutantCodes
+                        ? (defaultPollutantCodes.length * SCREEN_WIDTH) / 3
+                        : 33,
+<<<<<<< HEAD
                       width: this.state.cityNameLst
                         ? SCREEN_WIDTH / 3 * this.state.cityNameLst.length
                         : 0,
+=======
+>>>>>>> a903a26f372e42016778802a75a7aa40f6241cb1
                       backgroundColor: 'white',
                     },
                   ]}
@@ -340,11 +442,25 @@ class DataList extends Component {
                     return (
                       <TouchableOpacity
                         key={item.key}
+                        onPress={() => {
+                          this.props.dispatch(
+                            NavigationActions.navigate({
+                              routeName: 'SingleStationDetail',
+                            })
+                          );
+                        }}
                         style={[
                           {
                             height: 60,
+<<<<<<< HEAD
                             width:
                               SCREEN_WIDTH / 3 * this.state.cityNameLst.length,
+=======
+                            width: defaultPollutantCodes
+                              ? (defaultPollutantCodes.length * SCREEN_WIDTH) /
+                                3
+                              : 33,
+>>>>>>> a903a26f372e42016778802a75a7aa40f6241cb1
                             flexDirection: 'row',
                           },
                           styles.myBorderBottom,
@@ -357,36 +473,43 @@ class DataList extends Component {
                               width: SCREEN_WIDTH / 3,
                               height: 39,
                               textAlign: 'center',
-                              lineHeight: 40,
+                              marginTop: 10,
                               color:
                                 item.Colors && item.Colors[_key]
                                   ? item.Colors[_key]
                                   : 'black',
+                              alignItems: 'center',
+                              justifyContent: 'center',
                             },
                           ]}
+                          numberOfLines={2}
                         >
                           {item.monitorTime}
                         </Text>
                         {item.MonitoringDatasi.PollutantDatas.map(zcc => {
-                          return (
-                            <Text
-                              key={zcc.PollutantCode}
-                              style={[
-                                {
-                                  width: SCREEN_WIDTH / 3,
-                                  height: 39,
-                                  textAlign: 'center',
-                                  lineHeight: 40,
-                                  color:
-                                    item.Colors && item.Colors[_key]
-                                      ? item.Colors[_key]
-                                      : 'black',
-                                },
-                              ]}
-                            >
-                              {zcc.Concentration}
-                            </Text>
-                          );
+                          if (zcc.PollutantCode === '00') {
+                          } else {
+                            return (
+                              <Text
+                                key={zcc.PollutantCode}
+                                style={[
+                                  {
+                                    width: SCREEN_WIDTH / 3,
+                                    height: 39,
+                                    textAlign: 'center',
+                                    lineHeight: 40,
+                                    marginTop: 10,
+                                    color:
+                                      item.Colors && item.Colors[_key]
+                                        ? item.Colors[_key]
+                                        : 'black',
+                                  },
+                                ]}
+                              >
+                                {zcc.Concentration}
+                              </Text>
+                            );
+                          }
                         })}
                       </TouchableOpacity>
                     );
@@ -396,6 +519,40 @@ class DataList extends Component {
             </View>
           </ScrollView>
         </View>
+        <Modal
+          animationType={'slide'}
+          transparent={true}
+          visible={this.props.modalVisible}
+          onRequestClose={() => {
+            alert('Modal has been closed.');
+          }}
+        >
+          <Alert
+            mSetSearchType={searchType => {
+              this.props.dispatch(
+                createAction('datapreview/setSearchType')({
+                  searchType: searchType,
+                })
+              );
+            }}
+            mGetSearchType={() => {
+              return this.props.searchType;
+            }}
+            mCancelcallback={() => {
+              console.log('Alert mCancelcallback');
+              this.props.dispatch(
+                createAction('router/setModalVisible')({
+                  modalVisible: !this.props.modalVisible,
+                })
+              );
+            }}
+            mcallback={(index, date) => {
+              this._topSelector.wrappedInstance._changeMTag(index, date);
+              console.log(this._topSelector);
+              console.log(this._topSelector._changeMTag);
+            }}
+          />
+        </Modal>
       </View>
     );
   }
@@ -418,7 +575,31 @@ const getAllData = async dataType => {
       control: item.AttentionCode,
       dataType: dataType,
       MonitoringDatasi: item.MonitoringDatas[0],
+      Abbreviation: item.Abbreviation,
+      bstatus: null,
+
+      status:
+        item.DGIMN === 'bjldgn01' ||
+        item.DGIMN === 'dtgjhh11102' ||
+        item.DGIMN === 'dtgrjx110'
+          ? 3
+          : 1,
     };
+    if (
+      item.DGIMN === 'bjldgn01' ||
+      item.DGIMN === 'dtgjhh11102' ||
+      item.DGIMN === 'dtgrjx110'
+    ) {
+      data.status = 2;
+    } else if (
+      item.DGIMN === 'dtgrjx104' ||
+      item.DGIMN === 'dtgrjx103' ||
+      item.DGIMN === 'lywjfd03'
+    ) {
+      data.status = 3;
+    } else {
+      data.status = 1;
+    }
     if (item.MonitoringDatas.length > 0) {
       item.MonitoringDatas[0].PollutantDatas.map(wry => {
         data[wry.PollutantCode] = wry.Concentration + ',' + wry.PollutantCode;
@@ -436,6 +617,7 @@ const getAllData = async dataType => {
   console.log(datalist);
   return datalist;
 };
+
 // define your styles
 const styles = StyleSheet.create({
   container: {
