@@ -48,6 +48,7 @@ import HaltProduction from './datalist/HaltProduction';
 import SparePart from './datalist/SparePart';
 import PowerCut from './datalist/PowerCut';
 import QualityControl from './datalist/QualityControl';
+import TodoDetail from './workbench/TodoDetail';
 
 // const MainNavigator = StackNavigator(
 //   {
@@ -82,6 +83,7 @@ export default StackNavigator(
     EarlyWarning: { screen: EarlyWarning },
     Alarm: { screen: Alarm },
     Message: { screen: Message },
+    TodoDetail:{screen:TodoDetail},
 
     EmergencyTask: { screen: EmergencyTask },
     WorkPlan: { screen: WorkPlan },

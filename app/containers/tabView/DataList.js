@@ -14,6 +14,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
+import Iconi from 'react-native-vector-icons/dist/Ionicons';
 import ImagePicker from 'react-native-image-picker';
 import JPushModule from 'jpush-react-native';
 
@@ -162,254 +163,247 @@ class DataList extends Component {
   }
   render() {
     return (
-      <View>
-        <Text>123</Text>
+      <View style={styles.container}>
+        <TopSelector
+          ref={ref => (this._topSelector = ref)}
+          showDatePicker={() => {}}
+        />
+
+        <View style={[{ width: SCREEN_WIDTH, flex: 1 }]}>
+          <View
+            style={[{ width: SCREEN_WIDTH, height: 33, flexDirection: 'row' }]}
+          >
+            <View style={[styles.oneLabel, styles.myBorderBottom]}>
+              <View
+                style={[{ justifyContent: 'center', alignItems: 'center' }]}
+              >
+                <Text style={[{ fontSize: little_font_size }]}>监测点</Text>
+              </View>
+              <TouchableOpacity
+                style={{
+                  marginLeft: 4,
+                  width: 32,
+                  height: 24,
+                  justifyContent: 'center',
+                }}
+                onPress={() => {
+                  this.props.dispatch(
+                    createAction('datapreview/setState')({
+                      groupSelectorVisible: true,
+                    })
+                  );
+                }}
+              >
+                <Iconi
+                  name={'md-arrow-dropdown'}
+                  size={24}
+                  style={[{ color: globalcolor.titleBlue }]}
+                />
+              </TouchableOpacity>
+            </View>
+            <ScrollView
+              ref={ref => (this.titleScrollView = ref)}
+              style={[{ width: (SCREEN_WIDTH * 2) / 3, height: 33 }]}
+              horizontal={true}
+              showsHorizontalScrollIndicator={false}
+              scrollEnabled={false}
+            >
+              <LabelHeadView />
+            </ScrollView>
+          </View>
+
+          <ScrollView
+            style={[{ height: 80, width: SCREEN_WIDTH }]}
+            refreshControl={
+              <RefreshControl
+                refreshing={false}
+                onRefresh={this._onRefresh}
+                tintColor="#716b6a"
+                title="Loading..."
+                titleColor="#716b6a"
+                colors={['#ff0000', '#00ff00', '#0000ff']}
+                progressBackgroundColor="#ffff00"
+              />
+            }
+            onMomentumScrollEnd={this._contentViewScroll}
+            showsVerticalScrollIndicator={false}
+          >
+            <View style={[styles.listContent, {}]}>
+              <View style={[{ height: 33 + 20, width: SCREEN_WIDTH / 3 }]}>
+                {this.state.cityNameLst.map(item => {
+                  return (
+                    <TouchableOpacity
+                      key={item.key}
+                      onPress={() => {
+                        console.log('onPress');
+                      }}
+                      style={[
+                        {
+                          width: SCREEN_WIDTH / 3,
+                          height: 60,
+                          justifyContent: 'center',
+                          alignItems: 'flex-start',
+                          paddingLeft: 5,
+                          backgroundColor: 'white',
+                        },
+                        styles.myBorderBottom,
+                      ]}
+                    >
+                      <View
+                        style={{ flexDirection: 'row', alignItems: 'center' }}
+                      >
+                        <View
+                          style={[
+                            {
+                              width: little_font_size2,
+                              height: little_font_size2,
+                              borderRadius: 5,
+                              backgroundColor: '#5BC142',
+                              marginRight: 5,
+                            },
+                          ]}
+                        />
+                        <Text
+                          style={[
+                            {
+                              fontSize: little_font_size,
+                              width: SCREEN_WIDTH / 3 - little_font_size2,
+                            },
+                          ]}
+                        >
+                          {item.entName}
+                        </Text>
+                      </View>
+
+                      {item.entName === '大唐集团' ? (
+                        <View
+                          style={{
+                            height: 15,
+                            backgroundColor: '#ffe4e1',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            flexDirection: 'row',
+                            marginTop: 1,
+                            borderWidth: 1,
+                            borderColor: '#ff4500',
+                            borderRadius: 3,
+                          }}
+                        >
+                          <Text
+                            style={[
+                              {
+                                fontSize: 10,
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                color: '#ff4500',
+                              },
+                            ]}
+                          >
+                            维护
+                          </Text>
+                        </View>
+                      ) : (
+                        <View />
+                      )}
+                    </TouchableOpacity>
+                  );
+                })}
+              </View>
+
+              <ScrollView
+                onScroll={event => {
+                  this.titleScrollView.scrollTo({
+                    x: event.nativeEvent.contentOffset.x,
+                    animated: false,
+                  });
+                }}
+                scrollEventThrottle={10}
+                showsHorizontalScrollIndicator={false}
+                showsVerticalScrollIndicator={false}
+                horizontal={true}
+                style={[styles.HorizontalList, { height: 1000 }]}
+              >
+                <View
+                  style={[
+                    {
+                      height: this.state.cityNameLst
+                        ? 33 + this.state.cityNameLst.length * 40
+                        : 33,
+                      width: this.state.cityNameLst
+                        ? (SCREEN_WIDTH / 3) * this.state.cityNameLst.length
+                        : 0,
+                      backgroundColor: 'white',
+                    },
+                  ]}
+                >
+                  {this.state.cityNameLst.map(item => {
+                    return (
+                      <TouchableOpacity
+                        key={item.key}
+                        style={[
+                          {
+                            height: 60,
+                            width:
+                              (SCREEN_WIDTH / 3) *
+                              this.state.cityNameLst.length,
+                            flexDirection: 'row',
+                          },
+                          styles.myBorderBottom,
+                        ]}
+                      >
+                        <Text
+                          key={item.key}
+                          style={[
+                            {
+                              width: SCREEN_WIDTH / 3,
+                              height: 39,
+                              textAlign: 'center',
+                              lineHeight: 40,
+                              color:
+                                item.Colors && item.Colors[_key]
+                                  ? item.Colors[_key]
+                                  : 'black',
+                            },
+                          ]}
+                        >
+                          {item.monitorTime}
+                        </Text>
+                        {item.MonitoringDatasi.PollutantDatas.map(zcc => {
+                          return (
+                            <Text
+                              key={zcc.PollutantCode}
+                              style={[
+                                {
+                                  width: SCREEN_WIDTH / 3,
+                                  height: 39,
+                                  textAlign: 'center',
+                                  lineHeight: 40,
+                                  color:
+                                    item.Colors && item.Colors[_key]
+                                      ? item.Colors[_key]
+                                      : 'black',
+                                },
+                              ]}
+                            >
+                              {zcc.Concentration}
+                            </Text>
+                          );
+                        })}
+                      </TouchableOpacity>
+                    );
+                  })}
+                </View>
+              </ScrollView>
+            </View>
+          </ScrollView>
+        </View>
       </View>
     );
-    // return (
-    //   <View style={styles.container}>
-    //     <TopSelector
-    //       ref={ref => (this._topSelector = ref)}
-    //       showDatePicker={() => {}}
-    //     />
-
-    //     <View style={[{ width: SCREEN_WIDTH, flex: 1 }]}>
-    //       <View
-    //         style={[{ width: SCREEN_WIDTH, height: 33, flexDirection: 'row' }]}
-    //       >
-    //         <View style={[styles.oneLabel, styles.myBorderBottom]}>
-    //           <View
-    //             style={[{ justifyContent: 'center', alignItems: 'center' }]}
-    //           >
-    //             <Text style={[{ fontSize: little_font_size }]}>监测点</Text>
-    //           </View>
-    //           }
-    //           <TouchableOpacity
-    //             style={{
-    //               marginLeft: 4,
-    //               width: 32,
-    //               height: 24,
-    //               justifyContent: 'center',
-    //             }}
-    //             onPress={() => {
-    //               this.props.dispatch(
-    //                 createAction('datapreview/setState')({
-    //                   groupSelectorVisible: true,
-    //                 })
-    //               );
-    //             }}
-    //           >
-    //             <Icon
-    //               name={'md-arrow-dropdown'}
-    //               size={24}
-    //               style={[{ color: globalcolor.titleBlue }]}
-    //             />
-    //             {/*<Image source={require('../../../../images/ic_no_minitor.png')} style={[{width:24,height:24,}]}/>*/}
-    //           </TouchableOpacity>
-    //         </View>
-    //         <ScrollView
-    //           ref={ref => (this.titleScrollView = ref)}
-    //           style={[{ width: (SCREEN_WIDTH * 2) / 3, height: 33 }]}
-    //           horizontal={true}
-    //           showsHorizontalScrollIndicator={false}
-    //           scrollEnabled={false}
-    //         >
-    //           <LabelHeadView />
-    //         </ScrollView>
-    //       </View>
-
-    //       <ScrollView
-    //         style={[{ height: 80, width: SCREEN_WIDTH }]}
-    //         refreshControl={
-    //           <RefreshControl
-    //             onRefresh={this._onRefresh}
-    //             tintColor="#716b6a"
-    //             title="Loading..."
-    //             titleColor="#716b6a"
-    //             colors={['#ff0000', '#00ff00', '#0000ff']}
-    //             progressBackgroundColor="#ffff00"
-    //           />
-    //         }
-    //         onMomentumScrollEnd={this._contentViewScroll}
-    //         showsVerticalScrollIndicator={false}
-    //       >
-    //         <View style={[styles.listContent, {}]}>
-    //           <View style={[{ height: 33 + 20, width: SCREEN_WIDTH / 3 }]}>
-    //             {this.state.cityNameLst.map(item => {
-    //               return (
-    //                 <TouchableOpacity
-    //                   key={item.key}
-    //                   onPress={() => {
-    //                     console.log('onPress');
-    //                   }}
-    //                   style={[
-    //                     {
-    //                       width: SCREEN_WIDTH / 3,
-    //                       height: 60,
-    //                       justifyContent: 'center',
-    //                       alignItems: 'flex-start',
-    //                       paddingLeft: 5,
-    //                       backgroundColor: 'white',
-    //                     },
-    //                     styles.myBorderBottom,
-    //                   ]}
-    //                 >
-    //                   <View
-    //                     style={{ flexDirection: 'row', alignItems: 'center' }}
-    //                   >
-    //                     <View
-    //                       style={[
-    //                         {
-    //                           width: little_font_size2,
-    //                           height: little_font_size2,
-    //                           borderRadius: 5,
-    //                           backgroundColor: '#5BC142',
-    //                           marginRight: 5,
-    //                         },
-    //                       ]}
-    //                     />
-    //                     <Text
-    //                       style={[
-    //                         {
-    //                           fontSize: little_font_size,
-    //                           width: SCREEN_WIDTH / 3 - little_font_size2,
-    //                         },
-    //                       ]}
-    //                     >
-    //                       {item.entName}
-    //                     </Text>
-    //                   </View>
-
-    //                   {item.entName === '大唐集团' ? (
-    //                     <View
-    //                       style={{
-    //                         height: 15,
-    //                         backgroundColor: '#ffe4e1',
-    //                         alignItems: 'center',
-    //                         justifyContent: 'center',
-    //                         flexDirection: 'row',
-    //                         marginTop: 1,
-    //                         borderWidth: 1,
-    //                         borderColor: '#ff4500',
-    //                         borderRadius: 3,
-    //                       }}
-    //                     >
-    //                       <Text
-    //                         style={[
-    //                           {
-    //                             fontSize: 10,
-    //                             alignItems: 'center',
-    //                             justifyContent: 'center',
-    //                             color: '#ff4500',
-    //                           },
-    //                         ]}
-    //                       >
-    //                         维护
-    //                       </Text>
-    //                     </View>
-    //                   ) : (
-    //                     <View />
-    //                   )}
-    //                 </TouchableOpacity>
-    //               );
-    //             })}
-    //           </View>
-
-    //           <ScrollView
-    //             onScroll={event => {
-    //               this.titleScrollView.scrollTo({
-    //                 x: event.nativeEvent.contentOffset.x,
-    //                 animated: false,
-    //               });
-    //             }}
-    //             scrollEventThrottle={10}
-    //             showsHorizontalScrollIndicator={false}
-    //             showsVerticalScrollIndicator={false}
-    //             horizontal={true}
-    //             style={[styles.HorizontalList, { height: 1000 }]}
-    //           >
-    //             <View
-    //               style={[
-    //                 {
-    //                   height: this.state.cityNameLst
-    //                     ? 33 + this.state.cityNameLst.length * 40
-    //                     : 33,
-    //                   width: this.state.cityNameLst
-    //                     ? (SCREEN_WIDTH / 3) * this.state.cityNameLst.length
-    //                     : 0,
-    //                   backgroundColor: 'white',
-    //                 },
-    //               ]}
-    //             >
-    //               {this.state.cityNameLst.map(item => {
-    //                 return (
-    //                   <TouchableOpacity
-    //                     key={item.key}
-    //                     style={[
-    //                       {
-    //                         height: 60,
-    //                         width:
-    //                           (SCREEN_WIDTH / 3) *
-    //                           this.state.cityNameLst.length,
-    //                         flexDirection: 'row',
-    //                       },
-    //                       styles.myBorderBottom,
-    //                     ]}
-    //                   >
-    //                     <Text
-    //                       key={item.key}
-    //                       style={[
-    //                         {
-    //                           width: SCREEN_WIDTH / 3,
-    //                           height: 39,
-    //                           textAlign: 'center',
-    //                           lineHeight: 40,
-    //                           color:
-    //                             item.Colors && item.Colors[_key]
-    //                               ? item.Colors[_key]
-    //                               : 'black',
-    //                         },
-    //                       ]}
-    //                     >
-    //                       {item.monitorTime}
-    //                     </Text>
-    //                     {item.MonitoringDatasi.PollutantDatas.map(zcc => {
-    //                       return (
-    //                         <Text
-    //                           key={zcc.PollutantCode}
-    //                           style={[
-    //                             {
-    //                               width: SCREEN_WIDTH / 3,
-    //                               height: 39,
-    //                               textAlign: 'center',
-    //                               lineHeight: 40,
-    //                               color:
-    //                                 item.Colors && item.Colors[_key]
-    //                                   ? item.Colors[_key]
-    //                                   : 'black',
-    //                             },
-    //                           ]}
-    //                         >
-    //                           {zcc.Concentration}
-    //                         </Text>
-    //                       );
-    //                     })}
-    //                   </TouchableOpacity>
-    //                 );
-    //               })}
-    //             </View>
-    //           </ScrollView>
-    //         </View>
-    //       </ScrollView>
-    //     </View>
-    //   </View>
-    // );
   }
 }
 const getAllData = async dataType => {
   let datalist = [];
   const getdata = await getAllConcentration({ dataType: dataType });
-  debugger;
   getdata.map(item => {
     let data = {
       key: item.DGIMN,
@@ -441,7 +435,6 @@ const getAllData = async dataType => {
     datalist.push(data);
   });
   console.log(datalist);
-  debugger;
   return datalist;
 };
 // define your styles

@@ -26,7 +26,7 @@ class DisplayDOC extends Component {
               color: '#464646',
             }}
           >
-            {navigationData.state.params.title}{' '}
+            {navigationData.state.params.title}
           </Text>
           <Text
             style={{
@@ -39,7 +39,7 @@ class DisplayDOC extends Component {
               lineHeight: 28,
             }}
           >
-            {navigationData.state.params.content}{' '}
+            {navigationData.state.params.content}
           </Text>
         </View>
       </ScrollView>

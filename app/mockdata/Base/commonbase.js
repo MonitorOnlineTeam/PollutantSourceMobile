@@ -117,7 +117,6 @@ export async function getPointEnterprise() {
       e => e.EntCode === relation.BaseCode
     );
     if (enterprise) {
-      // debugger;
       const region = regions.find(t => t.RegionCode === p.RegionCode);
       const industry = industrys.find(
         t => t.IndustryTypeCode === enterprise.IndustryTypeCode
@@ -311,7 +310,7 @@ export function getPollutantDatas() {
   //         });
   //     }
   // });
-  // // console.log(data);
+  // console.log(data);
   // return data;
   return defaultPollutantCodes;
 }
@@ -478,10 +477,8 @@ export async function getAllConcentration(obj) {
   }
 
   // console.log(dateForms);
-  console.log(point);
 
   point.map(p => {
-    // debugger;
     let pointData = p;
     pointData.MonitoringDatas = [];
     let m = 1;
@@ -583,11 +580,9 @@ export async function getAllConcentration(obj) {
 
   // point.map((p) => {
   //     console.log(p);
-  //     debugger;
   //     let pointData = p;
   //     pointData.PollutantData = [];
   //     console.log(concentration);
-  //     debugger;
   //     concentration.map((item) => {
   //         var data = {
   //             'PollutantCode': item.Value,
@@ -615,7 +610,6 @@ export async function getAllConcentration(obj) {
   //     });
   //     returnDatas.push(pointData);
   // });
-  console.log(returnDatas);
   return returnDatas;
 }
 // *********************************获取浓度数据*********************************
