@@ -381,8 +381,7 @@ class Workbench extends Component {
     // console.log(`Load Items for ${day.year}-${day.month}`);
   }
   phoneList = () => {
-    this.props.dispatch(NavigationActions.navigate({ routeName: 'TodoDetail' })
-    );
+    this.props.dispatch(NavigationActions.navigate({ routeName: 'TodoDetail' }));
   }
   renderItem(item) {
     if (item.type === 'alarm') {

@@ -83,7 +83,7 @@ export default StackNavigator(
     EarlyWarning: { screen: EarlyWarning },
     Alarm: { screen: Alarm },
     Message: { screen: Message },
-    TodoDetail:{screen:TodoDetail},
+    TodoDetail: { screen: TodoDetail },
 
     EmergencyTask: { screen: EmergencyTask },
     WorkPlan: { screen: WorkPlan },
