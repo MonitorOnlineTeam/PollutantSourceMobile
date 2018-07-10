@@ -157,7 +157,7 @@ class FileDOC extends Component {
           </View>
         );
       } else {
-        return <View ></View >;
+        return <View />;
       }
     }
   }

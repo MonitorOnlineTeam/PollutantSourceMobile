@@ -39,7 +39,8 @@ import Button from '../../components/common/Button';
  */
 
 // create a component
-let loading = false,lastClickTime = 0;
+let loading = false,
+  lastClickTime = 0;
 @connect()
 class Map extends Component {
   static navigationOptions = {
@@ -250,7 +251,7 @@ class Map extends Component {
               key={key}
               /* image={imageName} */
               /* icon={() => ImageView} */
-              gif={['gisover','gisfault','gisexception']}
+              gif={['gisover', 'gisfault', 'gisexception']}
               coordinate={{
                 latitude: parseFloat(item.Latitude, 10),
                 longitude: parseFloat(item.Longitude, 10),
@@ -258,7 +259,9 @@ class Map extends Component {
               onPress={() => {
                 // this.props.dispatch(NavigationActions.navigate({ routeName: 'Detail' }));
                 this.props.dispatch(
-                  NavigationActions.navigate({ routeName: 'SingleStationDetail' })
+                  NavigationActions.navigate({
+                    routeName: 'SingleStationDetail',
+                  })
                 );
               }}
             />
@@ -279,7 +282,9 @@ class Map extends Component {
               onPress={() => {
                 // this.props.dispatch(NavigationActions.navigate({ routeName: 'Detail' }));
                 this.props.dispatch(
-                  NavigationActions.navigate({ routeName: 'SingleStationDetail' })
+                  NavigationActions.navigate({
+                    routeName: 'SingleStationDetail',
+                  })
                 );
               }}
             />
@@ -314,7 +319,7 @@ class Map extends Component {
                 key={key}
                 /* image={imageName} */
                 /* icon={() => ImageView} */
-                gif={['gisover','gisfault','gisexception']}
+                gif={['gisover', 'gisfault', 'gisexception']}
                 coordinate={{
                   latitude: parseFloat(item.Latitude, 10),
                   longitude: parseFloat(item.Longitude, 10),
@@ -322,7 +327,9 @@ class Map extends Component {
                 onPress={() => {
                   // this.props.dispatch(NavigationActions.navigate({ routeName: 'Detail' }));
                   this.props.dispatch(
-                    NavigationActions.navigate({ routeName: 'SingleStationDetail' })
+                    NavigationActions.navigate({
+                      routeName: 'SingleStationDetail',
+                    })
                   );
                 }}
               />
@@ -343,7 +350,9 @@ class Map extends Component {
                 onPress={() => {
                   // this.props.dispatch(NavigationActions.navigate({ routeName: 'Detail' }));
                   this.props.dispatch(
-                    NavigationActions.navigate({ routeName: 'SingleStationDetail' })
+                    NavigationActions.navigate({
+                      routeName: 'SingleStationDetail',
+                    })
                   );
                 }}
               />
@@ -588,7 +597,7 @@ class Map extends Component {
           onPress={() => {
             if (Platform.OS === 'android') {
               this.setState({
-                zoomLevel:  17,
+                zoomLevel: 17,
               });
               this.setState({
                 mapCoordinateLatitude: parseFloat(item.Latitude, 10),
@@ -600,7 +609,7 @@ class Map extends Component {
                 mapCoordinateLongitude: parseFloat(item.Longitude, 10),
               });
               this.setState({
-                zoomLevel:  15,
+                zoomLevel: 15,
               });
             }
           }}
@@ -775,9 +784,7 @@ class Map extends Component {
     }
   }
 
-  SegmentedValueChange = value => {
-
-  }
+  SegmentedValueChange = value => {}
 
   _renderMapLegend = () => {
     let maplegends = markersInfo.maplegend[0]; //monitor,operation,quality,sewage
@@ -921,7 +928,7 @@ class Map extends Component {
 
   _selectMapLegend = item => {
     let time = new Date().getTime();
-    if (time - lastClickTime>1000) {
+    if (time - lastClickTime > 1000) {
       if (item.defaultValue !== this.state.selectMapLegend) {
         this.setState({
           selectMapLegend: item.defaultValue,
@@ -933,7 +940,7 @@ class Map extends Component {
       }
       if (Platform.OS === 'android') {
         this.setState({
-          zoomLevel:  4,
+          zoomLevel: 4,
         });
         this.setState({
           mapCoordinateLatitude: 43.540557,
@@ -945,7 +952,7 @@ class Map extends Component {
           mapCoordinateLongitude: 113.293493,
         });
         this.setState({
-          zoomLevel:  4,
+          zoomLevel: 4,
         });
       }
     }
@@ -1044,10 +1051,10 @@ class Map extends Component {
           onPress={() => {
             loading = false;
             let time = new Date().getTime();
-            if (time - lastClickTime>1000) {
+            if (time - lastClickTime > 1000) {
               if (Platform.OS === 'android') {
                 this.setState({
-                  zoomLevel:  this.state.zoomLevel===4?4.1: 4,
+                  zoomLevel: this.state.zoomLevel === 4 ? 4.1 : 4,
                 });
                 this.setState({
                   mapCoordinateLatitude: 43.540557,
@@ -1059,14 +1066,13 @@ class Map extends Component {
                   mapCoordinateLongitude: 113.293493,
                 });
                 this.setState({
-                  zoomLevel:  4,
+                  zoomLevel: 4,
                 });
               }
             } else {
               // console.log('不能连续切换');
             }
             lastClickTime = time;
-              
           }}
         />
       </View>

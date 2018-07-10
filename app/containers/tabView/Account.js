@@ -103,7 +103,7 @@ class Account extends Component {
             },
           ]}
         >
-          <Text style={[{ color: '#FFFFFF', fontSize: 20 }]} >{''}</Text>
+          <Text style={[{ color: '#FFFFFF', fontSize: 20 }]}>{''}</Text>
         </View>
         <View
           style={{

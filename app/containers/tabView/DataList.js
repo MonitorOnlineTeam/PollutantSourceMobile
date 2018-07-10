@@ -172,7 +172,8 @@ class DataList extends Component {
 
         <View style={[{ width: SCREEN_WIDTH, flex: 1 }]}>
           <View
-            style={[{ width: SCREEN_WIDTH, height: 33, flexDirection: 'row' }]}>
+            style={[{ width: SCREEN_WIDTH, height: 33, flexDirection: 'row' }]}
+          >
             <View style={[styles.oneLabel, styles.myBorderBottom]}>
               <View
                 style={[{ justifyContent: 'center', alignItems: 'center' }]}
