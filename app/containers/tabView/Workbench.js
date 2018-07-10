@@ -16,7 +16,7 @@ import { Menu, ActivityIndicator, NavBar } from 'antd-mobile';
 import { SCREEN_WIDTH } from '../../config/globalsize';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import { Modal } from 'antd-mobile-rn';
-
+import { NavigationActions } from '../../utils';
 import Point_All from '../../mockdata/Base/Point_All.json';
 import moment from 'moment';
 import alarm from '../../mockdata/Workbench/alarm.json';
@@ -381,7 +381,8 @@ class Workbench extends Component {
     // console.log(`Load Items for ${day.year}-${day.month}`);
   }
   phoneList = () => {
-    alert();
+    this.props.dispatch(NavigationActions.navigate({ routeName: 'TodoDetail' })
+    );
   }
   renderItem(item) {
     if (item.type === 'alarm') {
