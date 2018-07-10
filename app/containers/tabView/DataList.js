@@ -414,7 +414,7 @@ class DataList extends Component {
                       ? this.state.cityNameLst.length * 60
                       : 33,
                     width: defaultPollutantCodes
-                      ? (defaultPollutantCodes.length * SCREEN_WIDTH) / 3
+                      ? defaultPollutantCodes.length * SCREEN_WIDTH / 3
                       : 33,
                   },
                 ]}
@@ -426,7 +426,7 @@ class DataList extends Component {
                         ? this.state.cityNameLst.length * 60
                         : 33,
                       width: defaultPollutantCodes
-                        ? (defaultPollutantCodes.length * SCREEN_WIDTH) / 3
+                        ? defaultPollutantCodes.length * SCREEN_WIDTH / 3
                         : 33,
                       backgroundColor: 'white',
                     },
@@ -447,8 +447,7 @@ class DataList extends Component {
                           {
                             height: 60,
                             width: defaultPollutantCodes
-                              ? (defaultPollutantCodes.length * SCREEN_WIDTH) /
-                                3
+                              ? defaultPollutantCodes.length * SCREEN_WIDTH / 3
                               : 33,
                             flexDirection: 'row',
                           },
