@@ -7,97 +7,31 @@ import {
   Image,
   processColor,
   ScrollView,
+  TouchableOpacity 
 } from 'react-native';
 import { Grid, Tabs } from 'antd-mobile-rn';
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import Iconi from 'react-native-vector-icons/dist/Ionicons';
-import { BarChart } from 'react-native-charts-wrapper';
+import { LineChart } from 'react-native-charts-wrapper';
+import update from 'immutability-helper';
 
 import { SCREEN_WIDTH } from '../../config/globalsize';
 import { NavigationActions } from '../../utils';
 import { Button } from '../../components';
+
 // create a component
 @connect()
 class SingleStationDetail extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      featureList: [
-        {
-          icon: <Icon name={'history'} size={20} style={{ color: 'gray' }} />,
-          text: `历史数据`,
-          id: 0,
-        },
-        {
-          icon: <Iconi name={'md-home'} size={20} style={{ color: 'gray' }} />,
-          text: `3D站房`,
-          id: 1,
-        },
-        {
-          icon: (
-            <Iconi
-              name={'md-git-pull-request'}
-              size={20}
-              style={{ color: 'gray' }}
-            />
-          ),
-          text: `工艺流程图`,
-          id: 2,
-        },
-        {
-          icon: <Icon name={'bell'} size={20} style={{ color: 'gray' }} />,
-          text: `报警记录`,
-          id: 3,
-        },
-        {
-          icon: <Icon name={'bullhorn'} size={20} style={{ color: 'gray' }} />,
-          text: `预警记录`,
-          id: 4,
-        },
-        {
-          icon: <Icon name={'file-text'} size={20} style={{ color: 'gray' }} />,
-          text: `例行任务`, //巡检
-          id: 5,
-        },
-        {
-          icon: (
-            <Icon name={'free-code-camp'} size={20} style={{ color: 'gray' }} />
-          ),
-          text: `应急任务`,
-          id: 6,
-        },
-        {
-          icon: <Icon name={'bug'} size={20} style={{ color: 'gray' }} />,
-          text: `故障记录`,
-          id: 7,
-        },
-        {
-          icon: <Icon name={'ban'} size={20} style={{ color: 'gray' }} />,
-          text: `停产记录`,
-          id: 8,
-        },
-        {
-          icon: <Icon name={'cubes'} size={20} style={{ color: 'gray' }} />,
-          text: `备品备件`,
-          id: 9,
-        },
-        {
-          icon: (
-            <Icon name={'lightbulb-o'} size={20} style={{ color: 'gray' }} />
-          ),
-          text: `停电记录`,
-          id: 10,
-        },
-        {
-          icon: <Icon name={'user-md'} size={20} style={{ color: 'gray' }} />,
-          text: `质控`,
-          id: 11,
-        },
-      ],
+      data: {},
       legend: {
         enabled: true,
-        textSize: 14,
+        textColor: processColor('blue'),
+        textSize: 12,
+        position: 'BELOW_CHART_RIGHT',
         form: 'SQUARE',
         formSize: 14,
         xEntrySpace: 10,
@@ -105,57 +39,88 @@ class SingleStationDetail extends Component {
         formToTextSpace: 5,
         wordWrapEnabled: true,
         maxSizePercent: 0.5,
+        custom: {
+          colors: [processColor('red'), processColor('blue'), processColor('green')],
+          labels: ['Company X', 'Company Y', 'Company Dashed']
+        }
       },
-      data: {
-        dataSets: [
-          {
-            values: [
-              { y: 100 },
-              { y: 105 },
-              { y: 102 },
-              { y: 110 },
-              { y: 114 },
-              { y: 109 },
-              { y: 105 },
-              { y: 99 },
-              { y: 95 },
-            ],
-            label: 'Bar dataSet',
-            config: {
-              color: processColor('teal'),
-              barSpacePercent: 40,
-              barShadowColor: processColor('lightgrey'),
-              highlightAlpha: 90,
-              highlightColor: processColor('red'),
-            },
-          },
-        ],
-      },
-      highlights: [{ x: 3 }, { x: 6 }],
-      xAxis: {
-        valueFormatter: [
-          'Jan',
-          'Feb',
-          'Mar',
-          'Apr',
-          'May',
-          'Jun',
-          'Jul',
-          'Aug',
-          'Sep',
-        ],
-        granularityEnabled: true,
-        granularity: 1,
-      },
+      marker: {
+        enabled: true,
+        digits: 2,
+        backgroundTint: processColor('teal'),
+	      markerColor: processColor('#F0C0FF8C'),
+        textColor: processColor('white'),
+      }
     };
+  }
+  componentDidMount() {
+    this.setState(
+      update(this.state, {
+        data: {
+          $set: {
+            dataSets: [{
+              values: [{y: 0.88}, {y: 0.77}, {y: 105}, {y: 115}],
+              label: 'Company X',
+              config: {
+                lineWidth: 2,
+                drawCircles: false,
+                highlightColor: processColor('red'),
+                color: processColor('red'),
+                drawFilled: true,
+                fillColor: processColor('red'),
+                fillAlpha: 60,
+		            valueTextSize: 15,
+                valueFormatter: "##.000",
+                dashedLine: {
+                  lineLength: 20,
+                  spaceLength: 20
+                }
+              }
+            }, {
+              values: [{y: 90}, {y: 130}, {y: 100}, {y: 105}],
+              label: 'Company Y',
+              config: {
+                lineWidth: 1,
+                drawCubicIntensity: 0.4,
+                circleRadius: 5,
+                drawHighlightIndicators: false,
+                color: processColor('blue'),
+                drawFilled: true,
+                fillColor: processColor('blue'),
+                fillAlpha: 45,
+                circleColor: processColor('blue')
+              }
+            }, {
+              values: [{y: 110}, {y: 105}, {y: 115}, {y: 110}],
+              label: 'Company Dashed',
+              config: {
+                color: processColor('green'),
+                drawFilled: true,
+                fillColor: processColor('green'),
+                fillAlpha: 50
+              }
+            }],
+          }
+        },
+        xAxis: {
+          $set: {
+            fontFamily:"HelveticaNeue-Medium",
+            fontWeight:"bold",
+            fontStyle:"italic",
+            valueFormatter: ['Q1', 'Q2', 'Q3', 'Q4']
+          }
+        }
+      })
+    );
   }
 
   static navigationOptions = ({ router, navigation }) => {
     return {
       title: '站点信息',
       tabBarLabel: '站点信息',
+
       headerLeft: (
-        <Text
+        <Text 
           onPress={() => {
             navigation.dispatch(NavigationActions.back());
           }}
@@ -174,9 +139,9 @@ class SingleStationDetail extends Component {
   handleSelect(event) {
     let entry = event.nativeEvent;
     if (entry == null) {
-      this.setState({ ...this.state, selectedEntry: null });
+      this.setState({...this.state, selectedEntry: null});
     } else {
-      this.setState({ ...this.state, selectedEntry: JSON.stringify(entry) });
+      this.setState({...this.state, selectedEntry: JSON.stringify(entry)});
     }
 
     console.log(event.nativeEvent);
@@ -344,22 +309,231 @@ class SingleStationDetail extends Component {
     ];
 
     return (
-      <View style={{ flex: 1 }}>
+      <ScrollView style={{ flex: 1 ,backgroundColor:"#fff"}}>
         <Tabs tabs={tabs} initialPage={0}>
           <View style={style}>
             <View
-              style={{ backgroundColor: '#fefefe', width: '100%', height: 300 }}
+              style={{ backgroundColor: '#fefefe', width: '100%' }}
             >
-              <View style={{ margin: 5 }}>
-                <Text>站点信息</Text>
+              <View style={{backgroundColor:"#f4f4f8",borderBottomColor:"#d8d8d8",borderBottomWidth:1 }}>
+                <Text style={{color:"#b3b3b3",margin:8}}>站点信息</Text>
               </View>
+              <View style={{padding:10,paddingTop:1,borderBottomColor:"#d8d8d8",borderBottomWidth:1,marginLeft:5,marginRight:5,flexDirection:"row"}}>
+              <View style={{marginTop:5}}>
+              <Text style={{fontSize:20,color:"#292929",marginTop:5}}>朝阳奥体中心</Text>
+              
+              <Text style={{color:"#b9b9b9"}}>运维单位:雪迪龙</Text>
+              <Text style={{color:"#b9b9b9"}}>站点信息:北京市长阳区安定路</Text>
+              </View>
+
+               <View style={{flexDirection:"row",flex:1,justifyContent:"flex-end"}}>
+          <TouchableOpacity style={{ marginTop:55,
+              marginLeft:20}} >
+                 <Image
+            style={{
+             
+              width: 25,
+              height: 25,
+          
+            }}
+            tintColor="#bdbdbd"
+            source={require('../../images/dw.png')}
+          />
+           </TouchableOpacity>
+           <TouchableOpacity style={{  marginTop:55,
+              marginLeft:20}}>
+                 <Image
+            style={{
+              width: 25,
+              height: 25,
+            }}
+            tintColor="#bdbdbd"
+            source={require('../../images/k.png')}
+          />
+           </TouchableOpacity>
+               </View>
+              </View>
+              <Text style={{color:"#b3b3b3",marginLeft:8,marginTop:8}}>污染物   2018年6月27日 00:00:00</Text>
+              {/* 污染物 */}
+              <View style={{padding:10,borderBottomColor:"#d8d8d8",borderBottomWidth:1,flexDirection:"row",width:"100%",flexWrap:"wrap"}}>
+              <View style={{backgroundColor:"#42cf16",height:50,width:"30%",margin:5,borderRadius:2,alignContent:"center",alignItems:"center",justifyContent:'center'}}>
+               <Text style={{color:"#fff",fontSize:14}}>
+                PM2.5: 56
+               </Text>
+              </View >
+              <View style={{backgroundColor:"#42cf16",height:50,width:"30%",margin:5,borderRadius:2,alignContent:"center",alignItems:"center",justifyContent:'center'}}>
+           
+              <Text style={{color:"#fff",fontSize:14}}>
+              PM10: 91
+               </Text>
+             </View >
+             <View style={{backgroundColor:"#efdd30",height:50,width:"30%",margin:5,borderRadius:2,alignContent:"center",alignItems:"center",justifyContent:'center'}}>
+             
+              <Text style={{color:"#fff",fontSize:14}}>
+              NO2: 64
+               </Text>
+             </View >
+             <View style={{backgroundColor:"#42cf16",height:50,width:"30%",margin:5,borderRadius:2,alignContent:"center",alignItems:"center",justifyContent:'center'}}>
+               <Text style={{color:"#fff",fontSize:14}}>
+                PM2.5: 56
+               </Text>
+              </View >
+              <View style={{backgroundColor:"#42cf16",height:50,width:"30%",margin:5,borderRadius:2,alignContent:"center",alignItems:"center",justifyContent:'center'}}>
+           
+              <Text style={{color:"#fff",fontSize:14}}>
+              PM10: 91
+               </Text>
+             </View >
+             <View style={{backgroundColor:"#efdd30",height:50,width:"30%",margin:5,borderRadius:2,alignContent:"center",alignItems:"center",justifyContent:'center'}}>
+             
+              <Text style={{color:"#fff",fontSize:14}}>
+              NO2: 64
+               </Text>
+             </View >
+
+              </View>
+            {/* 污染物结束 */}
+            <View style={{flex: 1,height:111}}>
+              
+            <LineChart
+            style={styles.chart}
+            data={this.state.data}
+            chartDescription={{text: ''}}
+            legend={this.state.legend}
+            marker={this.state.marker}
+            xAxis={this.state.xAxis}
+            drawGridBackground={false}
+            borderColor={processColor('teal')}
+            borderWidth={1}
+            drawBorders={true}
+
+            touchEnabled={true}
+            dragEnabled={true}
+            scaleEnabled={true}
+            scaleXEnabled={true}
+            scaleYEnabled={true}
+            pinchZoom={true}
+            doubleTapToZoomEnabled={true}
+
+            dragDecelerationEnabled={true}
+            dragDecelerationFrictionCoef={0.99}
+
+            keepPositionOnRotation={false}
+            onSelect={this.handleSelect.bind(this)}
+            onChange={(event) => console.log(event.nativeEvent)}
+          />
+             </View>
+             <View style={{padding:10,borderBottomColor:"#f5f5f5",borderBottomWidth:1,flexDirection:"column",width:"100%"}}>
+
+              <TouchableOpacity style={{}}>
+              <View style={{flexDirection:"row"}}>
+              <View style={{justifyContent:"center",alignContent:"center"}}>              
+               <Image
+                  style={{marginLeft:2,
+                    width: 25,
+                    height: 25,
+                  }}
+                  tintColor="#47d0d2"
+                  source={require('../../images/lct.png')}
+                />
+                </View>
+
+                <View style={{marginLeft:10}}>
+               <Text style={{color:"#292929",fontSize:15}}>流程图</Text>
+               <Text style={{color:"#b3b3b3",fontSize:13}}>流程图状态</Text>
+               </View>
+               </View>
+              </TouchableOpacity>
+             </View>
+               
+ <View style={{padding:10,borderBottomColor:"#f5f5f5",borderBottomWidth:1,flexDirection:"column",width:"100%"}}>
+
+              <TouchableOpacity style={{}}>
+              <View style={{flexDirection:"row"}}>
+              <View style={{justifyContent:"center",alignContent:"center"}}>     
+              <Image
+                  style={{marginLeft:2,justifyContent:"center",
+                    width: 25,
+                    height: 25,
+                  }}
+                  tintColor="#e6d24d"
+                  source={require('../../images/lssj.png')}
+                /> 
+              </View>
+            
+                
+                <View style={{marginLeft:10  }}>
+                <View style={{flexDirection:"row"}}>
+               <Text style={{color:"#292929",fontSize:15}}>历史数据 </Text>
+               <Text style={{color:"#b3b3b3",fontSize:12,justifyContent:"center"}}>(2018年6月27日 10:10) </Text>
+               </View>
+               <Text style={{color:"#b3b3b3",fontSize:13}}>PM10：40</Text>
+              
+               </View>
+               </View>
+              </TouchableOpacity>
+             </View>
+              <View style={{padding:10,borderBottomColor:"#f5f5f5",borderBottomWidth:1,flexDirection:"column",width:"100%"}}>
+
+              <TouchableOpacity style={{}}>
+              <View style={{flexDirection:"row"}}>
+              <View style={{justifyContent:"center",alignContent:"center"}}>   
+              <Image
+                  style={{marginLeft:2,justifyContent:"center",
+                    width: 25,
+                    height: 25,
+                  }}
+                  tintColor="#ff414e"
+                  source={require('../../images/gzbj.png')}
+                />
+                </View>
+                <View style={{marginLeft:10}}>
+                <View style={{flexDirection:"row"}}>
+                <Text style={{color:"#292929",fontSize:15}}>报警记录 </Text>
+               <Text style={{color:"#b3b3b3",fontSize:12,justifyContent:"center"}}>(2018年6月27日 10:10) </Text>
+               </View>
+          
+               <Text style={{color:"#b3b3b3",fontSize:13}}>PM10仪表异常报警</Text>
+               </View>
+               </View>
+              </TouchableOpacity>
+             </View>
+ <View style={{padding:10,borderBottomColor:"#f5f5f5",borderBottomWidth:1,flexDirection:"column",width:"100%"}}>
+
+              <TouchableOpacity style={{}}>
+              <View style={{flexDirection:"row"}}>
+              <View style={{justifyContent:"center",alignContent:"center"}}>   
+              <Image
+                  style={{marginLeft:2,justifyContent:"center",
+                    width: 25,
+                    height: 25,
+                  }}
+                  tintColor="#faaa00"
+                  source={require('../../images/gzyj.png')}
+                />
+                </View>
+                <View style={{marginLeft:10}}>
+                <View style={{flexDirection:"row"}}>
+                <Text style={{color:"#292929",fontSize:15}}>预警记录 </Text>
+               <Text style={{color:"#b3b3b3",fontSize:12,justifyContent:"center"}}>(2018年6月27日 10:10) </Text>
+               </View>
+               <Text style={{color:"#b3b3b3",fontSize:13}}>PM10仪表预警</Text>
+               </View>
+               </View>
+              </TouchableOpacity>
+             </View>
+
+
+
+
             </View>
           </View>
           <View style={style} />
+
           <View style={style} />
           <View style={style} />
         </Tabs>
-      </View>
+      </ScrollView>
     );
   }
 }
