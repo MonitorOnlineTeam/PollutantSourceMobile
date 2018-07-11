@@ -14,8 +14,8 @@ export default Model.extend({
     login: false,
     loading: true,
     fetching: false,
-    globalConfig:{},
-    user:{}
+    globalConfig: {},
+    user: {},
   },
   reducers: {
     updateState(state, { payload }) {

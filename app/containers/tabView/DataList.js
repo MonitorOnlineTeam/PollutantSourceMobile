@@ -277,7 +277,7 @@ class DataList extends Component {
                         this.props.dispatch(
                           NavigationActions.navigate({
                             routeName: 'SingleStationDetail',
-                            params:{'item':item},
+                            params: { item: item },
                           })
                         );
                       }}
@@ -441,7 +441,7 @@ class DataList extends Component {
                           this.props.dispatch(
                             NavigationActions.navigate({
                               routeName: 'SingleStationDetail',
-                              params:{'item':item},
+                              params: { item: item },
                             })
                           );
                         }}

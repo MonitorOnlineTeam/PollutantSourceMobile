@@ -109,7 +109,9 @@ class Login extends Component {
             ]}
           />
           <StatusBar barStyle="light-content" />
-          <View style={[styles.LoginForm, { height: this.state.contentHeight }]}>
+          <View
+            style={[styles.LoginForm, { height: this.state.contentHeight }]}
+          >
             <Image
               source={require('../images/bg_logo.png')}
               style={[{ height: 40, width: 104, marginTop: 120 }]}
@@ -249,7 +251,6 @@ class Login extends Component {
           </View>
         </ScrollView>
       </View>
-      
     );
   }
 }
