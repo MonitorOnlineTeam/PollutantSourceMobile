@@ -25,6 +25,7 @@ import { Button } from '../../components';
 class SingleStationDetail extends Component {
   constructor(props) {
     super(props);
+    console.log(props.navigation.state.params.item);
     this.state = {
       data: {},
       legend: {

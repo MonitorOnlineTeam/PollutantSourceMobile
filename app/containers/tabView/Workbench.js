@@ -820,7 +820,6 @@ class Workbench extends Component {
           onDayChange={day => {
             _day = day;
           }}
-
           // markingType={'period'
           // markedDates={{
           //    '2018-07-03': {textColor: '#666'},
