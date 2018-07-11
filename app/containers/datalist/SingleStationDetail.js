@@ -46,7 +46,7 @@ class SingleStationDetail extends Component {
             processColor('blue'),
             processColor('green'),
           ],
-          labels: ['Company X', 'Company Y', 'Company Dashed'],
+          labels: [],
         },
       },
       marker: {
@@ -65,8 +65,33 @@ class SingleStationDetail extends Component {
           $set: {
             dataSets: [
               {
-                values: [{ y: 0.88 }, { y: 0.77 }, { y: 105 }, { y: 115 }],
-                label: 'Company X',
+                values: [
+                  { y: 0.88 },
+                  { y: 0.77 },
+                  { y: 105 },
+                  { y: 115 },
+                  { y: 50 },
+                  { y: 50 },
+                  { y: 50 },
+                  { y: 50 },
+                  { y: 50 },
+                  { y: 50 },
+                  { y: 50 },
+                  { y: 50 },
+                  { y: 50 },
+                  { y: 50 },
+                  { y: 50 },
+                  { y: 50 },
+                  { y: 50 },
+                  { y: 50 },
+                  { y: 45 },
+                  { y: 44 },
+                  { y: 43 },
+                  { y: 44 },
+                  { y: 44 },
+                ],
+                label: '',
+
                 config: {
                   lineWidth: 2,
                   drawCircles: false,
@@ -83,31 +108,6 @@ class SingleStationDetail extends Component {
                   },
                 },
               },
-              {
-                values: [{ y: 90 }, { y: 130 }, { y: 100 }, { y: 105 }],
-                label: 'Company Y',
-                config: {
-                  lineWidth: 1,
-                  drawCubicIntensity: 0.4,
-                  circleRadius: 5,
-                  drawHighlightIndicators: false,
-                  color: processColor('blue'),
-                  drawFilled: true,
-                  fillColor: processColor('blue'),
-                  fillAlpha: 45,
-                  circleColor: processColor('blue'),
-                },
-              },
-              {
-                values: [{ y: 110 }, { y: 105 }, { y: 115 }, { y: 110 }],
-                label: 'Company Dashed',
-                config: {
-                  color: processColor('green'),
-                  drawFilled: true,
-                  fillColor: processColor('green'),
-                  fillAlpha: 50,
-                },
-              },
             ],
           },
         },
@@ -116,7 +116,32 @@ class SingleStationDetail extends Component {
             fontFamily: 'HelveticaNeue-Medium',
             fontWeight: 'bold',
             fontStyle: 'italic',
-            valueFormatter: ['Q1', 'Q2', 'Q3', 'Q4'],
+            valueFormatter: [
+              '00',
+              '01',
+              '02',
+              '03',
+              '04',
+              '05',
+              '06',
+              '07',
+              '08',
+              '09',
+              '10',
+              '11',
+              '12',
+              '13',
+              '14',
+              '15',
+              '16',
+              '17',
+              '18',
+              '19',
+              '20',
+              '21',
+              '22',
+              '23',
+            ],
           },
         },
       })
@@ -318,183 +343,191 @@ class SingleStationDetail extends Component {
     ];
 
     return (
-      <ScrollView style={{ flex: 1, backgroundColor: '#fff' }}>
+      <View style={{ flex: 1, backgroundColor: '#fff' }}>
         <Tabs tabs={tabs} initialPage={0}>
           <View style={style}>
-            <View style={{ backgroundColor: '#fefefe', width: '100%' }}>
-              <View
-                style={{
-                  backgroundColor: '#f4f4f8',
-                  borderBottomColor: '#d8d8d8',
-                  borderBottomWidth: 1,
-                }}
-              >
-                <Text style={{ color: '#b3b3b3', margin: 8 }}>站点信息</Text>
-              </View>
-              <View
-                style={{
-                  padding: 10,
-                  paddingTop: 1,
-                  borderBottomColor: '#d8d8d8',
-                  borderBottomWidth: 1,
-                  marginLeft: 5,
-                  marginRight: 5,
-                  flexDirection: 'row',
-                }}
-              >
-                <View style={{ marginTop: 5 }}>
-                  <Text
-                    style={{ fontSize: 20, color: '#292929', marginTop: 5 }}
-                  >
-                    朝阳奥体中心
-                  </Text>
-
-                  <Text style={{ color: '#b9b9b9' }}>运维单位:雪迪龙</Text>
-                  <Text style={{ color: '#b9b9b9' }}>
-                    站点信息:北京市长阳区安定路
-                  </Text>
-                </View>
-
+            <ScrollView>
+              <View style={{ backgroundColor: '#fefefe', width: '100%' }}>
                 <View
                   style={{
+                    backgroundColor: '#f4f4f8',
+                    borderBottomColor: '#d8d8d8',
+                    borderBottomWidth: 1,
+                  }}
+                >
+                  <Text style={{ color: '#6c6c6c', margin: 8 }}>站点信息</Text>
+                </View>
+                <View
+                  style={{
+                    padding: 10,
+                    paddingTop: 1,
+                    borderBottomColor: '#d8d8d8',
+                    borderBottomWidth: 1,
+                    marginLeft: 5,
+                    marginRight: 5,
                     flexDirection: 'row',
-                    flex: 1,
-                    justifyContent: 'flex-end',
                   }}
                 >
-                  <TouchableOpacity
+                  <View style={{ marginTop: 5 }}>
+                    <Text
+                      style={{ fontSize: 20, color: '#292929', marginTop: 5 }}
+                    >
+                      朝阳奥体中心
+                    </Text>
+
+                    <Text style={{ color: '#b9b9b9' }}>运维单位:雪迪龙</Text>
+                    <Text style={{ color: '#b9b9b9' }}>
+                      站点信息:北京市长阳区安定路
+                    </Text>
+                  </View>
+
+                  <View
                     style={{
-                      marginTop: 55,
-                      marginLeft: 20,
+                      flexDirection: 'row',
+                      flex: 1,
+                      justifyContent: 'flex-end',
                     }}
                   >
-                    <Image
+                    <TouchableOpacity
                       style={{
-                        width: 25,
-                        height: 25,
+                        marginTop: 55,
+                        marginLeft: 20,
                       }}
-                      tintColor="#bdbdbd"
-                      source={require('../../images/dw.png')}
-                    />
-                  </TouchableOpacity>
-                  <TouchableOpacity
+                    >
+                      <Image
+                        style={{
+                          width: 25,
+                          height: 25,
+                        }}
+                        tintColor="#bdbdbd"
+                        source={require('../../images/dw.png')}
+                      />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      style={{
+                        marginTop: 55,
+                        marginLeft: 20,
+                      }}
+                    >
+                      <Image
+                        style={{
+                          width: 25,
+                          height: 25,
+                        }}
+                        tintColor="#bdbdbd"
+                        source={require('../../images/k.png')}
+                      />
+                    </TouchableOpacity>
+                  </View>
+                </View>
+                <Text style={{ color: '#6c6c6c', marginLeft: 8, marginTop: 8 }}>
+                  污染物 2018年6月27日 00:00:00
+                </Text>
+                {/* 污染物 */}
+                <View
+                  style={{
+                    padding: 10,
+                    borderBottomColor: '#d8d8d8',
+                    borderBottomWidth: 1,
+                    flexDirection: 'row',
+                    width: '100%',
+                    flexWrap: 'wrap',
+                  }}
+                >
+                  <View
                     style={{
-                      marginTop: 55,
-                      marginLeft: 20,
+                      backgroundColor: '#42cf16',
+                      height: 50,
+                      width: '30%',
+                      margin: 5,
+                      borderRadius: 2,
+                      alignContent: 'center',
+                      alignItems: 'center',
+                      justifyContent: 'center',
                     }}
                   >
-                    <Image
-                      style={{
-                        width: 25,
-                        height: 25,
-                      }}
-                      tintColor="#bdbdbd"
-                      source={require('../../images/k.png')}
-                    />
-                  </TouchableOpacity>
+                    <Text style={{ color: '#fff', fontSize: 14 }}>
+                      PM2.5: 56
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      backgroundColor: '#42cf16',
+                      height: 50,
+                      width: '30%',
+                      margin: 5,
+                      borderRadius: 2,
+                      alignContent: 'center',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    <Text style={{ color: '#fff', fontSize: 14 }}>
+                      PM10: 91
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      backgroundColor: '#efdd30',
+                      height: 50,
+                      width: '30%',
+                      margin: 5,
+                      borderRadius: 2,
+                      alignContent: 'center',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    <Text style={{ color: '#fff', fontSize: 14 }}>NOX: 41</Text>
+                  </View>
+                  <View
+                    style={{
+                      backgroundColor: '#42cf16',
+                      height: 50,
+                      width: '30%',
+                      margin: 5,
+                      borderRadius: 2,
+                      alignContent: 'center',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    <Text style={{ color: '#fff', fontSize: 14 }}>
+                      烟尘: 56
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      backgroundColor: '#42cf16',
+                      height: 50,
+                      width: '30%',
+                      margin: 5,
+                      borderRadius: 2,
+                      alignContent: 'center',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    <Text style={{ color: '#fff', fontSize: 14 }}>SO2: 91</Text>
+                  </View>
+                  <View
+                    style={{
+                      backgroundColor: '#efdd30',
+                      height: 50,
+                      width: '30%',
+                      margin: 5,
+                      borderRadius: 2,
+                      alignContent: 'center',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    <Text style={{ color: '#fff', fontSize: 14 }}>NO2: 64</Text>
+                  </View>
                 </View>
-              </View>
-              <Text style={{ color: '#b3b3b3', marginLeft: 8, marginTop: 8 }}>
-                污染物 2018年6月27日 00:00:00
-              </Text>
-              {/* 污染物 */}
-              <View
-                style={{
-                  padding: 10,
-                  borderBottomColor: '#d8d8d8',
-                  borderBottomWidth: 1,
-                  flexDirection: 'row',
-                  width: '100%',
-                  flexWrap: 'wrap',
-                }}
-              >
-                <View
-                  style={{
-                    backgroundColor: '#42cf16',
-                    height: 50,
-                    width: '30%',
-                    margin: 5,
-                    borderRadius: 2,
-                    alignContent: 'center',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}
-                >
-                  <Text style={{ color: '#fff', fontSize: 14 }}>PM2.5: 56</Text>
-                </View>
-                <View
-                  style={{
-                    backgroundColor: '#42cf16',
-                    height: 50,
-                    width: '30%',
-                    margin: 5,
-                    borderRadius: 2,
-                    alignContent: 'center',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}
-                >
-                  <Text style={{ color: '#fff', fontSize: 14 }}>PM10: 91</Text>
-                </View>
-                <View
-                  style={{
-                    backgroundColor: '#efdd30',
-                    height: 50,
-                    width: '30%',
-                    margin: 5,
-                    borderRadius: 2,
-                    alignContent: 'center',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}
-                >
-                  <Text style={{ color: '#fff', fontSize: 14 }}>NO2: 64</Text>
-                </View>
-                <View
-                  style={{
-                    backgroundColor: '#42cf16',
-                    height: 50,
-                    width: '30%',
-                    margin: 5,
-                    borderRadius: 2,
-                    alignContent: 'center',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}
-                >
-                  <Text style={{ color: '#fff', fontSize: 14 }}>PM2.5: 56</Text>
-                </View>
-                <View
-                  style={{
-                    backgroundColor: '#42cf16',
-                    height: 50,
-                    width: '30%',
-                    margin: 5,
-                    borderRadius: 2,
-                    alignContent: 'center',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}
-                >
-                  <Text style={{ color: '#fff', fontSize: 14 }}>PM10: 91</Text>
-                </View>
-                <View
-                  style={{
-                    backgroundColor: '#efdd30',
-                    height: 50,
-                    width: '30%',
-                    margin: 5,
-                    borderRadius: 2,
-                    alignContent: 'center',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}
-                >
-                  <Text style={{ color: '#fff', fontSize: 14 }}>NO2: 64</Text>
-                </View>
-              </View>
-              {/* 污染物结束 */}
-              <View style={{ flex: 1, height: 111 }}>
+                {/* 污染物结束 */}
+                {/* <View style={{ flex: 1,  borderBottomColor: '#d8d8d8',
+                  borderBottomWidth: 1,height:200,marginTop:10}}>
                 <LineChart
                   style={styles.chart}
                   data={this.state.data}
@@ -519,207 +552,440 @@ class SingleStationDetail extends Component {
                   onSelect={this.handleSelect.bind(this)}
                   onChange={event => console.log(event.nativeEvent)}
                 />
-              </View>
-              <View
-                style={{
-                  padding: 10,
-                  borderBottomColor: '#f5f5f5',
-                  borderBottomWidth: 1,
-                  flexDirection: 'column',
-                  width: '100%',
-                }}
-              >
-                <TouchableOpacity style={{}}>
-                  <View style={{ flexDirection: 'row' }}>
-                    <View
-                      style={{
-                        justifyContent: 'center',
-                        alignContent: 'center',
-                      }}
-                    >
-                      <Image
+              </View> */}
+                <View
+                  style={{
+                    padding: 10,
+                    borderBottomColor: '#dddddd',
+                    borderBottomWidth: 1,
+                    flexDirection: 'column',
+                    width: '100%',
+                  }}
+                >
+                  <TouchableOpacity style={{}}>
+                    <View style={{ flexDirection: 'row' }}>
+                      <View
                         style={{
-                          marginLeft: 2,
-                          width: 25,
-                          height: 25,
-                        }}
-                        tintColor="#47d0d2"
-                        source={require('../../images/lct.png')}
-                      />
-                    </View>
-
-                    <View style={{ marginLeft: 10 }}>
-                      <Text style={{ color: '#292929', fontSize: 15 }}>
-                        流程图
-                      </Text>
-                      <Text style={{ color: '#b3b3b3', fontSize: 13 }}>
-                        流程图状态
-                      </Text>
-                    </View>
-                  </View>
-                </TouchableOpacity>
-              </View>
-
-              <View
-                style={{
-                  padding: 10,
-                  borderBottomColor: '#f5f5f5',
-                  borderBottomWidth: 1,
-                  flexDirection: 'column',
-                  width: '100%',
-                }}
-              >
-                <TouchableOpacity style={{}}>
-                  <View style={{ flexDirection: 'row' }}>
-                    <View
-                      style={{
-                        justifyContent: 'center',
-                        alignContent: 'center',
-                      }}
-                    >
-                      <Image
-                        style={{
-                          marginLeft: 2,
                           justifyContent: 'center',
-                          width: 25,
-                          height: 25,
+                          alignContent: 'center',
                         }}
-                        tintColor="#e6d24d"
-                        source={require('../../images/lssj.png')}
-                      />
-                    </View>
-
-                    <View style={{ marginLeft: 10 }}>
-                      <View style={{ flexDirection: 'row' }}>
-                        <Text style={{ color: '#292929', fontSize: 15 }}>
-                          历史数据{' '}
-                        </Text>
-                        <Text
+                      >
+                        <Image
                           style={{
-                            color: '#b3b3b3',
-                            fontSize: 12,
-                            justifyContent: 'center',
+                            marginLeft: 2,
+                            width: 25,
+                            height: 25,
                           }}
-                        >
-                          (2018年6月27日 10:10){' '}
-                        </Text>
-                      </View>
-                      <Text style={{ color: '#b3b3b3', fontSize: 13 }}>
-                        PM10：40
-                      </Text>
-                    </View>
-                  </View>
-                </TouchableOpacity>
-              </View>
-              <View
-                style={{
-                  padding: 10,
-                  borderBottomColor: '#f5f5f5',
-                  borderBottomWidth: 1,
-                  flexDirection: 'column',
-                  width: '100%',
-                }}
-              >
-                <TouchableOpacity style={{}}>
-                  <View style={{ flexDirection: 'row' }}>
-                    <View
-                      style={{
-                        justifyContent: 'center',
-                        alignContent: 'center',
-                      }}
-                    >
-                      <Image
-                        style={{
-                          marginLeft: 2,
-                          justifyContent: 'center',
-                          width: 25,
-                          height: 25,
-                        }}
-                        tintColor="#ff414e"
-                        source={require('../../images/gzbj.png')}
-                      />
-                    </View>
-                    <View style={{ marginLeft: 10 }}>
-                      <View style={{ flexDirection: 'row' }}>
-                        <Text style={{ color: '#292929', fontSize: 15 }}>
-                          报警记录{' '}
-                        </Text>
-                        <Text
-                          style={{
-                            color: '#b3b3b3',
-                            fontSize: 12,
-                            justifyContent: 'center',
-                          }}
-                        >
-                          (2018年6月27日 10:10){' '}
-                        </Text>
+                          tintColor="#47d0d2"
+                          source={require('../../images/lct.png')}
+                        />
                       </View>
 
-                      <Text style={{ color: '#b3b3b3', fontSize: 13 }}>
-                        PM10仪表异常报警
-                      </Text>
-                    </View>
-                  </View>
-                </TouchableOpacity>
-              </View>
-              <View
-                style={{
-                  padding: 10,
-                  borderBottomColor: '#f5f5f5',
-                  borderBottomWidth: 1,
-                  flexDirection: 'column',
-                  width: '100%',
-                }}
-              >
-                <TouchableOpacity style={{}}>
-                  <View style={{ flexDirection: 'row' }}>
-                    <View
-                      style={{
-                        justifyContent: 'center',
-                        alignContent: 'center',
-                      }}
-                    >
-                      <Image
-                        style={{
-                          marginLeft: 2,
-                          justifyContent: 'center',
-                          width: 25,
-                          height: 25,
-                        }}
-                        tintColor="#faaa00"
-                        source={require('../../images/gzyj.png')}
-                      />
-                    </View>
-                    <View style={{ marginLeft: 10 }}>
-                      <View style={{ flexDirection: 'row' }}>
+                      <View style={{ marginLeft: 10 }}>
                         <Text style={{ color: '#292929', fontSize: 15 }}>
-                          预警记录{' '}
+                          流程图
                         </Text>
-                        <Text
-                          style={{
-                            color: '#b3b3b3',
-                            fontSize: 12,
-                            justifyContent: 'center',
-                          }}
-                        >
-                          (2018年6月27日 10:10){' '}
+                        <Text style={{ color: '#6c6c6c', fontSize: 13 }}>
+                          流程图状态
                         </Text>
                       </View>
-                      <Text style={{ color: '#b3b3b3', fontSize: 13 }}>
-                        PM10仪表预警
-                      </Text>
                     </View>
-                  </View>
-                </TouchableOpacity>
+                  </TouchableOpacity>
+                </View>
+
+                <View
+                  style={{
+                    padding: 10,
+                    borderBottomColor: '#dddddd',
+                    borderBottomWidth: 1,
+                    flexDirection: 'column',
+                    width: '100%',
+                  }}
+                >
+                  <TouchableOpacity style={{}}>
+                    <View style={{ flexDirection: 'row' }}>
+                      <View
+                        style={{
+                          justifyContent: 'center',
+                          alignContent: 'center',
+                        }}
+                      >
+                        <Image
+                          style={{
+                            marginLeft: 2,
+                            justifyContent: 'center',
+                            width: 25,
+                            height: 25,
+                          }}
+                          tintColor="#e6d24d"
+                          source={require('../../images/lssj.png')}
+                        />
+                      </View>
+
+                      <View style={{ marginLeft: 10 }}>
+                        <View style={{ flexDirection: 'row' }}>
+                          <Text style={{ color: '#292929', fontSize: 15 }}>
+                            历史数据{' '}
+                          </Text>
+                          <Text
+                            style={{
+                              color: '#6c6c6c',
+                              fontSize: 12,
+                              justifyContent: 'center',
+                            }}
+                          >
+                            -2018年6月27日 10:10{' '}
+                          </Text>
+                        </View>
+                        <Text style={{ color: '#6c6c6c', fontSize: 13 }}>
+                          PM10：40
+                        </Text>
+                      </View>
+                    </View>
+                  </TouchableOpacity>
+                </View>
+                <View
+                  style={{
+                    padding: 10,
+                    borderBottomColor: '#dddddd',
+                    borderBottomWidth: 1,
+                    flexDirection: 'column',
+                    width: '100%',
+                  }}
+                >
+                  <TouchableOpacity style={{}}>
+                    <View style={{ flexDirection: 'row' }}>
+                      <View
+                        style={{
+                          justifyContent: 'center',
+                          alignContent: 'center',
+                        }}
+                      >
+                        <Image
+                          style={{
+                            marginLeft: 2,
+                            justifyContent: 'center',
+                            width: 25,
+                            height: 25,
+                          }}
+                          tintColor="#ff414e"
+                          source={require('../../images/gzbj.png')}
+                        />
+                      </View>
+                      <View style={{ marginLeft: 10 }}>
+                        <View style={{ flexDirection: 'row' }}>
+                          <Text style={{ color: '#292929', fontSize: 15 }}>
+                            报警记录{' '}
+                          </Text>
+                          <Text
+                            style={{
+                              color: '#6c6c6c',
+                              fontSize: 12,
+                              justifyContent: 'center',
+                            }}
+                          >
+                            -2018年6月27日 10:10{' '}
+                          </Text>
+                        </View>
+
+                        <Text style={{ color: '#6c6c6c', fontSize: 13 }}>
+                          PM10仪表异常报警
+                        </Text>
+                      </View>
+                    </View>
+                  </TouchableOpacity>
+                </View>
+                <View
+                  style={{
+                    padding: 10,
+                    borderBottomColor: '#dddddd',
+                    borderBottomWidth: 1,
+                    flexDirection: 'column',
+                    width: '100%',
+                  }}
+                >
+                  <TouchableOpacity style={{}}>
+                    <View style={{ flexDirection: 'row' }}>
+                      <View
+                        style={{
+                          justifyContent: 'center',
+                          alignContent: 'center',
+                        }}
+                      >
+                        <Image
+                          style={{
+                            marginLeft: 2,
+                            justifyContent: 'center',
+                            width: 25,
+                            height: 25,
+                          }}
+                          tintColor="#faaa00"
+                          source={require('../../images/gzyj.png')}
+                        />
+                      </View>
+                      <View style={{ marginLeft: 10 }}>
+                        <View style={{ flexDirection: 'row' }}>
+                          <Text style={{ color: '#292929', fontSize: 15 }}>
+                            预警记录{' '}
+                          </Text>
+                          <Text
+                            style={{
+                              color: '#6c6c6c',
+                              fontSize: 12,
+                              justifyContent: 'center',
+                            }}
+                          >
+                            -2018年6月27日 10:10{' '}
+                          </Text>
+                        </View>
+                        <Text style={{ color: '#6c6c6c', fontSize: 13 }}>
+                          PM10仪表预警
+                        </Text>
+                      </View>
+                    </View>
+                  </TouchableOpacity>
+                </View>
               </View>
-            </View>
+            </ScrollView>
           </View>
-          <View style={style} />
+          {/* 运维 */}
+          <View style={style}>
+            <ScrollView>
+              <View style={{ backgroundColor: '#fefefe', width: SCREEN_WIDTH }}>
+                <View
+                  style={{
+                    backgroundColor: '#f4f4f8',
+                    borderBottomColor: '#d8d8d8',
+                    borderBottomWidth: 1,
+                  }}
+                >
+                  <Text style={{ color: '#6c6c6c', margin: 8 }}>运维信息</Text>
+                </View>
+                <View
+                  style={{
+                    padding: 10,
+                    paddingTop: 1,
+                    borderBottomColor: '#d8d8d8',
+                    borderBottomWidth: 1,
 
-          <View style={style} />
-          <View style={style} />
+                    flexDirection: 'row',
+                  }}
+                >
+                  <View style={{ marginTop: 5 }}>
+                    <Text
+                      style={{ fontSize: 20, color: '#292929', marginTop: 5 }}
+                    />
+                    <View style={{ flexDirection: 'row' }}>
+                      <Text style={{ color: '#9f9f9f', fontSize: 15 }}>
+                        运维人：
+                      </Text>
+                      <Text style={{ color: '#717171', fontSize: 15 }}>
+                        小王
+                      </Text>
+                    </View>
+                    <View style={{ flexDirection: 'row' }}>
+                      <Text style={{ color: '#9f9f9f', fontSize: 15 }}>
+                        联系电话：
+                      </Text>
+                      <Text style={{ color: '#717171', fontSize: 15 }}>
+                        18911524678
+                      </Text>
+                    </View>
+                    <View style={{ flexDirection: 'row' }}>
+                      <Text style={{ color: '#9f9f9f', fontSize: 15 }}>
+                        上次运维时间：
+                      </Text>
+                      <Text style={{ color: '#717171', fontSize: 15 }}>
+                        2018-06-01
+                      </Text>
+                    </View>
+                    <View style={{ flexDirection: 'row' }}>
+                      <Text style={{ color: '#9f9f9f', fontSize: 15 }}>
+                        距下次运维时间：
+                      </Text>
+                      <Text style={{ color: '#717171', fontSize: 15 }}>
+                        9(天)
+                      </Text>
+                    </View>
+                    <View style={{ flexDirection: 'row' }}>
+                      <Text style={{ color: '#9f9f9f', fontSize: 15 }}>
+                        是否逾期：
+                      </Text>
+                      <Text style={{ color: '#717171', fontSize: 15 }}>否</Text>
+                    </View>
+                    <View style={{ flexDirection: 'row' }}>
+                      <Text style={{ color: '#9f9f9f', fontSize: 15 }}>
+                        逾期时间：
+                      </Text>
+                      <Text style={{ color: '#717171', fontSize: 15 }}>0</Text>
+                    </View>
+                  </View>
+                </View>
+              </View>
+              <Text style={{ color: '#6c6c6c', marginLeft: 8, marginTop: 8 }}>
+                近期耗材情况(月)
+              </Text>
+
+              <View
+                style={{
+                  backgroundColor: '#ffffff',
+                  padding: 10,
+
+                  borderBottomColor: '#d8d8d8',
+                  borderBottomWidth: 1,
+                  flexDirection: 'row',
+                  width: '100%',
+                  flexWrap: 'wrap',
+                }}
+              >
+                <View
+                  style={{
+                    width: '30%',
+                    height: 50,
+                    backgroundColor: '#f4f4f8',
+                    borderRadius: 5,
+                    flexDirection: 'row',
+                    alignContent: 'center',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    margin: 5,
+                  }}
+                >
+                  <Text style={{ color: '#000000', fontSize: 15 }}>皮管：</Text>
+                  <Text style={{ color: '#ff8400', fontSize: 20 }}>2个</Text>
+                </View>
+                <View
+                  style={{
+                    width: '30%',
+                    height: 50,
+                    backgroundColor: '#f4f4f8',
+                    borderRadius: 5,
+                    flexDirection: 'row',
+                    alignContent: 'center',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    margin: 5,
+                  }}
+                >
+                  <Text style={{ color: '#000000', fontSize: 15 }}>试剂：</Text>
+                  <Text style={{ color: '#ff8400', fontSize: 20 }}>1个</Text>
+                </View>
+                <View
+                  style={{
+                    width: '30%',
+                    height: 50,
+                    backgroundColor: '#f4f4f8',
+                    borderRadius: 5,
+                    flexDirection: 'row',
+                    alignContent: 'center',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    margin: 5,
+                  }}
+                >
+                  <Text style={{ color: '#000000', fontSize: 15 }}>标气：</Text>
+                  <Text style={{ color: '#ff8400', fontSize: 20 }}>3个</Text>
+                </View>
+              </View>
+            </ScrollView>
+          </View>
+          {/* 排污 */}
+          <View style={style}>
+            <ScrollView>
+              <View style={{ backgroundColor: '#fefefe', width: SCREEN_WIDTH }}>
+                <View
+                  style={{
+                    backgroundColor: '#f4f4f8',
+                    borderBottomColor: '#d8d8d8',
+                    borderBottomWidth: 1,
+                  }}
+                >
+                  <Text style={{ color: '#6c6c6c', margin: 8 }}>
+                    24小时排污量
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    paddingTop: 1,
+                    borderBottomColor: '#d8d8d8',
+                    borderBottomWidth: 1,
+                    flexDirection: 'row',
+                  }}
+                />
+              </View>
+              <View style={{ backgroundColor: '#fefefe', width: SCREEN_WIDTH }}>
+                <View
+                  style={{
+                    backgroundColor: '#f4f4f8',
+                    borderBottomColor: '#d8d8d8',
+                    borderBottomWidth: 1,
+                  }}
+                >
+                  <Text style={{ color: '#6c6c6c', margin: 8 }}>总排污量</Text>
+                </View>
+                <View
+                  style={{
+                    padding: 10,
+                    paddingTop: 1,
+                    borderBottomColor: '#d8d8d8',
+                    borderBottomWidth: 1,
+                  }}
+                >
+                  <Text style={{ fontSize: 15 }}>总排污量：200</Text>
+                  <Text style={{ fontSize: 15 }}>排污占比：12.8%</Text>
+                </View>
+              </View>
+              <View style={{ backgroundColor: '#fefefe', width: SCREEN_WIDTH }}>
+                <View
+                  style={{
+                    backgroundColor: '#f4f4f8',
+                    borderBottomColor: '#d8d8d8',
+                    borderBottomWidth: 1,
+                  }}
+                >
+                  <Text style={{ color: '#6c6c6c', margin: 8 }}>排量占比</Text>
+                </View>
+                <View
+                  style={{
+                    paddingTop: 1,
+                    borderBottomColor: '#d8d8d8',
+                    borderBottomWidth: 1,
+                    flexDirection: 'row',
+                  }}
+                />
+              </View>
+            </ScrollView>
+          </View>
+          <View style={style}>
+            <ScrollView>
+              <View style={{ backgroundColor: '#fefefe', width: SCREEN_WIDTH }}>
+                <View
+                  style={{
+                    backgroundColor: '#f4f4f8',
+                    borderBottomColor: '#d8d8d8',
+                    borderBottomWidth: 1,
+                  }}
+                >
+                  <Text style={{ color: '#6c6c6c', margin: 8 }}>
+                    近期质控情况(月)
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    //backgroundColor:"#59d200",
+                    paddingTop: 1,
+                    borderBottomColor: '#d8d8d8',
+                    borderBottomWidth: 1,
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                />
+              </View>
+            </ScrollView>
+          </View>
         </Tabs>
-      </ScrollView>
+      </View>
     );
   }
 }
@@ -728,7 +994,7 @@ const style = {
   alignItems: 'center',
   justifyContent: 'center',
 
-  backgroundColor: '#e1e1e1',
+  backgroundColor: '#ffffff',
 };
 // define your styles
 const styles = StyleSheet.create({
