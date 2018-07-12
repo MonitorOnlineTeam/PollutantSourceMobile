@@ -680,7 +680,14 @@ class SingleStationDetail extends Component {
                     width: '100%',
                   }}
                 >
-                  <TouchableOpacity style={{}} onPress={p=>{this.props.dispatch(NavigationActions.navigate({ routeName: 'AlarmRecord' }));}}>
+                  <TouchableOpacity
+                    style={{}}
+                    onPress={p => {
+                      this.props.dispatch(
+                        NavigationActions.navigate({ routeName: 'AlarmRecord' })
+                      );
+                    }}
+                  >
                     <View style={{ flexDirection: 'row' }}>
                       <View
                         style={{

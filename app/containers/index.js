@@ -84,7 +84,7 @@ export default StackNavigator(
     Alarm: { screen: Alarm },
     Message: { screen: Message },
     TodoDetail: { screen: TodoDetail },
-    AlarmRecord:{screen:AlarmRecord},
+    AlarmRecord: { screen: AlarmRecord },
     EmergencyTask: { screen: EmergencyTask },
     WorkPlan: { screen: WorkPlan },
     TaskManage: { screen: TaskManage },
