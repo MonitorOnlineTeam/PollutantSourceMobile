@@ -23,6 +23,7 @@ import alarm from '../../mockdata/Workbench/alarm.json';
 import earlywarning from '../../mockdata/Workbench/earlywarning.json';
 import operation from '../../mockdata/Workbench/operation.json';
 import todolist from '../../mockdata/Workbench/todolist.json';
+
 /*
  * Copyright (c) 2018 SDL.All Rights Reserved
  *

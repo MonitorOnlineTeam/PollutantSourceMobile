@@ -19,6 +19,6 @@ const color = {
   PM_color: '#7edd72',
   backgroundGrey: '#f4f7f7',
   darkRed: '#bd322a',
-  antBlue: '#008ae6',
+  antBlue: '#00C1AF',
 };
 export default color;
