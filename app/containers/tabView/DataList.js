@@ -101,6 +101,12 @@ class DataList extends Component {
       });
     });
   }
+  componentWillMount() {
+    console.log('componentWillMount');
+  }
+  componentDidMount() {
+    console.log('componentDidMount');
+  }
   _contentViewScroll = e => {
     var offsetY = e.nativeEvent.contentOffset.y; //滑动距离
     var contentSizeHeight = e.nativeEvent.contentSize.height; //scrollView contentSize高度
@@ -550,63 +556,71 @@ class DataList extends Component {
 }
 const getAllData = async dataType => {
   let datalist = [];
-  const getdata = await getAllConcentration({ dataType: dataType });
-  getdata.map(item => {
-    let data = {
-      key: item.DGIMN,
-      entpointName: item.EntName + '-' + item.PointName,
-      monitorTime:
-        item.MonitoringDatas.length === 0
-          ? moment().format('YYYY-MM-DD HH:mm:ss')
-          : item.MonitoringDatas[0].MonitoringTime,
-      entName: item.EntName,
-      pointName: item.PointName,
-      industry: item.IndustryTypeCode,
-      dgimn: item.DGIMN,
-      control: item.AttentionCode,
-      dataType: dataType,
-      MonitoringDatasi: item.MonitoringDatas[0],
-      Abbreviation: item.Abbreviation,
-      bstatus: null,
-
-      status:
+  // const getdata = await getAllConcentration({ dataType: dataType });
+  let promise = getAllConcentration({ dataType: dataType }).then ((getdata)=>{
+    getdata.map(item => {
+      let data = {
+        key: item.DGIMN,
+        entpointName: item.EntName + '-' + item.PointName,
+        monitorTime:
+          item.MonitoringDatas.length === 0
+            ? moment().format('YYYY-MM-DD HH:mm:ss')
+            : item.MonitoringDatas[0].MonitoringTime,
+        entName: item.EntName,
+        pointName: item.PointName,
+        industry: item.IndustryTypeCode,
+        dgimn: item.DGIMN,
+        control: item.AttentionCode,
+        dataType: dataType,
+        MonitoringDatasi: item.MonitoringDatas[0],
+        Abbreviation: item.Abbreviation,
+        bstatus: null,
+  
+        status:
+          item.DGIMN === 'bjldgn01' ||
+          item.DGIMN === 'dtgjhh11102' ||
+          item.DGIMN === 'dtgrjx110'
+            ? 3
+            : 1,
+      };
+      if (
         item.DGIMN === 'bjldgn01' ||
         item.DGIMN === 'dtgjhh11102' ||
         item.DGIMN === 'dtgrjx110'
-          ? 3
-          : 1,
-    };
-    if (
-      item.DGIMN === 'bjldgn01' ||
-      item.DGIMN === 'dtgjhh11102' ||
-      item.DGIMN === 'dtgrjx110'
-    ) {
-      data.status = 2;
-    } else if (
-      item.DGIMN === 'dtgrjx104' ||
-      item.DGIMN === 'dtgrjx103' ||
-      item.DGIMN === 'lywjfd03'
-    ) {
-      data.status = 3;
-    } else {
-      data.status = 1;
-    }
-    if (item.MonitoringDatas.length > 0) {
-      item.MonitoringDatas[0].PollutantDatas.map(wry => {
-        data[wry.PollutantCode] = wry.Concentration + ',' + wry.PollutantCode;
-        data[wry.PollutantCode + '-' + 'PollutantName'] = wry.PollutantName;
-        data[wry.PollutantCode + '-' + 'PollutantCode'] = wry.PollutantCode;
-        data[wry.PollutantCode + '-' + 'IsExceed'] = wry.IsExceed; // 是否超标
-        data[wry.PollutantCode + '-' + 'ExceedValue'] = wry.ExceedValue; // 超标倍数
-        data[wry.PollutantCode + '-' + 'IsException'] = wry.IsException; // 是否异常
-        data[wry.PollutantCode + '-' + 'ExceptionText'] = wry.ExceptionText; // 异常类型
-        data[wry.PollutantCode + '-' + 'Standard'] = wry.Standard; // 标准值
-      });
-    }
-    datalist.push(data);
+      ) {
+        data.status = 2;
+      } else if (
+        item.DGIMN === 'dtgrjx104' ||
+        item.DGIMN === 'dtgrjx103' ||
+        item.DGIMN === 'lywjfd03'
+      ) {
+        data.status = 3;
+      } else {
+        data.status = 1;
+      }
+      if (item.MonitoringDatas.length > 0) {
+        item.MonitoringDatas[0].PollutantDatas.map(wry => {
+          data[wry.PollutantCode] = wry.Concentration + ',' + wry.PollutantCode;
+          data[wry.PollutantCode + '-' + 'PollutantName'] = wry.PollutantName;
+          data[wry.PollutantCode + '-' + 'PollutantCode'] = wry.PollutantCode;
+          data[wry.PollutantCode + '-' + 'IsExceed'] = wry.IsExceed; // 是否超标
+          data[wry.PollutantCode + '-' + 'ExceedValue'] = wry.ExceedValue; // 超标倍数
+          data[wry.PollutantCode + '-' + 'IsException'] = wry.IsException; // 是否异常
+          data[wry.PollutantCode + '-' + 'ExceptionText'] = wry.ExceptionText; // 异常类型
+          data[wry.PollutantCode + '-' + 'Standard'] = wry.Standard; // 标准值
+        });
+      }
+      datalist.push(data);
+    });
+
+    return new Promise(function(resolve, reject) {
+        resolve(datalist);
+    });
   });
-  console.log(datalist);
-  return datalist;
+  
+  // console.log(datalist);
+  // return datalist;
+  return promise;
 };
 
 // define your styles
