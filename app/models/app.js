@@ -14,6 +14,8 @@ export default Model.extend({
     login: false,
     loading: true,
     fetching: false,
+    globalConfig: {},
+    user: {},
   },
   reducers: {
     updateState(state, { payload }) {
@@ -32,7 +34,6 @@ export default Model.extend({
       const account = user.User_Account;
       let data = 'operationsStaff';
       let globalConfig = yield loadStorage('globalconfig');
-
       if (account === 'system') {
         data = 'system';
       } else if (account === 'wangnailin') {

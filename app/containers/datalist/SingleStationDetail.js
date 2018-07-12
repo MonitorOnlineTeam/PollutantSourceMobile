@@ -21,12 +21,14 @@ import { NavigationActions } from '../../utils';
 import { Button } from '../../components';
 import Operation from '../../components/DetailedPage/Operation';
 import QualityControl from '../../components/DetailedPage/QualityControl';
+import globalcolor from '../../config/globalcolor';
 
 // create a component
 @connect()
 class SingleStationDetail extends Component {
   constructor(props) {
     super(props);
+    console.log(props.navigation.state.params.item);
     this.state = {
       data: {},
       legend: {
@@ -53,13 +55,22 @@ class SingleStationDetail extends Component {
       marker: {
         enabled: true,
         digits: 2,
-        backgroundTint: processColor('teal'),
-        markerColor: processColor('#F0C0FF8C'),
+        backgroundTint: processColor('#FF0000'),
+        // markerColor: processColor('#FAFAFA'),
+        markerColor: processColor('#1CCE00'),
         textColor: processColor('white'),
+        form: 'SQUARE',
+        formSize: 14,
+        xEntrySpace: 10,
+        yEntrySpace: 5,
       },
     };
   }
   componentDidMount() {
+    let _circleColors = [];
+    for (let i = 0; i < 23; i++) {
+      _circleColors.push(processColor(globalcolor.antBlue));
+    }
     this.setState(
       update(this.state, {
         data: {
@@ -67,46 +78,50 @@ class SingleStationDetail extends Component {
             dataSets: [
               {
                 values: [
-                  { y: 0.88 },
-                  { y: 0.77 },
-                  { y: 105 },
-                  { y: 115 },
-                  { y: 50 },
-                  { y: 50 },
-                  { y: 50 },
-                  { y: 50 },
-                  { y: 50 },
-                  { y: 50 },
-                  { y: 50 },
-                  { y: 50 },
-                  { y: 50 },
-                  { y: 50 },
-                  { y: 50 },
-                  { y: 50 },
-                  { y: 50 },
-                  { y: 50 },
-                  { y: 45 },
-                  { y: 44 },
-                  { y: 43 },
-                  { y: 44 },
-                  { y: 44 },
+                  { y: 0.88, marker: `00时 0.88` },
+                  { y: 0.77, marker: `01时 0.77` },
+                  { y: 105, marker: `02时 105` },
+                  { y: 115, marker: `0时 115` },
+                  { y: 50, marker: `03时 50` },
+                  { y: 50, marker: `04时 50` },
+                  { y: 50, marker: `05时 50` },
+                  { y: 50, marker: `06时 50` },
+                  { y: 50, marker: `07时 50` },
+                  { y: 50, marker: `08时 50` },
+                  { y: 50, marker: `09时 50` },
+                  { y: 50, marker: `10时 50` },
+                  { y: 50, marker: `11时 50` },
+                  { y: 50, marker: `12时 50` },
+                  { y: 50, marker: `13时 50` },
+                  { y: 50, marker: `14时 50` },
+                  { y: 50, marker: `15时 50` },
+                  { y: 50, marker: `16时 50` },
+                  { y: 45, marker: `17时 45` },
+                  { y: 44, marker: `18时 44` },
+                  { y: 43, marker: `19时 43` },
+                  { y: 44, marker: `20时 44` },
+                  { y: 54, marker: `21时 54` },
+                  { y: 57, marker: `22时 57` },
+                  { y: 60, marker: `23时 60` },
                 ],
                 label: '',
 
                 config: {
                   lineWidth: 2,
-                  drawCircles: false,
-                  highlightColor: processColor('red'),
-                  color: processColor('red'),
+                  drawCircles: true,
+                  // highlightColor: processColor('red'),
+                  color: processColor(globalcolor.antBlue),
+                  circleColors: _circleColors,
                   drawFilled: true,
-                  fillColor: processColor('red'),
-                  fillAlpha: 60,
+                  fillColor: processColor('white'),
+                  // fillAlpha: 60,
                   valueTextSize: 15,
+                  drawValues: false,
                   valueFormatter: '##.000',
-                  dashedLine: {
-                    lineLength: 20,
-                    spaceLength: 20,
-                  },
+                  // dashedLine: {
+                  //   lineLength: 20,
+                  //   spaceLength: 20,
+                  // },
                 },
               },
             ],
@@ -117,6 +132,7 @@ class SingleStationDetail extends Component {
             fontFamily: 'HelveticaNeue-Medium',
             fontWeight: 'bold',
             fontStyle: 'italic',
+            position: 'BOTTOM',
             valueFormatter: [
               '00',
               '01',
@@ -437,7 +453,7 @@ class SingleStationDetail extends Component {
                 >
                   <View
                     style={{
-                      backgroundColor: '#42cf16',
+                      backgroundColor: '#1CCE00',
                       height: 50,
                       width: '30%',
                       margin: 5,
@@ -453,7 +469,7 @@ class SingleStationDetail extends Component {
                   </View>
                   <View
                     style={{
-                      backgroundColor: '#42cf16',
+                      backgroundColor: '#1CCE00',
                       height: 50,
                       width: '30%',
                       margin: 5,
@@ -483,7 +499,7 @@ class SingleStationDetail extends Component {
                   </View>
                   <View
                     style={{
-                      backgroundColor: '#42cf16',
+                      backgroundColor: '#1CCE00',
                       height: 50,
                       width: '30%',
                       margin: 5,
@@ -499,7 +515,7 @@ class SingleStationDetail extends Component {
                   </View>
                   <View
                     style={{
-                      backgroundColor: '#42cf16',
+                      backgroundColor: '#1CCE00',
                       height: 50,
                       width: '30%',
                       margin: 5,
@@ -527,33 +543,43 @@ class SingleStationDetail extends Component {
                   </View>
                 </View>
                 {/* 污染物结束 */}
-                {/* <View style={{ flex: 1,  borderBottomColor: '#d8d8d8',
-                  borderBottomWidth: 1,height:200,marginTop:10}}>
-                <LineChart
-                  style={styles.chart}
-                  data={this.state.data}
-                  chartDescription={{ text: '' }}
-                  legend={this.state.legend}
-                  marker={this.state.marker}
-                  xAxis={this.state.xAxis}
-                  drawGridBackground={false}
-                  borderColor={processColor('teal')}
-                  borderWidth={1}
-                  drawBorders={true}
-                  touchEnabled={true}
-                  dragEnabled={true}
-                  scaleEnabled={true}
-                  scaleXEnabled={true}
-                  scaleYEnabled={true}
-                  pinchZoom={true}
-                  doubleTapToZoomEnabled={true}
-                  dragDecelerationEnabled={true}
-                  dragDecelerationFrictionCoef={0.99}
-                  keepPositionOnRotation={false}
-                  onSelect={this.handleSelect.bind(this)}
-                  onChange={event => console.log(event.nativeEvent)}
-                />
-              </View> */}
+                {
+                  <View
+                    style={{
+                      flex: 1,
+                      borderBottomColor: '#d8d8d8',
+                      borderBottomWidth: 1,
+                      height: 200,
+                      marginTop: 10,
+                    }}
+                  >
+                    <Text style={[{ marginLeft: 8 }]}>污染物24小时趋势图</Text>
+                    <LineChart
+                      style={styles.chart}
+                      data={this.state.data}
+                      chartDescription={{ text: '' }}
+                      legend={{ enabled: false }}
+                      marker={this.state.marker}
+                      xAxis={this.state.xAxis}
+                      drawGridBackground={false}
+                      /* borderColor={processColor('teal')} */
+                      borderWidth={1}
+                      drawBorders={false}
+                      touchEnabled={true}
+                      dragEnabled={true}
+                      scaleEnabled={false}
+                      scaleXEnabled={false}
+                      scaleYEnabled={false}
+                      pinchZoom={false}
+                      doubleTapToZoomEnabled={false}
+                      dragDecelerationEnabled={true}
+                      dragDecelerationFrictionCoef={0.99}
+                      keepPositionOnRotation={false}
+                      onSelect={this.handleSelect.bind(this)}
+                      onChange={event => console.log(event.nativeEvent)}
+                    />
+                  </View>
+                }
                 <View
                   style={{
                     padding: 10,
@@ -577,7 +603,7 @@ class SingleStationDetail extends Component {
                             width: 25,
                             height: 25,
                           }}
-                          tintColor="#47d0d2"
+                          tintColor="#1CE3CB"
                           source={require('../../images/lct.png')}
                         />
                       </View>
@@ -618,7 +644,7 @@ class SingleStationDetail extends Component {
                             width: 25,
                             height: 25,
                           }}
-                          tintColor="#e6d24d"
+                          tintColor="#FC9D27"
                           source={require('../../images/lssj.png')}
                         />
                       </View>
@@ -654,7 +680,7 @@ class SingleStationDetail extends Component {
                     width: '100%',
                   }}
                 >
-                  <TouchableOpacity style={{}}>
+                  <TouchableOpacity style={{}} onPress={p=>{this.props.dispatch(NavigationActions.navigate({ routeName: 'AlarmRecord' }));}}>
                     <View style={{ flexDirection: 'row' }}>
                       <View
                         style={{
@@ -669,7 +695,7 @@ class SingleStationDetail extends Component {
                             width: 25,
                             height: 25,
                           }}
-                          tintColor="#ff414e"
+                          tintColor="#FC274B"
                           source={require('../../images/gzbj.png')}
                         />
                       </View>
@@ -720,7 +746,7 @@ class SingleStationDetail extends Component {
                             width: 25,
                             height: 25,
                           }}
-                          tintColor="#faaa00"
+                          tintColor="#00B7E3"
                           source={require('../../images/gzyj.png')}
                         />
                       </View>
@@ -845,6 +871,9 @@ const styles = StyleSheet.create({
   },
   chart: {
     flex: 1,
+    marginBottom: 8,
+    marginLeft: 4,
+    marginRight: 4,
   },
 });
 export const title = 'Tabs';

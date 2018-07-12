@@ -99,154 +99,158 @@ class Login extends Component {
   }
   render() {
     return (
-      <ScrollView style={styles.container} onLayout={this.scrollViewLayout}>
-        <Image
-          source={require('../images/bg_login.jpg')}
-          style={[
-            styles.launchImageStyle,
-            { height: this.state.contentHeight },
-          ]}
-        />
-        <StatusBar barStyle="light-content" />
-        <View style={[styles.LoginForm, { height: this.state.contentHeight }]}>
+      <View style={styles.container}>
+        <ScrollView style={styles.container} onLayout={this.scrollViewLayout}>
           <Image
-            source={require('../images/bg_logo.png')}
-            style={[{ height: 40, width: 104, marginTop: 120 }]}
-          />
-          <Text
+            source={require('../images/bg_login.jpg')}
             style={[
-              {
-                color: globalcolor.whiteFontColor,
-                marginTop: 21,
-                fontSize: 24,
-                marginBottom: 40,
-              },
+              styles.launchImageStyle,
+              { height: this.state.contentHeight },
             ]}
+          />
+          <StatusBar barStyle="light-content" />
+          <View
+            style={[styles.LoginForm, { height: this.state.contentHeight }]}
           >
-            污染源智能分析系统
-          </Text>
-          <View style={[styles.TextInputStyle, { marginBottom: 10 }]}>
             <Image
-              source={require('../images/ueser_icon.png')}
-              style={{ width: 20, height: 20, marginBottom: 8 }}
+              source={require('../images/bg_logo.png')}
+              style={[{ height: 40, width: 104, marginTop: 120 }]}
             />
-            <TextInput
-              ref={ref => (this.userNameInput = ref)}
-              keyboardType="default"
-              clearTextOnFocus={false}
-              blurOnSubmit
-              placeholderTextColor="white"
-              placeholder="请输入用户名"
-              autoCapitalize="none"
-              autoCorrect={false}
-              underlineColorAndroid="transparent"
-              clearButtonMode="always"
-              onChangeText={text => {
-                // 动态更新组件内State记录用户名
-                this.setState({
-                  username: text,
-                });
-              }}
-              value={this.state.username}
-              style={{
-                width: SCREEN_WIDTH - 120,
-                marginLeft: 10,
-                paddingTop: 1,
-                paddingBottom: 1,
-                color: 'white',
-                height: 20,
-              }}
-            />
-          </View>
-          <View style={[styles.TextInputStyle, { marginBottom: 20 }]}>
-            <Image
-              source={require('../images/password_icon.png')}
-              style={{ width: 20, height: 20, marginBottom: 8 }}
-            />
-            <TextInput
-              ref={ref => (this.passWordInput = ref)}
-              clearTextOnFocus={false}
-              blurOnSubmit
-              keyboardType="default"
-              placeholderTextColor="white"
-              placeholder="请输入密码"
-              autoCapitalize="none"
-              autoCorrect={false}
-              underlineColorAndroid="transparent"
-              clearButtonMode="always"
-              secureTextEntry
-              onChangeText={text => {
-                // 动态更新组件内State记录密码
-                this.setState({
-                  password: text,
-                });
-              }}
-              value={this.state.password}
-              style={{
-                width: SCREEN_WIDTH - 120,
-                marginLeft: 10,
-                paddingTop: 1,
-                paddingBottom: 1,
-                marginBottom: 8,
-                height: 21,
-                color: 'white',
-              }}
-            />
-          </View>
-          <View style={styles.checkStyle}>
-            <TouchableOpacity
-              style={styles.checkStyleDetail}
-              onPress={() => {
-                // 动态更新组件内State记录记住我
-                this.setState({
-                  isremenber: !this.state.isremenber,
-                });
-              }}
+            <Text
+              style={[
+                {
+                  color: globalcolor.whiteFontColor,
+                  marginTop: 21,
+                  fontSize: 24,
+                  marginBottom: 40,
+                },
+              ]}
             >
+              污染源智能分析系统
+            </Text>
+            <View style={[styles.TextInputStyle, { marginBottom: 10 }]}>
               <Image
-                source={
-                  this.state.isremenber
-                    ? require('../images/checkbox_on.png')
-                    : require('../images/checkbox_off.png')
-                }
-                style={{ width: 12, height: 12 }}
+                source={require('../images/ueser_icon.png')}
+                style={{ width: 20, height: 20, marginBottom: 8 }}
               />
-              <Text style={{ fontSize: 11, color: 'white', marginLeft: 3 }}>
-                记住密码
-              </Text>
-            </TouchableOpacity>
+              <TextInput
+                ref={ref => (this.userNameInput = ref)}
+                keyboardType="default"
+                clearTextOnFocus={false}
+                blurOnSubmit
+                placeholderTextColor="white"
+                placeholder="请输入用户名"
+                autoCapitalize="none"
+                autoCorrect={false}
+                underlineColorAndroid="transparent"
+                clearButtonMode="always"
+                onChangeText={text => {
+                  // 动态更新组件内State记录用户名
+                  this.setState({
+                    username: text,
+                  });
+                }}
+                value={this.state.username}
+                style={{
+                  width: SCREEN_WIDTH - 120,
+                  marginLeft: 10,
+                  paddingTop: 1,
+                  paddingBottom: 1,
+                  color: 'white',
+                  height: 20,
+                }}
+              />
+            </View>
+            <View style={[styles.TextInputStyle, { marginBottom: 20 }]}>
+              <Image
+                source={require('../images/password_icon.png')}
+                style={{ width: 20, height: 20, marginBottom: 8 }}
+              />
+              <TextInput
+                ref={ref => (this.passWordInput = ref)}
+                clearTextOnFocus={false}
+                blurOnSubmit
+                keyboardType="default"
+                placeholderTextColor="white"
+                placeholder="请输入密码"
+                autoCapitalize="none"
+                autoCorrect={false}
+                underlineColorAndroid="transparent"
+                clearButtonMode="always"
+                secureTextEntry
+                onChangeText={text => {
+                  // 动态更新组件内State记录密码
+                  this.setState({
+                    password: text,
+                  });
+                }}
+                value={this.state.password}
+                style={{
+                  width: SCREEN_WIDTH - 120,
+                  marginLeft: 10,
+                  paddingTop: 1,
+                  paddingBottom: 1,
+                  marginBottom: 8,
+                  height: 21,
+                  color: 'white',
+                }}
+              />
+            </View>
+            <View style={styles.checkStyle}>
+              <TouchableOpacity
+                style={styles.checkStyleDetail}
+                onPress={() => {
+                  // 动态更新组件内State记录记住我
+                  this.setState({
+                    isremenber: !this.state.isremenber,
+                  });
+                }}
+              >
+                <Image
+                  source={
+                    this.state.isremenber
+                      ? require('../images/checkbox_on.png')
+                      : require('../images/checkbox_off.png')
+                  }
+                  style={{ width: 12, height: 12 }}
+                />
+                <Text style={{ fontSize: 11, color: 'white', marginLeft: 3 }}>
+                  记住密码
+                </Text>
+              </TouchableOpacity>
+            </View>
+            {this.props.loginLoading || this.props.loadglobalvariable ? (
+              <Button
+                type="primary"
+                inline
+                style={{ width: SCREEN_WIDTH - 100 }}
+                loading
+              >
+                正在登录
+              </Button>
+            ) : (
+              <Button
+                type="primary"
+                inline
+                style={{ width: SCREEN_WIDTH - 100 }}
+                onClick={this.login}
+              >
+                登录
+              </Button>
+            )}
+            <View style={{ flex: 1 }} />
+            <Text style={{ fontSize: 8, color: 'white', marginBottom: 4 }}>
+              {'v 1.3.6'}
+            </Text>
+            <Text style={{ fontSize: 8, color: 'white', marginBottom: 4 }}>
+              {'北京雪迪龙科技股份有限公司'}
+            </Text>
+            <Text style={{ fontSize: 8, color: 'white', marginBottom: 8 }}>
+              {'Copyright@2017 SDL.All Rights Reserved'}
+            </Text>
           </View>
-          {this.props.loginLoading || this.props.loadglobalvariable ? (
-            <Button
-              type="primary"
-              inline
-              style={{ width: SCREEN_WIDTH - 100 }}
-              loading
-            >
-              正在登录
-            </Button>
-          ) : (
-            <Button
-              type="primary"
-              inline
-              style={{ width: SCREEN_WIDTH - 100 }}
-              onClick={this.login}
-            >
-              登录
-            </Button>
-          )}
-          <View style={{ flex: 1 }} />
-          <Text style={{ fontSize: 8, color: 'white', marginBottom: 4 }}>
-            {'v 1.3.6'}
-          </Text>
-          <Text style={{ fontSize: 8, color: 'white', marginBottom: 4 }}>
-            {'北京雪迪龙科技股份有限公司'}
-          </Text>
-          <Text style={{ fontSize: 8, color: 'white', marginBottom: 8 }}>
-            {'Copyright@2017 SDL.All Rights Reserved'}
-          </Text>
-        </View>
-      </ScrollView>
+        </ScrollView>
+      </View>
     );
   }
 }

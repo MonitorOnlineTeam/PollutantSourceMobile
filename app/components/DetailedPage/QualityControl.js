@@ -32,9 +32,11 @@ class QualityControl extends Component {
             >
               <View style={{ marginTop: 5 }}>
                 <Text style={{ fontSize: 20, color: '#17A05E', marginTop: 5 }}>
-                  质控率：100%
+                  零点偏差：-0.5
                 </Text>
-
+                <Text style={{ fontSize: 20, color: '#17A05E', marginTop: 5 }}>
+                  量程偏差：0.5
+                </Text>
                 <Text style={{ color: '#b9b9b9' }}>应质控：9次</Text>
                 <Text style={{ color: '#b9b9b9' }}>实质控：9次</Text>
                 <Text style={{ color: '#b9b9b9' }}>上次质控：2018-6-1</Text>

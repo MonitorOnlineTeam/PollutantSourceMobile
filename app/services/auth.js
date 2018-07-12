@@ -28,6 +28,6 @@ export const login = async params => {
       total: 1,
     };
   }
-  await delay(200);
+  // await delay(200);
   return result === null ? { data: null } : result;
 };
