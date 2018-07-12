@@ -19,6 +19,8 @@ import update from 'immutability-helper';
 import { SCREEN_WIDTH } from '../../config/globalsize';
 import { NavigationActions } from '../../utils';
 import { Button } from '../../components';
+import  Operation  from "../../components/DetailedPage/Operation";
+import  QualityControl  from "../../components/DetailedPage/QualityControl";
 
 // create a component
 @connect()
@@ -749,144 +751,9 @@ class SingleStationDetail extends Component {
           </View>
           {/* 运维 */}
           <View style={style}>
-            <ScrollView>
-              <View style={{ backgroundColor: '#fefefe', width: SCREEN_WIDTH }}>
-                <View
-                  style={{
-                    backgroundColor: '#f4f4f8',
-                    borderBottomColor: '#d8d8d8',
-                    borderBottomWidth: 1,
-                  }}
-                >
-                  <Text style={{ color: '#6c6c6c', margin: 8 }}>运维信息</Text>
-                </View>
-                <View
-                  style={{
-                    padding: 10,
-                    paddingTop: 1,
-                    borderBottomColor: '#d8d8d8',
-                    borderBottomWidth: 1,
+           <Operation>
 
-                    flexDirection: 'row',
-                  }}
-                >
-                  <View style={{ marginTop: 5 }}>
-                    <Text
-                      style={{ fontSize: 20, color: '#292929', marginTop: 5 }}
-                    />
-                    <View style={{ flexDirection: 'row' }}>
-                      <Text style={{ color: '#9f9f9f', fontSize: 15 }}>
-                        运维人：
-                      </Text>
-                      <Text style={{ color: '#717171', fontSize: 15 }}>
-                        小王
-                      </Text>
-                    </View>
-                    <View style={{ flexDirection: 'row' }}>
-                      <Text style={{ color: '#9f9f9f', fontSize: 15 }}>
-                        联系电话：
-                      </Text>
-                      <Text style={{ color: '#717171', fontSize: 15 }}>
-                        18911524678
-                      </Text>
-                    </View>
-                    <View style={{ flexDirection: 'row' }}>
-                      <Text style={{ color: '#9f9f9f', fontSize: 15 }}>
-                        上次运维时间：
-                      </Text>
-                      <Text style={{ color: '#717171', fontSize: 15 }}>
-                        2018-06-01
-                      </Text>
-                    </View>
-                    <View style={{ flexDirection: 'row' }}>
-                      <Text style={{ color: '#9f9f9f', fontSize: 15 }}>
-                        距下次运维时间：
-                      </Text>
-                      <Text style={{ color: '#717171', fontSize: 15 }}>
-                        9(天)
-                      </Text>
-                    </View>
-                    <View style={{ flexDirection: 'row' }}>
-                      <Text style={{ color: '#9f9f9f', fontSize: 15 }}>
-                        是否逾期：
-                      </Text>
-                      <Text style={{ color: '#717171', fontSize: 15 }}>否</Text>
-                    </View>
-                    <View style={{ flexDirection: 'row' }}>
-                      <Text style={{ color: '#9f9f9f', fontSize: 15 }}>
-                        逾期时间：
-                      </Text>
-                      <Text style={{ color: '#717171', fontSize: 15 }}>0</Text>
-                    </View>
-                  </View>
-                </View>
-              </View>
-              <Text style={{ color: '#6c6c6c', marginLeft: 8, marginTop: 8 }}>
-                近期耗材情况(月)
-              </Text>
-
-              <View
-                style={{
-                  backgroundColor: '#ffffff',
-                  padding: 10,
-
-                  borderBottomColor: '#d8d8d8',
-                  borderBottomWidth: 1,
-                  flexDirection: 'row',
-                  width: '100%',
-                  flexWrap: 'wrap',
-                }}
-              >
-                <View
-                  style={{
-                    width: '30%',
-                    height: 50,
-                    backgroundColor: '#f4f4f8',
-                    borderRadius: 5,
-                    flexDirection: 'row',
-                    alignContent: 'center',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    margin: 5,
-                  }}
-                >
-                  <Text style={{ color: '#000000', fontSize: 15 }}>皮管：</Text>
-                  <Text style={{ color: '#ff8400', fontSize: 20 }}>2个</Text>
-                </View>
-                <View
-                  style={{
-                    width: '30%',
-                    height: 50,
-                    backgroundColor: '#f4f4f8',
-                    borderRadius: 5,
-                    flexDirection: 'row',
-                    alignContent: 'center',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    margin: 5,
-                  }}
-                >
-                  <Text style={{ color: '#000000', fontSize: 15 }}>试剂：</Text>
-                  <Text style={{ color: '#ff8400', fontSize: 20 }}>1个</Text>
-                </View>
-                <View
-                  style={{
-                    width: '30%',
-                    height: 50,
-                    backgroundColor: '#f4f4f8',
-                    borderRadius: 5,
-                    flexDirection: 'row',
-                    alignContent: 'center',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    margin: 5,
-                  }}
-                >
-                  <Text style={{ color: '#000000', fontSize: 15 }}>标气：</Text>
-                  <Text style={{ color: '#ff8400', fontSize: 20 }}>3个</Text>
-                </View>
-              </View>
-            </ScrollView>
+           </Operation>
           </View>
           {/* 排污 */}
           <View style={style}>
@@ -956,32 +823,7 @@ class SingleStationDetail extends Component {
             </ScrollView>
           </View>
           <View style={style}>
-            <ScrollView>
-              <View style={{ backgroundColor: '#fefefe', width: SCREEN_WIDTH }}>
-                <View
-                  style={{
-                    backgroundColor: '#f4f4f8',
-                    borderBottomColor: '#d8d8d8',
-                    borderBottomWidth: 1,
-                  }}
-                >
-                  <Text style={{ color: '#6c6c6c', margin: 8 }}>
-                    近期质控情况(月)
-                  </Text>
-                </View>
-                <View
-                  style={{
-                    //backgroundColor:"#59d200",
-                    paddingTop: 1,
-                    borderBottomColor: '#d8d8d8',
-                    borderBottomWidth: 1,
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}
-                />
-              </View>
-            </ScrollView>
+           <QualityControl></QualityControl>
           </View>
         </Tabs>
       </View>
