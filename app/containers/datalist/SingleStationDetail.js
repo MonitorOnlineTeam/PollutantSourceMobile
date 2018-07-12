@@ -19,8 +19,8 @@ import update from 'immutability-helper';
 import { SCREEN_WIDTH } from '../../config/globalsize';
 import { NavigationActions } from '../../utils';
 import { Button } from '../../components';
-import  Operation  from "../../components/DetailedPage/Operation";
-import  QualityControl  from "../../components/DetailedPage/QualityControl";
+import Operation from '../../components/DetailedPage/Operation';
+import QualityControl from '../../components/DetailedPage/QualityControl';
 
 // create a component
 @connect()
@@ -751,9 +751,7 @@ class SingleStationDetail extends Component {
           </View>
           {/* 运维 */}
           <View style={style}>
-           <Operation>
-
-           </Operation>
+            <Operation />
           </View>
           {/* 排污 */}
           <View style={style}>
@@ -823,7 +821,7 @@ class SingleStationDetail extends Component {
             </ScrollView>
           </View>
           <View style={style}>
-           <QualityControl></QualityControl>
+            <QualityControl />
           </View>
         </Tabs>
       </View>

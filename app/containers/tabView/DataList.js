@@ -242,7 +242,7 @@ class DataList extends Component {
             </View>
             <ScrollView
               ref={ref => (this.titleScrollView = ref)}
-              style={[{ width: (SCREEN_WIDTH * 2) / 3, height: 33 }]}
+              style={[{ width: SCREEN_WIDTH * 2 / 3, height: 33 }]}
               horizontal={true}
               showsHorizontalScrollIndicator={false}
               scrollEnabled={false}
@@ -414,7 +414,7 @@ class DataList extends Component {
                       ? this.state.cityNameLst.length * 60
                       : 33,
                     width: defaultPollutantCodes
-                      ? (defaultPollutantCodes.length * SCREEN_WIDTH) / 3
+                      ? defaultPollutantCodes.length * SCREEN_WIDTH / 3
                       : 33,
                   },
                 ]}
@@ -426,7 +426,7 @@ class DataList extends Component {
                         ? this.state.cityNameLst.length * 60
                         : 33,
                       width: defaultPollutantCodes
-                        ? (defaultPollutantCodes.length * SCREEN_WIDTH) / 3
+                        ? defaultPollutantCodes.length * SCREEN_WIDTH / 3
                         : 33,
                       backgroundColor: 'white',
                     },
@@ -447,8 +447,7 @@ class DataList extends Component {
                           {
                             height: 60,
                             width: defaultPollutantCodes
-                              ? (defaultPollutantCodes.length * SCREEN_WIDTH) /
-                                3
+                              ? defaultPollutantCodes.length * SCREEN_WIDTH / 3
                               : 33,
                             flexDirection: 'row',
                           },
@@ -628,7 +627,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   HorizontalList: {
-    width: (SCREEN_WIDTH * 2) / 3,
+    width: SCREEN_WIDTH * 2 / 3,
   },
   myBorderBottom: {
     borderBottomColor: globalcolor.borderLightGreyColor,
