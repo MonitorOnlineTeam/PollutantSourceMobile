@@ -557,7 +557,7 @@ class DataList extends Component {
 const getAllData = async dataType => {
   let datalist = [];
   // const getdata = await getAllConcentration({ dataType: dataType });
-  let promise = getAllConcentration({ dataType: dataType }).then ((getdata)=>{
+  let promise = getAllConcentration({ dataType: dataType }).then(getdata => {
     getdata.map(item => {
       let data = {
         key: item.DGIMN,
@@ -575,7 +575,7 @@ const getAllData = async dataType => {
         MonitoringDatasi: item.MonitoringDatas[0],
         Abbreviation: item.Abbreviation,
         bstatus: null,
-  
+
         status:
           item.DGIMN === 'bjldgn01' ||
           item.DGIMN === 'dtgjhh11102' ||
@@ -614,10 +614,10 @@ const getAllData = async dataType => {
     });
 
     return new Promise(function(resolve, reject) {
-        resolve(datalist);
+      resolve(datalist);
     });
   });
-  
+
   // console.log(datalist);
   // return datalist;
   return promise;

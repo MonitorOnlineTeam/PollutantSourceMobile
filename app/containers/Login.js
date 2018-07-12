@@ -137,7 +137,7 @@ class Login extends Component {
                 ref={ref => (this.userNameInput = ref)}
                 keyboardType="default"
                 clearTextOnFocus={false}
-                blurOnSubmit
+                blurOnSubmit={true}
                 placeholderTextColor="white"
                 placeholder="请输入用户名"
                 autoCapitalize="none"
@@ -169,7 +169,7 @@ class Login extends Component {
               <TextInput
                 ref={ref => (this.passWordInput = ref)}
                 clearTextOnFocus={false}
-                blurOnSubmit
+                blurOnSubmit={true}
                 keyboardType="default"
                 placeholderTextColor="white"
                 placeholder="请输入密码"
@@ -177,7 +177,7 @@ class Login extends Component {
                 autoCorrect={false}
                 underlineColorAndroid="transparent"
                 clearButtonMode="always"
-                secureTextEntry
+                secureTextEntry={true}
                 onChangeText={text => {
                   // 动态更新组件内State记录密码
                   this.setState({
@@ -222,16 +222,16 @@ class Login extends Component {
             {this.props.loginLoading || this.props.loadglobalvariable ? (
               <Button
                 type="primary"
-                inline
+                inline={true}
                 style={{ width: SCREEN_WIDTH - 100 }}
-                loading
+                loading={true}
               >
                 正在登录
               </Button>
             ) : (
               <Button
                 type="primary"
-                inline
+                inline={true}
                 style={{ width: SCREEN_WIDTH - 100 }}
                 onClick={this.login}
               >
