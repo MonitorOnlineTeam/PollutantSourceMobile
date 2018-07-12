@@ -18,7 +18,7 @@ const color = {
   air_quality_color: '#feb65d',
   PM_color: '#7edd72',
   backgroundGrey: '#f4f7f7',
-  darkRed:'#bd322a',
-  antBlue:'#008ae6',
+  darkRed: '#bd322a',
+  antBlue: '#008ae6',
 };
 export default color;

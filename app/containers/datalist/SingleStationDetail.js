@@ -57,16 +57,16 @@ class SingleStationDetail extends Component {
         // markerColor: processColor('#FAFAFA'),
         markerColor: processColor('#ddebf1'),
         textColor: processColor('white'),
-        form: "SQUARE",
+        form: 'SQUARE',
         formSize: 14,
         xEntrySpace: 10,
         yEntrySpace: 5,
-      }
+      },
     };
   }
   componentDidMount() {
     let _circleColors = [];
-    for(let i = 0;i<23;i++) {
+    for (let i = 0; i < 23; i++) {
       _circleColors.push(processColor(globalcolor.antBlue));
     }
     this.setState(
@@ -76,31 +76,31 @@ class SingleStationDetail extends Component {
             dataSets: [
               {
                 values: [
-                  { y: 0.88, marker:`00时 0.88` },
-                  { y: 0.77, marker:`01时 0.77` },
-                  { y: 105, marker:`02时 105` },
-                  { y: 115 , marker:`0时 115`},
-                  { y: 50, marker:`03时 50` },
-                  { y: 50, marker:`04时 50` },
-                  { y: 50, marker:`05时 50` },
-                  { y: 50, marker:`06时 50` },
-                  { y: 50, marker:`07时 50` },
-                  { y: 50, marker:`08时 50` },
-                  { y: 50, marker:`09时 50` },
-                  { y: 50, marker:`10时 50` },
-                  { y: 50, marker:`11时 50` },
-                  { y: 50, marker:`12时 50` },
-                  { y: 50, marker:`13时 50` },
-                  { y: 50, marker:`14时 50` },
-                  { y: 50, marker:`15时 50` },
-                  { y: 50, marker:`16时 50` },
-                  { y: 45, marker:`17时 45` },
-                  { y: 44, marker:`18时 44` },
-                  { y: 43, marker:`19时 43` },
-                  { y: 44, marker:`20时 44` },
-                  { y: 54, marker:`21时 54` },
-                  { y: 57, marker:`22时 57` },
-                  { y: 60, marker:`23时 60` },
+                  { y: 0.88, marker: `00时 0.88` },
+                  { y: 0.77, marker: `01时 0.77` },
+                  { y: 105, marker: `02时 105` },
+                  { y: 115, marker: `0时 115` },
+                  { y: 50, marker: `03时 50` },
+                  { y: 50, marker: `04时 50` },
+                  { y: 50, marker: `05时 50` },
+                  { y: 50, marker: `06时 50` },
+                  { y: 50, marker: `07时 50` },
+                  { y: 50, marker: `08时 50` },
+                  { y: 50, marker: `09时 50` },
+                  { y: 50, marker: `10时 50` },
+                  { y: 50, marker: `11时 50` },
+                  { y: 50, marker: `12时 50` },
+                  { y: 50, marker: `13时 50` },
+                  { y: 50, marker: `14时 50` },
+                  { y: 50, marker: `15时 50` },
+                  { y: 50, marker: `16时 50` },
+                  { y: 45, marker: `17时 45` },
+                  { y: 44, marker: `18时 44` },
+                  { y: 43, marker: `19时 43` },
+                  { y: 44, marker: `20时 44` },
+                  { y: 54, marker: `21时 54` },
+                  { y: 57, marker: `22时 57` },
+                  { y: 60, marker: `23时 60` },
                 ],
                 label: '',
 
@@ -541,34 +541,43 @@ class SingleStationDetail extends Component {
                   </View>
                 </View>
                 {/* 污染物结束 */}
-                { <View style={{ flex: 1,  borderBottomColor: '#d8d8d8',
-                  borderBottomWidth: 1,height:200,marginTop:10}}>
-                  <Text style={[{marginLeft:8,}]}>污染物24小时趋势图</Text>
-                <LineChart
-                  style={styles.chart}
-                  data={this.state.data}
-                  chartDescription={{ text: '' }}
-                  legend={{enabled: false,}}
-                  marker={this.state.marker}
-                  xAxis={this.state.xAxis}
-                  drawGridBackground={false}
-                  /* borderColor={processColor('teal')} */
-                  borderWidth={1}
-                  drawBorders={false}
-                  touchEnabled={true}
-                  dragEnabled={true}
-                  scaleEnabled={false}
-                  scaleXEnabled={false}
-                  scaleYEnabled={false}
-                  pinchZoom={false}
-                  doubleTapToZoomEnabled={false}
-                  dragDecelerationEnabled={true}
-                  dragDecelerationFrictionCoef={0.99}
-                  keepPositionOnRotation={false}
-                  onSelect={this.handleSelect.bind(this)}
-                  onChange={event => console.log(event.nativeEvent)}
-                />
-              </View> }
+                {
+                  <View
+                    style={{
+                      flex: 1,
+                      borderBottomColor: '#d8d8d8',
+                      borderBottomWidth: 1,
+                      height: 200,
+                      marginTop: 10,
+                    }}
+                  >
+                    <Text style={[{ marginLeft: 8 }]}>污染物24小时趋势图</Text>
+                    <LineChart
+                      style={styles.chart}
+                      data={this.state.data}
+                      chartDescription={{ text: '' }}
+                      legend={{ enabled: false }}
+                      marker={this.state.marker}
+                      xAxis={this.state.xAxis}
+                      drawGridBackground={false}
+                      /* borderColor={processColor('teal')} */
+                      borderWidth={1}
+                      drawBorders={false}
+                      touchEnabled={true}
+                      dragEnabled={true}
+                      scaleEnabled={false}
+                      scaleXEnabled={false}
+                      scaleYEnabled={false}
+                      pinchZoom={false}
+                      doubleTapToZoomEnabled={false}
+                      dragDecelerationEnabled={true}
+                      dragDecelerationFrictionCoef={0.99}
+                      keepPositionOnRotation={false}
+                      onSelect={this.handleSelect.bind(this)}
+                      onChange={event => console.log(event.nativeEvent)}
+                    />
+                  </View>
+                }
                 <View
                   style={{
                     padding: 10,
@@ -1022,9 +1031,9 @@ const styles = StyleSheet.create({
   },
   chart: {
     flex: 1,
-    marginBottom:8,
-    marginLeft:4,
-    marginRight:4,
+    marginBottom: 8,
+    marginLeft: 4,
+    marginRight: 4,
   },
 });
 export const title = 'Tabs';
