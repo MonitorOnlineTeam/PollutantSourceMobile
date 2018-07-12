@@ -1,6 +1,6 @@
 //import liraries
-import React, { Component } from 'react'
-import { View, Text, StyleSheet, Dimensions } from 'react-native'
+import React, { Component } from 'react';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
 import {
   VictoryChart,
   VictoryBar,
@@ -15,10 +15,10 @@ import {
   VictoryTooltip,
   VictoryVoronoiContainer,
   VictoryCursorContainer,
-} from 'victory-native'
-import { VictoryTheme } from 'victory-core'
-import { connect } from 'react-redux'
-const SCREEN_WIDTH = Dimensions.get('window').width
+} from 'victory-native';
+import { VictoryTheme } from 'victory-core';
+import { connect } from 'react-redux';
+const SCREEN_WIDTH = Dimensions.get('window').width;
 
 /**
  * 柱状图
@@ -40,7 +40,7 @@ class ChartBar extends Component {
         <View>
           <Text>{'正在加载中'}</Text>
         </View>
-      )
+      );
     } else {
       return (
         <View style={styles.container}>
@@ -61,7 +61,7 @@ class ChartBar extends Component {
                 width={SCREEN_WIDTH - 10}
                 voronoiDimension="x"
                 labels={d => {
-                  return `${d.chartXValue}\n 值:${d.chartYValue}`
+                  return `${d.chartXValue}\n 值:${d.chartYValue}`;
                 }}
                 labelComponent={
                   <VictoryTooltip
@@ -89,9 +89,9 @@ class ChartBar extends Component {
                 x={d => d.zz}
                 y={d => {
                   if (d.chartYValue == '---') {
-                    return 0
+                    return 0;
                   }
-                  return d.chartYValue
+                  return d.chartYValue;
                 }}
               />
             }
@@ -128,7 +128,7 @@ class ChartBar extends Component {
             />
           </VictoryChart>
         </View>
-      )
+      );
     }
   }
 }
@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#ffffff',
   },
-})
+});
 
 //make this component available to the app
-export default ChartBar
+export default ChartBar;
