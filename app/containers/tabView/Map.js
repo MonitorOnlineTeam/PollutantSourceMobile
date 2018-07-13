@@ -614,10 +614,7 @@ class Map extends Component {
             }
           }}
           icon={() => {
-            if (
-              (this.state.special === 'monitor' && arrayCount[1].count > 0) ||
-              (this.state.special === 'sewage' && arrayCount[1].count > 0)
-            ) {
+            if (arrayCount[0].count !== count) {
               return (
                 <TouchableOpacity
                   activeOpacity={0.9}
@@ -630,6 +627,8 @@ class Map extends Component {
                       minHeight: 24,
                       minWidth: 40,
                       borderColor: 'white',
+                      borderWidth: 2,
+                      borderColor: 'red',
                     },
                   ]}
                 >
@@ -650,9 +649,9 @@ class Map extends Component {
                         ]}
                       >
                         <Iconi
-                          name={'ios-home-outline'}
+                          name={'ios-notifications'}
                           size={20}
-                          style={{ color: 'gray' }}
+                          style={{ color: 'red' }}
                         />
                       </Text>
                       <Text>

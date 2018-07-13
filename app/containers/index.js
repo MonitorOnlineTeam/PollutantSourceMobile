@@ -49,7 +49,7 @@ import SparePart from './datalist/SparePart';
 import PowerCut from './datalist/PowerCut';
 import QualityControl from './datalist/QualityControl';
 import TodoDetail from './workbench/TodoDetail';
-
+import AlarmRecord from './AlarmRecord';
 // const MainNavigator = StackNavigator(
 //   {
 //     // HomeNavigator: { screen: HomeNavigator },
@@ -84,7 +84,7 @@ export default StackNavigator(
     Alarm: { screen: Alarm },
     Message: { screen: Message },
     TodoDetail: { screen: TodoDetail },
-
+    AlarmRecord: { screen: AlarmRecord },
     EmergencyTask: { screen: EmergencyTask },
     WorkPlan: { screen: WorkPlan },
     TaskManage: { screen: TaskManage },

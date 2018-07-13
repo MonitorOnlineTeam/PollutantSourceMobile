@@ -23,6 +23,7 @@ import alarm from '../../mockdata/Workbench/alarm.json';
 import earlywarning from '../../mockdata/Workbench/earlywarning.json';
 import operation from '../../mockdata/Workbench/operation.json';
 import todolist from '../../mockdata/Workbench/todolist.json';
+
 /*
  * Copyright (c) 2018 SDL.All Rights Reserved
  *
@@ -820,7 +821,6 @@ class Workbench extends Component {
           onDayChange={day => {
             _day = day;
           }}
-
           // markingType={'period'
           // markedDates={{
           //    '2018-07-03': {textColor: '#666'},

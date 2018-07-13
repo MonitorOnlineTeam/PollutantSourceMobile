@@ -13,18 +13,42 @@ import { Grid, Tabs } from 'antd-mobile-rn';
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import Iconi from 'react-native-vector-icons/dist/Ionicons';
-import { LineChart } from 'react-native-charts-wrapper';
+import { LineChart, BarChart, PieChart } from 'react-native-charts-wrapper';
 import update from 'immutability-helper';
 
 import { SCREEN_WIDTH } from '../../config/globalsize';
 import { NavigationActions } from '../../utils';
 import { Button } from '../../components';
+import Operation from '../../components/DetailedPage/Operation';
+import QualityControl from '../../components/DetailedPage/QualityControl';
+import globalcolor from '../../config/globalcolor';
+import markersInfo from '../../mockdata/OverView/markersInfo.json';
 
 // create a component
 @connect()
 class SingleStationDetail extends Component {
   constructor(props) {
     super(props);
+    // console.log(props.navigation.state.params.item);
+    let barChartData = [];
+    let pieChartData = [];
+    for (let i = 0; i < markersInfo.sewageoption.series[0].data.length; i++) {
+      barChartData.push({
+        y: markersInfo.sewageoption.series[0].data[i],
+        marker: i + '时 ' + markersInfo.sewageoption.series[0].data[i],
+      });
+    }
+    for (
+      let i = 0;
+      i < markersInfo.sewagepieoption.series[0].data.length;
+      i++
+    ) {
+      //value: 35, label: '烟尘'
+      pieChartData.push({
+        value: markersInfo.sewagepieoption.series[0].data[i].value,
+        label: markersInfo.sewagepieoption.series[0].data[i].name,
+      });
+    }
     this.state = {
       data: {},
       legend: {
@@ -51,60 +75,208 @@ class SingleStationDetail extends Component {
       marker: {
         enabled: true,
         digits: 2,
-        backgroundTint: processColor('teal'),
-        markerColor: processColor('#F0C0FF8C'),
+        backgroundTint: processColor('#FF0000'),
+        // markerColor: processColor('#FAFAFA'),
+        markerColor: processColor('#1CCE00'),
         textColor: processColor('white'),
+        form: 'SQUARE',
+        formSize: 14,
+        xEntrySpace: 10,
+        yEntrySpace: 5,
+      },
+      barChart: {
+        legend: {
+          enabled: false,
+          textSize: 14,
+          form: 'SQUARE',
+          formSize: 14,
+          xEntrySpace: 10,
+          yEntrySpace: 5,
+          formToTextSpace: 5,
+          wordWrapEnabled: true,
+          maxSizePercent: 0.5,
+        },
+        data: {
+          dataSets: [
+            {
+              values: barChartData,
+              // [
+              //   { y: 100 },
+              //   { y: 105 },
+              //   { y: 102 },
+              //   { y: 110 },
+              //   { y: 114 },
+              //   { y: 109 },
+              //   { y: 105 },
+              //   { y: 99 },
+              //   { y: 95 },
+              //   { y: 100 },
+              //   { y: 105 },
+              //   { y: 102 },
+              //   { y: 110 },
+              //   { y: 114 },
+              //   { y: 109 },
+              //   { y: 105 },
+              //   { y: 99 },
+              //   { y: 95 },
+              //   { y: 100 },
+              //   { y: 105 },
+              //   { y: 102 },
+              //   { y: 110 },
+              //   { y: 114 },
+              //   { y: 109 },
+              //   { y: 105 },
+              // ],
+              label: 'Bar dataSet',
+              config: {
+                color: processColor(globalcolor.darkRed),
+                barSpacePercent: 40,
+                barShadowColor: processColor('lightgrey'),
+                highlightAlpha: 90,
+                highlightColor: processColor('red'),
+              },
+            },
+          ],
+        },
+        // highlights: [{x: 3}, {x: 6}],
+        xAxis: {
+          valueFormatter: [
+            '00',
+            '01',
+            '02',
+            '03',
+            '04',
+            '05',
+            '06',
+            '07',
+            '08',
+            '09',
+            '10',
+            '11',
+            '12',
+            '13',
+            '14',
+            '15',
+            '16',
+            '17',
+            '18',
+            '19',
+            '20',
+            '21',
+            '22',
+            '23',
+          ],
+          granularityEnabled: true,
+          granularity: 1,
+        },
+      },
+      pieChart: {
+        legend: {
+          enabled: true,
+          textSize: 8,
+          form: 'CIRCLE',
+          position: 'RIGHT_OF_CHART',
+          wordWrapEnabled: true,
+        },
+        data: {
+          dataSets: [
+            {
+              values: pieChartData,
+              // [
+              //   { value: 35, label: '烟尘' },
+              //   { value: 20, label: 'NOx' },
+              //   { value: 45, label: 'SO2' },
+              // ],
+              label: '',
+              config: {
+                colors: [
+                  processColor('#324454'),
+                  processColor('#69a1a9'),
+                  processColor('#bb322c'),
+                ],
+                // [processColor('#C0FF8C'), processColor('#FFF78C'), processColor('#FFD08C'), processColor('#8CEAFF'), processColor('#FF8C9D')],
+                valueTextSize: 12,
+                valueTextColor: processColor('white'),
+                sliceSpace: 5,
+                selectionShift: 13,
+              },
+            },
+          ],
+        },
+        highlights: [
+          // {x:2}
+        ],
+        description: {
+          // text: 'This is Pie chart description',
+          text: '',
+          textSize: 12,
+          textColor: processColor('darkgray'),
+        },
       },
     };
   }
   componentDidMount() {
+    let _circleColors = [];
+    let lineData = [];
+    for (let i = 0; i < markersInfo.monitorTrend.series[0].data.length; i++) {
+      _circleColors.push(processColor(globalcolor.antBlue));
+      lineData.push({
+        y: markersInfo.monitorTrend.series[0].data[i],
+        marker: i + '时 ' + markersInfo.monitorTrend.series[0].data[i],
+      });
+    }
     this.setState(
       update(this.state, {
         data: {
           $set: {
             dataSets: [
               {
-                values: [
-                  { y: 0.88 },
-                  { y: 0.77 },
-                  { y: 105 },
-                  { y: 115 },
-                  { y: 50 },
-                  { y: 50 },
-                  { y: 50 },
-                  { y: 50 },
-                  { y: 50 },
-                  { y: 50 },
-                  { y: 50 },
-                  { y: 50 },
-                  { y: 50 },
-                  { y: 50 },
-                  { y: 50 },
-                  { y: 50 },
-                  { y: 50 },
-                  { y: 50 },
-                  { y: 45 },
-                  { y: 44 },
-                  { y: 43 },
-                  { y: 44 },
-                  { y: 44 },
-                ],
+                values: lineData,
+                // [
+                //   { y: 0.88, marker: `00时 0.88` },
+                //   { y: 0.77, marker: `01时 0.77` },
+                //   { y: 105, marker: `02时 105` },
+                //   { y: 115, marker: `0时 115` },
+                //   { y: 50, marker: `03时 50` },
+                //   { y: 50, marker: `04时 50` },
+                //   { y: 50, marker: `05时 50` },
+                //   { y: 50, marker: `06时 50` },
+                //   { y: 50, marker: `07时 50` },
+                //   { y: 50, marker: `08时 50` },
+                //   { y: 50, marker: `09时 50` },
+                //   { y: 50, marker: `10时 50` },
+                //   { y: 50, marker: `11时 50` },
+                //   { y: 50, marker: `12时 50` },
+                //   { y: 50, marker: `13时 50` },
+                //   { y: 50, marker: `14时 50` },
+                //   { y: 50, marker: `15时 50` },
+                //   { y: 50, marker: `16时 50` },
+                //   { y: 45, marker: `17时 45` },
+                //   { y: 44, marker: `18时 44` },
+                //   { y: 43, marker: `19时 43` },
+                //   { y: 44, marker: `20时 44` },
+                //   { y: 54, marker: `21时 54` },
+                //   { y: 57, marker: `22时 57` },
+                //   { y: 60, marker: `23时 60` },
+                // ],
                 label: '',
 
                 config: {
                   lineWidth: 2,
-                  drawCircles: false,
-                  highlightColor: processColor('red'),
-                  color: processColor('red'),
+                  drawCircles: true,
+                  // highlightColor: processColor('red'),
+                  color: processColor(globalcolor.antBlue),
+                  circleColors: _circleColors,
                   drawFilled: true,
-                  fillColor: processColor('red'),
-                  fillAlpha: 60,
+                  fillColor: processColor('white'),
+                  // fillAlpha: 60,
                   valueTextSize: 15,
+                  drawValues: false,
                   valueFormatter: '##.000',
-                  dashedLine: {
-                    lineLength: 20,
-                    spaceLength: 20,
-                  },
+                  // dashedLine: {
+                  //   lineLength: 20,
+                  //   spaceLength: 20,
+                  // },
                 },
               },
             ],
@@ -115,6 +287,7 @@ class SingleStationDetail extends Component {
             fontFamily: 'HelveticaNeue-Medium',
             fontWeight: 'bold',
             fontStyle: 'italic',
+            position: 'BOTTOM',
             valueFormatter: [
               '00',
               '01',
@@ -170,15 +343,26 @@ class SingleStationDetail extends Component {
   }
 
   handleSelect(event) {
-    let entry = event.nativeEvent;
-    if (entry == null) {
-      this.setState({ ...this.state, selectedEntry: null });
-    } else {
-      this.setState({ ...this.state, selectedEntry: JSON.stringify(entry) });
-    }
+    // let entry = event.nativeEvent;
+    // if (entry == null) {
+    //   this.setState({ ...this.state.barChart, selectedEntry: null });
+    // } else {
+    //   this.setState({ ...this.state.barChart, selectedEntry: JSON.stringify(entry) });
+    // }
+    // console.log(event.nativeEvent);
+  }
 
-    console.log(event.nativeEvent);
-  } // <View style={styles.container}>
+  pieChartHandleSelect(event) {
+    // let entry = event.nativeEvent
+    // if (entry == null) {
+    //   this.setState({...this.state.pieChart, selectedEntry: null})
+    // } else {
+    //   this.setState({...this.state.pieChart, selectedEntry: JSON.stringify(entry)})
+    // }
+    // console.log(event.nativeEvent)
+  }
+
+  // <View style={styles.container}>
   //   <View
   //     style={[
   //       {
@@ -333,6 +517,16 @@ class SingleStationDetail extends Component {
   //   />
   // </View>
 
+  handleSelect(event) {
+    // let entry = event.nativeEvent
+    // if (entry == null) {
+    //   this.setState({...this.state.barChart, selectedEntry: null})
+    // } else {
+    //   this.setState({...this.state.barChart, selectedEntry: JSON.stringify(entry)})
+    // }
+    // console.log(event.nativeEvent)
+  }
+
   render() {
     const tabs = [
       { title: '监控' },
@@ -435,7 +629,7 @@ class SingleStationDetail extends Component {
                 >
                   <View
                     style={{
-                      backgroundColor: '#42cf16',
+                      backgroundColor: '#1CCE00',
                       height: 50,
                       width: '30%',
                       margin: 5,
@@ -451,7 +645,7 @@ class SingleStationDetail extends Component {
                   </View>
                   <View
                     style={{
-                      backgroundColor: '#42cf16',
+                      backgroundColor: '#1CCE00',
                       height: 50,
                       width: '30%',
                       margin: 5,
@@ -481,7 +675,7 @@ class SingleStationDetail extends Component {
                   </View>
                   <View
                     style={{
-                      backgroundColor: '#42cf16',
+                      backgroundColor: '#1CCE00',
                       height: 50,
                       width: '30%',
                       margin: 5,
@@ -497,7 +691,7 @@ class SingleStationDetail extends Component {
                   </View>
                   <View
                     style={{
-                      backgroundColor: '#42cf16',
+                      backgroundColor: '#1CCE00',
                       height: 50,
                       width: '30%',
                       margin: 5,
@@ -525,33 +719,43 @@ class SingleStationDetail extends Component {
                   </View>
                 </View>
                 {/* 污染物结束 */}
-                {/* <View style={{ flex: 1,  borderBottomColor: '#d8d8d8',
-                  borderBottomWidth: 1,height:200,marginTop:10}}>
-                <LineChart
-                  style={styles.chart}
-                  data={this.state.data}
-                  chartDescription={{ text: '' }}
-                  legend={this.state.legend}
-                  marker={this.state.marker}
-                  xAxis={this.state.xAxis}
-                  drawGridBackground={false}
-                  borderColor={processColor('teal')}
-                  borderWidth={1}
-                  drawBorders={true}
-                  touchEnabled={true}
-                  dragEnabled={true}
-                  scaleEnabled={true}
-                  scaleXEnabled={true}
-                  scaleYEnabled={true}
-                  pinchZoom={true}
-                  doubleTapToZoomEnabled={true}
-                  dragDecelerationEnabled={true}
-                  dragDecelerationFrictionCoef={0.99}
-                  keepPositionOnRotation={false}
-                  onSelect={this.handleSelect.bind(this)}
-                  onChange={event => console.log(event.nativeEvent)}
-                />
-              </View> */}
+                {
+                  <View
+                    style={{
+                      flex: 1,
+                      borderBottomColor: '#d8d8d8',
+                      borderBottomWidth: 1,
+                      height: 200,
+                      marginTop: 10,
+                    }}
+                  >
+                    <Text style={[{ marginLeft: 8 }]}>污染物24小时趋势图</Text>
+                    <LineChart
+                      style={styles.chart}
+                      data={this.state.data}
+                      chartDescription={{ text: '' }}
+                      legend={{ enabled: false }}
+                      marker={this.state.marker}
+                      xAxis={this.state.xAxis}
+                      drawGridBackground={false}
+                      /* borderColor={processColor('teal')} */
+                      borderWidth={1}
+                      drawBorders={false}
+                      touchEnabled={true}
+                      dragEnabled={true}
+                      scaleEnabled={false}
+                      scaleXEnabled={false}
+                      scaleYEnabled={false}
+                      pinchZoom={false}
+                      doubleTapToZoomEnabled={false}
+                      dragDecelerationEnabled={true}
+                      dragDecelerationFrictionCoef={0.99}
+                      keepPositionOnRotation={false}
+                      onSelect={this.handleSelect.bind(this)}
+                      onChange={event => console.log(event.nativeEvent)}
+                    />
+                  </View>
+                }
                 <View
                   style={{
                     padding: 10,
@@ -575,7 +779,7 @@ class SingleStationDetail extends Component {
                             width: 25,
                             height: 25,
                           }}
-                          tintColor="#47d0d2"
+                          tintColor="#1CE3CB"
                           source={require('../../images/lct.png')}
                         />
                       </View>
@@ -616,7 +820,7 @@ class SingleStationDetail extends Component {
                             width: 25,
                             height: 25,
                           }}
-                          tintColor="#e6d24d"
+                          tintColor="#FC9D27"
                           source={require('../../images/lssj.png')}
                         />
                       </View>
@@ -652,7 +856,14 @@ class SingleStationDetail extends Component {
                     width: '100%',
                   }}
                 >
-                  <TouchableOpacity style={{}}>
+                  <TouchableOpacity
+                    style={{}}
+                    onPress={p => {
+                      this.props.dispatch(
+                        NavigationActions.navigate({ routeName: 'AlarmRecord' })
+                      );
+                    }}
+                  >
                     <View style={{ flexDirection: 'row' }}>
                       <View
                         style={{
@@ -667,7 +878,7 @@ class SingleStationDetail extends Component {
                             width: 25,
                             height: 25,
                           }}
-                          tintColor="#ff414e"
+                          tintColor="#FC274B"
                           source={require('../../images/gzbj.png')}
                         />
                       </View>
@@ -718,7 +929,7 @@ class SingleStationDetail extends Component {
                             width: 25,
                             height: 25,
                           }}
-                          tintColor="#faaa00"
+                          tintColor="#00B7E3"
                           source={require('../../images/gzyj.png')}
                         />
                       </View>
@@ -749,144 +960,7 @@ class SingleStationDetail extends Component {
           </View>
           {/* 运维 */}
           <View style={style}>
-            <ScrollView>
-              <View style={{ backgroundColor: '#fefefe', width: SCREEN_WIDTH }}>
-                <View
-                  style={{
-                    backgroundColor: '#f4f4f8',
-                    borderBottomColor: '#d8d8d8',
-                    borderBottomWidth: 1,
-                  }}
-                >
-                  <Text style={{ color: '#6c6c6c', margin: 8 }}>运维信息</Text>
-                </View>
-                <View
-                  style={{
-                    padding: 10,
-                    paddingTop: 1,
-                    borderBottomColor: '#d8d8d8',
-                    borderBottomWidth: 1,
-
-                    flexDirection: 'row',
-                  }}
-                >
-                  <View style={{ marginTop: 5 }}>
-                    <Text
-                      style={{ fontSize: 20, color: '#292929', marginTop: 5 }}
-                    />
-                    <View style={{ flexDirection: 'row' }}>
-                      <Text style={{ color: '#9f9f9f', fontSize: 15 }}>
-                        运维人：
-                      </Text>
-                      <Text style={{ color: '#717171', fontSize: 15 }}>
-                        小王
-                      </Text>
-                    </View>
-                    <View style={{ flexDirection: 'row' }}>
-                      <Text style={{ color: '#9f9f9f', fontSize: 15 }}>
-                        联系电话：
-                      </Text>
-                      <Text style={{ color: '#717171', fontSize: 15 }}>
-                        18911524678
-                      </Text>
-                    </View>
-                    <View style={{ flexDirection: 'row' }}>
-                      <Text style={{ color: '#9f9f9f', fontSize: 15 }}>
-                        上次运维时间：
-                      </Text>
-                      <Text style={{ color: '#717171', fontSize: 15 }}>
-                        2018-06-01
-                      </Text>
-                    </View>
-                    <View style={{ flexDirection: 'row' }}>
-                      <Text style={{ color: '#9f9f9f', fontSize: 15 }}>
-                        距下次运维时间：
-                      </Text>
-                      <Text style={{ color: '#717171', fontSize: 15 }}>
-                        9(天)
-                      </Text>
-                    </View>
-                    <View style={{ flexDirection: 'row' }}>
-                      <Text style={{ color: '#9f9f9f', fontSize: 15 }}>
-                        是否逾期：
-                      </Text>
-                      <Text style={{ color: '#717171', fontSize: 15 }}>否</Text>
-                    </View>
-                    <View style={{ flexDirection: 'row' }}>
-                      <Text style={{ color: '#9f9f9f', fontSize: 15 }}>
-                        逾期时间：
-                      </Text>
-                      <Text style={{ color: '#717171', fontSize: 15 }}>0</Text>
-                    </View>
-                  </View>
-                </View>
-              </View>
-              <Text style={{ color: '#6c6c6c', marginLeft: 8, marginTop: 8 }}>
-                近期耗材情况(月)
-              </Text>
-
-              <View
-                style={{
-                  backgroundColor: '#ffffff',
-                  padding: 10,
-
-                  borderBottomColor: '#d8d8d8',
-                  borderBottomWidth: 1,
-                  flexDirection: 'row',
-                  width: '100%',
-                  flexWrap: 'wrap',
-                }}
-              >
-                <View
-                  style={{
-                    width: '30%',
-                    height: 50,
-                    backgroundColor: '#f4f4f8',
-                    borderRadius: 5,
-                    flexDirection: 'row',
-                    alignContent: 'center',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    margin: 5,
-                  }}
-                >
-                  <Text style={{ color: '#000000', fontSize: 15 }}>皮管：</Text>
-                  <Text style={{ color: '#ff8400', fontSize: 20 }}>2个</Text>
-                </View>
-                <View
-                  style={{
-                    width: '30%',
-                    height: 50,
-                    backgroundColor: '#f4f4f8',
-                    borderRadius: 5,
-                    flexDirection: 'row',
-                    alignContent: 'center',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    margin: 5,
-                  }}
-                >
-                  <Text style={{ color: '#000000', fontSize: 15 }}>试剂：</Text>
-                  <Text style={{ color: '#ff8400', fontSize: 20 }}>1个</Text>
-                </View>
-                <View
-                  style={{
-                    width: '30%',
-                    height: 50,
-                    backgroundColor: '#f4f4f8',
-                    borderRadius: 5,
-                    flexDirection: 'row',
-                    alignContent: 'center',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    margin: 5,
-                  }}
-                >
-                  <Text style={{ color: '#000000', fontSize: 15 }}>标气：</Text>
-                  <Text style={{ color: '#ff8400', fontSize: 20 }}>3个</Text>
-                </View>
-              </View>
-            </ScrollView>
+            <Operation />
           </View>
           {/* 排污 */}
           <View style={style}>
@@ -902,6 +976,31 @@ class SingleStationDetail extends Component {
                   <Text style={{ color: '#6c6c6c', margin: 8 }}>
                     24小时排污量
                   </Text>
+                  <BarChart
+                    style={[styles.chart, { height: 160, width: SCREEN_WIDTH }]}
+                    data={this.state.barChart.data}
+                    xAxis={this.state.barChart.xAxis}
+                    animation={{ durationX: 2000 }}
+                    legend={this.state.barChart.legend}
+                    gridBackgroundColor={processColor('#ffffff')}
+                    drawBarShadow={false}
+                    drawValueAboveBar={true}
+                    drawHighlightArrow={true}
+                    onSelect={this.handleSelect.bind(this)}
+                    highlights={this.state.barChart.highlights}
+                    drawBorders={false}
+                    touchEnabled={true}
+                    dragEnabled={true}
+                    scaleEnabled={false}
+                    scaleXEnabled={false}
+                    scaleYEnabled={false}
+                    pinchZoom={false}
+                    doubleTapToZoomEnabled={false}
+                    dragDecelerationEnabled={true}
+                    dragDecelerationFrictionCoef={0.99}
+                    keepPositionOnRotation={false}
+                    onChange={event => console.log(event.nativeEvent)}
+                  />
                 </View>
                 <View
                   style={{
@@ -943,6 +1042,34 @@ class SingleStationDetail extends Component {
                   }}
                 >
                   <Text style={{ color: '#6c6c6c', margin: 8 }}>排量占比</Text>
+                  <PieChart
+                    style={[styles.chart, { height: 160, width: SCREEN_WIDTH }]}
+                    logEnabled={true}
+                    /* chartBackgroundColor={processColor('pink')} */
+                    chartDescription={this.state.pieChart.description}
+                    data={this.state.pieChart.data}
+                    legend={this.state.pieChart.legend}
+                    highlights={this.state.pieChart.highlights}
+                    entryLabelColor={processColor('white')}
+                    entryLabelTextSize={12}
+                    drawEntryLabels={true}
+                    rotationEnabled={true}
+                    rotationAngle={45}
+                    usePercentValues={false}
+                    styledCenterText={{
+                      text: '',
+                      color: processColor('pink'),
+                      size: 12,
+                    }}
+                    centerTextRadiusPercent={100}
+                    holeRadius={40}
+                    holeColor={processColor('#f0f0f0')}
+                    transparentCircleRadius={45}
+                    transparentCircleColor={processColor('#f0f0f088')}
+                    maxAngle={350}
+                    onSelect={() => {}}
+                    onChange={event => console.log(event.nativeEvent)}
+                  />
                 </View>
                 <View
                   style={{
@@ -956,32 +1083,7 @@ class SingleStationDetail extends Component {
             </ScrollView>
           </View>
           <View style={style}>
-            <ScrollView>
-              <View style={{ backgroundColor: '#fefefe', width: SCREEN_WIDTH }}>
-                <View
-                  style={{
-                    backgroundColor: '#f4f4f8',
-                    borderBottomColor: '#d8d8d8',
-                    borderBottomWidth: 1,
-                  }}
-                >
-                  <Text style={{ color: '#6c6c6c', margin: 8 }}>
-                    近期质控情况(月)
-                  </Text>
-                </View>
-                <View
-                  style={{
-                    //backgroundColor:"#59d200",
-                    paddingTop: 1,
-                    borderBottomColor: '#d8d8d8',
-                    borderBottomWidth: 1,
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}
-                />
-              </View>
-            </ScrollView>
+            <QualityControl />
           </View>
         </Tabs>
       </View>
@@ -1005,6 +1107,9 @@ const styles = StyleSheet.create({
   },
   chart: {
     flex: 1,
+    marginBottom: 8,
+    marginLeft: 4,
+    marginRight: 4,
   },
 });
 export const title = 'Tabs';

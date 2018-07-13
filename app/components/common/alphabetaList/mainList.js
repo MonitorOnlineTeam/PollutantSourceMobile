@@ -83,7 +83,7 @@ export default class MainList extends React.Component {
     return (
       <ListView
         dataSource={this.props.dataSource}
-        head
+        head={true}
         renderRow={rowData => this.rowsMsg(rowData)}
       />
     );

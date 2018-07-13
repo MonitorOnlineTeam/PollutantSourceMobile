@@ -135,7 +135,7 @@ export const screenTracking = ({ getState }) => next => async action => {
 @connect(({ app, router, loading }) => ({
   app,
   router,
-  loginLoading: loading.effects['app/login'],
+  // loginLoading: loading.effects['app/login'],
 }))
 class Router extends PureComponent {
   componentWillMount() {
@@ -217,11 +217,11 @@ class Router extends PureComponent {
 
   render() {
     const { dispatch, app, router } = this.props;
-    if (
-      // app.loading
-      this.props.loginLoading
-    )
-      return <Loading />;
+    // if (
+    //   // app.loading
+    //   this.props.loginLoading
+    // )
+    //   return <Loading />;
 
     const navigation = {
       dispatch,

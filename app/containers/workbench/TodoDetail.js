@@ -12,7 +12,7 @@ import {
   TextareaItem,
   Button,
   Steps,
-} from 'antd-mobile';
+} from 'antd-mobile-rn';
 const Step = Steps.Step;
 
 // create a component
@@ -104,7 +104,6 @@ class TodoDetail extends Component {
                   任务单号
                 </InputItem>
                 <InputItem value="厂北场口" editable={false}>
-                  {' '}
                   排口
                 </InputItem>
                 <InputItem value="北京雪迪龙科技股份有限公司" editable={false}>
