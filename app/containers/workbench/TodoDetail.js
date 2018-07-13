@@ -1,6 +1,6 @@
 //import liraries
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TextInput } from 'react-native';
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import { NavigationActions } from '../../utils';
@@ -13,11 +13,37 @@ import {
   Button,
   Steps,
 } from 'antd-mobile-rn';
+import { SCREEN_WIDTH, WINDOW_HEIGHT } from '../../config/globalsize';
+import globalcolor from '../../config/globalcolor';
+
 const Step = Steps.Step;
 
 // create a component
 @connect()
 class TodoDetail extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      taskno: '96658688955',
+      pointname: '厂北场口',
+      entname: '北京雪迪龙科技股份有限公司',
+      provice: '北京市',
+      city: '北京市',
+      source: '数据审核',
+      status: '处理中',
+      content: '设备数据异常',
+      creator: '成云',
+      createtime: '2018-06-12 09:00:00',
+      devicetype: 'SDL_CEMS334',
+      devicebrand: 'SDL',
+      deviceno: 'SDL23001',
+      devicemodel: 'SDL_CEMS334',
+      dealor: '',
+      dealtime: '',
+    };
+  }
+
   static navigationOptions = ({ router, navigation }) => {
     return {
       title: '详情',
@@ -36,13 +62,15 @@ class TodoDetail extends Component {
   }
   goBack = () => {}
   attentionDetailClick = () => {
-    // this.props.dispatch(NavigationActions.navigate({ routeName: 'AttentionDetail' });
+    this.props.dispatch(
+      NavigationActions.navigate({ routeName: 'AttentionDetail' })
+    );
   }
   render() {
     const steps = [
       {
         title: '运维人',
-        description: '小王',
+        description: '成云',
         status: 'process',
       },
       {
@@ -67,7 +95,7 @@ class TodoDetail extends Component {
       },
       {
         title: '应急处理',
-        description: '小王 2018-6-12 12:32',
+        description: '成云 2018-6-12 12:32',
         status: 'process',
       },
       {
@@ -88,9 +116,26 @@ class TodoDetail extends Component {
         description={s.description}
       />
     ));
-
+    const {
+      taskno,
+      pointname,
+      entname,
+      provice,
+      city,
+      source,
+      status,
+      content,
+      creator,
+      createtime,
+      devicetype,
+      devicebrand,
+      deviceno,
+      devicemodel,
+      dealor,
+      dealtime,
+    } = this.state;
     return (
-      <View>
+      <View style={styles.container}>
         <ScrollView contentContainerStyle={styles.contentContainer}>
           <WingBlank size="sm">
             <WhiteSpace size="lg" />
@@ -100,48 +145,468 @@ class TodoDetail extends Component {
                 thumb="https://gw.alipayobjects.com/zos/rmsportal/MRhHctKOineMbKAZslML.jpg"
               />
               <Card.Body>
-                <InputItem value="2323102931" editable={false}>
-                  任务单号
-                </InputItem>
-                <InputItem value="厂北场口" editable={false}>
-                  排口
-                </InputItem>
-                <InputItem value="北京雪迪龙科技股份有限公司" editable={false}>
-                  企业
-                </InputItem>
-                <InputItem value="北京市" editable={false}>
-                  省份
-                </InputItem>
-                <InputItem value="北京市" editable={false}>
-                  城市
-                </InputItem>
-                <InputItem value="数据审核" editable={false}>
-                  任务来源
-                </InputItem>
-                <InputItem value="处理中" editable={false}>
-                  任务状态
-                </InputItem>
-                <InputItem value="设备数据异常" editable={false}>
-                  任务内容
-                </InputItem>
-                <InputItem value="小王" editable={false}>
-                  创建人
-                </InputItem>
-                <InputItem value="创建时间" editable={false}>
-                  创建时间
-                </InputItem>
-                <InputItem value="SDL_CEMS334" editable={false}>
-                  设备类型
-                </InputItem>
-                <InputItem value="SDL" editable={false}>
-                  设备品牌
-                </InputItem>
-                <InputItem value="SDL23001" editable={false}>
-                  设备编号
-                </InputItem>
-                <InputItem value="SDL_CEMS334" editable={false}>
-                  设备型号
-                </InputItem>
+                <View style={[styles.TextInputStyle]}>
+                  <Text style={styles.countBackground}>任务单号</Text>
+                  <TextInput
+                    ref={ref => (this.passWordInput = ref)}
+                    clearTextOnFocus={false}
+                    blurOnSubmit={true}
+                    keyboardType="default"
+                    placeholderTextColor="gray"
+                    placeholder=""
+                    autoCapitalize="none"
+                    editable={false}
+                    autoCorrect={false}
+                    underlineColorAndroid="transparent"
+                    clearButtonMode="always"
+                    secureTextEntry={false}
+                    onChangeText={text => {
+                      // 动态更新组件内State记录密码
+                      this.setState({
+                        taskno: text,
+                      });
+                    }}
+                    value={taskno}
+                    style={{
+                      width: SCREEN_WIDTH - 120,
+                      marginLeft: 10,
+                      paddingTop: 1,
+                      paddingBottom: 1,
+                      marginBottom: 3,
+                      height: 21,
+                      color: 'black',
+                    }}
+                  />
+                </View>
+                <View style={[styles.TextInputStyle]}>
+                  <Text style={styles.countBackground}>排口</Text>
+                  <TextInput
+                    ref={ref => (this.passWordInput = ref)}
+                    clearTextOnFocus={false}
+                    blurOnSubmit={true}
+                    keyboardType="default"
+                    placeholderTextColor="gray"
+                    placeholder=""
+                    autoCapitalize="none"
+                    editable={false}
+                    autoCorrect={false}
+                    underlineColorAndroid="transparent"
+                    clearButtonMode="always"
+                    secureTextEntry={false}
+                    onChangeText={text => {
+                      // 动态更新组件内State记录密码
+                      this.setState({
+                        pointname: text,
+                      });
+                    }}
+                    value={pointname}
+                    style={{
+                      width: SCREEN_WIDTH - 120,
+                      marginLeft: 10,
+                      paddingTop: 1,
+                      paddingBottom: 1,
+                      marginBottom: 3,
+                      height: 21,
+                      color: 'black',
+                    }}
+                  />
+                </View>
+                <View style={[styles.TextInputStyle]}>
+                  <Text style={styles.countBackground}>企业</Text>
+                  <TextInput
+                    ref={ref => (this.passWordInput = ref)}
+                    clearTextOnFocus={false}
+                    blurOnSubmit={true}
+                    keyboardType="default"
+                    placeholderTextColor="gray"
+                    placeholder=""
+                    autoCapitalize="none"
+                    editable={false}
+                    autoCorrect={false}
+                    underlineColorAndroid="transparent"
+                    clearButtonMode="always"
+                    secureTextEntry={false}
+                    onChangeText={text => {
+                      // 动态更新组件内State记录密码
+                      this.setState({
+                        entname: text,
+                      });
+                    }}
+                    value={entname}
+                    style={{
+                      width: SCREEN_WIDTH - 120,
+                      marginLeft: 10,
+                      paddingTop: 1,
+                      paddingBottom: 1,
+                      marginBottom: 3,
+                      height: 21,
+                      color: 'black',
+                    }}
+                  />
+                </View>
+                <View style={[styles.TextInputStyle]}>
+                  <Text style={styles.countBackground}>省份</Text>
+                  <TextInput
+                    ref={ref => (this.passWordInput = ref)}
+                    clearTextOnFocus={false}
+                    blurOnSubmit={true}
+                    keyboardType="default"
+                    placeholderTextColor="gray"
+                    placeholder=""
+                    autoCapitalize="none"
+                    editable={false}
+                    autoCorrect={false}
+                    underlineColorAndroid="transparent"
+                    clearButtonMode="always"
+                    secureTextEntry={false}
+                    onChangeText={text => {
+                      // 动态更新组件内State记录密码
+                      this.setState({
+                        provice: text,
+                      });
+                    }}
+                    value={provice}
+                    style={{
+                      width: SCREEN_WIDTH - 120,
+                      marginLeft: 10,
+                      paddingTop: 1,
+                      paddingBottom: 1,
+                      marginBottom: 3,
+                      height: 21,
+                      color: 'black',
+                    }}
+                  />
+                </View>
+                <View style={[styles.TextInputStyle]}>
+                  <Text style={styles.countBackground}>城市</Text>
+                  <TextInput
+                    ref={ref => (this.passWordInput = ref)}
+                    clearTextOnFocus={false}
+                    blurOnSubmit={true}
+                    keyboardType="default"
+                    placeholderTextColor="gray"
+                    placeholder=""
+                    autoCapitalize="none"
+                    editable={false}
+                    autoCorrect={false}
+                    underlineColorAndroid="transparent"
+                    clearButtonMode="always"
+                    secureTextEntry={false}
+                    onChangeText={text => {
+                      // 动态更新组件内State记录密码
+                      this.setState({
+                        city: text,
+                      });
+                    }}
+                    value={city}
+                    style={{
+                      width: SCREEN_WIDTH - 120,
+                      marginLeft: 10,
+                      paddingTop: 1,
+                      paddingBottom: 1,
+                      marginBottom: 3,
+                      height: 21,
+                      color: 'black',
+                    }}
+                  />
+                </View>
+                <View style={[styles.TextInputStyle]}>
+                  <Text style={styles.countBackground}>任务来源</Text>
+                  <TextInput
+                    ref={ref => (this.passWordInput = ref)}
+                    clearTextOnFocus={false}
+                    blurOnSubmit={true}
+                    keyboardType="default"
+                    placeholderTextColor="gray"
+                    placeholder=""
+                    autoCapitalize="none"
+                    editable={false}
+                    autoCorrect={false}
+                    underlineColorAndroid="transparent"
+                    clearButtonMode="always"
+                    secureTextEntry={false}
+                    onChangeText={text => {
+                      // 动态更新组件内State记录密码
+                      this.setState({
+                        source: text,
+                      });
+                    }}
+                    value={source}
+                    style={{
+                      width: SCREEN_WIDTH - 120,
+                      marginLeft: 10,
+                      paddingTop: 1,
+                      paddingBottom: 1,
+                      marginBottom: 3,
+                      height: 21,
+                      color: 'black',
+                    }}
+                  />
+                </View>
+                <View style={[styles.TextInputStyle]}>
+                  <Text style={styles.countBackground}>任务状态</Text>
+                  <TextInput
+                    ref={ref => (this.passWordInput = ref)}
+                    clearTextOnFocus={false}
+                    blurOnSubmit={true}
+                    keyboardType="default"
+                    placeholderTextColor="gray"
+                    placeholder=""
+                    autoCapitalize="none"
+                    editable={false}
+                    autoCorrect={false}
+                    underlineColorAndroid="transparent"
+                    clearButtonMode="always"
+                    secureTextEntry={false}
+                    onChangeText={text => {
+                      // 动态更新组件内State记录密码
+                      this.setState({
+                        status: text,
+                      });
+                    }}
+                    value={status}
+                    style={{
+                      width: SCREEN_WIDTH - 120,
+                      marginLeft: 10,
+                      paddingTop: 1,
+                      paddingBottom: 1,
+                      marginBottom: 3,
+                      height: 21,
+                      color: 'black',
+                    }}
+                  />
+                </View>
+                <View style={[styles.TextInputStyle]}>
+                  <Text style={styles.countBackground}>任务内容</Text>
+                  <TextInput
+                    ref={ref => (this.passWordInput = ref)}
+                    clearTextOnFocus={false}
+                    blurOnSubmit={true}
+                    keyboardType="default"
+                    placeholderTextColor="gray"
+                    placeholder=""
+                    autoCapitalize="none"
+                    editable={false}
+                    autoCorrect={false}
+                    underlineColorAndroid="transparent"
+                    clearButtonMode="always"
+                    secureTextEntry={false}
+                    onChangeText={text => {
+                      // 动态更新组件内State记录密码
+                      this.setState({
+                        content: text,
+                      });
+                    }}
+                    value={content}
+                    style={{
+                      width: SCREEN_WIDTH - 120,
+                      marginLeft: 10,
+                      paddingTop: 1,
+                      paddingBottom: 1,
+                      marginBottom: 3,
+                      height: 21,
+                      color: 'black',
+                    }}
+                  />
+                </View>
+                <View style={[styles.TextInputStyle]}>
+                  <Text style={styles.countBackground}>创建人</Text>
+                  <TextInput
+                    ref={ref => (this.passWordInput = ref)}
+                    clearTextOnFocus={false}
+                    blurOnSubmit={true}
+                    keyboardType="default"
+                    placeholderTextColor="gray"
+                    placeholder=""
+                    autoCapitalize="none"
+                    editable={false}
+                    autoCorrect={false}
+                    underlineColorAndroid="transparent"
+                    clearButtonMode="always"
+                    secureTextEntry={false}
+                    onChangeText={text => {
+                      // 动态更新组件内State记录密码
+                      this.setState({
+                        creator: text,
+                      });
+                    }}
+                    value={creator}
+                    style={{
+                      width: SCREEN_WIDTH - 120,
+                      marginLeft: 10,
+                      paddingTop: 1,
+                      paddingBottom: 1,
+                      marginBottom: 3,
+                      height: 21,
+                      color: 'black',
+                    }}
+                  />
+                </View>
+                <View style={[styles.TextInputStyle]}>
+                  <Text style={styles.countBackground}>创建时间</Text>
+                  <TextInput
+                    ref={ref => (this.passWordInput = ref)}
+                    clearTextOnFocus={false}
+                    blurOnSubmit={true}
+                    keyboardType="default"
+                    placeholderTextColor="gray"
+                    placeholder=""
+                    autoCapitalize="none"
+                    editable={false}
+                    autoCorrect={false}
+                    underlineColorAndroid="transparent"
+                    clearButtonMode="always"
+                    secureTextEntry={false}
+                    onChangeText={text => {
+                      // 动态更新组件内State记录密码
+                      this.setState({
+                        createtime: text,
+                      });
+                    }}
+                    value={createtime}
+                    style={{
+                      width: SCREEN_WIDTH - 120,
+                      marginLeft: 10,
+                      paddingTop: 1,
+                      paddingBottom: 1,
+                      marginBottom: 3,
+                      height: 21,
+                      color: 'black',
+                    }}
+                  />
+                </View>
+                <View style={[styles.TextInputStyle]}>
+                  <Text style={styles.countBackground}>设备类型</Text>
+                  <TextInput
+                    ref={ref => (this.passWordInput = ref)}
+                    clearTextOnFocus={false}
+                    blurOnSubmit={true}
+                    keyboardType="default"
+                    placeholderTextColor="gray"
+                    placeholder=""
+                    autoCapitalize="none"
+                    editable={false}
+                    autoCorrect={false}
+                    underlineColorAndroid="transparent"
+                    clearButtonMode="always"
+                    secureTextEntry={false}
+                    onChangeText={text => {
+                      // 动态更新组件内State记录密码
+                      this.setState({
+                        devicetype: text,
+                      });
+                    }}
+                    value={devicetype}
+                    style={{
+                      width: SCREEN_WIDTH - 120,
+                      marginLeft: 10,
+                      paddingTop: 1,
+                      paddingBottom: 1,
+                      marginBottom: 3,
+                      height: 21,
+                      color: 'black',
+                    }}
+                  />
+                </View>
+                <View style={[styles.TextInputStyle]}>
+                  <Text style={styles.countBackground}>设备品牌</Text>
+                  <TextInput
+                    ref={ref => (this.passWordInput = ref)}
+                    clearTextOnFocus={false}
+                    blurOnSubmit={true}
+                    keyboardType="default"
+                    placeholderTextColor="gray"
+                    placeholder=""
+                    autoCapitalize="none"
+                    editable={false}
+                    autoCorrect={false}
+                    underlineColorAndroid="transparent"
+                    clearButtonMode="always"
+                    secureTextEntry={false}
+                    onChangeText={text => {
+                      // 动态更新组件内State记录密码
+                      this.setState({
+                        devicebrand: text,
+                      });
+                    }}
+                    value={devicebrand}
+                    style={{
+                      width: SCREEN_WIDTH - 120,
+                      marginLeft: 10,
+                      paddingTop: 1,
+                      paddingBottom: 1,
+                      marginBottom: 3,
+                      height: 21,
+                      color: 'black',
+                    }}
+                  />
+                </View>
+                <View style={[styles.TextInputStyle]}>
+                  <Text style={styles.countBackground}>设备编号</Text>
+                  <TextInput
+                    ref={ref => (this.passWordInput = ref)}
+                    clearTextOnFocus={false}
+                    blurOnSubmit={true}
+                    keyboardType="default"
+                    placeholderTextColor="gray"
+                    placeholder=""
+                    autoCapitalize="none"
+                    editable={false}
+                    autoCorrect={false}
+                    underlineColorAndroid="transparent"
+                    clearButtonMode="always"
+                    secureTextEntry={false}
+                    onChangeText={text => {
+                      // 动态更新组件内State记录密码
+                      this.setState({
+                        deviceno: text,
+                      });
+                    }}
+                    value={deviceno}
+                    style={{
+                      width: SCREEN_WIDTH - 120,
+                      marginLeft: 10,
+                      paddingTop: 1,
+                      paddingBottom: 1,
+                      marginBottom: 3,
+                      height: 21,
+                      color: 'black',
+                    }}
+                  />
+                </View>
+                <View style={[styles.TextInputStyle]}>
+                  <Text style={styles.countBackground}>设备型号</Text>
+                  <TextInput
+                    ref={ref => (this.passWordInput = ref)}
+                    clearTextOnFocus={false}
+                    blurOnSubmit={true}
+                    keyboardType="default"
+                    placeholderTextColor="gray"
+                    placeholder=""
+                    autoCapitalize="none"
+                    editable={false}
+                    autoCorrect={false}
+                    underlineColorAndroid="transparent"
+                    clearButtonMode="always"
+                    secureTextEntry={false}
+                    onChangeText={text => {
+                      // 动态更新组件内State记录密码
+                      this.setState({
+                        devicemodel: text,
+                      });
+                    }}
+                    value={devicemodel}
+                    style={{
+                      width: SCREEN_WIDTH - 120,
+                      marginLeft: 10,
+                      paddingTop: 1,
+                      paddingBottom: 1,
+                      marginBottom: 3,
+                      height: 21,
+                      color: 'black',
+                    }}
+                  />
+                </View>
               </Card.Body>
               <Card.Footer content="" />
             </Card>
@@ -157,19 +622,86 @@ class TodoDetail extends Component {
               <Card.Body>
                 <TextareaItem rows={5} count={100} placeholder={'处理说明'} />
                 <WingBlank size="sm">
+                  <WhiteSpace size="lg" />
                   <Button onClick={this.attentionDetailClick}>
-                    气态分析仪运行状况检查记录表
+                    <Text style={styles.countBackground}>
+                      气态分析仪运行状况检查记录表
+                    </Text>
                   </Button>
                   <WhiteSpace size="lg" />
                 </WingBlank>
                 <WingBlank size="sm">
-                  <Button>备品备件更换记录</Button>
+                  <Button>
+                    <Text style={styles.countBackground}>备品备件更换记录</Text>
+                  </Button>
                   <WhiteSpace size="lg" />
                 </WingBlank>
-                <InputItem value="">处理人</InputItem>
-                <InputItem value="2018-6-12 12:32" editable={false}>
-                  处理时间
-                </InputItem>
+                <View style={[styles.TextInputStyle]}>
+                  <Text style={styles.countBackground}>处理人</Text>
+                  <TextInput
+                    ref={ref => (this.passWordInput = ref)}
+                    clearTextOnFocus={false}
+                    blurOnSubmit={true}
+                    keyboardType="default"
+                    placeholderTextColor="gray"
+                    placeholder=""
+                    autoCapitalize="none"
+                    editable={false}
+                    autoCorrect={false}
+                    underlineColorAndroid="transparent"
+                    clearButtonMode="always"
+                    secureTextEntry={false}
+                    onChangeText={text => {
+                      // 动态更新组件内State记录密码
+                      this.setState({
+                        dealor: text,
+                      });
+                    }}
+                    value={dealor}
+                    style={{
+                      width: SCREEN_WIDTH - 120,
+                      marginLeft: 10,
+                      paddingTop: 1,
+                      paddingBottom: 1,
+                      marginBottom: 3,
+                      height: 21,
+                      color: 'black',
+                    }}
+                  />
+                </View>
+                <View style={[styles.TextInputStyle]}>
+                  <Text style={styles.countBackground}>处理时间</Text>
+                  <TextInput
+                    ref={ref => (this.passWordInput = ref)}
+                    clearTextOnFocus={false}
+                    blurOnSubmit={true}
+                    keyboardType="default"
+                    placeholderTextColor="gray"
+                    placeholder=""
+                    autoCapitalize="none"
+                    editable={true}
+                    autoCorrect={false}
+                    underlineColorAndroid="transparent"
+                    clearButtonMode="always"
+                    secureTextEntry={false}
+                    onChangeText={text => {
+                      // 动态更新组件内State记录密码
+                      this.setState({
+                        dealtime: text,
+                      });
+                    }}
+                    value={dealtime}
+                    style={{
+                      width: SCREEN_WIDTH - 120,
+                      marginLeft: 10,
+                      paddingTop: 1,
+                      paddingBottom: 1,
+                      marginBottom: 3,
+                      height: 21,
+                      color: 'black',
+                    }}
+                  />
+                </View>
               </Card.Body>
               <Card.Footer content="" />
             </Card>
@@ -193,7 +725,7 @@ class TodoDetail extends Component {
             </Card>
             <WhiteSpace size="lg" />
           </WingBlank>
-          <WingBlank size="sm">
+          {/* <WingBlank size="sm">
             <WhiteSpace size="lg" />
             <Card>
               <Card.Header
@@ -204,7 +736,7 @@ class TodoDetail extends Component {
               <Card.Footer content="" />
             </Card>
             <WhiteSpace size="lg" />
-          </WingBlank>
+          </WingBlank> */}
           <WingBlank size="sm">
             <WhiteSpace size="lg" />
             <Card>
@@ -226,14 +758,27 @@ class TodoDetail extends Component {
     );
   }
 }
-
+ 
 // define your styles
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    /*  flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'white',
+    backgroundColor: 'white', */
+  },
+  TextInputStyle: {
+    flexDirection: 'row',
+    width: SCREEN_WIDTH - 50,
+    borderBottomWidth: 0,
+    borderBottomColor: 'gray',
+    marginLeft: 20,
+    marginRight: 20,
+    marginBottom: 5,
+  },
+  countBackground: {
+    fontSize: 12,
+    marginTop: 3,
   },
 });
 

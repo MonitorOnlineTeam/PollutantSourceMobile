@@ -50,7 +50,7 @@ class AttentionDetail extends Component {
   }
   constructor(props) {
     super(props);
-
+ 
     thisComponent = this;
     this.state = {
       devicename: 'CEMS',
@@ -1769,7 +1769,7 @@ class AttentionDetail extends Component {
                         marginLeft: 10,
                         paddingTop: 1,
                         paddingBottom: 1,
-                        marginBottom: 3, 
+                        marginBottom: 3,
                         height: 21,
                         color: 'black',
                       }}
