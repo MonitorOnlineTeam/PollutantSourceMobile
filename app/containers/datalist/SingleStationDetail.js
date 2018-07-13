@@ -29,8 +29,20 @@ import markersInfo from '../../mockdata/OverView/markersInfo.json';
 class SingleStationDetail extends Component {
   constructor(props) {
     super(props);
-    console.log(props.navigation.state.params.item);
-    console.log();
+    // console.log(props.navigation.state.params.item);
+    let barChartData = [];
+    let pieChartData = [];
+    for (let i = 0; i < markersInfo.sewageoption.series[0].data.length; i++) {
+      barChartData.push({y:markersInfo.sewageoption.series[0].data[i],
+        marker:i+'时 '+markersInfo.sewageoption.series[0].data[i]
+      });
+    }
+    for (let i = 0; i < markersInfo.sewagepieoption.series[0].data.length; i++) {
+      //value: 35, label: '烟尘'
+      pieChartData.push({'value':markersInfo.sewagepieoption.series[0].data[i].value,
+      'label':markersInfo.sewagepieoption.series[0].data[i].name
+      });
+    }
     this.state = {
       data: {},
       legend: {
@@ -81,33 +93,34 @@ class SingleStationDetail extends Component {
         data: {
           dataSets: [
             {
-              values: [
-                { y: 100 },
-                { y: 105 },
-                { y: 102 },
-                { y: 110 },
-                { y: 114 },
-                { y: 109 },
-                { y: 105 },
-                { y: 99 },
-                { y: 95 },
-                { y: 100 },
-                { y: 105 },
-                { y: 102 },
-                { y: 110 },
-                { y: 114 },
-                { y: 109 },
-                { y: 105 },
-                { y: 99 },
-                { y: 95 },
-                { y: 100 },
-                { y: 105 },
-                { y: 102 },
-                { y: 110 },
-                { y: 114 },
-                { y: 109 },
-                { y: 105 },
-              ],
+              values: barChartData,
+              // [
+              //   { y: 100 },
+              //   { y: 105 },
+              //   { y: 102 },
+              //   { y: 110 },
+              //   { y: 114 },
+              //   { y: 109 },
+              //   { y: 105 },
+              //   { y: 99 },
+              //   { y: 95 },
+              //   { y: 100 },
+              //   { y: 105 },
+              //   { y: 102 },
+              //   { y: 110 },
+              //   { y: 114 },
+              //   { y: 109 },
+              //   { y: 105 },
+              //   { y: 99 },
+              //   { y: 95 },
+              //   { y: 100 },
+              //   { y: 105 },
+              //   { y: 102 },
+              //   { y: 110 },
+              //   { y: 114 },
+              //   { y: 109 },
+              //   { y: 105 },
+              // ],
               label: 'Bar dataSet',
               config: {
                 color: processColor(globalcolor.darkRed),
@@ -122,15 +135,30 @@ class SingleStationDetail extends Component {
         // highlights: [{x: 3}, {x: 6}],
         xAxis: {
           valueFormatter: [
-            'Jan',
-            'Feb',
-            'Mar',
-            'Apr',
-            'May',
-            'Jun',
-            'Jul',
-            'Aug',
-            'Sep',
+            '00',
+            '01',
+            '02',
+            '03',
+            '04',
+            '05',
+            '06',
+            '07',
+            '08',
+            '09',
+            '10',
+            '11',
+            '12',
+            '13',
+            '14',
+            '15',
+            '16',
+            '17',
+            '18',
+            '19',
+            '20',
+            '21',
+            '22',
+            '23',
           ],
           granularityEnabled: true,
           granularity: 1,
@@ -147,11 +175,12 @@ class SingleStationDetail extends Component {
         data: {
           dataSets: [
             {
-              values: [
-                { value: 35, label: '烟尘' },
-                { value: 20, label: 'NOx' },
-                { value: 45, label: 'SO2' },
-              ],
+              values: pieChartData,
+              // [
+              //   { value: 35, label: '烟尘' },
+              //   { value: 20, label: 'NOx' },
+              //   { value: 45, label: 'SO2' },
+              // ],
               label: '',
               config: {
                 colors: [
@@ -182,8 +211,12 @@ class SingleStationDetail extends Component {
   }
   componentDidMount() {
     let _circleColors = [];
-    for (let i = 0; i < 23; i++) {
+    let lineData = [];
+    for (let i = 0; i < markersInfo.monitorTrend.series[0].data.length; i++) {
       _circleColors.push(processColor(globalcolor.antBlue));
+      lineData.push({y:markersInfo.monitorTrend.series[0].data[i],
+        marker:i+'时 '+markersInfo.monitorTrend.series[0].data[i]
+      });
     }
     this.setState(
       update(this.state, {
@@ -191,33 +224,34 @@ class SingleStationDetail extends Component {
           $set: {
             dataSets: [
               {
-                values: [
-                  { y: 0.88, marker: `00时 0.88` },
-                  { y: 0.77, marker: `01时 0.77` },
-                  { y: 105, marker: `02时 105` },
-                  { y: 115, marker: `0时 115` },
-                  { y: 50, marker: `03时 50` },
-                  { y: 50, marker: `04时 50` },
-                  { y: 50, marker: `05时 50` },
-                  { y: 50, marker: `06时 50` },
-                  { y: 50, marker: `07时 50` },
-                  { y: 50, marker: `08时 50` },
-                  { y: 50, marker: `09时 50` },
-                  { y: 50, marker: `10时 50` },
-                  { y: 50, marker: `11时 50` },
-                  { y: 50, marker: `12时 50` },
-                  { y: 50, marker: `13时 50` },
-                  { y: 50, marker: `14时 50` },
-                  { y: 50, marker: `15时 50` },
-                  { y: 50, marker: `16时 50` },
-                  { y: 45, marker: `17时 45` },
-                  { y: 44, marker: `18时 44` },
-                  { y: 43, marker: `19时 43` },
-                  { y: 44, marker: `20时 44` },
-                  { y: 54, marker: `21时 54` },
-                  { y: 57, marker: `22时 57` },
-                  { y: 60, marker: `23时 60` },
-                ],
+                values: lineData,
+                // [
+                //   { y: 0.88, marker: `00时 0.88` },
+                //   { y: 0.77, marker: `01时 0.77` },
+                //   { y: 105, marker: `02时 105` },
+                //   { y: 115, marker: `0时 115` },
+                //   { y: 50, marker: `03时 50` },
+                //   { y: 50, marker: `04时 50` },
+                //   { y: 50, marker: `05时 50` },
+                //   { y: 50, marker: `06时 50` },
+                //   { y: 50, marker: `07时 50` },
+                //   { y: 50, marker: `08时 50` },
+                //   { y: 50, marker: `09时 50` },
+                //   { y: 50, marker: `10时 50` },
+                //   { y: 50, marker: `11时 50` },
+                //   { y: 50, marker: `12时 50` },
+                //   { y: 50, marker: `13时 50` },
+                //   { y: 50, marker: `14时 50` },
+                //   { y: 50, marker: `15时 50` },
+                //   { y: 50, marker: `16时 50` },
+                //   { y: 45, marker: `17时 45` },
+                //   { y: 44, marker: `18时 44` },
+                //   { y: 43, marker: `19时 43` },
+                //   { y: 44, marker: `20时 44` },
+                //   { y: 54, marker: `21时 54` },
+                //   { y: 57, marker: `22时 57` },
+                //   { y: 60, marker: `23时 60` },
+                // ],
                 label: '',
 
                 config: {

@@ -102,10 +102,8 @@ class DataList extends Component {
     });
   }
   componentWillMount() {
-    console.log('componentWillMount');
   }
   componentDidMount() {
-    console.log('componentDidMount');
   }
   _contentViewScroll = e => {
     var offsetY = e.nativeEvent.contentOffset.y; //滑动距离
@@ -175,7 +173,6 @@ class DataList extends Component {
     };
 
     ImagePicker.showImagePicker(options, response => {
-      console.log('Response = ', response);
 
       if (response.didCancel) {
         console.log('User cancelled photo picker');
@@ -536,7 +533,6 @@ class DataList extends Component {
               return this.props.searchType;
             }}
             mCancelcallback={() => {
-              console.log('Alert mCancelcallback');
               this.props.dispatch(
                 createAction('router/setModalVisible')({
                   modalVisible: !this.props.modalVisible,
@@ -545,8 +541,6 @@ class DataList extends Component {
             }}
             mcallback={(index, date) => {
               this._topSelector.wrappedInstance._changeMTag(index, date);
-              console.log(this._topSelector);
-              console.log(this._topSelector._changeMTag);
             }}
           />
         </Modal>
@@ -612,7 +606,6 @@ const getAllData = async dataType => {
       }
       datalist.push(data);
     });
-
     return new Promise(function(resolve, reject) {
       resolve(datalist);
     });
