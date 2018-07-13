@@ -2322,7 +2322,9 @@ class AttentionDetail extends Component {
             现场拍照
           </Button>
           <WhiteSpace />
-          <Button type="primary" inline={true} onClick={this.ToDetailClick}>单据提交</Button>
+          <Button type="primary" inline={true} onClick={this.ToDetailClick}>
+            单据提交
+          </Button>
           <WhiteSpace />
           <Modal
             popup={true}
