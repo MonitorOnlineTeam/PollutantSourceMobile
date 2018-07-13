@@ -17,6 +17,7 @@ import RNImagePicker from 'react-native-image-picker';
 import { NavigationActions } from '../../utils';
 import { SCREEN_WIDTH, WINDOW_HEIGHT } from '../../config/globalsize';
 import globalcolor from '../../config/globalcolor';
+import { NavigationActions } from '../../utils';
 
 const RadioItem = Radio.RadioItem;
 const data = [
@@ -132,6 +133,11 @@ class AttentionDetail extends Component {
     this.setState({
       files,
     });
+  }
+  ToDetailClick = () => {
+    this.props.dispatch(
+      NavigationActions.navigate({ routeName: 'TodoDetail' })
+    );
   }
   render() {
     const {
@@ -2317,7 +2323,7 @@ class AttentionDetail extends Component {
             现场拍照
           </Button>
           <WhiteSpace />
-          <Button type="primary" inline={true} onClick={this.submit}>
+          <Button type="primary" inline={true} onClick={this.ToDetailClick}>
             单据提交
           </Button>
           <WhiteSpace />
