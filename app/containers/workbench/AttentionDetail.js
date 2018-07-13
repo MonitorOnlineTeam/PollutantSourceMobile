@@ -17,21 +17,22 @@ import RNImagePicker from 'react-native-image-picker';
 import { NavigationActions } from '../../utils';
 import { SCREEN_WIDTH, WINDOW_HEIGHT } from '../../config/globalsize';
 import globalcolor from '../../config/globalcolor';
-import { NavigationActions } from '../../utils';
+import { connect } from 'react-redux';
 
 const RadioItem = Radio.RadioItem;
 const data = [
-  {
-    url: 'https://zos.alipayobjects.com/rmsportal/PZUUCKTRIHWiZSY.jpeg',
-    id: '2121',
-  },
-  {
-    url: 'https://zos.alipayobjects.com/rmsportal/hqQWgTXdrlmVVYi.jpeg',
-    id: '2122',
-  },
+  // {
+  //   url: 'https://zos.alipayobjects.com/rmsportal/PZUUCKTRIHWiZSY.jpeg',
+  //   id: '2121',
+  // },
+  // {
+  //   url: 'https://zos.alipayobjects.com/rmsportal/hqQWgTXdrlmVVYi.jpeg',
+  //   id: '2122',
+  // },
 ];
 let thisComponent;
 // create a component
+@connect()
 class AttentionDetail extends Component {
   static navigationOptions = ({ router, navigation }) => {
     return {
@@ -79,7 +80,7 @@ class AttentionDetail extends Component {
       title: '选择图片',
       cancelButtonTitle: '取消',
       takePhotoButtonTitle: '拍照',
-      chooseFromLibraryButtonTitle: '选择照片',
+      chooseFromLibraryButtonTitle: '',
       customButtons: [
         // {name: 'fb', title: 'Choose Photo from Facebook'},
       ],
@@ -135,9 +136,7 @@ class AttentionDetail extends Component {
     });
   }
   ToDetailClick = () => {
-    this.props.dispatch(
-      NavigationActions.navigate({ routeName: 'TodoDetail' })
-    );
+    thisComponent.props.dispatch(NavigationActions.back());
   }
   render() {
     const {
@@ -2315,7 +2314,7 @@ class AttentionDetail extends Component {
             files={this.state.files}
             onChange={this.onImageChange}
             onImageClick={(index, fs) => console.log(index, fs)}
-            selectable={this.state.files.length < 5}
+            selectable={false}
             multiple={this.state.multiple}
           />
           <WhiteSpace />
@@ -2323,7 +2322,7 @@ class AttentionDetail extends Component {
             现场拍照
           </Button>
           <WhiteSpace />
-          <Button type="primary" inline={true} onClick={this.ToDetailClick}>
+          <Button onClick={this.ToDetailClick}>
             单据提交
           </Button>
           <WhiteSpace />
