@@ -758,7 +758,7 @@ class TodoDetail extends Component {
     );
   }
 }
- 
+
 // define your styles
 const styles = StyleSheet.create({
   container: {
