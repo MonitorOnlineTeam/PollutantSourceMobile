@@ -101,10 +101,8 @@ class DataList extends Component {
       });
     });
   }
-  componentWillMount() {
-  }
-  componentDidMount() {
-  }
+  componentWillMount() {}
+  componentDidMount() {}
   _contentViewScroll = e => {
     var offsetY = e.nativeEvent.contentOffset.y; //滑动距离
     var contentSizeHeight = e.nativeEvent.contentSize.height; //scrollView contentSize高度
@@ -173,7 +171,6 @@ class DataList extends Component {
     };
 
     ImagePicker.showImagePicker(options, response => {
-
       if (response.didCancel) {
         console.log('User cancelled photo picker');
       } else if (response.error) {

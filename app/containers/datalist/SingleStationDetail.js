@@ -33,14 +33,20 @@ class SingleStationDetail extends Component {
     let barChartData = [];
     let pieChartData = [];
     for (let i = 0; i < markersInfo.sewageoption.series[0].data.length; i++) {
-      barChartData.push({y:markersInfo.sewageoption.series[0].data[i],
-        marker:i+'时 '+markersInfo.sewageoption.series[0].data[i]
+      barChartData.push({
+        y: markersInfo.sewageoption.series[0].data[i],
+        marker: i + '时 ' + markersInfo.sewageoption.series[0].data[i],
       });
     }
-    for (let i = 0; i < markersInfo.sewagepieoption.series[0].data.length; i++) {
+    for (
+      let i = 0;
+      i < markersInfo.sewagepieoption.series[0].data.length;
+      i++
+    ) {
       //value: 35, label: '烟尘'
-      pieChartData.push({'value':markersInfo.sewagepieoption.series[0].data[i].value,
-      'label':markersInfo.sewagepieoption.series[0].data[i].name
+      pieChartData.push({
+        value: markersInfo.sewagepieoption.series[0].data[i].value,
+        label: markersInfo.sewagepieoption.series[0].data[i].name,
       });
     }
     this.state = {
@@ -214,8 +220,9 @@ class SingleStationDetail extends Component {
     let lineData = [];
     for (let i = 0; i < markersInfo.monitorTrend.series[0].data.length; i++) {
       _circleColors.push(processColor(globalcolor.antBlue));
-      lineData.push({y:markersInfo.monitorTrend.series[0].data[i],
-        marker:i+'时 '+markersInfo.monitorTrend.series[0].data[i]
+      lineData.push({
+        y: markersInfo.monitorTrend.series[0].data[i],
+        marker: i + '时 ' + markersInfo.monitorTrend.series[0].data[i],
       });
     }
     this.setState(
