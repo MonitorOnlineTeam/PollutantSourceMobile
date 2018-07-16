@@ -13,7 +13,7 @@ import {
   Button,
   Steps,
   Checkbox,
-  Modal
+  Modal,
 } from 'antd-mobile-rn';
 import { SCREEN_WIDTH, WINDOW_HEIGHT } from '../../config/globalsize';
 import globalcolor from '../../config/globalcolor';
@@ -71,7 +71,7 @@ class TodoDetail extends Component {
       NavigationActions.navigate({ routeName: 'AttentionDetail' })
     );
   }
-  addFormItemClick= key => (e) => {
+  addFormItemClick = key => e => {
     e.preventDefault(); // 修复 Android 上点击穿透
     this.setState({
       modal1: true,
@@ -82,11 +82,11 @@ class TodoDetail extends Component {
       modal1: false,
     });
   }
-  onCheckItemChange = (val,e) => {
-    const formitem=this.state.formitem;
+  onCheckItemChange = (val, e) => {
+    const formitem = this.state.formitem;
     formitem.push(val);
     debugger;
-    this.setState({formitem:formitem});
+    this.setState({ formitem: formitem });
   }
   render() {
     const steps = [
@@ -155,7 +155,7 @@ class TodoDetail extends Component {
       devicemodel,
       dealor,
       dealtime,
-      formitem
+      formitem,
     } = this.state;
 
     const dataCheckboxItem = [
@@ -668,21 +668,22 @@ class TodoDetail extends Component {
                 </WingBlank>
                 {formitem.map(i => (
                   <WingBlank size="sm">
-                  <Button>
-                    <Text style={styles.countBackground}>
-                    {
-                      dataCheckboxItem.find(a=>a.value===i)?dataCheckboxItem.find(a=>a.value===i).label : ""
-                    }</Text>
+                    <Button>
+                      <Text style={styles.countBackground}>
+                        {dataCheckboxItem.find(a => a.value === i)
+                          ? dataCheckboxItem.find(a => a.value === i).label
+                          : ''}
+                      </Text>
+                    </Button>
+                    <WhiteSpace size="lg" />
+                  </WingBlank>
+                ))}
+                <WingBlank size="sm">
+                  <Button onClick={this.addFormItemClick('modal1')}>
+                    <Text style={styles.countBackground}>+</Text>
                   </Button>
                   <WhiteSpace size="lg" />
                 </WingBlank>
-                ))}
-                <WingBlank size="sm">
-                <Button onClick = {this.addFormItemClick("modal1")}>
-                  <Text style={styles.countBackground}>+</Text>
-                </Button>
-                <WhiteSpace size="lg" />
-              </WingBlank>
                 <View style={[styles.TextInputStyle]}>
                   <Text style={styles.countBackground}>处理人</Text>
                   <TextInput
@@ -807,15 +808,29 @@ class TodoDetail extends Component {
           maskClosable={false}
           onClose={this.onClose('modal1')}
           title="选择表单"
-          footer={[{ text: '确定', onPress: () => { console.log('ok'); this.onClose('modal1')(); } }]}
+          footer={[
+            {
+              text: '确定',
+              onPress: () => {
+                console.log('ok');
+                this.onClose('modal1')();
+              },
+            },
+          ]}
           wrapProps={{ onTouchStart: this.onWrapTouchStart }}
         >
-            <List style={{ marginTop: 12 }}>
-              {dataCheckboxItem.map(i => (
-                <CheckboxItem key={i.value} checked={formitem.findIndex(a=>a===i.value)>-1?true:false} onChange={() => this.onCheckItemChange(i.value)}>
-                  {i.label}
-                </CheckboxItem>
-              ))}
+          <List style={{ marginTop: 12 }}>
+            {dataCheckboxItem.map(i => (
+              <CheckboxItem
+                key={i.value}
+                checked={
+                  formitem.findIndex(a => a === i.value) > -1 ? true : false
+                }
+                onChange={() => this.onCheckItemChange(i.value)}
+              >
+                {i.label}
+              </CheckboxItem>
+            ))}
           </List>
         </Modal>
       </View>
