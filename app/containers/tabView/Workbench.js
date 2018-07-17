@@ -12,7 +12,7 @@ import { connect } from 'react-redux';
 import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
 import wholeSituationStyle from '../../config/wholeSituationStyle';
 import { LocaleConfig } from 'react-native-calendars';
-import { Menu, ActivityIndicator, NavBar } from 'antd-mobile';
+import { Menu, ActivityIndicator, NavBar } from 'antd-mobile-rn';
 import { SCREEN_WIDTH } from '../../config/globalsize';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import { Modal } from 'antd-mobile-rn';

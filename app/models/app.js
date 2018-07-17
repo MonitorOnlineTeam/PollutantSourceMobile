@@ -84,6 +84,7 @@ export default Model.extend({
         ShowToast('用户名，密码不能为空');
       } else {
         const result = yield call(authService.login, payload);
+        console.log(result);
         if (result == null) {
           ShowToast('登录失败');
         } else if (result != null && result.requstresult == '1') {
@@ -95,8 +96,9 @@ export default Model.extend({
           }
           yield put(createAction('updateState')({ result, fetching: false }));
           Storage.set('login', result);
-        } else if (result != null && result.requstresult == 0) {
+        } else if (result != null && result.requstresult == '0') {
           ShowToast('用户名或密码错误');
+          yield put(createAction('updateState')({ result, fetching: false }));
         } else {
           ShowToast('登录失败');
         }

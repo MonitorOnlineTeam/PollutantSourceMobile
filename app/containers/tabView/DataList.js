@@ -434,7 +434,6 @@ class DataList extends Component {
                   ]}
                 >
                   {this.state.cityNameLst.map(item => {
-                    // debugger;
                     console.log(item);
                     return (
                       <TouchableOpacity

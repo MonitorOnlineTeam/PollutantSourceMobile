@@ -1,5 +1,5 @@
 export { NavigationActions } from 'react-navigation';
-import { Toast, Modal } from 'antd-mobile';
+import { Toast, Modal } from 'antd-mobile-rn';
 
 export { default as Storage } from './storage';
 

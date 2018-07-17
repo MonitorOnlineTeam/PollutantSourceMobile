@@ -143,7 +143,6 @@ export function getPointEnterprise() {
 
 // 根据时间、污染物获取管控参数以及状态
 export function getDynamicControlData(obj) {
-  // debugger
   let thisObj = obj || {};
   let returnDatas = {
     statusDatas: [],

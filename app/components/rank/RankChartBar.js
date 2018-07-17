@@ -97,7 +97,6 @@ class RankChartBar extends Component {
     };
   }
   componentWillReceiveProps(nextProps) {
-    debugger;
     if (nextProps.YValues !== this.props.YValues) {
       let values = [];
       let valueFormatter = [];
@@ -218,8 +217,6 @@ class RankChartBar extends Component {
   }
 
   render() {
-    console.log(this.state);
-    debugger;
     return this.props.loading ? (
       <LoadingComponent />
     ) : (
