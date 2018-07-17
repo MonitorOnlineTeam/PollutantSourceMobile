@@ -668,7 +668,7 @@ class SingleStationDetail extends Component {
                     }}
                   >
                     <Text style={{ color: '#fff', fontSize: 14 }}>
-                      烟尘: 56
+                      烟尘: 107
                     </Text>
                   </View>
                   <View
@@ -683,7 +683,7 @@ class SingleStationDetail extends Component {
                       justifyContent: 'center',
                     }}
                   >
-                    <Text style={{ color: '#fff', fontSize: 14 }}>SO2: 91</Text>
+                    <Text style={{ color: '#fff', fontSize: 14 }}>SO2: 112</Text>
                   </View>
                   <View
                     style={{
@@ -697,7 +697,7 @@ class SingleStationDetail extends Component {
                       justifyContent: 'center',
                     }}
                   >
-                    <Text style={{ color: '#fff', fontSize: 14 }}>NOx: 64</Text>
+                    <Text style={{ color: '#fff', fontSize: 14 }}>NOx: 59</Text>
                   </View>
                   <View
                     style={{
@@ -712,7 +712,7 @@ class SingleStationDetail extends Component {
                     }}
                   >
                     <Text style={{ color: '#fff', fontSize: 14 }}>
-                      折算烟尘: 56
+                      折算烟尘: 154
                     </Text>
                   </View>
                   <View
@@ -728,7 +728,7 @@ class SingleStationDetail extends Component {
                     }}
                   >
                     <Text style={{ color: '#fff', fontSize: 14 }}>
-                      折算SO2: 91
+                      折算SO2: 61
                     </Text>
                   </View>
                   <View
