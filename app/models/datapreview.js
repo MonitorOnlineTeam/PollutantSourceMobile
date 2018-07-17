@@ -31,7 +31,7 @@ export default Model.extend({
         Unit: 'μg/m³',
       },
     ],
-    YValues:[],
+    YValues: [],
     pointBeens: [
       /**
        * pID : 2dc875e5-d500-4d6a-8f0f-c395a239b2ad
@@ -99,15 +99,12 @@ export default Model.extend({
           //     payload: {searchTime:prefixDate+' '+myDate.getHours()+":00:00",mTag:xiaoshi,GroupID:'全部'},
           // });
         },
-        RankOfStationByEmissions:()=>{
-          
-        }
+        RankOfStationByEmissions: () => {},
       });
     },
   },
-  
+
   effects: {
-    
     /**
      * 获取指定污染物的因子编码
      * houxiaofeng

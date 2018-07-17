@@ -12,7 +12,7 @@ import LoadingComponent from '../../components/common/LoadingComponent';
  * @extends {Component}
  */
 @connect(
-  ({ app, loading,datapreview }) => ({
+  ({ app, loading, datapreview }) => ({
     chartData: app.chartData,
     YZhou: app.YZhou,
     listRankData: app.listRankData,
@@ -62,28 +62,21 @@ class RankChartBar extends Component {
               ],
               stackLabels: ['微量', '超量', '巨量'],
               drawValues: false,
-             
             },
           },
         ],
         config: {
           barWidth: 0.2,
           barSpace: 0.2,
-          
-         
-          
-          
         },
       },
-      
+
       xAxis: {
         valueFormatter: ['Q1', 'Q2', 'Q3', 'Q4'],
         granularityEnabled: true,
         granularity: 1,
         position: 'BOTTOM',
         axisMaximum: 5,
-        
-        
       },
 
       marker: {
@@ -101,7 +94,6 @@ class RankChartBar extends Component {
         yEntrySpace: 5,
         wordWrapEnabled: true,
       },
-      
     };
   }
   componentWillReceiveProps(nextProps) {
@@ -110,31 +102,27 @@ class RankChartBar extends Component {
       let values = [];
       let valueFormatter = [];
       let colors = [];
-      let axisMaximum =  nextProps.YValues.length;
+      let axisMaximum = nextProps.YValues.length;
       let i = 0;
       nextProps.YValues.map((item, key) => {
         values.push({
           y: parseFloat(item.aa),
           marker: `公司:${item.Abbreviation}\n值:${item.aa}`,
-       
-         
         });
-       
+
         valueFormatter.push(item.Abbreviation);
         // colors.push(processColor(item.chartColor));
-        if (item.aa>90) {
+        if (item.aa > 90) {
           colors.push(processColor('#16010b'));
-        } else if (item.aa> 60) {
+        } else if (item.aa > 60) {
           colors.push(processColor('#ff401a'));
-        } else if (item.aa> 30){
+        } else if (item.aa > 30) {
           colors.push(processColor('#efdc31'));
-        }else
-        {
+        } else {
           colors.push(processColor('#03d304'));
         }
       });
-     
-  
+
       this.setState({
         data: {
           ...this.state.data,
@@ -187,17 +175,15 @@ class RankChartBar extends Component {
         });
         valueFormatter.push(item.chartXValue);
         //item.item.MonitoringDatasi.PollutantDatas[1].Concentration > 30 ? 'blue':item.item.MonitoringDatasi.PollutantDatas[1].Concentration > 60 ? 'red':'green'
-        if (item.chartYValue>90) {
+        if (item.chartYValue > 90) {
           colors.push(processColor('#16010b'));
-        } else if (item.chartYValue> 60) {
+        } else if (item.chartYValue > 60) {
           colors.push(processColor('#ff401a'));
-        } else if (item.chartYValue> 30){
+        } else if (item.chartYValue > 30) {
           colors.push(processColor('#efdc31'));
-        }else
-        {
+        } else {
           colors.push(processColor('#03d304'));
         }
-        
       });
       if (this.state.isReversedOrder) {
         this.setState({ isReversedOrder: false });
@@ -261,8 +247,8 @@ class RankChartBar extends Component {
         doubleTapToZoomEnabled={true}
         dragDecelerationEnabled={false}
         dragDecelerationFrictionCoef={0.99}
-        zoom={{scaleX: 20, scaleY: 1, xValue: 0, yValue: 0}}
-        chartDescription={{text: ""}}
+        zoom={{ scaleX: 20, scaleY: 1, xValue: 0, yValue: 0 }}
+        chartDescription={{ text: '' }}
       />
     );
   }
@@ -275,7 +261,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#2c3e50',
-    
   },
   chart: {
     flex: 1,

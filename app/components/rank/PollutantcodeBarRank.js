@@ -23,19 +23,15 @@ const SCREEN_WIDTH = Dimensions.get('window').width;
  * @class PollutantcodeBar
  * @extends {Component}
  */
-@connect(
-  ({ app, loading,datapreview }) => ({
-    
-    YValues: datapreview.YValues,
-  }),
-)
+@connect(({ app, loading, datapreview }) => ({
+  YValues: datapreview.YValues,
+}))
 class PollutantcodeBarRank extends Component {
   constructor(props) {
     super(props);
     this.state = {
       pollutantData: data.data[2].pollutantType,
       pressPollutantCode: data.data[2].pollutantType[0].pollutantCode,
-     
     };
   }
 
@@ -63,15 +59,15 @@ class PollutantcodeBarRank extends Component {
             this.setState({ pressPollutantCode: item.item.pollutantCode });
             console.log(this.props.YValues);
             let dataS;
-            this.props.YValues.forEach((item)=>{
-                  item.aa =  (Math.floor(Math.random() * (100000) + 10000)/1000);
-                  
-              });
-              dataS = this.props.YValues;
-              console.log(dataS);
+            this.props.YValues.forEach(item => {
+              item.aa = Math.floor(Math.random() * 100000 + 10000) / 1000;
+            });
+            dataS = this.props.YValues;
+            console.log(dataS);
             debugger;
-            this.props.dispatch(createAction('datapreview/updateState')({'YValues':dataS}));
-        
+            this.props.dispatch(
+              createAction('datapreview/updateState')({ YValues: dataS })
+            );
           }}
         >
           {item.item.pollutantName == 'PM25' ? (

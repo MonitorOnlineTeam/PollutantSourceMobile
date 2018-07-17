@@ -19,10 +19,10 @@ const SCREEN_WIDTH = Dimensions.get('window').width;
  * @extends {Component}
  */
 @connect(
-  ({ app,datapreview }) => ({
+  ({ app, datapreview }) => ({
     listRankData: app.listRankData,
     pressPollutantCode: app.pressPollutantCode,
-    YValues:datapreview.YValues
+    YValues: datapreview.YValues,
   }),
   null,
   null,
@@ -35,17 +35,19 @@ class RankFlatList extends Component {
       stationLst: [],
     };
     getAllData('hour').then(value => {
-        let stationLst = value;
-        let aa;
-        stationLst.forEach((item)=>{
-            aa =  (Math.floor(Math.random() * (100000) + 10000)/1000);
-            item.aa = aa;
-        });
-        console.log(stationLst);
-      this.setState({
-        'stationLst': stationLst,
+      let stationLst = value;
+      let aa;
+      stationLst.forEach(item => {
+        aa = Math.floor(Math.random() * 100000 + 10000) / 1000;
+        item.aa = aa;
       });
-      this.props.dispatch(createAction('datapreview/updateState')({'YValues':stationLst}));
+      console.log(stationLst);
+      this.setState({
+        stationLst: stationLst,
+      });
+      this.props.dispatch(
+        createAction('datapreview/updateState')({ YValues: stationLst })
+      );
     });
   }
   render() {
@@ -101,7 +103,7 @@ class RankFlatList extends Component {
                   marginLeft: 30,
                 }}
               />
-              <Text style={{ marginLeft: 5}}>巨量</Text>
+              <Text style={{ marginLeft: 5 }}>巨量</Text>
             </View>
           </View>
         }
@@ -152,15 +154,21 @@ class RankFlatList extends Component {
           </Text>
           <Text
             style={{
-                fontSize: 14,
-                color: item.item.aa > 90 ? '#16010b':item.item.aa > 60 ? '#ff401a':item.item.aa > 30?'#efdc31':'#03d304',
-                padding: 3,
-                width: SCREEN_WIDTH / 6,
+              fontSize: 14,
+              color:
+                item.item.aa > 90
+                  ? '#16010b'
+                  : item.item.aa > 60
+                    ? '#ff401a'
+                    : item.item.aa > 30
+                      ? '#efdc31'
+                      : '#03d304',
+              padding: 3,
+              width: SCREEN_WIDTH / 6,
             }}
-            >
+          >
             {item.item.aa}
-            </Text>
-          
+          </Text>
         </View>
       );
     } else {
