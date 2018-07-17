@@ -55,15 +55,15 @@ class AttentionDetail extends Component {
 
     thisComponent = this;
     this.state = {
-      devicename: 'CEMS',
-      deviceno: 'CEMS 3080',
+      devicename: '便携式红外线烟气分析仪',
+      deviceno: 'MODEL 3080',
       deviceproductor: '北京雪迪龙科技股份有限公司',
-      val1: '红外传感器工作原理',
-      val2: '红外传感器工作原理',
-      val3: '12',
-      val4: '10',
-      val5: '相对误差',
-      val6: '2',
+      val1: '加热取样法',
+      val2: '激光散射法',
+      val3: '17.920',
+      val4: '18.920',
+      val5: '绝对误差',
+      val6: '1',
       val7: '',
       part1Value: 1,
       part2Value: 1,
@@ -2295,7 +2295,7 @@ class AttentionDetail extends Component {
                   <TextareaItem
                     rows={5}
                     count={100}
-                    placeholder={'总体校准和比对监测是否合格'}
+                    placeholder={'总体校准和比对监测结果'}
                   />
                 </List.Item>
                 <List.Item>
