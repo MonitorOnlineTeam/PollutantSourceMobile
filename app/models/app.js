@@ -73,7 +73,7 @@ export default Model.extend({
       const login = yield call(Storage.get, 'login', false);
       yield put(createAction('updateState')({ login, loading: false }));
     },
-    *login({ payload }, { call, put, take }) {
+    *login({ payload }, { call, put, take, update }) {
       yield put(createAction('updateState')({ fetching: true }));
       if (
         payload.User_Account === '' ||
@@ -93,7 +93,6 @@ export default Model.extend({
             yield put('loadglobalvariable', { user });
             yield take('loadglobalvariable/@@end');
           }
-
           yield put(createAction('updateState')({ result, fetching: false }));
           Storage.set('login', result);
         } else if (result != null && result.requstresult == 0) {

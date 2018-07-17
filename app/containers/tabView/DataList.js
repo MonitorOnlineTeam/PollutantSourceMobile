@@ -101,6 +101,8 @@ class DataList extends Component {
       });
     });
   }
+  componentWillMount() {}
+  componentDidMount() {}
   _contentViewScroll = e => {
     var offsetY = e.nativeEvent.contentOffset.y; //滑动距离
     var contentSizeHeight = e.nativeEvent.contentSize.height; //scrollView contentSize高度
@@ -169,8 +171,6 @@ class DataList extends Component {
     };
 
     ImagePicker.showImagePicker(options, response => {
-      console.log('Response = ', response);
-
       if (response.didCancel) {
         console.log('User cancelled photo picker');
       } else if (response.error) {
@@ -242,7 +242,7 @@ class DataList extends Component {
             </View>
             <ScrollView
               ref={ref => (this.titleScrollView = ref)}
-              style={[{ width: (SCREEN_WIDTH * 2) / 3, height: 33 }]}
+              style={[{ width: SCREEN_WIDTH * 2 / 3, height: 33 }]}
               horizontal={true}
               showsHorizontalScrollIndicator={false}
               scrollEnabled={false}
@@ -415,7 +415,7 @@ class DataList extends Component {
                       ? this.state.cityNameLst.length * 60
                       : 33,
                     width: defaultPollutantCodes
-                      ? (defaultPollutantCodes.length * SCREEN_WIDTH) / 3
+                      ? defaultPollutantCodes.length * SCREEN_WIDTH / 3
                       : 33,
                   },
                 ]}
@@ -427,7 +427,7 @@ class DataList extends Component {
                         ? this.state.cityNameLst.length * 60
                         : 33,
                       width: defaultPollutantCodes
-                        ? (defaultPollutantCodes.length * SCREEN_WIDTH) / 3
+                        ? defaultPollutantCodes.length * SCREEN_WIDTH / 3
                         : 33,
                       backgroundColor: 'white',
                     },
@@ -451,8 +451,7 @@ class DataList extends Component {
                           {
                             height: 60,
                             width: defaultPollutantCodes
-                              ? (defaultPollutantCodes.length * SCREEN_WIDTH) /
-                                3
+                              ? defaultPollutantCodes.length * SCREEN_WIDTH / 3
                               : 33,
                             flexDirection: 'row',
                           },
@@ -532,7 +531,6 @@ class DataList extends Component {
               return this.props.searchType;
             }}
             mCancelcallback={() => {
-              console.log('Alert mCancelcallback');
               this.props.dispatch(
                 createAction('router/setModalVisible')({
                   modalVisible: !this.props.modalVisible,
@@ -541,8 +539,6 @@ class DataList extends Component {
             }}
             mcallback={(index, date) => {
               this._topSelector.wrappedInstance._changeMTag(index, date);
-              console.log(this._topSelector);
-              console.log(this._topSelector._changeMTag);
             }}
           />
         </Modal>
@@ -552,63 +548,70 @@ class DataList extends Component {
 }
 const getAllData = async dataType => {
   let datalist = [];
-  const getdata = await getAllConcentration({ dataType: dataType });
-  getdata.map(item => {
-    let data = {
-      key: item.DGIMN,
-      entpointName: item.EntName + '-' + item.PointName,
-      monitorTime:
-        item.MonitoringDatas.length === 0
-          ? moment().format('YYYY-MM-DD HH:mm:ss')
-          : item.MonitoringDatas[0].MonitoringTime,
-      entName: item.EntName,
-      pointName: item.PointName,
-      industry: item.IndustryTypeCode,
-      dgimn: item.DGIMN,
-      control: item.AttentionCode,
-      dataType: dataType,
-      MonitoringDatasi: item.MonitoringDatas[0],
-      Abbreviation: item.Abbreviation,
-      bstatus: null,
+  // const getdata = await getAllConcentration({ dataType: dataType });
+  let promise = getAllConcentration({ dataType: dataType }).then(getdata => {
+    getdata.map(item => {
+      let data = {
+        key: item.DGIMN,
+        entpointName: item.EntName + '-' + item.PointName,
+        monitorTime:
+          item.MonitoringDatas.length === 0
+            ? moment().format('YYYY-MM-DD HH:mm:ss')
+            : item.MonitoringDatas[0].MonitoringTime,
+        entName: item.EntName,
+        pointName: item.PointName,
+        industry: item.IndustryTypeCode,
+        dgimn: item.DGIMN,
+        control: item.AttentionCode,
+        dataType: dataType,
+        MonitoringDatasi: item.MonitoringDatas[0],
+        Abbreviation: item.Abbreviation,
+        bstatus: null,
 
-      status:
+        status:
+          item.DGIMN === 'bjldgn01' ||
+          item.DGIMN === 'dtgjhh11102' ||
+          item.DGIMN === 'dtgrjx110'
+            ? 3
+            : 1,
+      };
+      if (
         item.DGIMN === 'bjldgn01' ||
         item.DGIMN === 'dtgjhh11102' ||
         item.DGIMN === 'dtgrjx110'
-          ? 3
-          : 1,
-    };
-    if (
-      item.DGIMN === 'bjldgn01' ||
-      item.DGIMN === 'dtgjhh11102' ||
-      item.DGIMN === 'dtgrjx110'
-    ) {
-      data.status = 2;
-    } else if (
-      item.DGIMN === 'dtgrjx104' ||
-      item.DGIMN === 'dtgrjx103' ||
-      item.DGIMN === 'lywjfd03'
-    ) {
-      data.status = 3;
-    } else {
-      data.status = 1;
-    }
-    if (item.MonitoringDatas.length > 0) {
-      item.MonitoringDatas[0].PollutantDatas.map(wry => {
-        data[wry.PollutantCode] = wry.Concentration + ',' + wry.PollutantCode;
-        data[wry.PollutantCode + '-' + 'PollutantName'] = wry.PollutantName;
-        data[wry.PollutantCode + '-' + 'PollutantCode'] = wry.PollutantCode;
-        data[wry.PollutantCode + '-' + 'IsExceed'] = wry.IsExceed; // 是否超标
-        data[wry.PollutantCode + '-' + 'ExceedValue'] = wry.ExceedValue; // 超标倍数
-        data[wry.PollutantCode + '-' + 'IsException'] = wry.IsException; // 是否异常
-        data[wry.PollutantCode + '-' + 'ExceptionText'] = wry.ExceptionText; // 异常类型
-        data[wry.PollutantCode + '-' + 'Standard'] = wry.Standard; // 标准值
-      });
-    }
-    datalist.push(data);
+      ) {
+        data.status = 2;
+      } else if (
+        item.DGIMN === 'dtgrjx104' ||
+        item.DGIMN === 'dtgrjx103' ||
+        item.DGIMN === 'lywjfd03'
+      ) {
+        data.status = 3;
+      } else {
+        data.status = 1;
+      }
+      if (item.MonitoringDatas.length > 0) {
+        item.MonitoringDatas[0].PollutantDatas.map(wry => {
+          data[wry.PollutantCode] = wry.Concentration + ',' + wry.PollutantCode;
+          data[wry.PollutantCode + '-' + 'PollutantName'] = wry.PollutantName;
+          data[wry.PollutantCode + '-' + 'PollutantCode'] = wry.PollutantCode;
+          data[wry.PollutantCode + '-' + 'IsExceed'] = wry.IsExceed; // 是否超标
+          data[wry.PollutantCode + '-' + 'ExceedValue'] = wry.ExceedValue; // 超标倍数
+          data[wry.PollutantCode + '-' + 'IsException'] = wry.IsException; // 是否异常
+          data[wry.PollutantCode + '-' + 'ExceptionText'] = wry.ExceptionText; // 异常类型
+          data[wry.PollutantCode + '-' + 'Standard'] = wry.Standard; // 标准值
+        });
+      }
+      datalist.push(data);
+    });
+    return new Promise(function(resolve, reject) {
+      resolve(datalist);
+    });
   });
-  console.log(datalist);
-  return datalist;
+
+  // console.log(datalist);
+  // return datalist;
+  return promise;
 };
 
 // define your styles
@@ -632,7 +635,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   HorizontalList: {
-    width: (SCREEN_WIDTH * 2) / 3,
+    width: SCREEN_WIDTH * 2 / 3,
   },
   myBorderBottom: {
     borderBottomColor: globalcolor.borderLightGreyColor,

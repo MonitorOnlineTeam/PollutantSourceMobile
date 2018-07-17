@@ -111,7 +111,7 @@ class ChartBar extends Component {
               }}
             />
             <VictoryAxis
-              dependentAxis
+              dependentAxis={true}
               domain={this.props.YZhou}
               tickFormat={x => x}
               style={{

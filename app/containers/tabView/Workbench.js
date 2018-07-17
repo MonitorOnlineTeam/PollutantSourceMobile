@@ -22,6 +22,10 @@ import moment from 'moment';
 import alarm from '../../mockdata/Workbench/alarm.json';
 import earlywarning from '../../mockdata/Workbench/earlywarning.json';
 import operation from '../../mockdata/Workbench/operation.json';
+import {
+  getPointEnterprise,
+  getEnterprise,
+} from '../../mockdata/Base/commonbase';
 import todolist from '../../mockdata/Workbench/todolist.json';
 
 /*
@@ -168,6 +172,7 @@ class Workbench extends Component {
     _this = this;
     this.state = {
       items: {},
+      EntData: [],
     };
   }
   getalarm = (day, i) => {
@@ -333,6 +338,15 @@ class Workbench extends Component {
       const strTime = this.timeToString(time);
       this.state.items[strTime] = [];
     }
+    console.log('-----------------------------------------');
+    getPointEnterprise().then(function(data) {
+      console.log(data);
+      _this.setState({
+        EntData: data,
+      });
+
+      console.log(this.state.EntData);
+    });
 
     if (type === 'all') {
       for (let i = -15; i < 50; i++) {
@@ -362,8 +376,6 @@ class Workbench extends Component {
         this.gettodolist(day, i);
       }
     }
-    console.log('1111');
-    console.log(this.state.items);
 
     // const newitem = {
     //   '2018-07-02': [{ name: '', height: 500, marked: true }],
