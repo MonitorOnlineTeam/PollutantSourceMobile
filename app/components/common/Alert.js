@@ -26,7 +26,7 @@ import { shishi, fenzhong, xiaoshi, ri } from '../../config/globalconst';
 
 const { width, height } = Dimensions.get('window');
 const navigatorH = 64; // navigator height
-const [aWidth, aHeight] = [width, WINDOW_HEIGHT * 2 / 5]; //[300, 214];
+const [aWidth, aHeight] = [width, WINDOW_HEIGHT / 2]; //[300, 214];
 const [left, top] = [0, 0];
 const [middleLeft, middleTop] = [
   (width - aWidth) / 2,

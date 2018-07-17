@@ -65,8 +65,8 @@ class TopSelector extends PureComponent {
       <View
         style={[
           {
-            height: 81 - 37,
-            marginBottom: 2,
+            height: 44,
+            marginBottom: 1,
             width: SCREEN_WIDTH,
             alignItems: 'center',
             backgroundColor: 'white',
@@ -82,8 +82,8 @@ class TopSelector extends PureComponent {
               justifyContent: 'space-around',
               borderBottomColor: globalcolor.borderGreyColor,
               borderTopColor: globalcolor.borderGreyColor,
-              borderTopWidth: 1,
-              borderBottomWidth: 1,
+              
+            
               height: 44,
             },
           ]}

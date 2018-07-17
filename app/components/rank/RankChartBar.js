@@ -247,7 +247,7 @@ class RankChartBar extends Component {
         doubleTapToZoomEnabled={true}
         dragDecelerationEnabled={false}
         dragDecelerationFrictionCoef={0.99}
-        zoom={{ scaleX: 20, scaleY: 1, xValue: 0, yValue: 0 }}
+        zoom={{ scaleX: Math.floor(this.props.YValues.length/10), scaleY: 1, xValue: 0, yValue: 0 }}
         chartDescription={{ text: '' }}
       />
     );
