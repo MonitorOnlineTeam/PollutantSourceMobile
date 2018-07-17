@@ -218,7 +218,7 @@ class DataList extends Component {
           <View
             style={[{ width: SCREEN_WIDTH, height: 33, flexDirection: 'row' }]}
           >
-            <View style={[styles.oneLabel, styles.myBorderBottom]}>
+            <View style={[styles.oneLabel]}>
               <View
                 style={[{ justifyContent: 'center', alignItems: 'center' }]}
               >
@@ -324,7 +324,7 @@ class DataList extends Component {
                           {
                             fontSize: 11,
                             width: SCREEN_WIDTH / 3 - little_font_size2,
-                            color: globalcolor.air_quality_color,
+                            color: globalcolor.datepickerGreyText,
                             marginTop: 5,
                             marginLeft: little_font_size2 + 5,
                           },
@@ -434,6 +434,8 @@ class DataList extends Component {
                   ]}
                 >
                   {this.state.cityNameLst.map(item => {
+                    // debugger;
+                    console.log(item);
                     return (
                       <TouchableOpacity
                         key={item.key}

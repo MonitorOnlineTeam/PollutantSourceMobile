@@ -11,6 +11,10 @@ import {
 import { createAction, ShowToast, NavigationActions } from '../../utils';
 import { connect } from 'react-redux';
 import data from '../../mockdata/Rank/mainmap.json';
+import {
+  getAllConcentration,
+  defaultPollutantCodes,
+} from '../../mockdata/Base/commonbase';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 /**
@@ -19,7 +23,9 @@ const SCREEN_WIDTH = Dimensions.get('window').width;
  * @class PollutantcodeBar
  * @extends {Component}
  */
-@connect()
+@connect(({ app, loading, datapreview }) => ({
+  YValues: datapreview.YValues,
+}))
 class PollutantcodeBarRank extends Component {
   constructor(props) {
     super(props);
@@ -49,12 +55,19 @@ class PollutantcodeBarRank extends Component {
       >
         <TouchableOpacity
           onPress={() => {
+            debugger;
             this.setState({ pressPollutantCode: item.item.pollutantCode });
-            // this.props.dispatch(createAction('app/getpressCodeData')({
-            //     whitchPage:'Rank',
-            //     pressPollutantCodeRank: item.item.pollutantCode,
-            //     pressPollutantCodeMap: ''
-            //   }));
+            console.log(this.props.YValues);
+            let dataS,
+              array = [];
+            this.props.YValues.forEach(item => {
+              item.aa = Math.floor(Math.random() * 100000 + 10000) / 1000;
+              array.push(item);
+            });
+
+            this.props.dispatch(
+              createAction('datapreview/updateState')({ YValues: array })
+            );
           }}
         >
           {item.item.pollutantName == 'PM25' ? (
@@ -190,7 +203,67 @@ class PollutantcodeBarRank extends Component {
     );
   }
 }
+const getAllData = async dataType => {
+  let datalist = [];
 
+  const getdata = await getAllConcentration({ dataType: dataType });
+  getdata.map(item => {
+    let data = {
+      key: item.DGIMN,
+      entpointName: item.EntName + '-' + item.PointName,
+      monitorTime:
+        item.MonitoringDatas.length === 0
+          ? moment().format('YYYY-MM-DD HH:mm:ss')
+          : item.MonitoringDatas[0].MonitoringTime,
+      entName: item.EntName,
+      pointName: item.PointName,
+      industry: item.IndustryTypeCode,
+      dgimn: item.DGIMN,
+      control: item.AttentionCode,
+      dataType: dataType,
+      MonitoringDatasi: item.MonitoringDatas[0],
+      Abbreviation: item.Abbreviation,
+      bstatus: null,
+
+      status:
+        item.DGIMN === 'bjldgn01' ||
+        item.DGIMN === 'dtgjhh11102' ||
+        item.DGIMN === 'dtgrjx110'
+          ? 3
+          : 1,
+    };
+    if (
+      item.DGIMN === 'bjldgn01' ||
+      item.DGIMN === 'dtgjhh11102' ||
+      item.DGIMN === 'dtgrjx110'
+    ) {
+      data.status = 2;
+    } else if (
+      item.DGIMN === 'dtgrjx104' ||
+      item.DGIMN === 'dtgrjx103' ||
+      item.DGIMN === 'lywjfd03'
+    ) {
+      data.status = 3;
+    } else {
+      data.status = 1;
+    }
+    if (item.MonitoringDatas.length > 0) {
+      item.MonitoringDatas[0].PollutantDatas.map(wry => {
+        data[wry.PollutantCode] = wry.Concentration + ',' + wry.PollutantCode;
+        data[wry.PollutantCode + '-' + 'PollutantName'] = wry.PollutantName;
+        data[wry.PollutantCode + '-' + 'PollutantCode'] = wry.PollutantCode;
+        data[wry.PollutantCode + '-' + 'IsExceed'] = wry.IsExceed; // 是否超标
+        data[wry.PollutantCode + '-' + 'ExceedValue'] = wry.ExceedValue; // 超标倍数
+        data[wry.PollutantCode + '-' + 'IsException'] = wry.IsException; // 是否异常
+        data[wry.PollutantCode + '-' + 'ExceptionText'] = wry.ExceptionText; // 异常类型
+        data[wry.PollutantCode + '-' + 'Standard'] = wry.Standard; // 标准值
+      });
+    }
+    datalist.push(data);
+  });
+  console.log(datalist);
+  return datalist;
+};
 // define your styles
 const styles = StyleSheet.create({});
 
