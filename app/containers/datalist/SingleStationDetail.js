@@ -655,7 +655,7 @@ class SingleStationDetail extends Component {
                     flexWrap: 'wrap',
                   }}
                 >
-                <View
+                  <View
                     style={{
                       backgroundColor: '#1CCE00',
                       height: 50,
@@ -743,7 +743,9 @@ class SingleStationDetail extends Component {
                       justifyContent: 'center',
                     }}
                   >
-                    <Text style={{ color: '#fff', fontSize: 14 }}>折算NOx: 41</Text>
+                    <Text style={{ color: '#fff', fontSize: 14 }}>
+                      折算NOx: 41
+                    </Text>
                   </View>
                 </View>
                 {/* 污染物结束 */}
