@@ -51,6 +51,7 @@ import QualityControl from './datalist/QualityControl';
 import TodoDetail from './workbench/TodoDetail';
 import AttentionDetail from './workbench/AttentionDetail';
 import AlarmRecord from './AlarmRecord';
+import EarlyWarningInfo from './EarlyWarningInfo';
 // const MainNavigator = StackNavigator(
 //   {
 //     // HomeNavigator: { screen: HomeNavigator },
@@ -124,6 +125,7 @@ export default StackNavigator(
     knowledgebase: { screen: knowledgebase },
     FileDOC: { screen: FileDOC },
     DisplayDOC: { screen: DisplayDOC },
+    EarlyWarningInfo: { screen: EarlyWarningInfo },
   },
   {
     lazyLoad: true,

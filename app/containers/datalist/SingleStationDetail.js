@@ -914,7 +914,16 @@ class SingleStationDetail extends Component {
                     width: '100%',
                   }}
                 >
-                  <TouchableOpacity style={{}}>
+                  <TouchableOpacity
+                    style={{}}
+                    onPress={p => {
+                      this.props.dispatch(
+                        NavigationActions.navigate({
+                          routeName: 'EarlyWarningInfo',
+                        })
+                      );
+                    }}
+                  >
                     <View style={{ flexDirection: 'row' }}>
                       <View
                         style={{
