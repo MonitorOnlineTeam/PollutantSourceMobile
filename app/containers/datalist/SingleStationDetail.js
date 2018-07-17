@@ -34,7 +34,7 @@ class SingleStationDetail extends Component {
     if (
       props.navigation.state.params.item.DGIMN === 'bjldgn01' ||
       props.navigation.state.params.item.DGIMN === 'dtgjhh11102' ||
-      props.navigation.state.params.item.DGIMN === 'dtgrjx110'||
+      props.navigation.state.params.item.DGIMN === 'dtgrjx110' ||
       props.navigation.state.params.item.DGIMN === 'dtgrjx103' ||
       props.navigation.state.params.item.DGIMN === 'lywjfd03'
     ) {
@@ -63,7 +63,7 @@ class SingleStationDetail extends Component {
       });
     }
     this.state = {
-      'showNoticeBar':showNoticeBar,
+      showNoticeBar: showNoticeBar,
       data: {},
       legend: {
         enabled: true,
@@ -564,9 +564,13 @@ class SingleStationDetail extends Component {
                 >
                   <Text style={{ color: '#6c6c6c', margin: 8 }}>站点信息</Text>
                 </View>
-                {this.state.showNoticeBar?<NoticeBar marqueeProps={{ loop: true, leading: 500,fps: 60 }}>
-                    报警    报警原因：参数报警   报警描述：温度状态参数过高
-                </NoticeBar>:(null)}
+                {this.state.showNoticeBar ? (
+                  <NoticeBar
+                    marqueeProps={{ loop: true, leading: 500, fps: 60 }}
+                  >
+                    报警 报警原因：参数报警 报警描述：温度状态参数过高
+                  </NoticeBar>
+                ) : null}
                 <View
                   style={{
                     padding: 10,
@@ -797,7 +801,7 @@ class SingleStationDetail extends Component {
                             height: 25,
                           }}
                           tintColor="#1CE3CB"
-                          opacity = {1.0}
+                          opacity={1.0}
                           source={require('../../images/lct.png')}
                         />
                       </View>

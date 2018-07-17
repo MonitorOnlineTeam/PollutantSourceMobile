@@ -142,7 +142,7 @@ class AttentionDetail extends Component {
       {
         text: '确定',
         onPress: () =>
-          new Promise((resolve) => {
+          new Promise(resolve => {
             // console.log('onPress Promise');
             // console.log(resolve);
             // setTimeout(resolve, 1000);

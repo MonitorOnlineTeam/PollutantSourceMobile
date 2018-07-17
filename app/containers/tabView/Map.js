@@ -26,7 +26,7 @@ import markersInfo from '../../mockdata/OverView/markersInfo.json';
 import SuspensionLoadingComponent from '../../components/common/SuspensionLoadingComponent';
 import FlashPoint from '../../components/map/FlashPoint';
 import Button from '../../components/common/Button';
-import {getToken} from '../../dvapack/storage';
+import { getToken } from '../../dvapack/storage';
 /*
  * Copyright (c) 2018 SDL.All Rights Reserved
  *
@@ -91,8 +91,8 @@ class Map extends Component {
     });
     points = getPointEnterprise();
     this.state = {
-      'points': points,
-      'enterprise': [],
+      points: points,
+      enterprise: [],
       showEnterprise: true,
       zoomLevel: 5,
       mapCoordinateLatitude: 40.33491,
@@ -255,11 +255,7 @@ class Map extends Component {
       }
 
       ImageView = (
-        <Iconi
-          name={'ios-notifications'}
-          size={24}
-          style={{ color: 'red' }}
-        />
+        <Iconi name={'ios-notifications'} size={24} style={{ color: 'red' }} />
       );
       if (this.state.selectMapLegend === '') {
         if (imageName !== 'gisnormal') {
@@ -557,38 +553,38 @@ class Map extends Component {
       //质控
       let zkstatus = 0;
       if (item.EntCode === 'dtgrjx001') {
-          normalstatus = 8;
-          overstatus = 1;
-          exceptionstatus = 1;
-          tcstatus = 1;
-          gzstatus = 1;
-          zkstatus = 2;
+        normalstatus = 8;
+        overstatus = 1;
+        exceptionstatus = 1;
+        tcstatus = 1;
+        gzstatus = 1;
+        zkstatus = 2;
       }
       if (item.EntCode === 'bjldgn') {
-          normalstatus = 9;
-          // overstatus = 1;
-          // tcstatus = 1;
-          // zkstatus = 1;
+        normalstatus = 9;
+        // overstatus = 1;
+        // tcstatus = 1;
+        // zkstatus = 1;
       }
       if (item.EntCode === 'dtgjhh11') {
-          normalstatus = 9;
-          overstatus = 1;
-          tcstatus = 1;
-          zkstatus = 1;
+        normalstatus = 9;
+        overstatus = 1;
+        tcstatus = 1;
+        zkstatus = 1;
       }
       if (item.EntCode === 'lywjfd') {
-          normalstatus = 9;
-          // exceptionstatus = 1;
-          // gzstatus = 1;
-          // zkstatus = 1;
+        normalstatus = 9;
+        // exceptionstatus = 1;
+        // gzstatus = 1;
+        // zkstatus = 1;
       }
       if (item.EntCode === 'dtrlsmx001') {
-          normalstatus = 9;
-          overstatus = 1;
-          exceptionstatus = 1;
-          gzstatus = 1;
-          tcstatus = 1;
-          zkstatus = 2;
+        normalstatus = 9;
+        overstatus = 1;
+        exceptionstatus = 1;
+        gzstatus = 1;
+        tcstatus = 1;
+        zkstatus = 2;
       }
       if (this.state.special === 'monitor') {
         //正常
