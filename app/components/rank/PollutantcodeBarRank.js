@@ -58,14 +58,15 @@ class PollutantcodeBarRank extends Component {
             debugger;
             this.setState({ pressPollutantCode: item.item.pollutantCode });
             console.log(this.props.YValues);
-            let dataS,array = [];
+            let dataS,
+              array = [];
             this.props.YValues.forEach(item => {
               item.aa = Math.floor(Math.random() * 100000 + 10000) / 1000;
               array.push(item);
             });
-            
+
             this.props.dispatch(
-              createAction('datapreview/updateState')({ 'YValues': array })
+              createAction('datapreview/updateState')({ YValues: array })
             );
           }}
         >

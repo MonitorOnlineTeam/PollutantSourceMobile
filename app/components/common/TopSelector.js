@@ -82,8 +82,7 @@ class TopSelector extends PureComponent {
               justifyContent: 'space-around',
               borderBottomColor: globalcolor.borderGreyColor,
               borderTopColor: globalcolor.borderGreyColor,
-              
-            
+
               height: 44,
             },
           ]}
