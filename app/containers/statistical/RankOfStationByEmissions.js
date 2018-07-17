@@ -1,14 +1,19 @@
 //import liraries
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
-
+import { BarChart } from 'react-native-charts-wrapper';
 import { Button } from '../../components';
-import { NavigationActions } from '../../utils';
+import { NavigationActions, createAction } from '../../utils';
 import GridItem from '../../components/RankOfStationByEmissions/GridItem';
+import RankFlatList from '../../components/rank/RankFlatList';
+
+import PollutantcodeBarRank from '../../components/rank/PollutantcodeBarRank';
+const SCREEN_WIDTH = Dimensions.get('window').width;
+let _me = null;
 // create a component
-@connect()
+@connect(({ app }) => ({ pressPollutantCode: app.pressPollutantCode }))
 class RankOfStationByEmissions extends Component {
   static navigationOptions = ({ router, navigation }) => {
     return {
@@ -62,29 +67,32 @@ class RankOfStationByEmissions extends Component {
   goBack = () => {
     this.props.dispatch(NavigationActions.back({ routeName: 'Account' }));
   }
-  render() {
-    return (
-      <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
-        {this.renderItems()}
-      </View>
+  componentDidMount() {
+    this.props.navigation.setParams({ navigatePress: this.rankUpDown });
+  }
+  rankUpDown = () => {
+    this.props.navigation.dispatch(
+      createAction('app/getpressCodeData')({
+        whitchPage: 'Rank',
+        pressPollutantCodeRank:
+          this.props.pressPollutantCode != null
+            ? this.props.pressPollutantCode
+            : mainmap.data[2].pollutantType[0].pollutantCode,
+        pressPollutantCodeMap: '',
+      })
     );
   }
-  renderItems = () => {
-    const result = [];
-    this.state.rankList.map((item, key) => {
-      result.push(
-        <GridItem
-          onClick={() => {
-            alert(item.title);
-          }}
-          key={key}
-          iconame={item.iconame}
-          color={item.color}
-          title={item.title}
+  render() {
+    return (
+      <View
+        style={{ flexDirection: 'column', flex: 1, backgroundColor: '#ffffff' }}
+      >
+        <PollutantcodeBarRank
+          style={{ width: SCREEN_WIDTH, backgroundColor: '#ffffff' }}
         />
-      );
-    });
-    return result;
+        <RankFlatList ref={ref => (this._rankFlatList = ref)} />
+      </View>
+    );
   }
 }
 

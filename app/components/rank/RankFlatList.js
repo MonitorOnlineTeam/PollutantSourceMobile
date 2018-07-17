@@ -19,9 +19,10 @@ const SCREEN_WIDTH = Dimensions.get('window').width;
  * @extends {Component}
  */
 @connect(
-  ({ app }) => ({
+  ({ app,datapreview }) => ({
     listRankData: app.listRankData,
     pressPollutantCode: app.pressPollutantCode,
+    YValues:datapreview.YValues
   }),
   null,
   null,
@@ -34,15 +35,23 @@ class RankFlatList extends Component {
       stationLst: [],
     };
     getAllData('hour').then(value => {
+        let stationLst = value;
+        let aa;
+        stationLst.forEach((item)=>{
+            aa =  (Math.floor(Math.random() * (100000) + 10000)/1000);
+            item.aa = aa;
+        });
+        console.log(stationLst);
       this.setState({
-        stationLst: value,
+        'stationLst': stationLst,
       });
+      this.props.dispatch(createAction('datapreview/updateState')({'YValues':stationLst}));
     });
   }
   render() {
     return (
       <FlatList
-        data={this.state.stationLst}
+        data={this.props.YValues}
         ListHeaderComponent={
           <View
             style={{
@@ -59,7 +68,7 @@ class RankFlatList extends Component {
             <View style={{ flexDirection: 'row', marginTop: 5 }}>
               <View
                 style={{
-                  backgroundColor: 'red',
+                  backgroundColor: '#03d304',
                   width: 15,
                   height: 15,
                   marginLeft: 30,
@@ -68,31 +77,31 @@ class RankFlatList extends Component {
               <Text style={{ marginLeft: 5 }}>微量</Text>
               <View
                 style={{
-                  backgroundColor: 'blue',
+                  backgroundColor: '#efdc31',
                   width: 15,
                   height: 15,
                   marginLeft: 30,
                 }}
               />
-              <Text style={{ marginLeft: 5 }}>微量</Text>
+              <Text style={{ marginLeft: 5 }}>少量</Text>
               <View
                 style={{
-                  backgroundColor: 'green',
+                  backgroundColor: '#ff401a',
                   width: 15,
                   height: 15,
                   marginLeft: 30,
                 }}
               />
-              <Text style={{ marginLeft: 5 }}>微量</Text>
+              <Text style={{ marginLeft: 5 }}>大量</Text>
               <View
                 style={{
-                  backgroundColor: 'red',
+                  backgroundColor: '#16010b',
                   width: 15,
                   height: 15,
                   marginLeft: 30,
                 }}
               />
-              <Text style={{ marginLeft: 5 }}>微量</Text>
+              <Text style={{ marginLeft: 5}}>巨量</Text>
             </View>
           </View>
         }
@@ -108,6 +117,7 @@ class RankFlatList extends Component {
   //FlatList key
   _extraUniqueKey = (item, index) => `index11${index}${item}`
   _renderItemList = item => {
+    console.log(item.item.aa);
     if (item.item.key != undefined) {
       return (
         <View
@@ -142,14 +152,15 @@ class RankFlatList extends Component {
           </Text>
           <Text
             style={{
-              fontSize: 14,
-              color: item.item.chartColor,
-              padding: 3,
-              width: SCREEN_WIDTH / 6,
+                fontSize: 14,
+                color: item.item.aa > 90 ? '#16010b':item.item.aa > 60 ? '#ff401a':item.item.aa > 30?'#efdc31':'#03d304',
+                padding: 3,
+                width: SCREEN_WIDTH / 6,
             }}
-          >
-            {177}
-          </Text>
+            >
+            {item.item.aa}
+            </Text>
+          
         </View>
       );
     } else {
