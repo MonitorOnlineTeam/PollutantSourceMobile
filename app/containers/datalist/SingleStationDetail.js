@@ -683,7 +683,9 @@ class SingleStationDetail extends Component {
                       justifyContent: 'center',
                     }}
                   >
-                    <Text style={{ color: '#fff', fontSize: 14 }}>SO2: 112</Text>
+                    <Text style={{ color: '#fff', fontSize: 14 }}>
+                      SO2: 112
+                    </Text>
                   </View>
                   <View
                     style={{
