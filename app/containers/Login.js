@@ -126,7 +126,7 @@ class Login extends Component {
                 },
               ]}
             >
-              污染源智能分析系统
+              污染源智能分析平台
             </Text>
             <View style={[styles.TextInputStyle, { marginBottom: 10 }]}>
               <Image

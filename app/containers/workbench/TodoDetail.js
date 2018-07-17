@@ -32,7 +32,7 @@ class TodoDetail extends Component {
       entname: '法电大唐(三门峡)城市供热有限公司',
       provice: '河南',
       city: '三门峡',
-      source: '数据审核',
+      source: '',
       status: '处理中',
       content: '设备数据异常',
       creator: '成云',
@@ -74,18 +74,22 @@ class TodoDetail extends Component {
   addFormItemClick = key => e => {
     e.preventDefault(); // 修复 Android 上点击穿透
     this.setState({
-      modal1: true,
+      [key]: true,
     });
   }
   onClose = key => () => {
     this.setState({
-      modal1: false,
+      [key]: false,
     });
   }
-  onCheckItemChange = (val, e) => {
+  onCheckItemChange = (val) => {
     const formitem = this.state.formitem;
-    formitem.push(val);
-    debugger;
+    const index=formitem.findIndex(a=>a===val);
+    if (index>-1) {
+      formitem.splice(index);
+    } else {
+      formitem.push(val);
+    }
     this.setState({ formitem: formitem });
   }
   render() {
@@ -159,9 +163,9 @@ class TodoDetail extends Component {
     } = this.state;
 
     const dataCheckboxItem = [
-      { value: 0, label: 'SO2分析仪检修记录' },
-      { value: 1, label: 'NOX分析仪检修记录' },
-      { value: 2, label: '烟尘分析仪检修记录' },
+      { value: 5, label: 'SO2分析仪检修记录' },
+      { value: 6, label: 'NOX分析仪检修记录' },
+      { value: 7, label: '烟尘分析仪检修记录' },
     ];
 
     return (
@@ -667,10 +671,10 @@ class TodoDetail extends Component {
                   <WhiteSpace size="lg" />
                 </WingBlank>
                 {formitem.map(i => (
-                  <WingBlank size="sm">
+                  <WingBlank size="sm" key={i}>
                     <Button>
                       <Text style={styles.countBackground}>
-                        {dataCheckboxItem.find(a => a.value === i)
+                        {dataCheckboxItem.findIndex(a => a.value === i) > -1
                           ? dataCheckboxItem.find(a => a.value === i).label
                           : ''}
                       </Text>
@@ -824,7 +828,7 @@ class TodoDetail extends Component {
               <CheckboxItem
                 key={i.value}
                 checked={
-                  formitem.findIndex(a => a === i.value) > -1 ? true : false
+                  formitem.findIndex(a => a === i.value) > -1
                 }
                 onChange={() => this.onCheckItemChange(i.value)}
               >
