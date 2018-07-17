@@ -144,7 +144,8 @@ class Router extends PureComponent {
 
   componentDidMount() {
     CodePush.notifyAppReady();
-    doUpdate(syncStatus => {}, progress => {});
+    //codepush监测更新方法
+    // doUpdate(syncStatus => {}, progress => {});
     if (Platform.OS === 'android') {
       JPushModule.initPush();
       JPushModule.getInfo(map => {

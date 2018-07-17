@@ -285,12 +285,12 @@ export default class Alert extends Component {
                   height: 64,
                 }}
               >
-                <Button
+                {/*<Button
                   type={this.state.riButtonColor}
                   onClick={this.riButton.bind(this)}
                 >
                   日均
-                </Button>
+                </Button>*/}
                 <Button
                   type={this.state.xiaoshiButtonColor}
                   onClick={this.xiaoshiButton.bind(this)}

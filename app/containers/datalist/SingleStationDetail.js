@@ -9,7 +9,7 @@ import {
   ScrollView,
   TouchableOpacity,
 } from 'react-native';
-import { Grid, Tabs } from 'antd-mobile-rn';
+import { Grid, Tabs, NoticeBar } from 'antd-mobile-rn';
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import Iconi from 'react-native-vector-icons/dist/Ionicons';
@@ -29,7 +29,20 @@ import markersInfo from '../../mockdata/OverView/markersInfo.json';
 class SingleStationDetail extends Component {
   constructor(props) {
     super(props);
-    // console.log(props.navigation.state.params.item);
+    let showNoticeBar = false;
+    console.log(props.navigation.state.params.item.DGIMN);
+    if (
+      props.navigation.state.params.item.DGIMN === 'bjldgn01' ||
+      props.navigation.state.params.item.DGIMN === 'dtgjhh11102' ||
+      props.navigation.state.params.item.DGIMN === 'dtgrjx110'||
+      props.navigation.state.params.item.DGIMN === 'dtgrjx103' ||
+      props.navigation.state.params.item.DGIMN === 'lywjfd03'
+    ) {
+      console.log('showNoticeBar true');
+      showNoticeBar = true;
+    } else {
+      showNoticeBar = false;
+    }
     let barChartData = [];
     let pieChartData = [];
     for (let i = 0; i < markersInfo.sewageoption.series[0].data.length; i++) {
@@ -50,6 +63,7 @@ class SingleStationDetail extends Component {
       });
     }
     this.state = {
+      'showNoticeBar':showNoticeBar,
       data: {},
       legend: {
         enabled: true,
@@ -550,6 +564,9 @@ class SingleStationDetail extends Component {
                 >
                   <Text style={{ color: '#6c6c6c', margin: 8 }}>站点信息</Text>
                 </View>
+                {this.state.showNoticeBar?<NoticeBar marqueeProps={{ loop: true, leading: 500,fps: 60 }}>
+                    报警    报警原因：参数报警   报警描述：温度状态参数过高
+                </NoticeBar>:(null)}
                 <View
                   style={{
                     padding: 10,
@@ -780,6 +797,7 @@ class SingleStationDetail extends Component {
                             height: 25,
                           }}
                           tintColor="#1CE3CB"
+                          opacity = {1.0}
                           source={require('../../images/lct.png')}
                         />
                       </View>
@@ -879,7 +897,7 @@ class SingleStationDetail extends Component {
                             height: 25,
                           }}
                           tintColor="#FC274B"
-                          source={require('../../images/gzbj.png')}
+                          source={require('../../images/txl.png')}
                         />
                       </View>
                       <View style={{ marginLeft: 10 }}>
