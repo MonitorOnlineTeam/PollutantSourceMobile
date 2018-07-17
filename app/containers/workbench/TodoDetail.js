@@ -674,7 +674,7 @@ class TodoDetail extends Component {
                   <WingBlank size="sm" key={i}>
                     <Button>
                       <Text style={styles.countBackground}>
-                        {dataCheckboxItem.findIndex(a => a.value === i) > -1
+                        {dataCheckboxItem.some(a => a.value === i)
                           ? dataCheckboxItem.find(a => a.value === i).label
                           : ''}
                       </Text>
@@ -827,7 +827,7 @@ class TodoDetail extends Component {
             {dataCheckboxItem.map(i => (
               <CheckboxItem
                 key={i.value}
-                checked={formitem.findIndex(a => a === i.value) > -1}
+                checked={formitem.some(a => a === i.value)}
                 onChange={() => this.onCheckItemChange(i.value)}
               >
                 {i.label}
