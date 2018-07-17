@@ -27,7 +27,7 @@ import {
   getPointEnterprise,
   // getEnterprise,
 } from '../../mockdata/Base/commonbase';
-import {getToken} from '../../dvapack/storage';
+import { getToken } from '../../dvapack/storage';
 
 /*
  * Copyright (c) 2018 SDL.All Rights Reserved
@@ -209,7 +209,7 @@ class Workbench extends Component {
 
             this.state.items[strTime].push({
               type: 'alarm',
-              name: pointitem.Abbreviation+' '+pointitem.PointName,
+              name: pointitem.Abbreviation + ' ' + pointitem.PointName,
               marked: true,
               date: item.date,
               poll: item.PollutantName,
@@ -253,7 +253,7 @@ class Workbench extends Component {
 
             this.state.items[strTime].push({
               type: 'operation',
-              name: pointitem.Abbreviation+' '+pointitem.PointName,
+              name: pointitem.Abbreviation + ' ' + pointitem.PointName,
               marked: true,
               date: item.date,
               operationaction: operationaction,
@@ -286,7 +286,7 @@ class Workbench extends Component {
 
             this.state.items[strTime].push({
               type: 'early',
-              name: pointitem.Abbreviation+' '+pointitem.PointName,
+              name: pointitem.Abbreviation + ' ' + pointitem.PointName,
               marked: true,
               date: item.date,
               poll: item.PollutantName,
@@ -329,7 +329,7 @@ class Workbench extends Component {
 
             this.state.items[strTime].push({
               type: 'todolist',
-              name: pointitem.Abbreviation+' '+pointitem.PointName,
+              name: pointitem.Abbreviation + ' ' + pointitem.PointName,
               marked: true,
               date: item.date,
               operationaction: operationaction,

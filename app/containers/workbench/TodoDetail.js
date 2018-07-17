@@ -82,10 +82,10 @@ class TodoDetail extends Component {
       [key]: false,
     });
   }
-  onCheckItemChange = (val) => {
+  onCheckItemChange = val => {
     const formitem = this.state.formitem;
-    const index=formitem.findIndex(a=>a===val);
-    if (index>-1) {
+    const index = formitem.findIndex(a => a === val);
+    if (index > -1) {
       formitem.splice(index);
     } else {
       formitem.push(val);
@@ -808,7 +808,7 @@ class TodoDetail extends Component {
         </ScrollView>
         <Modal
           visible={this.state.modal1}
-          transparent
+          transparent={true}
           maskClosable={false}
           onClose={this.onClose('modal1')}
           title="选择表单"
@@ -827,9 +827,7 @@ class TodoDetail extends Component {
             {dataCheckboxItem.map(i => (
               <CheckboxItem
                 key={i.value}
-                checked={
-                  formitem.findIndex(a => a === i.value) > -1
-                }
+                checked={formitem.findIndex(a => a === i.value) > -1}
                 onChange={() => this.onCheckItemChange(i.value)}
               >
                 {i.label}

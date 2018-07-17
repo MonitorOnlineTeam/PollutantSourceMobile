@@ -63,8 +63,8 @@ class SingleStationDetail extends Component {
       });
     }
     this.state = {
-      'item':props.navigation.state.params.item,
-      'showNoticeBar': showNoticeBar,
+      item: props.navigation.state.params.item,
+      showNoticeBar: showNoticeBar,
       data: {},
       legend: {
         enabled: true,
@@ -587,8 +587,13 @@ class SingleStationDetail extends Component {
                     <Text
                       style={{ fontSize: 20, color: '#292929', marginTop: 5 }}
                     >
-                      {this.state.item.PointName?this.state.item.Abbreviation+' '+this.state.item.PointName
-                      :this.state.item.Abbreviation+' '+this.state.item.pointName}
+                      {this.state.item.PointName
+                        ? this.state.item.Abbreviation +
+                          ' ' +
+                          this.state.item.PointName
+                        : this.state.item.Abbreviation +
+                          ' ' +
+                          this.state.item.pointName}
                     </Text>
 
                     <Text style={{ color: '#b9b9b9' }}>运维单位:雪迪龙</Text>
