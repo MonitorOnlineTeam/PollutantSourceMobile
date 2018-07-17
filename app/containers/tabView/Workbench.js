@@ -22,10 +22,6 @@ import moment from 'moment';
 import alarm from '../../mockdata/Workbench/alarm.json';
 import earlywarning from '../../mockdata/Workbench/earlywarning.json';
 import operation from '../../mockdata/Workbench/operation.json';
-import {
-  getPointEnterprise,
-  getEnterprise,
-} from '../../mockdata/Base/commonbase';
 import todolist from '../../mockdata/Workbench/todolist.json';
 import {
   getPointEnterprise,
