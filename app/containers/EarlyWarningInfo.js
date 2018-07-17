@@ -11,54 +11,53 @@ import {
 } from 'react-native';
 import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
 import { SCREEN_WIDTH } from '../config/globalsize';
-import  data  from '../mockdata/Base/Code/T_Cod_ExceptionProcessing.json';
+import  data  from '../mockdata/Base/Code/T_Cod_WarningRecord.json';
 import moment from 'moment';
-export default class AlarmRecord extends Component {
-  
+export default class EarlyWarningInfo extends Component {
+    
   constructor(props) {
     super(props);
     const time=[];
     data.map(item=>{
-      const date = moment(item.AlarmTime).format('YYYY-MM-DD');
+      const date = moment(item.EarlyWorningTime).format('YYYY-MM-DD');
       if(time.length!==0){
         const isno=true;
         time.map(a=>{
            if(a.key==date)
            {
              isno=false;
-             console.log("----------------------------------");
-             console.log( a.data);
-            a.data.push({AlarmType:item.AlarmType,
-              AlarmTime:item.AlarmTime,
-              ExceptRecoverTime:item.ExceptRecoverTime,
+            
+            a.data.push({
+              EarlyWorningType:item.EarlyWorningType,
+              EarlyWorningTime:item.EarlyWorningTime,
+              CheckTime:item.CheckTime,
               State:item.State,
-              AlarmMsg:item.AlarmMsg,
-              AlarmContinuedTime:item.AlarmContinuedTime,
-              PollutantName:item.PollutantName
+              CheckPerson:item.CheckPerson,
+              Comment:item.Comment
+             
             });
 
            }
         });
            if(isno)
            {
-            time.push({key:date,data:[{ AlarmType:item.AlarmType,
-              AlarmTime:item.AlarmTime,
-              ExceptRecoverTime:item.ExceptRecoverTime,
-              State:item.State,
-              AlarmMsg:item.AlarmMsg,
-              AlarmContinuedTime:item.AlarmContinuedTime,
-              PollutantName:item.PollutantName}]}); 
+            time.push({key:date,data:[{
+                EarlyWorningType:item.EarlyWorningType,
+                EarlyWorningTime:item.EarlyWorningTime,
+                CheckTime:item.CheckTime,
+                State:item.State,
+                CheckPerson:item.CheckPerson,
+                Comment:item.Comment}]}); 
 
            }
 
       }else{
-     time.push({key:date,data:[{ AlarmType:item.AlarmType,
-      AlarmTime:item.AlarmTime,
-      ExceptRecoverTime:item.ExceptRecoverTime,
-      State:item.State,
-      AlarmMsg:item.AlarmMsg,
-      AlarmContinuedTime:item.AlarmContinuedTime,
-      PollutantName:item.PollutantName}]});
+     time.push({key:date,data:[{ EarlyWorningType:item.EarlyWorningType,
+        EarlyWorningTime:item.EarlyWorningTime,
+        CheckTime:item.CheckTime,
+        State:item.State,
+        CheckPerson:item.CheckPerson,
+        Comment:item.Comment}]});
     }
     });
     this.state = {
@@ -138,37 +137,37 @@ export default class AlarmRecord extends Component {
             <View
               style={{ flexDirection: 'row', marginTop: 3, marginLeft: 21 }}
             >
-              <Text style={{ color: '#797979', fontSize: 14 }}>报警时间:</Text>
+              <Text style={{ color: '#797979', fontSize: 14 }}>预警类别:</Text>
               <Text style={{ color: '#252525', fontSize: 14 }}>
                 {' '}
-                {item.AlarmTime}
+                {item.EarlyWorningType}
               </Text>
             </View>
             <View
               style={{ flexDirection: 'row', marginTop: 3, marginLeft: 21 }}
             >
-              <Text style={{ color: '#797979', fontSize: 14 }}>污染物：</Text>
+              <Text style={{ color: '#797979', fontSize: 14 }}>报警时间</Text>
               <Text style={{ color: '#252525', fontSize: 14 }}>
                 {' '}
-                {item.PollutantName}
+                {item.EarlyWorningTime}
               </Text>
             </View>
             <View
               style={{ flexDirection: 'row', marginTop: 3, marginLeft: 21 }}
             >
-              <Text style={{ color: '#797979', fontSize: 14 }}>报警类别：</Text>
+              <Text style={{ color: '#797979', fontSize: 14 }}>核实状态：</Text>
               <Text style={{ color: '#252525', fontSize: 14 }}>
                 {' '}
-                {item.AlarmType}次
+                {item.State}次
               </Text>
             </View>
             <View
               style={{ flexDirection: 'row', marginTop: 3, marginLeft: 21 }}
             >
-              <Text style={{ color: '#797979', fontSize: 14 }}>报警状态：</Text>
+              <Text style={{ color: '#797979', fontSize: 14 }}>核实人：</Text>
               <Text style={{ color: '#252525', fontSize: 14 }}>
                 {' '}
-                {item.State}
+                {item.CheckPerson}
               </Text>
             </View>
 
@@ -176,11 +175,11 @@ export default class AlarmRecord extends Component {
               style={{ flexDirection: 'row', marginTop: 3, marginLeft: 21 }}
             >
               <Text style={{ color: '#797979', fontSize: 14 }}>
-                报警持续时长(小时):
+                核实时间:
               </Text>
               <Text style={{ color: '#252525', fontSize: 14 }}>
                 {' '}
-                {item.AlarmContinuedTime}
+                {item.CheckTime}
               </Text>
             </View>
             <View
@@ -189,7 +188,7 @@ export default class AlarmRecord extends Component {
               <Text style={{ color: '#797979', fontSize: 14 }}>描述：</Text>
               <Text style={{ color: '#252525', fontSize: 14 }}>
                 {' '}
-                {item.AlarmMsg}
+                {item.Comment}
               </Text>
             </View>
 
@@ -223,13 +222,9 @@ export default class AlarmRecord extends Component {
       </TouchableOpacity>
     );
   }
-
   render() {
-    
-    console.log(this.state.data);
-    debugger;
     return (
-      <View style={{ flex: 1 }}>
+        <View style={{ flex: 1 }}>
         <View style={{ flex: 1 }}>
           <SectionList
             stickySectionHeadersEnabled={true}
@@ -253,27 +248,29 @@ export default class AlarmRecord extends Component {
     );
   }
 }
-const styles = StyleSheet.create({
-  container: {},
-  content: {
-    width: '100%',
 
-    backgroundColor: 'yellow',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  cell: {
-    height: 100,
-    backgroundColor: 'purple',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderBottomColor: '#ececec',
-    borderBottomWidth: 1,
-  },
-  txt: {
-    textAlign: 'center',
-    textAlignVertical: 'center',
-    color: 'white',
-    fontSize: 30,
-  },
-});
+const styles = StyleSheet.create({
+    container: {},
+    content: {
+      width: '100%',
+  
+      backgroundColor: 'yellow',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    cell: {
+      height: 100,
+      backgroundColor: 'purple',
+      alignItems: 'center',
+      justifyContent: 'center',
+      borderBottomColor: '#ececec',
+      borderBottomWidth: 1,
+    },
+    txt: {
+      textAlign: 'center',
+      textAlignVertical: 'center',
+      color: 'white',
+      fontSize: 30,
+    },
+  });
+  
