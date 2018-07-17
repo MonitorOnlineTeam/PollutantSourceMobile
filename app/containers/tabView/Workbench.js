@@ -346,16 +346,6 @@ class Workbench extends Component {
       const strTime = this.timeToString(time);
       this.state.items[strTime] = [];
     }
-    console.log('-----------------------------------------');
-    getPointEnterprise().then(function(data) {
-      console.log(data);
-      _this.setState({
-        EntData: data,
-      });
-
-      console.log(this.state.EntData);
-    });
-
     if (type === 'all') {
       for (let i = -15; i < 50; i++) {
         this.getalarm(day, i);

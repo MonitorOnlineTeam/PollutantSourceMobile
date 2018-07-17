@@ -655,53 +655,7 @@ class SingleStationDetail extends Component {
                     flexWrap: 'wrap',
                   }}
                 >
-                  <View
-                    style={{
-                      backgroundColor: '#1CCE00',
-                      height: 50,
-                      width: '30%',
-                      margin: 5,
-                      borderRadius: 2,
-                      alignContent: 'center',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                    }}
-                  >
-                    <Text style={{ color: '#fff', fontSize: 14 }}>
-                      PM2.5: 56
-                    </Text>
-                  </View>
-                  <View
-                    style={{
-                      backgroundColor: '#1CCE00',
-                      height: 50,
-                      width: '30%',
-                      margin: 5,
-                      borderRadius: 2,
-                      alignContent: 'center',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                    }}
-                  >
-                    <Text style={{ color: '#fff', fontSize: 14 }}>
-                      PM10: 91
-                    </Text>
-                  </View>
-                  <View
-                    style={{
-                      backgroundColor: '#efdd30',
-                      height: 50,
-                      width: '30%',
-                      margin: 5,
-                      borderRadius: 2,
-                      alignContent: 'center',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                    }}
-                  >
-                    <Text style={{ color: '#fff', fontSize: 14 }}>NOX: 41</Text>
-                  </View>
-                  <View
+                <View
                     style={{
                       backgroundColor: '#1CCE00',
                       height: 50,
@@ -743,7 +697,53 @@ class SingleStationDetail extends Component {
                       justifyContent: 'center',
                     }}
                   >
-                    <Text style={{ color: '#fff', fontSize: 14 }}>NO2: 64</Text>
+                    <Text style={{ color: '#fff', fontSize: 14 }}>NOx: 64</Text>
+                  </View>
+                  <View
+                    style={{
+                      backgroundColor: '#1CCE00',
+                      height: 50,
+                      width: '30%',
+                      margin: 5,
+                      borderRadius: 2,
+                      alignContent: 'center',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    <Text style={{ color: '#fff', fontSize: 14 }}>
+                      折算烟尘: 56
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      backgroundColor: '#1CCE00',
+                      height: 50,
+                      width: '30%',
+                      margin: 5,
+                      borderRadius: 2,
+                      alignContent: 'center',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    <Text style={{ color: '#fff', fontSize: 14 }}>
+                      折算SO2: 91
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      backgroundColor: '#efdd30',
+                      height: 50,
+                      width: '30%',
+                      margin: 5,
+                      borderRadius: 2,
+                      alignContent: 'center',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    <Text style={{ color: '#fff', fontSize: 14 }}>折算NOx: 41</Text>
                   </View>
                 </View>
                 {/* 污染物结束 */}
