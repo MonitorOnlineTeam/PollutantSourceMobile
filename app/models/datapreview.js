@@ -119,9 +119,7 @@ export default Model.extend({
       yield update({ pollutantBeens });
     },
     *loadPointWithData(
-      {
-        payload: { searchTime, mTag, GroupID },
-      },
+      { payload: { searchTime, mTag, GroupID } },
       { update, call, put, select }
     ) {
       // console.log(searchTime);
@@ -210,12 +208,7 @@ export default Model.extend({
       yield put('hideSpinning', {});
       yield update({ pullToRefreshing: false });
     },
-    *initTextDate(
-      {
-        payload: { searchTime },
-      },
-      { update, call, put, select }
-    ) {
+    *initTextDate({ payload: { searchTime } }, { update, call, put, select }) {
       let textDate = yield select(state => state.textDate);
       if (textDate == '' || textDate == undefined || textDate == null) {
         yield update({ textDate: searchTime });
@@ -228,12 +221,7 @@ export default Model.extend({
      * @param {any} { payload: {mTag} }
      * @param {any} { update, call, put,select }
      */
-    *getGroupList(
-      {
-        payload: { mTag },
-      },
-      { update, call, put, select }
-    ) {
+    *getGroupList({ payload: { mTag } }, { update, call, put, select }) {
       yield put('showSpinning', {});
       const { user } = yield select(state => state.app);
       const { selectedPolluntType } = yield select(state => state.app);

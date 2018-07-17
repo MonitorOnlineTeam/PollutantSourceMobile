@@ -172,7 +172,7 @@ class Workbench extends Component {
     _this = this;
     this.state = {
       items: {},
-      EntData:[],
+      EntData: [],
     };
   }
   getalarm = (day, i) => {
@@ -338,15 +338,14 @@ class Workbench extends Component {
       const strTime = this.timeToString(time);
       this.state.items[strTime] = [];
     }
-      console.log('-----------------------------------------');
+    console.log('-----------------------------------------');
     getPointEnterprise().then(function(data) {
       console.log(data);
       _this.setState({
+        EntData: data,
+      });
 
-      EntData:data
-    });
-  
-    console.log(this.state.EntData);
+      console.log(this.state.EntData);
     });
 
     if (type === 'all') {
@@ -377,7 +376,6 @@ class Workbench extends Component {
         this.gettodolist(day, i);
       }
     }
-  
 
     // const newitem = {
     //   '2018-07-02': [{ name: '', height: 500, marked: true }],

@@ -24,7 +24,7 @@ class LabelHeadView extends Component {
             borderBottomWidth: 1,
           },
           {
-            width: (defaultPollutantCodes.length * SCREEN_WIDTH) / 3,
+            width: defaultPollutantCodes.length * SCREEN_WIDTH / 3,
             height: 32,
           },
         ]}

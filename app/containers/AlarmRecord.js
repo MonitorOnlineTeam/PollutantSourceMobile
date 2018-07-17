@@ -11,61 +11,68 @@ import {
 } from 'react-native';
 import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
 import { SCREEN_WIDTH } from '../config/globalsize';
-import  data  from '../mockdata/Base/Code/T_Cod_ExceptionProcessing.json';
+import data from '../mockdata/Base/Code/T_Cod_ExceptionProcessing.json';
 import moment from 'moment';
 export default class AlarmRecord extends Component {
-  
   constructor(props) {
     super(props);
-    const time=[];
-    data.map(item=>{
+    const time = [];
+    data.map(item => {
       const date = moment(item.AlarmTime).format('YYYY-MM-DD');
-      if(time.length!==0){
-        const isno=true;
-        time.map(a=>{
-           if(a.key==date)
-           {
-             isno=false;
-             console.log("----------------------------------");
-             console.log( a.data);
-            a.data.push({AlarmType:item.AlarmType,
-              AlarmTime:item.AlarmTime,
-              ExceptRecoverTime:item.ExceptRecoverTime,
-              State:item.State,
-              AlarmMsg:item.AlarmMsg,
-              AlarmContinuedTime:item.AlarmContinuedTime,
-              PollutantName:item.PollutantName
+      if (time.length !== 0) {
+        const isno = true;
+        time.map(a => {
+          if (a.key == date) {
+            isno = false;
+            console.log('----------------------------------');
+            console.log(a.data);
+            a.data.push({
+              AlarmType: item.AlarmType,
+              AlarmTime: item.AlarmTime,
+              ExceptRecoverTime: item.ExceptRecoverTime,
+              State: item.State,
+              AlarmMsg: item.AlarmMsg,
+              AlarmContinuedTime: item.AlarmContinuedTime,
+              PollutantName: item.PollutantName,
             });
-
-           }
+          }
         });
-           if(isno)
-           {
-            time.push({key:date,data:[{ AlarmType:item.AlarmType,
-              AlarmTime:item.AlarmTime,
-              ExceptRecoverTime:item.ExceptRecoverTime,
-              State:item.State,
-              AlarmMsg:item.AlarmMsg,
-              AlarmContinuedTime:item.AlarmContinuedTime,
-              PollutantName:item.PollutantName}]}); 
-
-           }
-
-      }else{
-     time.push({key:date,data:[{ AlarmType:item.AlarmType,
-      AlarmTime:item.AlarmTime,
-      ExceptRecoverTime:item.ExceptRecoverTime,
-      State:item.State,
-      AlarmMsg:item.AlarmMsg,
-      AlarmContinuedTime:item.AlarmContinuedTime,
-      PollutantName:item.PollutantName}]});
-    }
+        if (isno) {
+          time.push({
+            key: date,
+            data: [
+              {
+                AlarmType: item.AlarmType,
+                AlarmTime: item.AlarmTime,
+                ExceptRecoverTime: item.ExceptRecoverTime,
+                State: item.State,
+                AlarmMsg: item.AlarmMsg,
+                AlarmContinuedTime: item.AlarmContinuedTime,
+                PollutantName: item.PollutantName,
+              },
+            ],
+          });
+        }
+      } else {
+        time.push({
+          key: date,
+          data: [
+            {
+              AlarmType: item.AlarmType,
+              AlarmTime: item.AlarmTime,
+              ExceptRecoverTime: item.ExceptRecoverTime,
+              State: item.State,
+              AlarmMsg: item.AlarmMsg,
+              AlarmContinuedTime: item.AlarmContinuedTime,
+              PollutantName: item.PollutantName,
+            },
+          ],
+        });
+      }
     });
     this.state = {
       data: time,
-      
     };
-
   }
 
   extraUniqueKey = (item, index) => `index${index}${item}`
@@ -74,29 +81,31 @@ export default class AlarmRecord extends Component {
     return <View />;
   }
   renderSectionHeader = ({ section }) => (
-   
-      <View style={{borderBottomColor:"#BFBFBF",backgroundColor:"#ffffff", width: SCREEN_WIDTH - 20,  borderRadius: 10,
-     alignSelf: 'center',
-      alignItems: 'center',
-  }}>
-        <Text
-          style={{
-            alignContent: 'center',
-            color: '#8B8B8B',
-            alignSelf: 'center',
-            alignItems: 'center',
-            fontSize: 15,
-          }}
-        >
-          {section.key}
-        </Text>
-      </View>
- 
+    <View
+      style={{
+        borderBottomColor: '#BFBFBF',
+        backgroundColor: '#ffffff',
+        width: SCREEN_WIDTH - 20,
+        borderRadius: 10,
+        alignSelf: 'center',
+        alignItems: 'center',
+      }}
+    >
+      <Text
+        style={{
+          alignContent: 'center',
+          color: '#8B8B8B',
+          alignSelf: 'center',
+          alignItems: 'center',
+          fontSize: 15,
+        }}
+      >
+        {section.key}
+      </Text>
+    </View>
   )
   renderItem = ({ item }) => {
-  
     return (
-     
       <TouchableOpacity
         onPress={() => {
           //item点击
@@ -225,7 +234,6 @@ export default class AlarmRecord extends Component {
   }
 
   render() {
-    
     console.log(this.state.data);
     debugger;
     return (
