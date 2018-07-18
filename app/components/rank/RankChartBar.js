@@ -1,6 +1,13 @@
 //import liraries
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, ScrollView, processColor,InteractionManager } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  processColor,
+  InteractionManager,
+} from 'react-native';
 import { connect } from 'react-redux';
 import { BarChart } from 'react-native-charts-wrapper';
 import LoadingComponent from '../../components/common/LoadingComponent';
@@ -95,15 +102,12 @@ class RankChartBar extends Component {
       },
     };
   }
-  componentWillMount () {
-    
-    InteractionManager.runAfterInteractions(()=>{
+  componentWillMount() {
+    InteractionManager.runAfterInteractions(() => {
       this.loadData(this.props);
-   });
-
+    });
   }
   componentWillReceiveProps(nextProps) {
-    
     if (nextProps.YValues !== this.props.YValues) {
       // let values = [];
       // let valueFormatter = [];
@@ -154,56 +158,54 @@ class RankChartBar extends Component {
     }
   }
 
-  loadData = (nextProps) =>{
+  loadData = nextProps => {
     let values = [];
-      let valueFormatter = [];
-      let colors = [];
-      let axisMaximum = nextProps.YValues.length;
-      let i = 0;
-  
-    
+    let valueFormatter = [];
+    let colors = [];
+    let axisMaximum = nextProps.YValues.length;
+    let i = 0;
 
-      nextProps.YValues.map((item, key) => {
-        values.push({
-          y: parseFloat(item.aa),
-          marker: `公司:${item.Abbreviation}\n值:${item.aa}`,
-        });
-
-        valueFormatter.push(item.Abbreviation);
-        // colors.push(processColor(item.chartColor));
-        if (item.aa > 90) {
-          colors.push(processColor('#16010b'));
-        } else if (item.aa > 60) {
-          colors.push(processColor('#ff401a'));
-        } else if (item.aa > 30) {
-          colors.push(processColor('#efdc31'));
-        } else {
-          colors.push(processColor('#03d304'));
-        }
+    nextProps.YValues.map((item, key) => {
+      values.push({
+        y: parseFloat(item.aa),
+        marker: `公司:${item.Abbreviation}\n值:${item.aa}`,
       });
 
-      this.setState({
-        data: {
-          ...this.state.data,
-          dataSets: [
-            {
-              ...this.state.data.dataSets[0],
-              values,
-              config: {
-                ...this.state.data.dataSets[0].config,
-                colors,
-              },
+      valueFormatter.push(item.Abbreviation);
+      // colors.push(processColor(item.chartColor));
+      if (item.aa > 90) {
+        colors.push(processColor('#16010b'));
+      } else if (item.aa > 60) {
+        colors.push(processColor('#ff401a'));
+      } else if (item.aa > 30) {
+        colors.push(processColor('#efdc31'));
+      } else {
+        colors.push(processColor('#03d304'));
+      }
+    });
+
+    this.setState({
+      data: {
+        ...this.state.data,
+        dataSets: [
+          {
+            ...this.state.data.dataSets[0],
+            values,
+            config: {
+              ...this.state.data.dataSets[0].config,
+              colors,
             },
-          ],
-        },
-        xAxis: {
-          ...this.state.xAxis.valueFormatter,
-          valueFormatter,
-          axisMaximum,
-          axisMaximum,
-          position : 'BOTTOM'
-        },
-      });
+          },
+        ],
+      },
+      xAxis: {
+        ...this.state.xAxis.valueFormatter,
+        valueFormatter,
+        axisMaximum,
+        axisMaximum,
+        position: 'BOTTOM',
+      },
+    });
   }
 
   handleZoomDomainChange(domain) {
@@ -278,7 +280,8 @@ class RankChartBar extends Component {
   render() {
     console.log(this.props.YValues);
     debugger;
-    return (<BarChart
+    return (
+      <BarChart
         style={styles.chart}
         data={this.state.data}
         xAxis={this.state.xAxis}

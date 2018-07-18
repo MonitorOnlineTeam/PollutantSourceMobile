@@ -16,7 +16,6 @@ import {
   defaultPollutantCodes,
 } from '../../mockdata/Base/commonbase';
 
-
 const SCREEN_WIDTH = Dimensions.get('window').width;
 /**
  * 污染因子bar
@@ -56,12 +55,9 @@ class PollutantcodeBarRank extends Component {
       >
         <TouchableOpacity
           onPress={() => {
-            
             this.setState({ pressPollutantCode: item.item.pollutantCode });
-          
-            this.props.dispatch(
-              createAction('datapreview/demo123')()
-            );
+
+            this.props.dispatch(createAction('datapreview/demo123')());
           }}
         >
           {item.item.pollutantName == 'PM25' ? (

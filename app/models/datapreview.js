@@ -35,7 +35,7 @@ export default Model.extend({
         Unit: 'μg/m³',
       },
     ],
-    YValues:[],
+    YValues: [],
     pointBeens: [
       /**
        * pID : 2dc875e5-d500-4d6a-8f0f-c395a239b2ad
@@ -103,22 +103,19 @@ export default Model.extend({
           //     payload: {searchTime:prefixDate+' '+myDate.getHours()+":00:00",mTag:xiaoshi,GroupID:'全部'},
           // });
         },
-        RankOfStationByEmissions:()=>{
-          this.setTimeout(  
-            () => {  dispatch({
+        RankOfStationByEmissions: () => {
+          this.setTimeout(() => {
+            dispatch({
               type: 'initRankList',
               payload: { mTag: xiaoshi },
-            }); },  
-            500  
-          );  
-         
-        }
+            });
+          }, 500);
+        },
       });
     },
   },
-  
+
   effects: {
-    
     /**
      * 获取指定污染物的因子编码
      * houxiaofeng
@@ -137,25 +134,24 @@ export default Model.extend({
     },
     *demo123({ payload }, { update, call, put, select }) {
       console.log('demo123');
-      const {YValues} = yield select(state => state.datapreview);
-       
-        let   array = [];
-             YValues.forEach(item => {
-              item.aa = Math.floor(Math.random() * 100000 + 10000) / 1000;
-              array.push(item);
-            });
-             array.sort(function(a,b){
-           
-             return b.aa-a.aa;
-         });
+      const { YValues } = yield select(state => state.datapreview);
+
+      let array = [];
+      YValues.forEach(item => {
+        item.aa = Math.floor(Math.random() * 100000 + 10000) / 1000;
+        array.push(item);
+      });
+      array.sort(function(a, b) {
+        return b.aa - a.aa;
+      });
       // yield put('setState', { 'YValues': array});
-      
-      yield update({"YValues":array });
+
+      yield update({ YValues: array });
     },
     *initRankList({ payload }, { update, call, put, select }) {
       console.log('initRankList');
       let datalist = [];
-      const getdata = yield call (getAllConcentration,{ dataType: 'hour' });
+      const getdata = yield call(getAllConcentration, { dataType: 'hour' });
       getdata.map(item => {
         let data = {
           key: item.DGIMN,
@@ -173,7 +169,7 @@ export default Model.extend({
           MonitoringDatasi: item.MonitoringDatas[0],
           Abbreviation: item.Abbreviation,
           bstatus: null,
-          aa:Math.floor(Math.random() * 100000 + 10000) / 1000,
+          aa: Math.floor(Math.random() * 100000 + 10000) / 1000,
           status:
             item.DGIMN === 'bjldgn01' ||
             item.DGIMN === 'dtgjhh11102' ||
@@ -198,7 +194,8 @@ export default Model.extend({
         }
         if (item.MonitoringDatas.length > 0) {
           item.MonitoringDatas[0].PollutantDatas.map(wry => {
-            data[wry.PollutantCode] = wry.Concentration + ',' + wry.PollutantCode;
+            data[wry.PollutantCode] =
+              wry.Concentration + ',' + wry.PollutantCode;
             data[wry.PollutantCode + '-' + 'PollutantName'] = wry.PollutantName;
             data[wry.PollutantCode + '-' + 'PollutantCode'] = wry.PollutantCode;
             data[wry.PollutantCode + '-' + 'IsExceed'] = wry.IsExceed; // 是否超标
@@ -210,11 +207,10 @@ export default Model.extend({
         }
         datalist.push(data);
       });
-       datalist.sort(function(a,b){
-     
-       return b.aa-a.aa;
-   });
-      yield update({"YValues":datalist });
+      datalist.sort(function(a, b) {
+        return b.aa - a.aa;
+      });
+      yield update({ YValues: datalist });
     },
     *loadPointWithData(
       {

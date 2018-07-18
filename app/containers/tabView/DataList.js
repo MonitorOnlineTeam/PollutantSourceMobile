@@ -11,7 +11,7 @@ import {
   TouchableWithoutFeedback,
   RefreshControl,
   Animated,
-  InteractionManager
+  InteractionManager,
 } from 'react-native';
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
@@ -96,19 +96,16 @@ class DataList extends Component {
       textDate: prefixDate + ' ' + myDate.getHours() + ':00:00',
       datePickerVisible: false,
     };
-
-    
   }
   componentWillMount() {}
   componentDidMount() {
-  InteractionManager.runAfterInteractions(()=>{
-    getAllData('hour').then(value => {
-      this.setState({
-        cityNameLst: value,
+    InteractionManager.runAfterInteractions(() => {
+      getAllData('hour').then(value => {
+        this.setState({
+          cityNameLst: value,
+        });
       });
     });
-  });
-
   }
   _contentViewScroll = e => {
     var offsetY = e.nativeEvent.contentOffset.y; //滑动距离
