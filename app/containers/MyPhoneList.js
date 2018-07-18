@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import { ScrollView, View, Text, ListView, Spin } from 'react-native';
+import Icon from 'react-native-vector-icons/dist/FontAwesome';
 
 import pinyin from 'pinyin';
 import Head from '../components/common/alphabetaList/head';
@@ -8,6 +9,7 @@ import AlphabetaList from '../components/common/alphabetaList/alphabetaList';
 import py from '../components/common/alphabetaList/py';
 import PhoneList from '../Data/PhoneList.json';
 import LoadingComponent from '../components/common/LoadingComponent';
+import { NavigationActions } from '../utils';
 
 class MyPhoneList extends PureComponent {
   static navigationOptions = ({ router, navigation }) => {
@@ -15,6 +17,16 @@ class MyPhoneList extends PureComponent {
       title: '通讯录',
       headerTintColor: '#fff',
       headerStyle: { backgroundColor: '#4f6aea' },
+      headerLeft: (
+        <Text
+          onPress={() => {
+            navigation.dispatch(NavigationActions.back());
+          }}
+          style={{ marginLeft: 5, width: 32, height: 32, textAlign: 'center' }}
+        >
+          <Icon name={'angle-left'} size={32} style={{ color: 'black' }} />
+        </Text>
+      ),
     };
   }
   constructor(props) {

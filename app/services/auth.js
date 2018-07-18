@@ -15,7 +15,7 @@ export const login = async params => {
     requstresult: '0',
     reason: '验证失败',
     operation: 'Post',
-    data: {},
+    data: null,
     total: 0,
   };
   // = await post('/api/rest/AtmosphereApi/Author/IsLogins/', body, null, 'notooken');

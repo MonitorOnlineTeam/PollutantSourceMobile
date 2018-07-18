@@ -9,7 +9,7 @@ import {
   ScrollView,
   TouchableOpacity,
 } from 'react-native';
-import { Grid, Tabs } from 'antd-mobile-rn';
+import { Grid, Tabs, NoticeBar } from 'antd-mobile-rn';
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import Iconi from 'react-native-vector-icons/dist/Ionicons';
@@ -29,7 +29,20 @@ import markersInfo from '../../mockdata/OverView/markersInfo.json';
 class SingleStationDetail extends Component {
   constructor(props) {
     super(props);
+    let showNoticeBar = false;
     // console.log(props.navigation.state.params.item);
+    if (
+      props.navigation.state.params.item.DGIMN === 'bjldgn01' ||
+      props.navigation.state.params.item.DGIMN === 'dtgjhh11102' ||
+      props.navigation.state.params.item.DGIMN === 'dtgrjx110' ||
+      props.navigation.state.params.item.DGIMN === 'dtgrjx103' ||
+      props.navigation.state.params.item.DGIMN === 'lywjfd03'
+    ) {
+      console.log('showNoticeBar true');
+      showNoticeBar = true;
+    } else {
+      showNoticeBar = false;
+    }
     let barChartData = [];
     let pieChartData = [];
     for (let i = 0; i < markersInfo.sewageoption.series[0].data.length; i++) {
@@ -50,6 +63,8 @@ class SingleStationDetail extends Component {
       });
     }
     this.state = {
+      item: props.navigation.state.params.item,
+      showNoticeBar: showNoticeBar,
       data: {},
       legend: {
         enabled: true,
@@ -550,6 +565,13 @@ class SingleStationDetail extends Component {
                 >
                   <Text style={{ color: '#6c6c6c', margin: 8 }}>站点信息</Text>
                 </View>
+                {this.state.showNoticeBar ? (
+                  <NoticeBar
+                    marqueeProps={{ loop: true, leading: 500, fps: 60 }}
+                  >
+                    报警 报警原因：参数报警 报警描述：温度状态参数过高
+                  </NoticeBar>
+                ) : null}
                 <View
                   style={{
                     padding: 10,
@@ -565,7 +587,13 @@ class SingleStationDetail extends Component {
                     <Text
                       style={{ fontSize: 20, color: '#292929', marginTop: 5 }}
                     >
-                      朝阳奥体中心
+                      {this.state.item.PointName
+                        ? this.state.item.Abbreviation +
+                          ' ' +
+                          this.state.item.PointName
+                        : this.state.item.Abbreviation +
+                          ' ' +
+                          this.state.item.pointName}
                     </Text>
 
                     <Text style={{ color: '#b9b9b9' }}>运维单位:雪迪龙</Text>
@@ -640,7 +668,7 @@ class SingleStationDetail extends Component {
                     }}
                   >
                     <Text style={{ color: '#fff', fontSize: 14 }}>
-                      PM2.5: 56
+                      烟尘: 107
                     </Text>
                   </View>
                   <View
@@ -656,7 +684,7 @@ class SingleStationDetail extends Component {
                     }}
                   >
                     <Text style={{ color: '#fff', fontSize: 14 }}>
-                      PM10: 91
+                      SO2: 112
                     </Text>
                   </View>
                   <View
@@ -671,7 +699,7 @@ class SingleStationDetail extends Component {
                       justifyContent: 'center',
                     }}
                   >
-                    <Text style={{ color: '#fff', fontSize: 14 }}>NOX: 41</Text>
+                    <Text style={{ color: '#fff', fontSize: 14 }}>NOx: 59</Text>
                   </View>
                   <View
                     style={{
@@ -686,7 +714,7 @@ class SingleStationDetail extends Component {
                     }}
                   >
                     <Text style={{ color: '#fff', fontSize: 14 }}>
-                      烟尘: 56
+                      折算烟尘: 154
                     </Text>
                   </View>
                   <View
@@ -701,7 +729,9 @@ class SingleStationDetail extends Component {
                       justifyContent: 'center',
                     }}
                   >
-                    <Text style={{ color: '#fff', fontSize: 14 }}>SO2: 91</Text>
+                    <Text style={{ color: '#fff', fontSize: 14 }}>
+                      折算SO2: 61
+                    </Text>
                   </View>
                   <View
                     style={{
@@ -715,7 +745,9 @@ class SingleStationDetail extends Component {
                       justifyContent: 'center',
                     }}
                   >
-                    <Text style={{ color: '#fff', fontSize: 14 }}>NO2: 64</Text>
+                    <Text style={{ color: '#fff', fontSize: 14 }}>
+                      折算NOx: 41
+                    </Text>
                   </View>
                 </View>
                 {/* 污染物结束 */}
@@ -780,6 +812,7 @@ class SingleStationDetail extends Component {
                             height: 25,
                           }}
                           tintColor="#1CE3CB"
+                          opacity={1.0}
                           source={require('../../images/lct.png')}
                         />
                       </View>
@@ -879,7 +912,7 @@ class SingleStationDetail extends Component {
                             height: 25,
                           }}
                           tintColor="#FC274B"
-                          source={require('../../images/gzbj.png')}
+                          source={require('../../images/txl.png')}
                         />
                       </View>
                       <View style={{ marginLeft: 10 }}>
@@ -1052,7 +1085,7 @@ class SingleStationDetail extends Component {
                 >
                   <Text style={{ color: '#6c6c6c', margin: 8 }}>排量占比</Text>
                   <PieChart
-                    style={[styles.chart, { height: 160, width: SCREEN_WIDTH }]}
+                    style={[styles.chart, { height: 230, width: SCREEN_WIDTH }]}
                     logEnabled={true}
                     /* chartBackgroundColor={processColor('pink')} */
                     chartDescription={this.state.pieChart.description}
@@ -1088,6 +1121,45 @@ class SingleStationDetail extends Component {
                     flexDirection: 'row',
                   }}
                 />
+              </View>
+              <View
+                style={{
+                  padding: 10,
+                  borderBottomColor: '#dddddd',
+                  borderBottomWidth: 1,
+                  flexDirection: 'column',
+                  width: '100%',
+                }}
+              >
+                <TouchableOpacity style={{}}>
+                  <View style={{ flexDirection: 'row' }}>
+                    <View
+                      style={{
+                        justifyContent: 'center',
+                        alignContent: 'center',
+                      }}
+                    >
+                      <Image
+                        style={{
+                          marginLeft: 2,
+                          width: 25,
+                          height: 25,
+                        }}
+                        tintColor="#ab0000"
+                        source={require('../../images/pflfx.png')}
+                      />
+                    </View>
+
+                    <View style={{ marginLeft: 10 }}>
+                      <Text style={{ color: '#292929', fontSize: 15 }}>
+                        排放量分析
+                      </Text>
+                      <Text style={{ color: '#6c6c6c', fontSize: 13 }}>
+                        排放量最新分析
+                      </Text>
+                    </View>
+                  </View>
+                </TouchableOpacity>
               </View>
             </ScrollView>
           </View>

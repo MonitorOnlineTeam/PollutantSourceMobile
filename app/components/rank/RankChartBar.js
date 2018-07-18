@@ -278,9 +278,9 @@ class RankChartBar extends Component {
   }
 
   render() {
-    console.log(this.props.YValues);
-    debugger;
-    return (
+    return this.props.loading ? (
+      <LoadingComponent />
+    ) : (
       <BarChart
         style={styles.chart}
         data={this.state.data}

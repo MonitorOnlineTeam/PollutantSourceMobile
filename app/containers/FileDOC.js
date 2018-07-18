@@ -8,11 +8,14 @@ import {
   StyleSheet,
   TextInput,
 } from 'react-native';
+import Icon from 'react-native-vector-icons/dist/FontAwesome';
+
 import { NavigationActions } from '../utils';
 import datas from '../Data/FileDOC.json';
 import { SCREEN_WIDTH } from '../config/globalsize';
 import Input from '../../node_modules/antd-mobile-rn/lib/input-item/Input.native';
 import { connect } from 'react-redux';
+import Icon from 'react-native-vector-icons/dist/FontAwesome';
 let navigationData;
 let thisData = this;
 let thisLength = 0;
@@ -25,6 +28,16 @@ class FileDOC extends Component {
       title: navigation.state.params.text,
       headerTintColor: '#fff',
       headerStyle: { backgroundColor: '#4f6aea' },
+      headerLeft: (
+        <Text
+          onPress={() => {
+            navigation.dispatch(NavigationActions.back());
+          }}
+          style={{ marginLeft: 5, width: 32, height: 32, textAlign: 'center' }}
+        >
+          <Icon name={'angle-left'} size={32} style={{ color: '#ffffff' }} />
+        </Text>
+      ),
     };
   }
   constructor(props) {
