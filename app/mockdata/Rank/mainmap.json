@@ -72,7 +72,7 @@
 		},
 		{
 			"pollutantType":[
-				{"pollutantName":"AQI",
+				{"pollutantName":"ALL",
 				"pollutantCode":"AQI",
 				 "keyID":1
 				},

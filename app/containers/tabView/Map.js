@@ -26,6 +26,7 @@ import markersInfo from '../../mockdata/OverView/markersInfo.json';
 import SuspensionLoadingComponent from '../../components/common/SuspensionLoadingComponent';
 import FlashPoint from '../../components/map/FlashPoint';
 import Button from '../../components/common/Button';
+import { getToken } from '../../dvapack/storage';
 /*
  * Copyright (c) 2018 SDL.All Rights Reserved
  *
@@ -68,18 +69,29 @@ class Map extends Component {
 
     let points, enterprise, _this;
     _this = this;
-    getPointEnterprise().then(function(data) {
-      _this.setState({
-        points: data,
-      });
-    });
+    let user = getToken();
+    // getPointEnterprise().then(function(data) {
+    //   _this.setState({
+    //     points: data,
+    //   });
+    // });
     getEnterprise().then(function(data) {
-      _this.setState({
-        enterprise: data,
-      });
+      if (user.User_Account === 'lisonggui') {
+        _this.setState({
+          enterprise: data,
+          zoomLevel: 18,
+          mapCoordinateLatitude: parseFloat(data[0].Latitude),
+          mapCoordinateLongitude: parseFloat(data[0].Longitude),
+        });
+      } else {
+        _this.setState({
+          enterprise: data,
+        });
+      }
     });
+    points = getPointEnterprise();
     this.state = {
-      points: [],
+      points: points,
       enterprise: [],
       showEnterprise: true,
       zoomLevel: 5,
@@ -242,6 +254,9 @@ class Map extends Component {
           break;
       }
 
+      ImageView = (
+        <Iconi name={'ios-notifications'} size={24} style={{ color: 'red' }} />
+      );
       if (this.state.selectMapLegend === '') {
         if (imageName !== 'gisnormal') {
           markers.push(
@@ -250,8 +265,8 @@ class Map extends Component {
               infoWindowDisabled={true}
               key={key}
               /* image={imageName} */
-              /* icon={() => ImageView} */
-              gif={['gisover', 'gisfault', 'gisexception']}
+              icon={() => ImageView}
+              /* gif={['gisover', 'gisfault', 'gisexception']} */
               coordinate={{
                 latitude: parseFloat(item.Latitude, 10),
                 longitude: parseFloat(item.Longitude, 10),
@@ -261,6 +276,7 @@ class Map extends Component {
                 this.props.dispatch(
                   NavigationActions.navigate({
                     routeName: 'SingleStationDetail',
+                    params: { item: item },
                   })
                 );
               }}
@@ -284,6 +300,7 @@ class Map extends Component {
                 this.props.dispatch(
                   NavigationActions.navigate({
                     routeName: 'SingleStationDetail',
+                    params: { item: item },
                   })
                 );
               }}
@@ -490,22 +507,22 @@ class Map extends Component {
       } else if (this.state.special === 'sewage') {
         arrayCount = [
           {
-            defaultValue: '一级',
+            defaultValue: '微量',
             count: 0,
             bgcolor: '#79C403',
           },
           {
-            defaultValue: '二级',
+            defaultValue: '少量',
             count: 0,
             bgcolor: '#F40000',
           },
           {
-            defaultValue: '三级',
+            defaultValue: '大量',
             count: 0,
             bgcolor: '#A8A6A5',
           },
           {
-            defaultValue: '四级',
+            defaultValue: '巨量',
             count: 0,
             bgcolor: '#FADE00',
           },
@@ -524,66 +541,152 @@ class Map extends Component {
           },
         ];
       }
+      let normalstatus = 10;
+      //超标
+      let overstatus = 0;
+      //异常
+      let exceptionstatus = 0;
+      //故障
+      let gzstatus = 0;
+      //停产
+      let tcstatus = 0;
+      //质控
+      let zkstatus = 0;
+      if (item.EntCode === 'dtgrjx001') {
+        normalstatus = 8;
+        overstatus = 1;
+        exceptionstatus = 1;
+        tcstatus = 1;
+        gzstatus = 1;
+        zkstatus = 2;
+      }
+      if (item.EntCode === 'bjldgn') {
+        normalstatus = 9;
+        // overstatus = 1;
+        // tcstatus = 1;
+        // zkstatus = 1;
+      }
+      if (item.EntCode === 'dtgjhh11') {
+        normalstatus = 9;
+        overstatus = 1;
+        tcstatus = 1;
+        zkstatus = 1;
+      }
+      if (item.EntCode === 'lywjfd') {
+        normalstatus = 9;
+        // exceptionstatus = 1;
+        // gzstatus = 1;
+        // zkstatus = 1;
+      }
+      if (item.EntCode === 'dtrlsmx001') {
+        normalstatus = 9;
+        overstatus = 1;
+        exceptionstatus = 1;
+        gzstatus = 1;
+        tcstatus = 1;
+        zkstatus = 2;
+      }
+      if (this.state.special === 'monitor') {
+        //正常
+        arrayCount[0].count = normalstatus;
+        //超标
+        arrayCount[1].count = overstatus;
+        //离线
+        arrayCount[2].count = 0;
+        //异常
+        arrayCount[3].count = exceptionstatus;
+      } else if (this.state.special === 'operation') {
+        //正常
+        arrayCount[0].count = normalstatus;
+        //运维
+        arrayCount[1].count = 0;
+        //逾期
+        arrayCount[2].count = 0;
+        //故障
+        arrayCount[3].count = gzstatus;
+        //停产
+        arrayCount[4].count = tcstatus;
+      } else if (this.state.special === 'sewage') {
+        //正常
+        arrayCount[0].count = normalstatus;
+        //二级
+        arrayCount[1].count = overstatus;
+        //三级
+        arrayCount[2].count = 0;
+        //四级
+        arrayCount[3].count = exceptionstatus;
+      } else {
+        //正常
+        arrayCount[0].count = normalstatus;
+        //质控
+        arrayCount[1].count = zkstatus;
+      }
       this.state.points.map(point => {
         if (point.EntCode === item.EntCode) {
           count++;
-          imageName = this._getIconName(point);
-          if (this.state.special === 'monitor') {
-            if (imageName === 'gisnormal') {
-              //正常
-              arrayCount[0].count = arrayCount[0].count + 1;
-            } else if (imageName === 'gisover') {
-              //超标
-              arrayCount[1].count = arrayCount[1].count + 1;
-            } else if (imageName === 'gisunline') {
-              //离线
-              arrayCount[2].count = arrayCount[2].count + 1;
-            } else if (imageName === 'gisexception') {
-              //异常
-              arrayCount[3].count = arrayCount[3].count + 1;
-            }
-          } else if (this.state.special === 'operation') {
-            if (imageName === 'gisnormal') {
-              //正常
-              arrayCount[0].count = arrayCount[0].count + 1;
-            } else if (imageName === 'gisexception') {
-              //停产
-              arrayCount[4].count = arrayCount[4].count + 1;
-            } else if (imageName === 'gisoperation') {
-              //运维
-              arrayCount[1].count = arrayCount[1].count + 1;
-            } else if (imageName === 'gisoperation') {
-              //故障
-              arrayCount[3].count = arrayCount[3].count + 1;
-            } else if (imageName === 'gisoverdue') {
-              //逾期
-              arrayCount[2].count = arrayCount[2].count + 1;
-            }
-          } else if (this.state.special === 'sewage') {
-            if (imageName === 'gisnormal') {
-              //正常
-              arrayCount[0].count = arrayCount[0].count + 1;
-            } else if (imageName === 'gisover') {
-              //二级
-              arrayCount[1].count = arrayCount[1].count + 1;
-            } else if (imageName === 'gisunline') {
-              //三级
-              arrayCount[2].count = arrayCount[2].count + 1;
-            } else if (imageName === 'gisexception') {
-              //四级
-              arrayCount[3].count = arrayCount[3].count + 1;
-            }
-          } else {
-            if (imageName === 'gisnormal') {
-              //正常
-              arrayCount[0].count = arrayCount[0].count + 1;
-            } else if (imageName === 'gisquality') {
-              //质控
-              arrayCount[1].count = arrayCount[1].count + 1;
-            }
-          }
         }
       });
+      // this.state.points.map(point => {
+      //   if (point.EntCode === item.EntCode) {
+      //     count++;
+      //     imageName = this._getIconName(point);
+      //     if (this.state.special === 'monitor') {
+      //       // if (imageName === 'gisnormal') {
+      //       //   //正常
+      //       //   arrayCount[0].count = arrayCount[0].count + 1;
+      //       // } else if (imageName === 'gisover') {
+      //       //   //超标
+      //       //   arrayCount[1].count = arrayCount[1].count + 1;
+      //       // } else if (imageName === 'gisunline') {
+      //       //   //离线
+      //       //   arrayCount[2].count = arrayCount[2].count + 1;
+      //       // } else if (imageName === 'gisexception') {
+      //       //   //异常
+      //       //   arrayCount[3].count = arrayCount[3].count + 1;
+      //       // }
+      //       //
+      //     } else if (this.state.special === 'operation') {
+      //       if (imageName === 'gisnormal') {
+      //         //正常
+      //         arrayCount[0].count = arrayCount[0].count + 1;
+      //       } else if (imageName === 'gisexception') {
+      //         //停产
+      //         arrayCount[4].count = arrayCount[4].count + 1;
+      //       } else if (imageName === 'gisoperation') {
+      //         //运维
+      //         arrayCount[1].count = arrayCount[1].count + 1;
+      //       } else if (imageName === 'gisoperation') {
+      //         //故障
+      //         arrayCount[3].count = arrayCount[3].count + 1;
+      //       } else if (imageName === 'gisoverdue') {
+      //         //逾期
+      //         arrayCount[2].count = arrayCount[2].count + 1;
+      //       }
+      //     } else if (this.state.special === 'sewage') {
+      //       if (imageName === 'gisnormal') {
+      //         //正常
+      //         arrayCount[0].count = arrayCount[0].count + 1;
+      //       } else if (imageName === 'gisover') {
+      //         //二级
+      //         arrayCount[1].count = arrayCount[1].count + 1;
+      //       } else if (imageName === 'gisunline') {
+      //         //三级
+      //         arrayCount[2].count = arrayCount[2].count + 1;
+      //       } else if (imageName === 'gisexception') {
+      //         //四级
+      //         arrayCount[3].count = arrayCount[3].count + 1;
+      //       }
+      //     } else {
+      //       if (imageName === 'gisnormal') {
+      //         //正常
+      //         arrayCount[0].count = arrayCount[0].count + 1;
+      //       } else if (imageName === 'gisquality') {
+      //         //质控
+      //         arrayCount[1].count = arrayCount[1].count + 1;
+      //       }
+      //     }
+      //   }
+      // });
 
       markers.push(
         <Marker

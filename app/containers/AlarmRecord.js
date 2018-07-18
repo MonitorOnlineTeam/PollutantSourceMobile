@@ -290,7 +290,6 @@ export default class AlarmRecord extends Component {
 
   render() {
     console.log(this.state.data);
-    debugger;
     return (
       <View style={{ flex: 1, backgroundColor: '#ffffff' }}>
         <View style={{ flex: 1 }}>

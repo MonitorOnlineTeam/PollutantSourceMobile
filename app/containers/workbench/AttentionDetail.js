@@ -4,7 +4,6 @@ import { View, Text, StyleSheet, ScrollView, TextInput } from 'react-native';
 import {
   Accordion,
   List,
-  Icon,
   InputItem,
   Radio,
   WhiteSpace,
@@ -18,6 +17,7 @@ import { NavigationActions } from '../../utils';
 import { SCREEN_WIDTH, WINDOW_HEIGHT } from '../../config/globalsize';
 import globalcolor from '../../config/globalcolor';
 import { connect } from 'react-redux';
+import Icon from 'react-native-vector-icons/dist/FontAwesome';
 
 const RadioItem = Radio.RadioItem;
 const data = [
@@ -136,7 +136,22 @@ class AttentionDetail extends Component {
     });
   }
   ToDetailClick = () => {
-    thisComponent.props.dispatch(NavigationActions.back());
+    //submit
+    Modal.alert('确认', '您确认提交吗？', [
+      { text: '取消', onPress: () => console.log('cancel') },
+      {
+        text: '确定',
+        onPress: () =>
+          new Promise(resolve => {
+            // console.log('onPress Promise');
+            // console.log(resolve);
+            // setTimeout(resolve, 1000);
+            resolve();
+            thisComponent.props.dispatch(NavigationActions.back());
+          }),
+      },
+    ]);
+    // thisComponent.props.dispatch(NavigationActions.back());
   }
   render() {
     const {

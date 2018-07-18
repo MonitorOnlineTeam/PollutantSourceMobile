@@ -218,7 +218,7 @@ class DataList extends Component {
           <View
             style={[{ width: SCREEN_WIDTH, height: 33, flexDirection: 'row' }]}
           >
-            <View style={[styles.oneLabel, styles.myBorderBottom]}>
+            <View style={[styles.oneLabel]}>
               <View
                 style={[{ justifyContent: 'center', alignItems: 'center' }]}
               >
@@ -242,7 +242,7 @@ class DataList extends Component {
             </View>
             <ScrollView
               ref={ref => (this.titleScrollView = ref)}
-              style={[{ width: SCREEN_WIDTH * 2 / 3, height: 33 }]}
+              style={[{ width: (SCREEN_WIDTH * 2) / 3, height: 33 }]}
               horizontal={true}
               showsHorizontalScrollIndicator={false}
               scrollEnabled={false}
@@ -324,7 +324,7 @@ class DataList extends Component {
                           {
                             fontSize: 11,
                             width: SCREEN_WIDTH / 3 - little_font_size2,
-                            color: globalcolor.air_quality_color,
+                            color: globalcolor.datepickerGreyText,
                             marginTop: 5,
                             marginLeft: little_font_size2 + 5,
                           },
@@ -415,7 +415,7 @@ class DataList extends Component {
                       ? this.state.cityNameLst.length * 60
                       : 33,
                     width: defaultPollutantCodes
-                      ? defaultPollutantCodes.length * SCREEN_WIDTH / 3
+                      ? (defaultPollutantCodes.length * SCREEN_WIDTH) / 3
                       : 33,
                   },
                 ]}
@@ -427,13 +427,14 @@ class DataList extends Component {
                         ? this.state.cityNameLst.length * 60
                         : 33,
                       width: defaultPollutantCodes
-                        ? defaultPollutantCodes.length * SCREEN_WIDTH / 3
+                        ? (defaultPollutantCodes.length * SCREEN_WIDTH) / 3
                         : 33,
                       backgroundColor: 'white',
                     },
                   ]}
                 >
                   {this.state.cityNameLst.map(item => {
+                    console.log(item);
                     return (
                       <TouchableOpacity
                         key={item.key}
@@ -449,7 +450,8 @@ class DataList extends Component {
                           {
                             height: 60,
                             width: defaultPollutantCodes
-                              ? defaultPollutantCodes.length * SCREEN_WIDTH / 3
+                              ? (defaultPollutantCodes.length * SCREEN_WIDTH) /
+                                3
                               : 33,
                             flexDirection: 'row',
                           },
@@ -633,7 +635,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   HorizontalList: {
-    width: SCREEN_WIDTH * 2 / 3,
+    width: (SCREEN_WIDTH * 2) / 3,
   },
   myBorderBottom: {
     borderBottomColor: globalcolor.borderLightGreyColor,

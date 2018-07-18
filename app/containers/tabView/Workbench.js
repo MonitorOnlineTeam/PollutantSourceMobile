@@ -12,7 +12,7 @@ import { connect } from 'react-redux';
 import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
 import wholeSituationStyle from '../../config/wholeSituationStyle';
 import { LocaleConfig } from 'react-native-calendars';
-import { Menu, ActivityIndicator, NavBar } from 'antd-mobile';
+import { Menu, ActivityIndicator, NavBar } from 'antd-mobile-rn';
 import { SCREEN_WIDTH } from '../../config/globalsize';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import { Modal } from 'antd-mobile-rn';
@@ -22,11 +22,12 @@ import moment from 'moment';
 import alarm from '../../mockdata/Workbench/alarm.json';
 import earlywarning from '../../mockdata/Workbench/earlywarning.json';
 import operation from '../../mockdata/Workbench/operation.json';
+import todolist from '../../mockdata/Workbench/todolist.json';
 import {
   getPointEnterprise,
-  getEnterprise,
+  // getEnterprise,
 } from '../../mockdata/Base/commonbase';
-import todolist from '../../mockdata/Workbench/todolist.json';
+import { getToken } from '../../dvapack/storage';
 
 /*
  * Copyright (c) 2018 SDL.All Rights Reserved
@@ -87,6 +88,7 @@ LocaleConfig.defaultLocale = 'fr';
 const stateButtonWidth = SCREEN_WIDTH / 5;
 const data = alarm;
 let _this;
+let pointEnterprise;
 @connect()
 class Workbench extends Component {
   static navigationOptions = ({ navigation }) => ({
@@ -169,6 +171,8 @@ class Workbench extends Component {
   })
   constructor(props) {
     super(props);
+    let user = getToken();
+    pointEnterprise = getPointEnterprise(user.User_Account);
     _this = this;
     this.state = {
       items: {},
@@ -186,7 +190,8 @@ class Workbench extends Component {
     alarm.map((item, key) => {
       const date = moment(item.date).format('YYYY-MM-DD');
       if (date === strTime) {
-        Point_All.map((pointitem, pointkey) => {
+        // Point_All.map((pointitem, pointkey) => {
+        pointEnterprise.map((pointitem, pointkey) => {
           if (pointitem.DGIMN == item.DGIMN) {
             const alarmtype = '';
             if (item.alarmtype === 1) {
@@ -205,7 +210,7 @@ class Workbench extends Component {
 
             this.state.items[strTime].push({
               type: 'alarm',
-              name: pointitem.PointName,
+              name: pointitem.Abbreviation + ' ' + pointitem.PointName,
               marked: true,
               date: item.date,
               poll: item.PollutantName,
@@ -229,7 +234,8 @@ class Workbench extends Component {
     operation.map((item, key) => {
       const date = moment(item.date).format('YYYY-MM-DD');
       if (date === strTime) {
-        Point_All.map((pointitem, pointkey) => {
+        // Point_All.map((pointitem, pointkey) => {
+        pointEnterprise.map((pointitem, pointkey) => {
           if (pointitem.DGIMN == item.DGIMN) {
             const operationaction = '';
             if (item.operationaction === 1) {
@@ -248,7 +254,7 @@ class Workbench extends Component {
 
             this.state.items[strTime].push({
               type: 'operation',
-              name: pointitem.PointName,
+              name: pointitem.Abbreviation + ' ' + pointitem.PointName,
               marked: true,
               date: item.date,
               operationaction: operationaction,
@@ -269,7 +275,8 @@ class Workbench extends Component {
     earlywarning.map((item, key) => {
       const date = moment(item.date).format('YYYY-MM-DD');
       if (date === strTime) {
-        Point_All.map((pointitem, pointkey) => {
+        // Point_All.map((pointitem, pointkey) => {
+        pointEnterprise.map((pointitem, pointkey) => {
           if (pointitem.DGIMN == item.DGIMN) {
             const earlytype = '';
             if (item.earlytype === 1) {
@@ -280,7 +287,7 @@ class Workbench extends Component {
 
             this.state.items[strTime].push({
               type: 'early',
-              name: pointitem.PointName,
+              name: pointitem.Abbreviation + ' ' + pointitem.PointName,
               marked: true,
               date: item.date,
               poll: item.PollutantName,
@@ -303,7 +310,8 @@ class Workbench extends Component {
     todolist.map((item, key) => {
       const date = moment(item.date).format('YYYY-MM-DD');
       if (date === strTime) {
-        Point_All.map((pointitem, pointkey) => {
+        // Point_All.map((pointitem, pointkey) => {
+        pointEnterprise.map((pointitem, pointkey) => {
           if (pointitem.DGIMN == item.DGIMN) {
             const operationaction = '';
             if (item.operationaction === 1) {
@@ -322,7 +330,7 @@ class Workbench extends Component {
 
             this.state.items[strTime].push({
               type: 'todolist',
-              name: pointitem.PointName,
+              name: pointitem.Abbreviation + ' ' + pointitem.PointName,
               marked: true,
               date: item.date,
               operationaction: operationaction,
@@ -338,16 +346,6 @@ class Workbench extends Component {
       const strTime = this.timeToString(time);
       this.state.items[strTime] = [];
     }
-    console.log('-----------------------------------------');
-    getPointEnterprise().then(function(data) {
-      console.log(data);
-      _this.setState({
-        EntData: data,
-      });
-
-      console.log(this.state.EntData);
-    });
-
     if (type === 'all') {
       for (let i = -15; i < 50; i++) {
         this.getalarm(day, i);

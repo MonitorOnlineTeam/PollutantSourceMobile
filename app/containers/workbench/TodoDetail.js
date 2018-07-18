@@ -808,7 +808,7 @@ class TodoDetail extends Component {
         </ScrollView>
         <Modal
           visible={this.state.modal1}
-          transparent
+          transparent={true}
           maskClosable={false}
           onClose={this.onClose('modal1')}
           title="选择表单"

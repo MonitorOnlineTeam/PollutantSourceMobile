@@ -9,9 +9,9 @@ import Account from '../Account';
 
 export default TabNavigator(
   {
-    DataList: { screen: DataList },
-    Map: { screen: Map },
     Workbench: { screen: Workbench },
+    DataList: { screen: DataList },
+    // Map: { screen: Map },
     // Statistical: { screen: Statistical },
     // Home: { screen: Home },
     Account: { screen: Account },

@@ -7,6 +7,7 @@ import { Button } from '../../components';
 import { createAction, NavigationActions } from '../../utils';
 import wholeSituationStyle from '../../config/wholeSituationStyle';
 import { SCREEN_WIDTH } from '../../config/globalsize';
+import { getToken } from '../../dvapack/storage';
 
 @connect(({ app }) => ({ ...app }))
 class Account extends Component {
@@ -34,7 +35,9 @@ class Account extends Component {
     const { login } = this.props;
     const array = [
       {
-        icon: require('../../images/zsk.png'),
+        icon: (
+          <Image style={styles.icon} source={require('../../images/zsk.png')} />
+        ),
         update: '',
         text: '知识库',
         onPress: (phoneList = () => {
@@ -44,7 +47,13 @@ class Account extends Component {
         }),
       },
       {
-        icon: require('../../images/txl.png'),
+        icon: (
+          <Image
+            style={styles.icon}
+            source={require('../../images/txl.png')}
+            tintColor="#00B7E3"
+          />
+        ),
         update: '',
         text: '通讯录',
         onPress: (phoneList = () => {
@@ -54,31 +63,48 @@ class Account extends Component {
         }),
       },
       {
-        icon: require('../../images/tztx.png'),
+        icon: (
+          <Image
+            style={styles.icon}
+            source={require('../../images/tztx.png')}
+          />
+        ),
         update: '',
         text: '通知提醒',
         onPress: (logout = () => {
-          this.props.dispatch(createAction('app/logout')());
+          // this.props.dispatch(createAction('app/logout')());
         }),
       },
       {
-        icon: require('../../images/gyww.png'),
+        icon: (
+          <Image
+            style={styles.icon}
+            source={require('../../images/gyww.png')}
+          />
+        ),
         update: '',
         text: '关于我们',
         onPress: (logout = () => {
-          this.props.dispatch(createAction('app/logout')());
+          // this.props.dispatch(createAction('app/logout')());
         }),
       },
       {
-        icon: require('../../images/xtbb.png'),
+        icon: (
+          <Image
+            style={styles.icon}
+            source={require('../../images/xtbb.png')}
+          />
+        ),
         update: '已经最新版',
         text: '版本更新',
         onPress: (logout = () => {
-          this.props.dispatch(createAction('app/logout')());
+          // this.props.dispatch(createAction('app/logout')());
         }),
       },
       {
-        icon: require('../../images/tc.png'),
+        icon: (
+          <Image style={styles.icon} source={require('../../images/tc.png')} />
+        ),
         update: '',
         text: '退出',
         onPress: (logout = () => {
@@ -86,6 +112,7 @@ class Account extends Component {
         }),
       },
     ];
+    let user = getToken();
     return (
       <View
         style={{ flexDirection: 'column', backgroundColor: '#E3E3E3', flex: 1 }}
@@ -118,7 +145,9 @@ class Account extends Component {
             style={{ marginLeft: 20, width: 70, height: 70, borderRadius: 100 }}
           />
           <View style={{ marginLeft: 10, marginTop: 15 }}>
-            <Text style={{ color: '#FFFFFF', fontSize: 20 }}>system</Text>
+            <Text style={{ color: '#FFFFFF', fontSize: 20 }}>
+              {user.User_Name}
+            </Text>
             <View style={{ flexDirection: 'row' }}>
               <Image
                 source={require('../../images/BJ.png')}
@@ -143,7 +172,8 @@ class Account extends Component {
               onPress={item.onPress}
               style={styles.TO}
             >
-              <Image style={styles.icon} source={item.icon} />
+              {/*<Image style={styles.icon} source={item.icon} />*/}
+              {item.icon}
               <Text style={styles.text}> {item.text}</Text>
               <Text style={{ marginRight: 10 }}> {item.update}</Text>
             </TouchableOpacity>
@@ -177,7 +207,6 @@ const styles = StyleSheet.create({
   },
   icon: {
     paddingLeft: 10,
-
     width: 23,
     height: 23,
   },

@@ -12,20 +12,22 @@ import LoadingComponent from '../../components/common/LoadingComponent';
  * @extends {Component}
  */
 @connect(
-  ({ app, loading }) => ({
+  ({ app, loading, datapreview }) => ({
     chartData: app.chartData,
     YZhou: app.YZhou,
     listRankData: app.listRankData,
     ishow: app.ishow,
     loading: loading.effects['app/GetGridRealTimeImgDataAndroid'],
+    YValues: datapreview.YValues,
   }),
   null,
   null,
   { withRef: true }
 )
 class RankChartBar extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    console.log(props.YValues);
     this.state = {
       isReversedOrder: false,
       clicked: false,
@@ -65,11 +67,7 @@ class RankChartBar extends Component {
         ],
         config: {
           barWidth: 0.2,
-          group: {
-            fromX: 0,
-            groupSpace: 0.1,
-            barSpace: 0.1,
-          },
+          barSpace: 0.2,
         },
       },
 
@@ -78,6 +76,7 @@ class RankChartBar extends Component {
         granularityEnabled: true,
         granularity: 1,
         position: 'BOTTOM',
+        axisMaximum: 5,
       },
 
       marker: {
@@ -98,18 +97,29 @@ class RankChartBar extends Component {
     };
   }
   componentWillReceiveProps(nextProps) {
-    if (nextProps.chartData !== this.props.chartData) {
+    if (nextProps.YValues !== this.props.YValues) {
       let values = [];
       let valueFormatter = [];
       let colors = [];
-      let axisMaximum = nextProps.chartData.length;
-      nextProps.chartData.map((item, key) => {
+      let axisMaximum = nextProps.YValues.length;
+      let i = 0;
+      nextProps.YValues.map((item, key) => {
         values.push({
-          y: item.chartYValue,
-          marker: `时间:${item.chartXValue}\n值:${item.chartYValue}`,
+          y: parseFloat(item.aa),
+          marker: `公司:${item.Abbreviation}\n值:${item.aa}`,
         });
-        valueFormatter.push(item.chartXValue);
-        colors.push(processColor(item.chartColor));
+
+        valueFormatter.push(item.Abbreviation);
+        // colors.push(processColor(item.chartColor));
+        if (item.aa > 90) {
+          colors.push(processColor('#16010b'));
+        } else if (item.aa > 60) {
+          colors.push(processColor('#ff401a'));
+        } else if (item.aa > 30) {
+          colors.push(processColor('#efdc31'));
+        } else {
+          colors.push(processColor('#03d304'));
+        }
       });
 
       this.setState({
@@ -163,7 +173,16 @@ class RankChartBar extends Component {
           marker: `时间:${item.chartXValue}\n值:${item.chartYValue}`,
         });
         valueFormatter.push(item.chartXValue);
-        colors.push(processColor(item.chartColor));
+        //item.item.MonitoringDatasi.PollutantDatas[1].Concentration > 30 ? 'blue':item.item.MonitoringDatasi.PollutantDatas[1].Concentration > 60 ? 'red':'green'
+        if (item.chartYValue > 90) {
+          colors.push(processColor('#16010b'));
+        } else if (item.chartYValue > 60) {
+          colors.push(processColor('#ff401a'));
+        } else if (item.chartYValue > 30) {
+          colors.push(processColor('#efdc31'));
+        } else {
+          colors.push(processColor('#03d304'));
+        }
       });
       if (this.state.isReversedOrder) {
         this.setState({ isReversedOrder: false });
@@ -216,6 +235,22 @@ class RankChartBar extends Component {
         highlights={this.state.highlights}
         onChange={event => console.log(event.nativeEvent)}
         marker={this.state.marker}
+        touchEnabled={true}
+        dragEnabled={true}
+        scaleEnabled={true}
+        scaleXEnabled={true}
+        scaleYEnabled={true}
+        pinchZoom={true}
+        doubleTapToZoomEnabled={true}
+        dragDecelerationEnabled={false}
+        dragDecelerationFrictionCoef={0.99}
+        zoom={{
+          scaleX: Math.floor(this.props.YValues.length / 10),
+          scaleY: 1,
+          xValue: 0,
+          yValue: 0,
+        }}
+        chartDescription={{ text: '' }}
       />
     );
   }
