@@ -21,11 +21,7 @@ class knowledgebase extends Component {
           }}
           style={{ marginLeft: 5, width: 32, height: 32, textAlign: 'center' }}
         >
-<<<<<<< HEAD
           <Icon name={'angle-left'} size={32} style={{ color: '#ffffff' }} />
-=======
-          <Icon name={'angle-left'} size={32} style={{ color: 'black' }} />
->>>>>>> de69db19a87a0911761502f2ca8f65207eb936ce
         </Text>
       ),
     };

@@ -160,9 +160,7 @@ class RankFlatList extends Component {
                   ? '#16010b'
                   : item.item.aa > 60
                     ? '#ff401a'
-                    : item.item.aa > 30
-                      ? '#efdc31'
-                      : '#03d304',
+                    : item.item.aa > 30 ? '#efdc31' : '#03d304',
               padding: 3,
               width: SCREEN_WIDTH / 6,
             }}
