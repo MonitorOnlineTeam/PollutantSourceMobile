@@ -41,7 +41,7 @@ class RankFlatList extends Component {
         aa = Math.floor(Math.random() * 100000 + 10000) / 1000;
         item.aa = aa;
       });
-      console.log(stationLst);
+      // console.log(stationLst);
       this.setState({
         stationLst: stationLst,
       });
@@ -119,7 +119,7 @@ class RankFlatList extends Component {
   //FlatList key
   _extraUniqueKey = (item, index) => `index11${index}${item}`
   _renderItemList = item => {
-    console.log(item.item.aa);
+    // console.log(item.item.aa);
     if (item.item.key != undefined) {
       return (
         <View
@@ -279,7 +279,7 @@ const getAllData = async dataType => {
     }
     datalist.push(data);
   });
-  console.log(datalist);
+  // console.log(datalist);
   return datalist;
 };
 // define your styles

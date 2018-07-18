@@ -27,7 +27,7 @@ import LoadingComponent from '../../components/common/LoadingComponent';
 class RankChartBar extends Component {
   constructor(props) {
     super(props);
-    console.log(props.YValues);
+    // console.log(props.YValues);
     this.state = {
       isReversedOrder: false,
       clicked: false,
@@ -158,7 +158,7 @@ class RankChartBar extends Component {
       this.setState({ ...this.state, selectedEntry: JSON.stringify(entry) });
     }
 
-    console.log(event.nativeEvent);
+    // console.log(event.nativeEvent);
   }
 
   _sort = () => {

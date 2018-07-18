@@ -56,7 +56,7 @@ class PollutantcodeBarRank extends Component {
         <TouchableOpacity
           onPress={() => {
             this.setState({ pressPollutantCode: item.item.pollutantCode });
-            console.log(this.props.YValues);
+            // console.log(this.props.YValues);
             let dataS,
               array = [];
             this.props.YValues.forEach(item => {
@@ -260,7 +260,7 @@ const getAllData = async dataType => {
     }
     datalist.push(data);
   });
-  console.log(datalist);
+  // console.log(datalist);
   return datalist;
 };
 // define your styles
