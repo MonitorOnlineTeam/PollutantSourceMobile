@@ -1,6 +1,6 @@
 //import liraries
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, FlatList, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, FlatList, Dimensions,InteractionManager } from 'react-native';
 import { connect } from 'react-redux';
 import RankChartBar from '../rank/RankChartBar';
 import { createAction } from '../../utils';
@@ -9,6 +9,7 @@ import {
   defaultPollutantCodes,
 } from '../../mockdata/Base/commonbase';
 import RankFlatListData from '../../mockdata/Rank/RankFlatListData.json';
+import LoadingComponent from '../../components/common/LoadingComponent';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
@@ -34,83 +35,136 @@ class RankFlatList extends Component {
     this.state = {
       stationLst: [],
     };
-    getAllData('hour').then(value => {
-      let stationLst = value;
-      let aa;
-      stationLst.forEach(item => {
-        aa = Math.floor(Math.random() * 100000 + 10000) / 1000;
-        item.aa = aa;
-      });
-      console.log(stationLst);
-      this.setState({
-        stationLst: stationLst,
-      });
-      this.props.dispatch(
-        createAction('datapreview/updateState')({ YValues: stationLst })
-      );
-    });
+    
+    
+  }
+  componentDidMount(){
+
+    
   }
   render() {
-    return (
-      <FlatList
-        data={this.props.YValues}
-        ListHeaderComponent={
-          <View
-            style={{
-              height: 240,
-              width: SCREEN_WIDTH,
-              backgroundColor: '#ffffff',
-              marginBottom: 5,
-            }}
-          >
-            <RankChartBar
-              style={{ marginBottom: 10 }}
-              ref={ref => (this._rankChartBar = ref)}
+   if (this.props.YValues.length >0) {
+    return(<FlatList
+      data={this.props.YValues}
+      ListHeaderComponent={
+        <View
+          style={{
+            height: 240,
+            width: SCREEN_WIDTH,
+            backgroundColor: '#ffffff',
+            marginBottom: 5,
+          }}
+        >
+          <RankChartBar
+            style={{ marginBottom: 10 }}
+            ref={ref => (this._rankChartBar = ref)}
+          />
+          <View style={{ flexDirection: 'row', marginTop: 5 }}>
+            <View
+              style={{
+                backgroundColor: '#03d304',
+                width: 15,
+                height: 15,
+                marginLeft: 30,
+              }}
             />
-            <View style={{ flexDirection: 'row', marginTop: 5 }}>
-              <View
-                style={{
-                  backgroundColor: '#03d304',
-                  width: 15,
-                  height: 15,
-                  marginLeft: 30,
-                }}
-              />
-              <Text style={{ marginLeft: 5 }}>微量</Text>
-              <View
-                style={{
-                  backgroundColor: '#efdc31',
-                  width: 15,
-                  height: 15,
-                  marginLeft: 30,
-                }}
-              />
-              <Text style={{ marginLeft: 5 }}>少量</Text>
-              <View
-                style={{
-                  backgroundColor: '#ff401a',
-                  width: 15,
-                  height: 15,
-                  marginLeft: 30,
-                }}
-              />
-              <Text style={{ marginLeft: 5 }}>大量</Text>
-              <View
-                style={{
-                  backgroundColor: '#16010b',
-                  width: 15,
-                  height: 15,
-                  marginLeft: 30,
-                }}
-              />
-              <Text style={{ marginLeft: 5 }}>巨量</Text>
-            </View>
+            <Text style={{ marginLeft: 5 }}>微量</Text>
+            <View
+              style={{
+                backgroundColor: '#efdc31',
+                width: 15,
+                height: 15,
+                marginLeft: 30,
+              }}
+            />
+            <Text style={{ marginLeft: 5 }}>少量</Text>
+            <View
+              style={{
+                backgroundColor: '#ff401a',
+                width: 15,
+                height: 15,
+                marginLeft: 30,
+              }}
+            />
+            <Text style={{ marginLeft: 5 }}>大量</Text>
+            <View
+              style={{
+                backgroundColor: '#16010b',
+                width: 15,
+                height: 15,
+                marginLeft: 30,
+              }}
+            />
+            <Text style={{ marginLeft: 5 }}>巨量</Text>
           </View>
-        }
-        renderItem={this._renderItemList}
-        keyExtractor={this._extraUniqueKey}
-      />
-    );
+        </View>
+      }
+      renderItem={this._renderItemList}
+      keyExtractor={this._extraUniqueKey}
+    />);
+   } else {
+     return(<LoadingComponent/>);
+   }
+    // return (
+    //   this.props.YValues.length >0 ?<FlatList
+    //     data={this.props.YValues}
+    //     ListHeaderComponent={
+    //       <View
+    //         style={{
+    //           height: 240,
+    //           width: SCREEN_WIDTH,
+    //           backgroundColor: '#ffffff',
+    //           marginBottom: 5,
+    //         }}
+    //       >
+    //         <RankChartBar
+    //           style={{ marginBottom: 10 }}
+    //           ref={ref => (this._rankChartBar = ref)}
+    //         />
+    //         <View style={{ flexDirection: 'row', marginTop: 5 }}>
+    //           <View
+    //             style={{
+    //               backgroundColor: '#03d304',
+    //               width: 15,
+    //               height: 15,
+    //               marginLeft: 30,
+    //             }}
+    //           />
+    //           <Text style={{ marginLeft: 5 }}>微量</Text>
+    //           <View
+    //             style={{
+    //               backgroundColor: '#efdc31',
+    //               width: 15,
+    //               height: 15,
+    //               marginLeft: 30,
+    //             }}
+    //           />
+    //           <Text style={{ marginLeft: 5 }}>少量</Text>
+    //           <View
+    //             style={{
+    //               backgroundColor: '#ff401a',
+    //               width: 15,
+    //               height: 15,
+    //               marginLeft: 30,
+    //             }}
+    //           />
+    //           <Text style={{ marginLeft: 5 }}>大量</Text>
+    //           <View
+    //             style={{
+    //               backgroundColor: '#16010b',
+    //               width: 15,
+    //               height: 15,
+    //               marginLeft: 30,
+    //             }}
+    //           />
+    //           <Text style={{ marginLeft: 5 }}>巨量</Text>
+    //         </View>
+    //       </View>
+    //     }
+    //     renderItem={this._renderItemList}
+    //     keyExtractor={this._extraUniqueKey}
+    //   /> : <LoadingComponent/>
+    // ); 
   }
   _sortRankChart = () => {
     this.props.dispatch(createAction('app/doSortchartDataAll')());
@@ -119,7 +173,6 @@ class RankFlatList extends Component {
   //FlatList key
   _extraUniqueKey = (item, index) => `index11${index}${item}`
   _renderItemList = item => {
-    console.log(item.item.aa);
     if (item.item.key != undefined) {
       return (
         <View
@@ -279,7 +332,6 @@ const getAllData = async dataType => {
     }
     datalist.push(data);
   });
-  console.log(datalist);
   return datalist;
 };
 // define your styles

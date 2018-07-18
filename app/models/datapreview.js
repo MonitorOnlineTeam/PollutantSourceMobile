@@ -2,6 +2,10 @@ import { Model } from '../dvapack';
 // import * as datapreviewService  from '../services/datapreviewService';
 import { getToken, saveStorage, loadStorage } from '../dvapack/storage';
 import { shishi, fenzhong, xiaoshi, ri } from '../config/globalconst';
+import {
+  getAllConcentration,
+  defaultPollutantCodes,
+} from '../mockdata/Base/commonbase';
 
 export default Model.extend({
   namespace: 'datapreview',
@@ -31,7 +35,7 @@ export default Model.extend({
         Unit: 'μg/m³',
       },
     ],
-    YValues: [],
+    YValues:[],
     pointBeens: [
       /**
        * pID : 2dc875e5-d500-4d6a-8f0f-c395a239b2ad
@@ -99,12 +103,22 @@ export default Model.extend({
           //     payload: {searchTime:prefixDate+' '+myDate.getHours()+":00:00",mTag:xiaoshi,GroupID:'全部'},
           // });
         },
-        RankOfStationByEmissions: () => {},
+        RankOfStationByEmissions:()=>{
+          this.setTimeout(  
+            () => {  dispatch({
+              type: 'initRankList',
+              payload: { mTag: xiaoshi },
+            }); },  
+            500  
+          );  
+         
+        }
       });
     },
   },
-
+  
   effects: {
+    
     /**
      * 获取指定污染物的因子编码
      * houxiaofeng
@@ -120,6 +134,87 @@ export default Model.extend({
         user,
       });
       yield update({ pollutantBeens });
+    },
+    *demo123({ payload }, { update, call, put, select }) {
+      console.log('demo123');
+      const {YValues} = yield select(state => state.datapreview);
+       
+        let   array = [];
+             YValues.forEach(item => {
+              item.aa = Math.floor(Math.random() * 100000 + 10000) / 1000;
+              array.push(item);
+            });
+             array.sort(function(a,b){
+           
+             return b.aa-a.aa;
+         });
+      // yield put('setState', { 'YValues': array});
+      
+      yield update({"YValues":array });
+    },
+    *initRankList({ payload }, { update, call, put, select }) {
+      console.log('initRankList');
+      let datalist = [];
+      const getdata = yield call (getAllConcentration,{ dataType: 'hour' });
+      getdata.map(item => {
+        let data = {
+          key: item.DGIMN,
+          entpointName: item.EntName + '-' + item.PointName,
+          monitorTime:
+            item.MonitoringDatas.length === 0
+              ? moment().format('YYYY-MM-DD HH:mm:ss')
+              : item.MonitoringDatas[0].MonitoringTime,
+          entName: item.EntName,
+          pointName: item.PointName,
+          industry: item.IndustryTypeCode,
+          dgimn: item.DGIMN,
+          control: item.AttentionCode,
+          dataType: 'hour',
+          MonitoringDatasi: item.MonitoringDatas[0],
+          Abbreviation: item.Abbreviation,
+          bstatus: null,
+          aa:Math.floor(Math.random() * 100000 + 10000) / 1000,
+          status:
+            item.DGIMN === 'bjldgn01' ||
+            item.DGIMN === 'dtgjhh11102' ||
+            item.DGIMN === 'dtgrjx110'
+              ? 3
+              : 1,
+        };
+        if (
+          item.DGIMN === 'bjldgn01' ||
+          item.DGIMN === 'dtgjhh11102' ||
+          item.DGIMN === 'dtgrjx110'
+        ) {
+          data.status = 2;
+        } else if (
+          item.DGIMN === 'dtgrjx104' ||
+          item.DGIMN === 'dtgrjx103' ||
+          item.DGIMN === 'lywjfd03'
+        ) {
+          data.status = 3;
+        } else {
+          data.status = 1;
+        }
+        if (item.MonitoringDatas.length > 0) {
+          item.MonitoringDatas[0].PollutantDatas.map(wry => {
+            data[wry.PollutantCode] = wry.Concentration + ',' + wry.PollutantCode;
+            data[wry.PollutantCode + '-' + 'PollutantName'] = wry.PollutantName;
+            data[wry.PollutantCode + '-' + 'PollutantCode'] = wry.PollutantCode;
+            data[wry.PollutantCode + '-' + 'IsExceed'] = wry.IsExceed; // 是否超标
+            data[wry.PollutantCode + '-' + 'ExceedValue'] = wry.ExceedValue; // 超标倍数
+            data[wry.PollutantCode + '-' + 'IsException'] = wry.IsException; // 是否异常
+            data[wry.PollutantCode + '-' + 'ExceptionText'] = wry.ExceptionText; // 异常类型
+            data[wry.PollutantCode + '-' + 'Standard'] = wry.Standard; // 标准值
+          });
+        }
+        datalist.push(data);
+      });
+       datalist.sort(function(a,b){
+     
+       return b.aa-a.aa;
+   });
+      yield update({"YValues":datalist });
     },
     *loadPointWithData(
       {
