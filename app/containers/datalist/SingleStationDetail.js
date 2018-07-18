@@ -1090,44 +1090,44 @@ class SingleStationDetail extends Component {
                 />
               </View>
               <View
-                  style={{
-                    padding: 10,
-                    borderBottomColor: '#dddddd',
-                    borderBottomWidth: 1,
-                    flexDirection: 'column',
-                    width: '100%',
-                  }}
-                >
-                  <TouchableOpacity style={{}}>
-                    <View style={{ flexDirection: 'row' }}>
-                      <View
+                style={{
+                  padding: 10,
+                  borderBottomColor: '#dddddd',
+                  borderBottomWidth: 1,
+                  flexDirection: 'column',
+                  width: '100%',
+                }}
+              >
+                <TouchableOpacity style={{}}>
+                  <View style={{ flexDirection: 'row' }}>
+                    <View
+                      style={{
+                        justifyContent: 'center',
+                        alignContent: 'center',
+                      }}
+                    >
+                      <Image
                         style={{
-                          justifyContent: 'center',
-                          alignContent: 'center',
+                          marginLeft: 2,
+                          width: 25,
+                          height: 25,
                         }}
-                      >
-                        <Image
-                          style={{
-                            marginLeft: 2,
-                            width: 25,
-                            height: 25,
-                          }}
-                          tintColor="#ab0000"
-                          source={require('../../images/pflfx.png')}
-                        />
-                      </View>
-
-                      <View style={{ marginLeft: 10 }}>
-                        <Text style={{ color: '#292929', fontSize: 15 }}>
-                        排放量分析
-                        </Text>
-                        <Text style={{ color: '#6c6c6c', fontSize: 13 }}>
-                        排放量最新分析
-                        </Text>
-                      </View>
+                        tintColor="#ab0000"
+                        source={require('../../images/pflfx.png')}
+                      />
                     </View>
-                  </TouchableOpacity>
-                </View>
+
+                    <View style={{ marginLeft: 10 }}>
+                      <Text style={{ color: '#292929', fontSize: 15 }}>
+                        排放量分析
+                      </Text>
+                      <Text style={{ color: '#6c6c6c', fontSize: 13 }}>
+                        排放量最新分析
+                      </Text>
+                    </View>
+                  </View>
+                </TouchableOpacity>
+              </View>
             </ScrollView>
           </View>
           <View style={style}>

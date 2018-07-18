@@ -17,10 +17,8 @@ import moment from 'moment';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 export default class AlarmRecord extends Component {
   static navigationOptions = ({ router, navigation }) => {
- 
-
     return {
-      title: "报警记录",
+      title: '报警记录',
       headerTintColor: '#000000',
       headerStyle: { backgroundColor: '#ffffff' },
       headerLeft: (
@@ -39,7 +37,7 @@ export default class AlarmRecord extends Component {
     super(props);
     const time = [];
     data.map(item => {
-      const date = moment(item.AlarmTime,moment.ISO_8601).format('YYYY-MM-DD');
+      const date = moment(item.AlarmTime, moment.ISO_8601).format('YYYY-MM-DD');
       if (time.length !== 0) {
         const isno = true;
         time.map(a => {
@@ -102,56 +100,54 @@ export default class AlarmRecord extends Component {
     return <View />;
   }
   renderSectionHeader = ({ section }) => (
-    
     <View
       style={{
-     marginLeft:5,
-      marginTop:10,
- 
+        marginLeft: 5,
+        marginTop: 10,
       }}
     >
-    <View style={{
-   
-    flexDirection:"row"
-      }}>
+      <View
+        style={{
+          flexDirection: 'row',
+        }}
+      >
         <Text
-      style={{
-       alignContent:"center",
-        color: '#000000',
-        fontSize: 10,
-      
-      }}
-    >
-      {moment(section.key,moment.ISO_8601).format('YYYY')}
-    </Text>
+          style={{
+            alignContent: 'center',
+            color: '#000000',
+            fontSize: 10,
+          }}
+        >
+          {moment(section.key, moment.ISO_8601).format('YYYY')}
+        </Text>
+      </View>
+      <View
+        style={{
+          alignItems: 'center',
+          alignContent: 'center',
 
-    </View>
-   <View  style={{
-     alignItems:"center",
-     alignContent:"center",
-     
-    flexDirection:"row"
-      }}>
-      <Text
-      style={{
-        color: '#000000',
-        fontSize: 23,
-        fontWeight:('bold', '700')
-      }}
-    >
-      {moment(section.key,moment.ISO_8601).format('DD')}
-    </Text>
-    <Text
-      style={{
-        color: '#353535',
-        fontSize: 13,
-        fontWeight:('bold', '100')
-      }}
-    >
-      {moment(section.key,moment.ISO_8601).format('MM月')}
-    </Text></View>
-      
-    
+          flexDirection: 'row',
+        }}
+      >
+        <Text
+          style={{
+            color: '#000000',
+            fontSize: 23,
+            fontWeight: ('bold', '700'),
+          }}
+        >
+          {moment(section.key, moment.ISO_8601).format('DD')}
+        </Text>
+        <Text
+          style={{
+            color: '#353535',
+            fontSize: 13,
+            fontWeight: ('bold', '100'),
+          }}
+        >
+          {moment(section.key, moment.ISO_8601).format('MM月')}
+        </Text>
+      </View>
     </View>
   )
   renderItem = ({ item }) => {
@@ -173,16 +169,15 @@ export default class AlarmRecord extends Component {
         <View style={{ flexDirection: 'row' }}>
           <View
             style={{
-              
               backgroundColor: 'white',
               flex: 1,
               borderRadius: 10,
-      
+
               marginRight: 10,
               marginTop: 17,
-      
-              borderColor:"#e3e3e3",
-              borderWidth:1
+
+              borderColor: '#e3e3e3',
+              borderWidth: 1,
             }}
           >
             <View style={{ flexDirection: 'row', padding: 5 }}>
@@ -197,36 +192,28 @@ export default class AlarmRecord extends Component {
                 {item.name}
               </Text>
             </View>
-            <View
-              style={{ flexDirection: 'row', marginTop: 3, marginLeft: 8 }}
-            >
+            <View style={{ flexDirection: 'row', marginTop: 3, marginLeft: 8 }}>
               <Text style={{ color: '#797979', fontSize: 14 }}>报警时间:</Text>
               <Text style={{ color: '#252525', fontSize: 14 }}>
                 {' '}
                 {item.AlarmTime}
               </Text>
             </View>
-            <View
-              style={{ flexDirection: 'row', marginTop: 3, marginLeft: 8 }}
-            >
+            <View style={{ flexDirection: 'row', marginTop: 3, marginLeft: 8 }}>
               <Text style={{ color: '#797979', fontSize: 14 }}>污染物：</Text>
               <Text style={{ color: '#252525', fontSize: 14 }}>
                 {' '}
                 {item.PollutantName}
               </Text>
             </View>
-            <View
-              style={{ flexDirection: 'row', marginTop: 3, marginLeft: 8 }}
-            >
+            <View style={{ flexDirection: 'row', marginTop: 3, marginLeft: 8 }}>
               <Text style={{ color: '#797979', fontSize: 14 }}>报警类别：</Text>
               <Text style={{ color: '#252525', fontSize: 14 }}>
                 {' '}
                 {item.AlarmType}次
               </Text>
             </View>
-            <View
-              style={{ flexDirection: 'row', marginTop: 3, marginLeft: 8 }}
-            >
+            <View style={{ flexDirection: 'row', marginTop: 3, marginLeft: 8 }}>
               <Text style={{ color: '#797979', fontSize: 14 }}>报警状态：</Text>
               <Text style={{ color: '#252525', fontSize: 14 }}>
                 {' '}
@@ -234,9 +221,7 @@ export default class AlarmRecord extends Component {
               </Text>
             </View>
 
-            <View
-              style={{ flexDirection: 'row', marginTop: 3, marginLeft: 8 }}
-            >
+            <View style={{ flexDirection: 'row', marginTop: 3, marginLeft: 8 }}>
               <Text style={{ color: '#797979', fontSize: 14 }}>
                 报警持续时长(小时):
               </Text>
@@ -246,10 +231,22 @@ export default class AlarmRecord extends Component {
               </Text>
             </View>
             <View
-              style={{ flexDirection: 'row', marginTop: 3,  marginLeft: 8,marginRight:30 }}
+              style={{
+                flexDirection: 'row',
+                marginTop: 3,
+                marginLeft: 8,
+                marginRight: 30,
+              }}
             >
               <Text style={{ color: '#797979', fontSize: 14 }}>描述：</Text>
-              <Text style={{ color: '#252525', fontSize: 13 ,marginRight:15,lineHeight:20}}>
+              <Text
+                style={{
+                  color: '#252525',
+                  fontSize: 13,
+                  marginRight: 15,
+                  lineHeight: 20,
+                }}
+              >
                 {' '}
                 {item.AlarmMsg}
               </Text>
@@ -257,14 +254,14 @@ export default class AlarmRecord extends Component {
 
             <TouchableOpacity
               style={{
-                borderBottomStartRadius:9,
-               borderBottomEndRadius:9,
+                borderBottomStartRadius: 9,
+                borderBottomEndRadius: 9,
                 borderTopColor: '#f5f5f5',
                 borderTopWidth: 1,
                 marginTop: 10,
-                width:"100%",
-               padding:10,
-                backgroundColor:"#ffbf59"
+                width: '100%',
+                padding: 10,
+                backgroundColor: '#ffbf59',
               }}
               onPress={this.phoneList}
             >
@@ -295,7 +292,7 @@ export default class AlarmRecord extends Component {
     console.log(this.state.data);
     debugger;
     return (
-      <View style={{ flex: 1 ,backgroundColor:"#ffffff"}}>
+      <View style={{ flex: 1, backgroundColor: '#ffffff' }}>
         <View style={{ flex: 1 }}>
           <SectionList
             stickySectionHeadersEnabled={true}

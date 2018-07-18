@@ -17,10 +17,8 @@ import moment from 'moment';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 export default class EarlyWarningInfo extends Component {
   static navigationOptions = ({ router, navigation }) => {
- 
-
     return {
-      title: "预警记录",
+      title: '预警记录',
       headerTintColor: '#000000',
       headerStyle: { backgroundColor: '#ffffff' },
       headerLeft: (
@@ -39,7 +37,9 @@ export default class EarlyWarningInfo extends Component {
     super(props);
     const time = [];
     data.map(item => {
-      const date = moment(item.EarlyWorningTime,moment.ISO_8601).format('YYYY-MM-DD');
+      const date = moment(item.EarlyWorningTime, moment.ISO_8601).format(
+        'YYYY-MM-DD'
+      );
       if (time.length !== 0) {
         const isno = true;
         time.map(a => {
@@ -99,55 +99,54 @@ export default class EarlyWarningInfo extends Component {
   }
   renderSectionHeader = ({ section }) => (
     <View
-    style={{
-   marginLeft:5,
-    marginTop:10,
+      style={{
+        marginLeft: 5,
+        marginTop: 10,
+      }}
+    >
+      <View
+        style={{
+          flexDirection: 'row',
+        }}
+      >
+        <Text
+          style={{
+            alignContent: 'center',
+            color: '#000000',
+            fontSize: 10,
+          }}
+        >
+          {moment(section.key, moment.ISO_8601).format('YYYY')}
+        </Text>
+      </View>
+      <View
+        style={{
+          alignItems: 'center',
+          alignContent: 'center',
 
-    }}
-  >
-  <View style={{
- 
-  flexDirection:"row"
-    }}>
-      <Text
-    style={{
-     alignContent:"center",
-      color: '#000000',
-      fontSize: 10,
-    
-    }}
-  >
-    {moment(section.key,moment.ISO_8601).format('YYYY')}
-  </Text>
-
-  </View>
- <View  style={{
-   alignItems:"center",
-   alignContent:"center",
-   
-  flexDirection:"row"
-    }}>
-    <Text
-    style={{
-      color: '#000000',
-      fontSize: 23,
-      fontWeight:('bold', '700')
-    }}
-  >
-    {moment(section.key,moment.ISO_8601).format('DD')}
-  </Text>
-  <Text
-    style={{
-      color: '#353535',
-      fontSize: 13,
-      fontWeight:('bold', '100')
-    }}
-  >
-    {moment(section.key,moment.ISO_8601).format('MM月')}
-  </Text></View>
-    
-  
-  </View>
+          flexDirection: 'row',
+        }}
+      >
+        <Text
+          style={{
+            color: '#000000',
+            fontSize: 23,
+            fontWeight: ('bold', '700'),
+          }}
+        >
+          {moment(section.key, moment.ISO_8601).format('DD')}
+        </Text>
+        <Text
+          style={{
+            color: '#353535',
+            fontSize: 13,
+            fontWeight: ('bold', '100'),
+          }}
+        >
+          {moment(section.key, moment.ISO_8601).format('MM月')}
+        </Text>
+      </View>
+    </View>
   )
   renderItem = ({ item }) => {
     return (
@@ -171,12 +170,12 @@ export default class EarlyWarningInfo extends Component {
               backgroundColor: 'white',
               flex: 1,
               borderRadius: 10,
-      
+
               marginRight: 10,
               marginTop: 17,
-      
-              borderColor:"#e3e3e3",
-              borderWidth:1
+
+              borderColor: '#e3e3e3',
+              borderWidth: 1,
             }}
           >
             <View style={{ flexDirection: 'row', padding: 5 }}>
@@ -191,36 +190,28 @@ export default class EarlyWarningInfo extends Component {
                 {item.name}
               </Text>
             </View>
-            <View
-              style={{ flexDirection: 'row', marginTop: 3, marginLeft: 8 }}
-            >
+            <View style={{ flexDirection: 'row', marginTop: 3, marginLeft: 8 }}>
               <Text style={{ color: '#797979', fontSize: 14 }}>预警类别:</Text>
               <Text style={{ color: '#252525', fontSize: 14 }}>
                 {' '}
                 {item.EarlyWorningType}
               </Text>
             </View>
-            <View
-              style={{ flexDirection: 'row', marginTop: 3, marginLeft: 8 }}
-            >
+            <View style={{ flexDirection: 'row', marginTop: 3, marginLeft: 8 }}>
               <Text style={{ color: '#797979', fontSize: 14 }}>报警时间</Text>
               <Text style={{ color: '#252525', fontSize: 14 }}>
                 {' '}
                 {item.EarlyWorningTime}
               </Text>
             </View>
-            <View
-              style={{ flexDirection: 'row', marginTop: 3, marginLeft: 8 }}
-            >
+            <View style={{ flexDirection: 'row', marginTop: 3, marginLeft: 8 }}>
               <Text style={{ color: '#797979', fontSize: 14 }}>核实状态：</Text>
               <Text style={{ color: '#252525', fontSize: 14 }}>
                 {' '}
                 {item.State}次
               </Text>
             </View>
-            <View
-              style={{ flexDirection: 'row', marginTop: 3, marginLeft: 8 }}
-            >
+            <View style={{ flexDirection: 'row', marginTop: 3, marginLeft: 8 }}>
               <Text style={{ color: '#797979', fontSize: 14 }}>核实人：</Text>
               <Text style={{ color: '#252525', fontSize: 14 }}>
                 {' '}
@@ -228,36 +219,39 @@ export default class EarlyWarningInfo extends Component {
               </Text>
             </View>
 
-            <View
-              style={{ flexDirection: 'row', marginTop: 3, marginLeft: 8 }}
-            >
+            <View style={{ flexDirection: 'row', marginTop: 3, marginLeft: 8 }}>
               <Text style={{ color: '#797979', fontSize: 14 }}>核实时间:</Text>
               <Text style={{ color: '#252525', fontSize: 14 }}>
                 {' '}
                 {item.CheckTime}
               </Text>
             </View>
-            <View
-              style={{ flexDirection: 'row', marginTop: 3, marginLeft: 8 }}
-            >
+            <View style={{ flexDirection: 'row', marginTop: 3, marginLeft: 8 }}>
               <Text style={{ color: '#797979', fontSize: 14 }}>描述：</Text>
-              <Text style={{color: '#252525', fontSize: 13 ,marginRight:15,lineHeight:20 }}>
+              <Text
+                style={{
+                  color: '#252525',
+                  fontSize: 13,
+                  marginRight: 15,
+                  lineHeight: 20,
+                }}
+              >
                 {' '}
                 {item.Comment}
               </Text>
             </View>
 
             <TouchableOpacity
-             style={{
-              borderBottomStartRadius:9,
-             borderBottomEndRadius:9,
-              borderTopColor: '#f5f5f5',
-              borderTopWidth: 1,
-              marginTop: 10,
-              width:"100%",
-             padding:10,
-              backgroundColor:"#ffbf59"
-            }}
+              style={{
+                borderBottomStartRadius: 9,
+                borderBottomEndRadius: 9,
+                borderTopColor: '#f5f5f5',
+                borderTopWidth: 1,
+                marginTop: 10,
+                width: '100%',
+                padding: 10,
+                backgroundColor: '#ffbf59',
+              }}
               onPress={this.phoneList}
             >
               <View
@@ -284,7 +278,7 @@ export default class EarlyWarningInfo extends Component {
   }
   render() {
     return (
-      <View style={{ flex: 1 ,backgroundColor:"#ffffff"}}>
+      <View style={{ flex: 1, backgroundColor: '#ffffff' }}>
         <View style={{ flex: 1 }}>
           <SectionList
             stickySectionHeadersEnabled={true}
