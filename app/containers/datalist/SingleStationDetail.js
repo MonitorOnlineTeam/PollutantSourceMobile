@@ -1085,7 +1085,7 @@ class SingleStationDetail extends Component {
                 >
                   <Text style={{ color: '#6c6c6c', margin: 8 }}>排量占比</Text>
                   <PieChart
-                    style={[styles.chart, { height: 160, width: SCREEN_WIDTH }]}
+                    style={[styles.chart, { height: 230, width: SCREEN_WIDTH }]}
                     logEnabled={true}
                     /* chartBackgroundColor={processColor('pink')} */
                     chartDescription={this.state.pieChart.description}
@@ -1121,6 +1121,45 @@ class SingleStationDetail extends Component {
                     flexDirection: 'row',
                   }}
                 />
+              </View>
+              <View
+                style={{
+                  padding: 10,
+                  borderBottomColor: '#dddddd',
+                  borderBottomWidth: 1,
+                  flexDirection: 'column',
+                  width: '100%',
+                }}
+              >
+                <TouchableOpacity style={{}}>
+                  <View style={{ flexDirection: 'row' }}>
+                    <View
+                      style={{
+                        justifyContent: 'center',
+                        alignContent: 'center',
+                      }}
+                    >
+                      <Image
+                        style={{
+                          marginLeft: 2,
+                          width: 25,
+                          height: 25,
+                        }}
+                        tintColor="#ab0000"
+                        source={require('../../images/pflfx.png')}
+                      />
+                    </View>
+
+                    <View style={{ marginLeft: 10 }}>
+                      <Text style={{ color: '#292929', fontSize: 15 }}>
+                        排放量分析
+                      </Text>
+                      <Text style={{ color: '#6c6c6c', fontSize: 13 }}>
+                        排放量最新分析
+                      </Text>
+                    </View>
+                  </View>
+                </TouchableOpacity>
               </View>
             </ScrollView>
           </View>

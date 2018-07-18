@@ -1,6 +1,12 @@
 //import liraries
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Dimensions,
+  InteractionManager,
+} from 'react-native';
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import { BarChart } from 'react-native-charts-wrapper';
@@ -68,7 +74,9 @@ class RankOfStationByEmissions extends Component {
     this.props.dispatch(NavigationActions.back({ routeName: 'Account' }));
   }
   componentDidMount() {
-    this.props.navigation.setParams({ navigatePress: this.rankUpDown });
+    InteractionManager.runAfterInteractions(() => {
+      this.props.navigation.setParams({ navigatePress: this.rankUpDown });
+    });
   }
   rankUpDown = () => {
     this.props.navigation.dispatch(

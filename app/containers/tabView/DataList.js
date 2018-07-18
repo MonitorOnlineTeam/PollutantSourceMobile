@@ -11,6 +11,7 @@ import {
   TouchableWithoutFeedback,
   RefreshControl,
   Animated,
+  InteractionManager,
 } from 'react-native';
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
@@ -57,6 +58,7 @@ import {
 @connect(({ router, datapreview }) => ({
   modalVisible: router.modalVisible,
   pullToRefreshing: datapreview.pullToRefreshing,
+  YValues: datapreview.YValues,
 }))
 class DataList extends Component {
   static navigationOptions = {
@@ -94,15 +96,17 @@ class DataList extends Component {
       textDate: prefixDate + ' ' + myDate.getHours() + ':00:00',
       datePickerVisible: false,
     };
-
-    getAllData('hour').then(value => {
-      this.setState({
-        cityNameLst: value,
+  }
+  componentWillMount() {}
+  componentDidMount() {
+    InteractionManager.runAfterInteractions(() => {
+      getAllData('hour').then(value => {
+        this.setState({
+          cityNameLst: value,
+        });
       });
     });
   }
-  componentWillMount() {}
-  componentDidMount() {}
   _contentViewScroll = e => {
     var offsetY = e.nativeEvent.contentOffset.y; //滑动距离
     var contentSizeHeight = e.nativeEvent.contentSize.height; //scrollView contentSize高度
@@ -261,7 +265,7 @@ class DataList extends Component {
                 title="Loading..."
                 titleColor="#716b6a"
                 colors={['#ff0000', '#00ff00', '#0000ff']}
-                progressBackgroundColor="#ffff00"
+                progressBackgroundColor="#716b6a"
               />
             }
             onMomentumScrollEnd={this._contentViewScroll}
@@ -434,7 +438,6 @@ class DataList extends Component {
                   ]}
                 >
                   {this.state.cityNameLst.map(item => {
-                    console.log(item);
                     return (
                       <TouchableOpacity
                         key={item.key}

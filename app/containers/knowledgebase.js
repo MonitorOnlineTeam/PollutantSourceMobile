@@ -6,7 +6,7 @@ import Icon from 'react-native-vector-icons/dist/FontAwesome';
 
 import { NavigationActions } from '../utils';
 import knowledge from '../Data/knowledge.json';
-
+import Icon from 'react-native-vector-icons/dist/FontAwesome';
 @connect()
 class knowledgebase extends Component {
   static navigationOptions = ({ router, navigation }) => {
@@ -21,7 +21,7 @@ class knowledgebase extends Component {
           }}
           style={{ marginLeft: 5, width: 32, height: 32, textAlign: 'center' }}
         >
-          <Icon name={'angle-left'} size={32} style={{ color: 'black' }} />
+          <Icon name={'angle-left'} size={32} style={{ color: '#ffffff' }} />
         </Text>
       ),
     };
