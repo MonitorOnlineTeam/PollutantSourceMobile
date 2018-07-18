@@ -9,16 +9,37 @@ import {
   Platform,
   Image,
 } from 'react-native';
+import { NavigationActions } from '../utils';
 import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
 import { SCREEN_WIDTH } from '../config/globalsize';
 import data from '../mockdata/Base/Code/T_Cod_ExceptionProcessing.json';
 import moment from 'moment';
+import Icon from 'react-native-vector-icons/dist/FontAwesome';
 export default class AlarmRecord extends Component {
+  static navigationOptions = ({ router, navigation }) => {
+ 
+
+    return {
+      title: "报警记录",
+      headerTintColor: '#000000',
+      headerStyle: { backgroundColor: '#ffffff' },
+      headerLeft: (
+        <Text
+          onPress={() => {
+            navigation.dispatch(NavigationActions.back());
+          }}
+          style={{ marginLeft: 8, width: 32, height: 32, textAlign: 'center' }}
+        >
+          <Icon name={'angle-left'} size={32} style={{ color: '#000000' }} />
+        </Text>
+      ),
+    };
+  }
   constructor(props) {
     super(props);
     const time = [];
     data.map(item => {
-      const date = moment(item.AlarmTime).format('YYYY-MM-DD');
+      const date = moment(item.AlarmTime,moment.ISO_8601).format('YYYY-MM-DD');
       if (time.length !== 0) {
         const isno = true;
         time.map(a => {
@@ -81,27 +102,56 @@ export default class AlarmRecord extends Component {
     return <View />;
   }
   renderSectionHeader = ({ section }) => (
+    
     <View
       style={{
-        borderBottomColor: '#BFBFBF',
-        backgroundColor: '#ffffff',
-        width: SCREEN_WIDTH - 20,
-        borderRadius: 10,
-        alignSelf: 'center',
-        alignItems: 'center',
+     marginLeft:5,
+      marginTop:10,
+ 
       }}
     >
+    <View style={{
+   
+    flexDirection:"row"
+      }}>
+        <Text
+      style={{
+       alignContent:"center",
+        color: '#000000',
+        fontSize: 10,
+      
+      }}
+    >
+      {moment(section.key,moment.ISO_8601).format('YYYY')}
+    </Text>
+
+    </View>
+   <View  style={{
+     alignItems:"center",
+     alignContent:"center",
+     
+    flexDirection:"row"
+      }}>
       <Text
-        style={{
-          alignContent: 'center',
-          color: '#8B8B8B',
-          alignSelf: 'center',
-          alignItems: 'center',
-          fontSize: 15,
-        }}
-      >
-        {section.key}
-      </Text>
+      style={{
+        color: '#000000',
+        fontSize: 23,
+        fontWeight:('bold', '700')
+      }}
+    >
+      {moment(section.key,moment.ISO_8601).format('DD')}
+    </Text>
+    <Text
+      style={{
+        color: '#353535',
+        fontSize: 13,
+        fontWeight:('bold', '100')
+      }}
+    >
+      {moment(section.key,moment.ISO_8601).format('MM月')}
+    </Text></View>
+      
+    
     </View>
   )
   renderItem = ({ item }) => {
@@ -112,10 +162,10 @@ export default class AlarmRecord extends Component {
         }}
         style={{
           flex: 1,
-          width: SCREEN_WIDTH - 20,
+          width: SCREEN_WIDTH - 80,
           borderRadius: 10,
           marginBottom: 10,
-          marginLeft: 10,
+          marginLeft: 70,
           backgroundColor: '#fff',
           marginTop: 5,
         }}
@@ -123,13 +173,16 @@ export default class AlarmRecord extends Component {
         <View style={{ flexDirection: 'row' }}>
           <View
             style={{
+              
               backgroundColor: 'white',
               flex: 1,
               borderRadius: 10,
-              padding: 10,
+      
               marginRight: 10,
               marginTop: 17,
-              paddingBottom: 20,
+      
+              borderColor:"#e3e3e3",
+              borderWidth:1
             }}
           >
             <View style={{ flexDirection: 'row', padding: 5 }}>
@@ -145,7 +198,7 @@ export default class AlarmRecord extends Component {
               </Text>
             </View>
             <View
-              style={{ flexDirection: 'row', marginTop: 3, marginLeft: 21 }}
+              style={{ flexDirection: 'row', marginTop: 3, marginLeft: 8 }}
             >
               <Text style={{ color: '#797979', fontSize: 14 }}>报警时间:</Text>
               <Text style={{ color: '#252525', fontSize: 14 }}>
@@ -154,7 +207,7 @@ export default class AlarmRecord extends Component {
               </Text>
             </View>
             <View
-              style={{ flexDirection: 'row', marginTop: 3, marginLeft: 21 }}
+              style={{ flexDirection: 'row', marginTop: 3, marginLeft: 8 }}
             >
               <Text style={{ color: '#797979', fontSize: 14 }}>污染物：</Text>
               <Text style={{ color: '#252525', fontSize: 14 }}>
@@ -163,7 +216,7 @@ export default class AlarmRecord extends Component {
               </Text>
             </View>
             <View
-              style={{ flexDirection: 'row', marginTop: 3, marginLeft: 21 }}
+              style={{ flexDirection: 'row', marginTop: 3, marginLeft: 8 }}
             >
               <Text style={{ color: '#797979', fontSize: 14 }}>报警类别：</Text>
               <Text style={{ color: '#252525', fontSize: 14 }}>
@@ -172,7 +225,7 @@ export default class AlarmRecord extends Component {
               </Text>
             </View>
             <View
-              style={{ flexDirection: 'row', marginTop: 3, marginLeft: 21 }}
+              style={{ flexDirection: 'row', marginTop: 3, marginLeft: 8 }}
             >
               <Text style={{ color: '#797979', fontSize: 14 }}>报警状态：</Text>
               <Text style={{ color: '#252525', fontSize: 14 }}>
@@ -182,7 +235,7 @@ export default class AlarmRecord extends Component {
             </View>
 
             <View
-              style={{ flexDirection: 'row', marginTop: 3, marginLeft: 21 }}
+              style={{ flexDirection: 'row', marginTop: 3, marginLeft: 8 }}
             >
               <Text style={{ color: '#797979', fontSize: 14 }}>
                 报警持续时长(小时):
@@ -193,10 +246,10 @@ export default class AlarmRecord extends Component {
               </Text>
             </View>
             <View
-              style={{ flexDirection: 'row', marginTop: 3, marginLeft: 21 }}
+              style={{ flexDirection: 'row', marginTop: 3,  marginLeft: 8,marginRight:30 }}
             >
               <Text style={{ color: '#797979', fontSize: 14 }}>描述：</Text>
-              <Text style={{ color: '#252525', fontSize: 14 }}>
+              <Text style={{ color: '#252525', fontSize: 13 ,marginRight:15,lineHeight:20}}>
                 {' '}
                 {item.AlarmMsg}
               </Text>
@@ -204,25 +257,30 @@ export default class AlarmRecord extends Component {
 
             <TouchableOpacity
               style={{
+                borderBottomStartRadius:9,
+               borderBottomEndRadius:9,
                 borderTopColor: '#f5f5f5',
                 borderTopWidth: 1,
                 marginTop: 10,
+                width:"100%",
+               padding:10,
+                backgroundColor:"#ffbf59"
               }}
               onPress={this.phoneList}
             >
               <View
-                style={{ flexDirection: 'row', marginTop: 10, marginLeft: 21 }}
+                style={{ flexDirection: 'row', marginTop: 10, marginLeft: 8 }}
               >
-                <Text style={{ color: '#2D82FF' }}>运维单</Text>
+                <Text style={{ color: '#ffffff' }}>运维单</Text>
                 <Image
                   source={require('../images/sjt.png')}
-                  tintColor="#2D82FF"
+                  tintColor="#ffffff"
                   style={{
                     width: 15,
                     height: 15,
                     alignItems: 'center',
                     alignSelf: 'center',
-                    marginLeft: 5,
+                    marginLeft: 8,
                   }}
                 />
               </View>
@@ -237,7 +295,7 @@ export default class AlarmRecord extends Component {
     console.log(this.state.data);
     debugger;
     return (
-      <View style={{ flex: 1 }}>
+      <View style={{ flex: 1 ,backgroundColor:"#ffffff"}}>
         <View style={{ flex: 1 }}>
           <SectionList
             stickySectionHeadersEnabled={true}
