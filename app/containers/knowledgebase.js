@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import { Grid } from 'antd-mobile-rn';
 import { connect } from 'react-redux';
-import Icon from 'react-native-vector-icons/dist/FontAwesome';
 
 import { NavigationActions } from '../utils';
 import knowledge from '../Data/knowledge.json';

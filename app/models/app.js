@@ -57,7 +57,7 @@ export default Model.extend({
       yield put(
         NavigationActions.reset({
           index: 0,
-          actions: [NavigationActions.navigate({ routeName: data })],
+          actions: [NavigationActions.navigate({ routeName: 'MainView' })],
         })
       );
       // if (user && user != null) {
