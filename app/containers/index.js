@@ -7,7 +7,6 @@ import operationsStaff from './tabView/operationsStaff';
 import groupCompany from './tabView/groupCompany';
 import MainView from './tabView/MainView';
 
-
 import system from './tabView/system';
 import Detail from './Detail';
 import Login from './Login';
