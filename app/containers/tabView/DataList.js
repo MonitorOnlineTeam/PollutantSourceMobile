@@ -461,26 +461,6 @@ class DataList extends Component {
                           styles.myBorderBottom,
                         ]}
                       >
-                        <Text
-                          key={item.key}
-                          style={[
-                            {
-                              width: SCREEN_WIDTH / 3,
-                              height: 39,
-                              textAlign: 'center',
-                              marginTop: 10,
-                              color:
-                                item.Colors && item.Colors[_key]
-                                  ? item.Colors[_key]
-                                  : 'black',
-                              alignItems: 'center',
-                              justifyContent: 'center',
-                            },
-                          ]}
-                          numberOfLines={2}
-                        >
-                          {item.monitorTime}
-                        </Text>
                         {item.MonitoringDatasi.PollutantDatas.map(zcc => {
                           if (zcc.PollutantCode === '00') {
                           } else {

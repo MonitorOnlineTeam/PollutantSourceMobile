@@ -5,6 +5,8 @@ import { Animated, Easing } from 'react-native';
 import branchOffice from './tabView/branchOffice';
 import operationsStaff from './tabView/operationsStaff';
 import groupCompany from './tabView/groupCompany';
+import MainView from './tabView/MainView';
+
 import system from './tabView/system';
 import Detail from './Detail';
 import Login from './Login';
@@ -79,6 +81,7 @@ export default StackNavigator(
     operationsStaff: { screen: operationsStaff },
     groupCompany: { screen: groupCompany },
     system: { screen: system },
+    MainView: { screen: MainView },
     Detail: { screen: Detail },
 
     Todo: { screen: Todo },

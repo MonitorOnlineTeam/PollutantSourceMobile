@@ -8,7 +8,6 @@ import {
   StyleSheet,
   TextInput,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/dist/FontAwesome';
 
 import { NavigationActions } from '../utils';
 import datas from '../Data/FileDOC.json';
