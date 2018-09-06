@@ -6,7 +6,9 @@ import {
   saveToken,
   saveStorage,
   loadStorage,
+  storageload
 } from '../dvapack/storage';
+import {getNavigators} from '../services/auth';
 
 export default Model.extend({
   namespace: 'app',
@@ -47,6 +49,25 @@ export default Model.extend({
         data = 'operationsStaff';
       }
 
+      let mainnavs;
+      let workbenchs;
+      let stations;
+      const result = yield call(getNavigators);
+      if(result.data.length > 0){
+        const rdata=result.data;
+        mainnavs = rdata.find((e) => e.text === "主导航");
+        workbenchs = rdata.find((e) => e.text === "工作台");
+        stations = rdata.find((e) => e.text === "排口信息");
+      }
+      
+
+      yield saveStorage("mainnavs",mainnavs.children);
+      yield saveStorage("workbenchs",mainnavs.children);
+      yield saveStorage("stations",mainnavs.children);
+
+
+      const abd=yield storageload("mainnavs");
+      const ddd=yield loadStorage("mainnavs");
       /*
     branchOffice: { screen: branchOffice },
     operationsStaff: { screen: operationsStaff },

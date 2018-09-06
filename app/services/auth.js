@@ -34,7 +34,7 @@ export const login = async params => {
 
 export async function getNavigators(params) {
   const body = {
-    menu_id: params.menu_id,
+    menu_id: "c9b7ab20-2fd9-4009-81fd-e0413108a71a",
   };
   let url =
     '/api/rest/PollutantSourceApi/SysMenu/GetSysMenuByUserId?authorCode=48f3889c-af8d-401f-ada2-c383031af92d';
