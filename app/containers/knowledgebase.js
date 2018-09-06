@@ -6,7 +6,6 @@ import Icon from 'react-native-vector-icons/dist/FontAwesome';
 
 import { NavigationActions } from '../utils';
 import knowledge from '../Data/knowledge.json';
-import Icon from 'react-native-vector-icons/dist/FontAwesome';
 @connect()
 class knowledgebase extends Component {
   static navigationOptions = ({ router, navigation }) => {

@@ -15,7 +15,6 @@ import datas from '../Data/FileDOC.json';
 import { SCREEN_WIDTH } from '../config/globalsize';
 import Input from '../../node_modules/antd-mobile-rn/lib/input-item/Input.native';
 import { connect } from 'react-redux';
-import Icon from 'react-native-vector-icons/dist/FontAwesome';
 let navigationData;
 let thisData = this;
 let thisLength = 0;
