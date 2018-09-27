@@ -158,9 +158,7 @@ class Account extends Component {
                   marginTop: 4,
                 }}
               />
-              <Text style={{ color: '#cacaca', fontSize: 13, paddingTop: 1 }}>
-                编辑用户信息
-              </Text>
+              
             </View>
           </View>
         </View>

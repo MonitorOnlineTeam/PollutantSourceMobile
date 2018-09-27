@@ -51,39 +51,33 @@ export async function getNavigators(params) {
         children: [
           {
             id: '334da83c-d35c-4fd9-8f3e-e26d81a7fc19',
-            text: '环保专工',
+            text: '运维人员',
             Menu_Img: '16/16',
             children: [
               {
                 id: '301c88bc-7c06-4d19-b73a-00a1e83c383c',
-                text: '数据',
+                text: '工作台',
                 Menu_Img: '16/16',
                 children: [],
               },
               {
                 id: 'ded0dd22-995f-41d1-9097-c541c18c428a',
-                text: '报警',
+                text: '数据一览',
                 Menu_Img: '16/16',
                 children: [],
               },
               {
                 id: '3375aa00-43d2-4d58-9a86-66059abbf557',
-                text: '报备',
+                text: '历史记录',
                 Menu_Img: '16/16',
                 children: [],
               },
               {
                 id: '9c2d8b65-7532-4ff4-9383-f5bbfcd67464',
-                text: '分析',
-                Menu_Img: '16/16',
-                children: [],
-              },
-              {
-                id: 'f82e9b49-0739-4b3e-8a41-7093d501c37a',
                 text: '我的',
                 Menu_Img: '16/16',
                 children: [],
-              },
+              }
             ],
           },
         ],
@@ -129,6 +123,37 @@ export async function getNavigators(params) {
             Menu_Img: '16/16',
             children: [],
           },
+        ],
+      },
+      {
+        id: 'cfee5eca-bc0e-4aea-9ae8-eb5b44090902',
+        text: '工作台',
+        Menu_Img: '32/32',
+        children: [
+          {
+            id: 'e37d7d17-20d0-49b4-9d70-e2a271a50323',
+            text: '应急任务',
+            Menu_Img: '16/16',
+            children: [],
+          },
+          {
+            id: '5bea1efb-2be4-4139-b3f8-96f6911ebd4e',
+            text: '例行任务',
+            Menu_Img: '16/16',
+            children: [],
+          },
+          {
+            id: '2806eca7-841d-435c-8e8b-acf0f68a6f2c',
+            text: '报警信息',
+            Menu_Img: '16/16',
+            children: [],
+          },
+          {
+            id: '2806eca7-841d-435c-8e8b-acf0f68a6f2c',
+            text: '预警信息',
+            Menu_Img: '16/16',
+            children: [],
+          }
         ],
       },
     ],

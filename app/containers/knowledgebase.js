@@ -30,7 +30,7 @@ class knowledgebase extends Component {
       <View>
         <Grid
           data={knowledge}
-          activeStyle={true}
+          activeStyle={false}
           columnNum={3}
           onClick={da => {
             this.props.dispatch(

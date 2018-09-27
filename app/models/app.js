@@ -52,6 +52,7 @@ export default Model.extend({
       let mainnavs;
       let workbenchs;
       let stations;
+
       const result = yield call(getNavigators);
       if (result.data.length > 0) {
         const rdata = result.data;
@@ -61,7 +62,7 @@ export default Model.extend({
       }
 
       yield saveStorage('mainnavs', mainnavs.children);
-      yield saveStorage('workbenchs', mainnavs.children);
+      yield saveStorage('workbenchs', workbenchs.children);
       yield saveStorage('stations', mainnavs.children);
 
       const abd = yield storageload('mainnavs');

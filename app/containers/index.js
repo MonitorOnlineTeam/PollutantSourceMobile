@@ -54,6 +54,13 @@ import TodoDetail from './workbench/TodoDetail';
 import AttentionDetail from './workbench/AttentionDetail';
 import AlarmRecord from './AlarmRecord';
 import EarlyWarningInfo from './EarlyWarningInfo';
+import AlarmInfoData from '../components/DetailedPage/AlarmInfoData';
+import SignIn from '../components/DetailedPage/SignIn';
+import ExecutionTasks from '../components/DetailedPage/ExecutionTasks';
+import RecordSheet from '../components/DetailedPage/RecordSheet';
+import TaskDetails from '../components/DetailedPage/RecordSheet';
+import SiteInformation from '../components/DetailedPage/SiteInformation';
+import StatisticalAnalysis from '../components/DetailedPage/StatisticalAnalysis';
 // const MainNavigator = StackNavigator(
 //   {
 //     // HomeNavigator: { screen: HomeNavigator },
@@ -83,7 +90,7 @@ export default StackNavigator(
     system: { screen: system },
     MainView: { screen: MainView },
     Detail: { screen: Detail },
-
+    AlarmInfoData:{screen:AlarmInfoData},
     Todo: { screen: Todo },
     EarlyWarning: { screen: EarlyWarning },
     Alarm: { screen: Alarm },
@@ -108,7 +115,14 @@ export default StackNavigator(
     OverdueStatistics: { screen: OverdueStatistics },
     RankOfBranchOfficeByEmissions: { screen: RankOfBranchOfficeByEmissions },
     Workmeter: { screen: Workmeter },
-
+    SignIn:{screen:SignIn},
+    SiteInformation:{screen:SiteInformation},
+    StatisticalAnalysis:{screen:StatisticalAnalysis},
+    
+    ExecutionTasks:{screen:ExecutionTasks},
+    RecordSheet:{screen:RecordSheet},
+    TaskDetails:{screen:TaskDetails},
+    
     SingleStationDetail: { screen: SingleStationDetail },
     HistoricalData: { screen: HistoricalData },
     _3DStation: { screen: _3DStation },

@@ -1,0 +1,19 @@
+[      {
+             "icon": "http://m.qpic.cn/psb?/V13bWnEG4SA0oG/DtMnxU1JRZZsMonzts0I5MeNrVsQnQZa0rN8ReJpIkU!/b/dGEBAAAAAAAA&bo=yADIAAAAAAADByI!&rf=viewer_4",
+            "text":"法律法规",
+            "id":"1"
+        },
+        {"icon": "http://m.qpic.cn/psb?/V13bWnEG4SA0oG/DB4CItWv7qJieM*eheVcKD7Dgyqby2hP8NgjlUgrMPw!/b/dAgBAAAAAAAA&bo=yADIAAAAAAADFzI!&rf=viewer_4",
+            "text":"标准",
+             "id":"2"
+        },
+        {"icon": "http://m.qpic.cn/psb?/V13bWnEG4SA0oG/u9Ogui.KBWg73XuS8kxWj7ZZqgHh0k8roMVMKgW32eI!/b/dDIBAAAAAAAA&bo=yADIAAAAAAADFzI!&rf=viewer_4",
+            "text":"运维",
+             "id":"3"
+        },
+        {"icon": "http://m.qpic.cn/psb?/V13bWnEG4SA0oG/meCch3fcPI55ieO5CtmbbngBI8niEf23r81CtZWNPkw!/b/dDEBAAAAAAAA&bo=yADIAAAAAAADFzI!&rf=viewer_4",
+            "text":"应急预案",
+             "id":"4"
+        }
+
+]

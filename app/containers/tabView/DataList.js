@@ -13,6 +13,7 @@ import {
   Animated,
   InteractionManager,
 } from 'react-native';
+import { WhiteSpace, WingBlank } from 'antd-mobile-rn';
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import Iconi from 'react-native-vector-icons/dist/Ionicons';
@@ -29,6 +30,8 @@ import moment from 'moment';
 import LabelHeadView from '../../components/common/LabelHeadView';
 import Alert from '../../components/common/Alert';
 import GroupList from '../../components/common/GroupList';
+import TableEnt from '../../components/DetailedPage/TableEnt';
+import TableOther from '../../components/DetailedPage/TableOther';
 
 import {
   getAllConcentration,
@@ -81,552 +84,102 @@ class DataList extends Component {
     ),
   }
 
-  constructor(props) {
-    super(props);
-    let myDate = new Date();
-    let prefixDate =
-      myDate.getFullYear() +
-      '-' +
-      (myDate.getMonth() + 1) +
-      '-' +
-      myDate.getDate();
-    this.state = {
-      imageSrc: '',
-      cityNameLst: [],
-      textDate: prefixDate + ' ' + myDate.getHours() + ':00:00',
-      datePickerVisible: false,
-    };
-  }
-  componentWillMount() {}
-  componentDidMount() {
-    InteractionManager.runAfterInteractions(() => {
-      getAllData('hour').then(value => {
-        this.setState({
-          cityNameLst: value,
-        });
-      });
-    });
-  }
-  _contentViewScroll = e => {
-    var offsetY = e.nativeEvent.contentOffset.y; //滑动距离
-    var contentSizeHeight = e.nativeEvent.contentSize.height; //scrollView contentSize高度
-    var oriageScrollHeight = e.nativeEvent.layoutMeasurement.height; //scrollView高度
-    if (offsetY + oriageScrollHeight >= contentSizeHeight) {
-      console.log('上传滑动到底部事件');
-    }
-  }
-  getStatusColor(status) {
-    switch (status) {
-      case 0:
-        return '#B0B0B1'; //离线
-      case 1:
-        return '#5BC142'; //在线
-      case 2:
-        return '#E00B0B'; //超标
-      case 3:
-      case 4:
-      case 5:
-        return '#B9C303'; //异常
-    }
-    return '#B0B0B1'; //离线
-  }
-
-  _search = () => {
-    this.props.dispatch(
-      createAction('router/setModalVisible')({
-        modalVisible: !this.props.modalVisible,
-      })
-    );
-  }
-  _gotoDetail = () => {
-    // this.props.dispatch(NavigationActions.navigate({ routeName: 'Detail' }));
-    this.props.dispatch(
-      NavigationActions.navigate({ routeName: 'SingleStationDetail' })
-    );
-    // this.props.dispatch(NavigationActions.reset({
-    //   index: 0,
-    //   actions: [NavigationActions.navigate({ routeName: 'SingleStationDetail' })],
-    // }));
-  }
-
-  //选择图片
-  selectPhotoTapped() {
-    const options = {
-      title: '选择图片',
-      cancelButtonTitle: '取消',
-      takePhotoButtonTitle: '拍照',
-      chooseFromLibraryButtonTitle: '选择照片',
-      customButtons: [
-        // {name: 'fb', title: 'Choose Photo from Facebook'},
-      ],
-      cameraType: 'back',
-      mediaType: 'photo',
-      videoQuality: 'high',
-      durationLimit: 10,
-      maxWidth: 300,
-      maxHeight: 300,
-      quality: 0.8,
-      angle: 0,
-      allowsEditing: false,
-      noData: false,
-      storageOptions: {
-        skipBackup: true,
-      },
-    };
-
-    ImagePicker.showImagePicker(options, response => {
-      if (response.didCancel) {
-        console.log('User cancelled photo picker');
-      } else if (response.error) {
-        console.log('ImagePicker Error: ', response.error);
-      } else if (response.customButton) {
-        console.log('User tapped custom button: ', response.customButton);
-      } else {
-        let source = { uri: response.uri };
-
-        // You can also display the image using data:
-        // let source = { uri: 'data:image/jpeg;base64,' + response.data };
-
-        this.setState({
-          avatarSource: source,
-          imageSrc: response.uri,
-        });
-      }
-    });
-  }
-  _onRefresh = () => {
-    getAllData('hour').then(value => {
-      this.setState({
-        cityNameLst: value,
-      });
-    });
-  }
   render() {
     return (
-      <View style={styles.container}>
-        <TouchableOpacity
-          style={[styles.optionStyle]}
-          onPress={() => {
-            this._search();
-          }}
-        >
-          <TopSelector
-            ref={ref => (this._topSelector = ref)}
-            showDatePicker={() => {
-              this._search();
-            }}
-          />
-        </TouchableOpacity>
+      <View style={{backgroundColor:"#F1F4F9",height:"100%"}}>
+       <View style={styles.MainView}>
+         <TouchableOpacity style={{borderBottomColor:"#E3E3E3",borderBottomWidth:1,padding:7}}>
+         <Text style={{textAlign:"center",color:"#9F9F9F"}}>2018-9-18 16:00:00</Text>
+         </TouchableOpacity>
+         <View style={{flexDirection:"row"}}>
+           <View style={styles.StateView}>
+              <View style={{width:12,height:12,borderRadius:50,backgroundColor:"#FEB40C",margin:5}}></View>
+              <Text style={styles.StateText}>故障</Text>
+           </View>
 
-        <View style={[{ width: SCREEN_WIDTH, flex: 1 }]}>
-          <View
-            style={[{ width: SCREEN_WIDTH, height: 33, flexDirection: 'row' }]}
-          >
-            <View style={[styles.oneLabel]}>
-              <View
-                style={[{ justifyContent: 'center', alignItems: 'center' }]}
-              >
-                <Text style={[{ fontSize: little_font_size }]}>监测点</Text>
-              </View>
-              <TouchableOpacity
-                style={{
-                  marginLeft: 4,
-                  width: 32,
-                  height: 24,
-                  justifyContent: 'center',
-                }}
-                onPress={() => {}}
-              >
-                <Icon1
-                  name={'md-arrow-dropdown'}
-                  size={24}
-                  style={[{ color: globalcolor.titleBlue }]}
-                />
-              </TouchableOpacity>
-            </View>
-            <ScrollView
-              ref={ref => (this.titleScrollView = ref)}
-              style={[{ width: (SCREEN_WIDTH * 2) / 3, height: 33 }]}
-              horizontal={true}
-              showsHorizontalScrollIndicator={false}
-              scrollEnabled={false}
-            >
-              <LabelHeadView />
-            </ScrollView>
-          </View>
+               <View style={styles.StateView}>
+              <View style={{width:12,height:12,borderRadius:50,backgroundColor:"#FF4F4F",margin:5}}></View>
+              <Text style={styles.StateText}>报警</Text>
+           </View>
+           <View style={styles.StateView}>
+              <View style={{width:12,height:12,borderRadius:50,backgroundColor:"#BBC1CF",margin:5}}></View>
+              <Text style={styles.StateText}>停产</Text>
+           </View>
+           <View style={styles.StateView}>
+              <View style={{width:12,height:12,borderRadius:50,backgroundColor:"#26C439",margin:5}}></View>
+              <Text style={styles.StateText}>正常</Text>
+           </View>
+         </View>
+         </View>
+         {/* 数据一览表格 */}
+         <View style={[styles.viewH] }>
+         
+{/*        
+         <TableEnt></TableEnt>
+  <WhiteSpace></WhiteSpace> */}
+ <TableOther></TableOther>
 
-          <ScrollView
-            style={[{ height: 80, width: SCREEN_WIDTH }]}
-            refreshControl={
-              <RefreshControl
-                refreshing={this.props.pullToRefreshing}
-                onRefresh={this._onRefresh}
-                tintColor="#716b6a"
-                title="Loading..."
-                titleColor="#716b6a"
-                colors={['#ff0000', '#00ff00', '#0000ff']}
-                progressBackgroundColor="#716b6a"
-              />
-            }
-            onMomentumScrollEnd={this._contentViewScroll}
-            showsVerticalScrollIndicator={false}
-          >
-            <View style={[styles.listContent, {}]}>
-              <View style={[{ height: 33 + 20, width: SCREEN_WIDTH / 3 }]}>
-                {this.state.cityNameLst.map(item => {
-                  return (
-                    <TouchableOpacity
-                      key={item.key}
-                      onPress={() => {
-                        this.props.dispatch(
-                          NavigationActions.navigate({
-                            routeName: 'SingleStationDetail',
-                            params: { item: item },
-                          })
-                        );
-                      }}
-                      style={[
-                        {
-                          width: SCREEN_WIDTH / 3,
-                          height: 60,
-                          justifyContent: 'center',
-                          alignItems: 'flex-start',
-                          paddingLeft: 5,
-                          backgroundColor: 'white',
-                        },
-                        styles.myBorderBottom,
-                      ]}
-                    >
-                      <View
-                        style={{ flexDirection: 'row', alignItems: 'center' }}
-                      >
-                        <View
-                          style={[
-                            {
-                              width: little_font_size2,
-                              height: little_font_size2,
-                              borderRadius: 5,
 
-                              backgroundColor: this.getStatusColor(item.status),
-                              marginRight: 5,
-                            },
-                          ]}
-                        />
-                        <Text
-                          style={[
-                            {
-                              fontSize: little_font_size,
-                              width: SCREEN_WIDTH / 3 - little_font_size2,
-                            },
-                          ]}
-                        >
-                          {item.Abbreviation}
-                        </Text>
-                      </View>
-                      <Text
-                        style={[
-                          {
-                            fontSize: 11,
-                            width: SCREEN_WIDTH / 3 - little_font_size2,
-                            color: globalcolor.datepickerGreyText,
-                            marginTop: 5,
-                            marginLeft: little_font_size2 + 5,
-                          },
-                        ]}
-                      >
-                        {item.pointName}
-                      </Text>
-                      {item.key === 'dtgrjx110' ||
-                      item.key === 'dtgrjx103' ||
-                      item.key === 'lywjfd03' ? (
-                        <View
-                          style={{
-                            height: 15,
-                            backgroundColor: '#ffe4e1',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            flexDirection: 'row',
-                            marginTop: 3,
-                            borderWidth: 1,
-                            borderColor: '#ff4500',
-                            borderRadius: 3,
-                            marginLeft: little_font_size2 + 5,
-                          }}
-                        >
-                          {item.key === 'dtgrjx110' ? (
-                            <Text
-                              style={[
-                                {
-                                  fontSize: 10,
-                                  alignItems: 'center',
-                                  justifyContent: 'center',
-                                  color: '#ff4500',
-                                },
-                              ]}
-                            >
-                              运维
-                            </Text>
-                          ) : item.key === 'dtgrjx103' ? (
-                            <Text
-                              style={[
-                                {
-                                  fontSize: 10,
-                                  alignItems: 'center',
-                                  justifyContent: 'center',
-                                  color: '#ff4500',
-                                },
-                              ]}
-                            >
-                              故障
-                            </Text>
-                          ) : item.key === 'lywjfd03' ? (
-                            <Text
-                              style={[
-                                {
-                                  fontSize: 10,
-                                  alignItems: 'center',
-                                  justifyContent: 'center',
-                                  color: '#ff4500',
-                                },
-                              ]}
-                            >
-                              停运
-                            </Text>
-                          ) : null}
-                        </View>
-                      ) : (
-                        <View />
-                      )}
-                    </TouchableOpacity>
-                  );
-                })}
-              </View>
-
-              <ScrollView
-                onScroll={event => {
-                  this.titleScrollView.scrollTo({
-                    x: event.nativeEvent.contentOffset.x,
-                    animated: false,
-                  });
-                }}
-                scrollEventThrottle={10}
-                showsHorizontalScrollIndicator={false}
-                showsVerticalScrollIndicator={false}
-                horizontal={true}
-                style={[
-                  {
-                    height: this.state.cityNameLst
-                      ? this.state.cityNameLst.length * 60
-                      : 33,
-                    width: defaultPollutantCodes
-                      ? (defaultPollutantCodes.length * SCREEN_WIDTH) / 3
-                      : 33,
-                  },
-                ]}
-              >
-                <View
-                  style={[
-                    {
-                      height: this.state.cityNameLst
-                        ? this.state.cityNameLst.length * 60
-                        : 33,
-                      width: defaultPollutantCodes
-                        ? (defaultPollutantCodes.length * SCREEN_WIDTH) / 3
-                        : 33,
-                      backgroundColor: 'white',
-                    },
-                  ]}
-                >
-                  {this.state.cityNameLst.map(item => {
-                    return (
-                      <TouchableOpacity
-                        key={item.key}
-                        onPress={() => {
-                          this.props.dispatch(
-                            NavigationActions.navigate({
-                              routeName: 'SingleStationDetail',
-                              params: { item: item },
-                            })
-                          );
-                        }}
-                        style={[
-                          {
-                            height: 60,
-                            width: defaultPollutantCodes
-                              ? (defaultPollutantCodes.length * SCREEN_WIDTH) /
-                                3
-                              : 33,
-                            flexDirection: 'row',
-                          },
-                          styles.myBorderBottom,
-                        ]}
-                      >
-                        {item.MonitoringDatasi.PollutantDatas.map(zcc => {
-                          if (zcc.PollutantCode === '00') {
-                          } else {
-                            return (
-                              <Text
-                                key={zcc.PollutantCode}
-                                style={[
-                                  {
-                                    width: SCREEN_WIDTH / 3,
-                                    height: 39,
-                                    textAlign: 'center',
-                                    lineHeight: 40,
-                                    marginTop: 10,
-                                    color:
-                                      item.Colors && item.Colors[_key]
-                                        ? item.Colors[_key]
-                                        : 'black',
-                                  },
-                                ]}
-                              >
-                                {zcc.Concentration}
-                              </Text>
-                            );
-                          }
-                        })}
-                      </TouchableOpacity>
-                    );
-                  })}
-                </View>
-              </ScrollView>
-            </View>
-          </ScrollView>
-        </View>
-        <Modal
-          animationType={'slide'}
-          transparent={true}
-          visible={this.props.modalVisible}
-          onRequestClose={() => {
-            alert('Modal has been closed.');
-          }}
-        >
-          <Alert
-            mSetSearchType={searchType => {
-              this.props.dispatch(
-                createAction('datapreview/setSearchType')({
-                  searchType: searchType,
-                })
-              );
-            }}
-            mGetSearchType={() => {
-              return this.props.searchType;
-            }}
-            mCancelcallback={() => {
-              this.props.dispatch(
-                createAction('router/setModalVisible')({
-                  modalVisible: !this.props.modalVisible,
-                })
-              );
-            }}
-            mcallback={(index, date) => {
-              this._topSelector.wrappedInstance._changeMTag(index, date);
-            }}
-          />
-        </Modal>
-      </View>
+    </View>
+  
+    </View>  
+    
     );
   }
 }
-const getAllData = async dataType => {
-  let datalist = [];
-  // const getdata = await getAllConcentration({ dataType: dataType });
-  let promise = getAllConcentration({ dataType: dataType }).then(getdata => {
-    getdata.map(item => {
-      let data = {
-        key: item.DGIMN,
-        entpointName: item.EntName + '-' + item.PointName,
-        monitorTime:
-          item.MonitoringDatas.length === 0
-            ? moment().format('YYYY-MM-DD HH:mm:ss')
-            : item.MonitoringDatas[0].MonitoringTime,
-        entName: item.EntName,
-        pointName: item.PointName,
-        industry: item.IndustryTypeCode,
-        dgimn: item.DGIMN,
-        control: item.AttentionCode,
-        dataType: dataType,
-        MonitoringDatasi: item.MonitoringDatas[0],
-        Abbreviation: item.Abbreviation,
-        bstatus: null,
-
-        status:
-          item.DGIMN === 'bjldgn01' ||
-          item.DGIMN === 'dtgjhh11102' ||
-          item.DGIMN === 'dtgrjx110'
-            ? 3
-            : 1,
-      };
-      if (
-        item.DGIMN === 'bjldgn01' ||
-        item.DGIMN === 'dtgjhh11102' ||
-        item.DGIMN === 'dtgrjx110'
-      ) {
-        data.status = 2;
-      } else if (
-        item.DGIMN === 'dtgrjx104' ||
-        item.DGIMN === 'dtgrjx103' ||
-        item.DGIMN === 'lywjfd03'
-      ) {
-        data.status = 3;
-      } else {
-        data.status = 1;
-      }
-      if (item.MonitoringDatas.length > 0) {
-        item.MonitoringDatas[0].PollutantDatas.map(wry => {
-          data[wry.PollutantCode] = wry.Concentration + ',' + wry.PollutantCode;
-          data[wry.PollutantCode + '-' + 'PollutantName'] = wry.PollutantName;
-          data[wry.PollutantCode + '-' + 'PollutantCode'] = wry.PollutantCode;
-          data[wry.PollutantCode + '-' + 'IsExceed'] = wry.IsExceed; // 是否超标
-          data[wry.PollutantCode + '-' + 'ExceedValue'] = wry.ExceedValue; // 超标倍数
-          data[wry.PollutantCode + '-' + 'IsException'] = wry.IsException; // 是否异常
-          data[wry.PollutantCode + '-' + 'ExceptionText'] = wry.ExceptionText; // 异常类型
-          data[wry.PollutantCode + '-' + 'Standard'] = wry.Standard; // 标准值
-        });
-      }
-      datalist.push(data);
-    });
-    return new Promise(function(resolve, reject) {
-      resolve(datalist);
-    });
-  });
-
-  // console.log(datalist);
-  // return datalist;
-  return promise;
-};
-
-// define your styles
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    // justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'lightgrey',
-  },
-  listContent: {
-    width: SCREEN_WIDTH,
-    flexDirection: 'row',
-  },
-  oneLabel: {
-    width: SCREEN_WIDTH / 3,
-    height: 32,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'white',
-  },
-  HorizontalList: {
-    width: (SCREEN_WIDTH * 2) / 3,
-  },
-  myBorderBottom: {
-    borderBottomColor: globalcolor.borderLightGreyColor,
-    borderBottomWidth: 1,
-    borderLeftColor: globalcolor.borderLightGreyColor,
-    borderLeftWidth: 1,
-  },
-});
+  viewH:{
+   height:"80%"
 
+  },
+  MainView: {
+    backgroundColor:"#FFFFFF", 
+    flexDirection:"column",marginLeft:"auto",marginRight:"auto",width:SCREEN_WIDTH-20,
+    backgroundColor:"#FFFFFF",marginTop:"2%",marginBottom:"2%",borderRadius:5,
+    shadowColor:"#E3E3E3",
+    shadowOffset:{w:0,h:50},
+    shadowRadius: 3,
+    shadowOpacity: 0.1,
+    elevation: 1, 
+  },
+  MainPadding:{
+    padding:"3%"
+  },
+  ContentView:{
+    flexDirection:"row",marginLeft:10,marginTop:6,marginRight:5
+
+  },
+  TitleText:{
+    color:"#9F9F9F" ,fontSize:13
+
+},
+ContentText:{
+  color:"#404040",fontSize:13
+},
+ScrollTitleView:
+{
+  flexDirection:"row",padding:"3%",backgroundColor:"#F5FAFE",borderRadius:5
+},
+ScrollTitleText:{
+  flex:1,fontSize:13
+
+},
+ScrollContentView:
+{
+  flexDirection:"row",padding:"2%",backgroundColor:"#FFFFFF",borderRadius:5,borderTopWidth:1,borderTopColor:"#E0E4E7"
+},
+ScrollContentText:
+{
+  flex:1,fontSize:11
+},
+StateView:
+{
+  flex:1,flexDirection:"row",padding:6,justifyContent:"center"
+},
+StateText:
+{
+  fontSize:14,lineHeight:20
+}
+});
 // make this component available to the app
 export default DataList;
