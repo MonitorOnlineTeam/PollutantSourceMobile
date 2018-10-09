@@ -14,9 +14,7 @@ import HistoryData from './HistoryData';
 import Statistical from './Statistical';
 import Account from './Account';
 import ConsumableManage from '../workbench/ConsumableManage';
-
 import { loadStorage } from '../../dvapack/storage';
-
 // create a component
 class Main extends Component {
   constructor(props) {

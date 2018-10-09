@@ -45,47 +45,7 @@ export default class AlarmInfo extends Component {
               </View>
             </View>
           </TouchableOpacity>
-          {/*--------重复样式---------美丽的分割线-----------------  */}
-          {/* 主块 */}
-          <View style={styles.MainView}>
-            {/* 标题 */}
-            <View style={[styles.RowView]}>
-              <Image
-                style={styles.TitleImg}
-                tintColor="#ff414e"
-                source={require('../../images/gzbj.png')}
-              />
-              <Text style={[styles.TitleText]}>大唐集团-废气排口1</Text>
-            </View>
-            {/* 文字描述模块 */}
-            <View style={styles.SpecificView}>
-              <Text style={styles.ContentText}>时间：2018:-07-07 19:23:00</Text>
-              <View style={styles.RowView}>
-                <Text style={[styles.ContentText, styles.flexStyle]}>内容：气态分析仪故障</Text>
-                <Text style={styles.ClickText} >详细信息>></Text>
-              </View>
-            </View>
-          </View>
-          {/* 主块 */}
-          <View style={styles.MainView}>
-            {/* 标题 */}
-            <View style={[styles.RowView]}>
-              <Image
-                style={styles.TitleImg}
-                tintColor="#ff414e"
-                source={require('../../images/gzbj.png')}
-              />
-              <Text style={[styles.TitleText]}>大唐集团-废气排口1</Text>
-            </View>
-            {/* 文字描述模块 */}
-            <View style={styles.SpecificView}>
-              <Text style={styles.ContentText}>时间：2018:-07-07 19:23:00</Text>
-              <View style={styles.RowView}>
-                <Text style={[styles.ContentText, styles.flexStyle]}>内容：气态分析仪故障</Text>
-                <Text style={styles.ClickText} >详细信息>></Text>
-              </View>
-            </View>
-          </View>
+     
           {/*--------------重复样式---美丽的分割线结束-----------------  */}
         </ScrollView>
       </View>

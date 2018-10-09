@@ -61,6 +61,8 @@ import RecordSheet from '../components/DetailedPage/RecordSheet';
 import TaskDetails from '../components/DetailedPage/RecordSheet';
 import SiteInformation from '../components/DetailedPage/SiteInformation';
 import StatisticalAnalysis from '../components/DetailedPage/StatisticalAnalysis';
+import OperationCalendar from '../components/DetailedPage/OperationCalendar';
+import WeeklyCalendar from '../components/DetailedPage/WeeklyCalendar';
 // const MainNavigator = StackNavigator(
 //   {
 //     // HomeNavigator: { screen: HomeNavigator },
@@ -118,7 +120,8 @@ export default StackNavigator(
     SignIn:{screen:SignIn},
     SiteInformation:{screen:SiteInformation},
     StatisticalAnalysis:{screen:StatisticalAnalysis},
-    
+    OperationCalendar:{screen:OperationCalendar},
+    WeeklyCalendar:{screen:WeeklyCalendar},
     ExecutionTasks:{screen:ExecutionTasks},
     RecordSheet:{screen:RecordSheet},
     TaskDetails:{screen:TaskDetails},

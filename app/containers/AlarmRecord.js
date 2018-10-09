@@ -43,8 +43,7 @@ export default class AlarmRecord extends Component {
         time.map(a => {
           if (a.key == date) {
             isno = false;
-            console.log('----------------------------------');
-            console.log(a.data);
+
             a.data.push({
               AlarmType: item.AlarmType,
               AlarmTime: item.AlarmTime,

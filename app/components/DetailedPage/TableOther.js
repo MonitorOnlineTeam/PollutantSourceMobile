@@ -12,12 +12,12 @@ import {
 } from '../../config/globalsize';
 import { WhiteSpace, WingBlank } from 'antd-mobile-rn';
 import { NavigationActions } from '../../utils';
-import {SiteInformation}from  './SiteInformation';
+import { SiteInformation } from './SiteInformation';
 import { connect } from 'react-redux';
 /*
  * @Description: 一般数据表格.
  */
-const this2=this;
+const this2 = this;
 @connect()
 export default class TableEnt extends Component {
     constructor(props) {
@@ -56,7 +56,7 @@ export default class TableEnt extends Component {
                     <WingBlank />
                     {/* 第二标题 */}
                     <View style={{ flex: 2, flexDirection: "column" }}>
-                          
+
                         <View style={{ flexDirection: "row" }}>
                             <Text style={{ fontSize: 14, color: "#000000" }}>SO2</Text>
                             <WingBlank size="sm" />
@@ -98,16 +98,15 @@ export default class TableEnt extends Component {
                 <ScrollView style={{}}>
 
 
-                
                     {/* 内容 */}
                     <TouchableOpacity style={{ flexDirection: "row" }} onPress={(event) => {
 
-          this.props.dispatch(
-            NavigationActions.navigate({
-              routeName: 'SiteInformation'
-            })
-          );
-          }}>
+                        this.props.dispatch(
+                            NavigationActions.navigate({
+                                routeName: 'SiteInformation'
+                            })
+                        );
+                    }}>
                         <WingBlank />
                         {/* 第一列 */}
                         <View style={{ flex: 2, flexDirection: "column" }}>
@@ -118,7 +117,7 @@ export default class TableEnt extends Component {
                                     <WingBlank size="sm" />
                                     <Text style={{ fontSize: 14, color: "#000000" }}>发电供热</Text>
                                 </View>
-                                
+
                                 <View style={{ flexDirection: "row", }}>
                                     <WingBlank size="sm" />
                                     <WingBlank size="sm" />
@@ -129,7 +128,7 @@ export default class TableEnt extends Component {
                             <WhiteSpace />
 
                         </View>
-                      
+
 
                         {/* 第二列 */}
                         <View style={{ flex: 1, flexDirection: "column" }}>
@@ -141,7 +140,7 @@ export default class TableEnt extends Component {
                             <WhiteSpace />
                             <WingBlank size="sm" />
                         </View>
-               
+
                         {/* 第三列 */}
                         <View style={{ flex: 1, flexDirection: "column" }}>
 
@@ -171,13 +170,13 @@ export default class TableEnt extends Component {
 
                         </View>
                     </TouchableOpacity>
-                
-                <View style={{
-                    flexDirection: "row", width: "90%", alignSelf: 'center',
-                    borderBottomColor: "#E3E3E3", borderBottomWidth: 0.8
-                }}></View>
-                <WhiteSpace />
-               
+
+                    <View style={{
+                        flexDirection: "row", width: "90%", alignSelf: 'center',
+                        borderBottomColor: "#E3E3E3", borderBottomWidth: 0.8
+                    }}></View>
+                    <WhiteSpace />
+
                     {/* 内容 */}
                     <TouchableOpacity style={{ flexDirection: "row" }}>
                         <WingBlank />
@@ -190,7 +189,7 @@ export default class TableEnt extends Component {
                                     <WingBlank size="sm" />
                                     <Text style={{ fontSize: 14, color: "#000000" }}>发电供热</Text>
                                 </View>
-                                
+
                                 <View style={{ flexDirection: "row", }}>
                                     <WingBlank size="sm" />
                                     <WingBlank size="sm" />
@@ -201,7 +200,7 @@ export default class TableEnt extends Component {
                             <WhiteSpace />
 
                         </View>
-                      
+
 
                         {/* 第二列 */}
                         <View style={{ flex: 1, flexDirection: "column" }}>
@@ -213,7 +212,7 @@ export default class TableEnt extends Component {
                             <WhiteSpace />
                             <WingBlank size="sm" />
                         </View>
-               
+
                         {/* 第三列 */}
                         <View style={{ flex: 1, flexDirection: "column" }}>
 
@@ -243,7 +242,7 @@ export default class TableEnt extends Component {
 
                         </View>
                     </TouchableOpacity>
-                
+
                 </ScrollView>
             </View>
         );
