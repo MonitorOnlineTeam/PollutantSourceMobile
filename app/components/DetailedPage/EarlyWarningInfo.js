@@ -121,8 +121,6 @@ export default class EarlyWarningInfo extends Component {
         <ScrollView style={{ marginBottom: '1.5%', height: '90%' }}>
           {persons.map((item, key) => {
             return (
-              <TouchableOpacity key={key}>
-                {
                   <EarlyWarningCard
                     chicked={item.ifchicked}
                     title={item.name}
@@ -131,8 +129,6 @@ export default class EarlyWarningInfo extends Component {
                     alarmType={item.type}
                     contentTexts={item.content}
                   />
-                }
-              </TouchableOpacity>
             );
           })}
         </ScrollView>
