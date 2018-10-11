@@ -96,7 +96,7 @@ export default class AlarmInfo extends Component {
               </TouchableOpacity>
             );
           })}
-          {/*--------------重复样式---美丽的分割线结束-----------------  */}
+        
         </ScrollView>
       </View>
     );
