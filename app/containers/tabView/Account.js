@@ -158,7 +158,6 @@ class Account extends Component {
                   marginTop: 4,
                 }}
               />
-              
             </View>
           </View>
         </View>

@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import {
+  View,
+  Text,
+  ScrollView,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+} from 'react-native';
 import { SCREEN_WIDTH } from '../../config/globalsize';
 import { NavigationActions } from '../../utils';
 import { connect } from 'react-redux';
@@ -9,8 +16,7 @@ import { connect } from 'react-redux';
 export default class BasicCard extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-    };
+    this.state = {};
   }
 
   render() {
@@ -23,12 +29,8 @@ export default class BasicCard extends Component {
             source={require('../../images/gzbj.png')}
           />
           <Text style={[styles.TitleText]}>{this.props.title}</Text>
-          {
-              this.props.list.map(item,key)
-
-          }
+          {this.props.list.map(item, key)}
         </View>
-
       </TouchableOpacity>
     );
   }
@@ -36,7 +38,7 @@ export default class BasicCard extends Component {
 const styles = StyleSheet.create({
   MainView: {
     width: '96%',
-    backgroundColor: "#FFFFFF",
+    backgroundColor: '#FFFFFF',
     paddingTop: 5,
     paddingBottom: 5,
     paddingLeft: 15,
@@ -44,15 +46,14 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginTop: 6,
     marginBottom: 3,
-    shadowColor: "#E3E3E3",
+    shadowColor: '#E3E3E3',
     shadowOffset: { w: 0, h: 50 },
     shadowRadius: 3,
     shadowOpacity: 0.1,
     elevation: 1,
   },
-  flexStyle:
-  {
-    flex: 1
+  flexStyle: {
+    flex: 1,
   },
   TitleImg: {
     width: 13,
@@ -61,29 +62,24 @@ const styles = StyleSheet.create({
   },
   TitleText: {
     color: '#3F3F3F',
-    fontSize: 14
+    fontSize: 14,
   },
   ContentText: {
     fontSize: 13,
-    color: "#BCBCC5",
-    lineHeight: 24
-
+    color: '#BCBCC5',
+    lineHeight: 24,
   },
-  SpecificView:
-  {
-
-    marginLeft: 30
+  SpecificView: {
+    marginLeft: 30,
   },
-  RowView:
-  {
+  RowView: {
     alignContent: 'center',
     alignItems: 'center',
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
-  ClickText:
-  {
+  ClickText: {
     fontSize: 13,
-    color: "#2F9CF4",
-    paddingRight: 15
-  }
+    color: '#2F9CF4',
+    paddingRight: 15,
+  },
 });

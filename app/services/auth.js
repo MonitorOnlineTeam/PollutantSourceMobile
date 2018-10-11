@@ -77,7 +77,7 @@ export async function getNavigators(params) {
                 text: '我的',
                 Menu_Img: '16/16',
                 children: [],
-              }
+              },
             ],
           },
         ],
@@ -153,7 +153,7 @@ export async function getNavigators(params) {
             text: '预警信息',
             Menu_Img: '16/16',
             children: [],
-          }
+          },
         ],
       },
     ],

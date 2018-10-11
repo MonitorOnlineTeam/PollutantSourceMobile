@@ -10,17 +10,11 @@ import ExecutionTasks from '../../components/DetailedPage/ExecutionTasks';
 import My from '../../components/DetailedPage/My';
 import SiteInformation from '../../components/DetailedPage/SiteInformation';
 import StatisticalAnalysis from '../../components/DetailedPage/StatisticalAnalysis';
-
-//import OperationStatus from '../../components/DetailedPage/OperationStatus';
-
-import OperationStatus from '../../components/DetailedPage/RecordSheetAuditing';
-
 import HistoryData from './HistoryData';
 import Statistical from './Statistical';
 import Account from './Account';
 import ConsumableManage from '../workbench/ConsumableManage';
 import { loadStorage } from '../../dvapack/storage';
-
 // create a component
 class Main extends Component {
   constructor(props) {
@@ -49,7 +43,7 @@ class Main extends Component {
     if (this.state.loading == true) {
       let nav = {
         // Map: { screen: Map },
-      }; 
+      };
       const navs = await loadStorage('mainnavs');
       for (const r of navs) {
         for (const e of r.children) {
@@ -90,14 +84,13 @@ class Main extends Component {
             } else if (e.text === '数据一览') {
               nav.DataList = { screen: DataList };
             } else if (e.text === '历史记录') {
-              nav.StatisticalAnalysis = { screen: OperationStatus };
+              nav.StatisticalAnalysis = { screen: StatisticalAnalysis };
             } else if (e.text === '我的') {
               nav.My = { screen: My };
             }
           }
         }
       }
-     
 
       this.setState({
         loading: false,
@@ -118,7 +111,7 @@ class Main extends Component {
       return <Text>123</Text>;
     } else {
       const SimpleAppNavigator = this.state.aa;
-      return  <SimpleAppNavigator />;
+      return <SimpleAppNavigator />;
     }
   }
 }

@@ -7,8 +7,7 @@ import { WhiteSpace, WingBlank } from 'antd-mobile-rn';
 export default class AlarmInfoCard extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-    };
+    this.state = {};
   }
 
   render() {

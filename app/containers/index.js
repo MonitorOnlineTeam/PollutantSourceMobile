@@ -63,7 +63,6 @@ import SiteInformation from '../components/DetailedPage/SiteInformation';
 import StatisticalAnalysis from '../components/DetailedPage/StatisticalAnalysis';
 import OperationCalendar from '../components/DetailedPage/OperationCalendar';
 import WeeklyCalendar from '../components/DetailedPage/WeeklyCalendar';
-import OperationStatus from '../components/DetailedPage/OperationStatus';
 // const MainNavigator = StackNavigator(
 //   {
 //     // HomeNavigator: { screen: HomeNavigator },
@@ -93,7 +92,7 @@ export default StackNavigator(
     system: { screen: system },
     MainView: { screen: MainView },
     Detail: { screen: Detail },
-    AlarmInfoData:{screen:AlarmInfoData},
+    AlarmInfoData: { screen: AlarmInfoData },
     Todo: { screen: Todo },
     EarlyWarning: { screen: EarlyWarning },
     Alarm: { screen: Alarm },
@@ -118,15 +117,15 @@ export default StackNavigator(
     OverdueStatistics: { screen: OverdueStatistics },
     RankOfBranchOfficeByEmissions: { screen: RankOfBranchOfficeByEmissions },
     Workmeter: { screen: Workmeter },
-    SignIn:{screen:SignIn},
-    SiteInformation:{screen:SiteInformation},
-    StatisticalAnalysis:{screen:StatisticalAnalysis},
-    OperationCalendar:{screen:OperationCalendar},
-    WeeklyCalendar:{screen:WeeklyCalendar},
-    ExecutionTasks:{screen:ExecutionTasks},
-    RecordSheet:{screen:RecordSheet},
-    TaskDetails:{screen:TaskDetails},
-    OperationStatus:{screen:OperationStatus},
+    SignIn: { screen: SignIn },
+    SiteInformation: { screen: SiteInformation },
+    StatisticalAnalysis: { screen: StatisticalAnalysis },
+    OperationCalendar: { screen: OperationCalendar },
+    WeeklyCalendar: { screen: WeeklyCalendar },
+    ExecutionTasks: { screen: ExecutionTasks },
+    RecordSheet: { screen: RecordSheet },
+    TaskDetails: { screen: TaskDetails },
+
     SingleStationDetail: { screen: SingleStationDetail },
     HistoricalData: { screen: HistoricalData },
     _3DStation: { screen: _3DStation },
