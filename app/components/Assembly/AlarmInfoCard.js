@@ -28,7 +28,7 @@ export default class AlarmInfoCard extends Component {
             <View style={styles.SpecificView}>           
               <View style={styles.RowView}>
               <Text style={styles.CosntentText}>时间：</Text>
-              <Text style={styles.ContentText}>{this.props.dateTime}</Text>
+              <Text style={[styles.ContentText, styles.flexStyle]}>{this.props.dateTime}</Text>
               </View>
 
               <View style={styles.RowView}>
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     },
     ContentText: {
       fontSize: 13,
-      color: "#FF4F4F",
+      color: "#3F3F3F",
       lineHeight: 24
   
     },
@@ -103,3 +103,4 @@ const styles = StyleSheet.create({
       fontSize: 12,
     }
   });
+  
