@@ -3,7 +3,7 @@ import { View, Text, ScrollView, StyleSheet, TouchableOpacity, TextInput, Image 
 import { SCREEN_WIDTH } from '../../config/globalsize';
 import CenterButton from '../Assembly/CenterButton';
 import { Checkbox, List, WhiteSpace, Modal, Radio, WingBlank } from 'antd-mobile-rn';
-
+import EarlyWarningCard from '../Assembly/EarlyWarningCard';
 const RadioItem = Radio.RadioItem;
 /*
  * @Description: 预警信息.
@@ -12,7 +12,7 @@ export default class EarlyWarningInfo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      checkBox1: false, checkBox2: false, checkBox3: false,
+       checkBox1: false, checkBox2: false, checkBox3: false,
       visible: false, part1Value: 1,
       part2Value: 1,
     };
@@ -22,48 +22,49 @@ export default class EarlyWarningInfo extends Component {
       visible: false,
     });
   }
-  render() {
 
+  render() {
+    const persons = [
+      { name:"大唐集团-废气排口1",time:"2018年9月19日 10:59:32~2018年9月19日 10:59:24",type:"对比预警" ,c: '11', content: "烟气分析仪型号EMS168781数据发生较大变化",ifchicked:"1" },
+      { name:"大唐集团-废气排口2",time:"2018年9月19日 10:59:32~2018年9月19日 10:59:24",type:"对比预警" ,c: '12', content: "烟气分析仪型号EMS168782数据发生较大变化",ifchicked:"1" },
+      { name:"大唐集团-废气排口3",time:"2018年9月19日 10:59:32~2018年9月19日 10:59:24",type:"对比预警" ,c: '13', content: "烟气分析仪型号EMS168783数据发生较大变化",ifchicked:"1"},
+      { name:"大唐集团-废气排口4",time:"2018年9月19日 10:59:32~2018年9月19日 10:59:24",type:"对比预警" ,c: '14', content: "烟气分析仪型号EMS168784数据发生较大变化",ifchicked:"1" },
+      { name:"大唐集团-废气排口5",time:"2018年9月19日 10:59:32~2018年9月19日 10:59:24",type:"对比预警" ,c: '15', content: "烟气分析仪型号EMS168785数据发生较大变化",ifchicked:"0" },
+      { name:"大唐集团-废气排口6",time:"2018年9月19日 10:59:32~2018年9月19日 10:59:24",type:"对比预警" ,c: '16', content: "烟气分析仪型号EMS168786数据发生较大变化",ifchicked:"0" },
+      { name:"大唐集团-废气排口7",time:"2018年9月19日 10:59:32~2018年9月19日 10:59:24",type:"对比预警" ,c: '17', content: "烟气分析仪型号EMS168787数据发生较大变化",ifchicked:"0" },
+      { name:"大唐集团-废气排口8",time:"2018年9月19日 10:59:32~2018年9月19日 10:59:24",type:"对比预警" ,c: '18', content: "烟气分析仪型号EMS168788数据发生较大变化",ifchicked:"0" },
+      { name:"大唐集团-废气排口9",time:"2018年9月19日 10:59:32~2018年9月19日 10:59:24",type:"对比预警" ,c: '19', content: "烟气分析仪型号EMS168789数据发生较大变化",ifchicked:"0" },
+  
+  ];
     return (
       <View style={{ backgroundColor: "#F1F4F9", width: SCREEN_WIDTH }}>
-        <ScrollView style={{ marginBottom: "3%", height: "90%" }}>
+        <ScrollView style={{ marginBottom: "1.5%",height: "90%"}}>
+            {
+              persons.map((item,key)=>
+              {
+                  return(
+                    <TouchableOpacity
+                    key={key}
+              >
+                    {
+                                        
+                        <EarlyWarningCard   
+                        chicked={item.ifchicked}                  
+                        title={item.name}
+                        dateTime={item.time}
+                        number={item.c}
+                        alarmType={item.type}
+                        contentTexts={item.content}
+                      ></EarlyWarningCard>
+                    }
+                    </TouchableOpacity>
+                  );
 
-
-          {/* 主模块 */}
-        
-          {/* 主模块 */}
-          <TouchableOpacity style={styles.MainView} onPress={(event) => {
-            if (this.state.checkBox2 == true) {
-              this.setState({ checkBox2: false });
-
-            } else {
-              this.setState({ checkBox2: true });
+              })
             }
-          }}>
-            {/* 标题 */}
-            <View style={[styles.RowView]}>
-              <Checkbox style={styles.TitleImg} checked={this.state.checkBox2}></Checkbox>
-              <Text style={[styles.TitleText]}>大唐集团-废气排口1</Text>
-            </View>
-            {/* 文字描述模块 */}
-            <View style={styles.SpecificView}>
-              <Text style={styles.ContentText}>2018年9月19日 10:59:32~2018年9月19日 10:59:24</Text>
-              <View style={{ flexDirection: "row" }}>
-                <Text style={{ color: "#000000" }}>预警次数：</Text>
-                <Text style={{ color: "#ff4f4f" }}>2</Text>
-              </View>
-              <View style={{ flexDirection: "row" }}>
-                <Text style={{ color: "#000000" }}>预警类别：</Text>
-                <Text style={{ color: "#ff4f4f" }}>对比预警</Text>
-              </View>
-              <View style={styles.RowView}>
-                <Text style={[styles.ContentText, styles.flexStyle]}>
-                  内容：烟气分析仪型号EMS16878979879数据发生较大变化
-               </Text>
+       
+            
 
-              </View>
-            </View>
-          </TouchableOpacity>
         </ScrollView>
         {/* 对话框 */}
         <Modal
@@ -152,9 +153,12 @@ export default class EarlyWarningInfo extends Component {
             </View>
           </View>
         </Modal>
+        <View>
         <CenterButton title={'核实'} bgColor={'#2196F3'} TColor={'#FFFFFF'} click={() => {
           this.setState({ visible: true });
         }}></CenterButton>
+        </View>
+
       </View>
     );
   }

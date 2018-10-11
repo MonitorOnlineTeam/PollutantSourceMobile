@@ -41,34 +41,42 @@ export default class SignIn extends Component {
   })
   render() {
     return (
-      <View style={{ backgroundColor: "#F1F4F9", height: "100%" }}>
-        <TaskDetails></TaskDetails>
-        {/* 第三模块 签到*/}
-        <TouchableOpacity style={styles.Touchable} onPress={() => {
+      <ScrollView style={{ flex:1}}>
+      {
+             <View style={{ backgroundColor: "#F1F4F9", height: "100%" }}>
+             <TaskDetails style={{flex:10}}></TaskDetails>
+             {/* 第三模块 签到*/}
+             <TouchableOpacity style={styles.Touchable} onPress={() => {
+     
+               this.props.navigation.dispatch(
+                 NavigationActions.navigate({
+                   routeName: 'ExecutionTasks'
+                 })
+               );
+             }}>
+               <Text style={{ alignSelf: "center", fontSize: 25, color: "#FFF", letterSpacing: 1 }}>签到</Text>
+               <Text style={{ alignSelf: "center", fontSize: 14, color: "#FFF" }}>08:30:00</Text>
+             </TouchableOpacity>
+             <View style={{
+                width: SCREEN_WIDTH, height: "30%", 
+                flexDirection: "row", 
+                marginBottom: "2%", 
+                marginTop:'5%',
+                flex:3,
+                justifyContent: "center" }} >
+               <Image
+                 style={{ width: 14, height: 14, alignSelf: "center", }}
+                 tintColor="#000"
+                 source={require('../../images/dw.png')}
+               />
+               <Text style={{ alignSelf: "center", fontSize: 12 }}> 定位地点：北京雪地龙</Text>
+               <Text style={{ color: "#2A9DEE", alignSelf: "center", fontSize: 12 }}> 去重新定位</Text>
+             </View>
+           </View>
 
-          this.props.navigation.dispatch(
-            NavigationActions.navigate({
-              routeName: 'ExecutionTasks'
-            })
-          );
-        }}>
-          <Text style={{ alignSelf: "center", fontSize: 25, color: "#FFF", letterSpacing: 1 }}>签到</Text>
-          <Text style={{ alignSelf: "center", fontSize: 14, color: "#FFF" }}>08:30:00</Text>
-        </TouchableOpacity>
-        <View style={{
-           width: SCREEN_WIDTH, height: "10%", 
-           flexDirection: "row", 
-           marginBottom: "2%", 
-           justifyContent: "center" }} >
-          <Image
-            style={{ width: 14, height: 14, alignSelf: "center", }}
-            tintColor="#000"
-            source={require('../../images/dw.png')}
-          />
-          <Text style={{ alignSelf: "center", fontSize: 12 }}> 定位地点：北京雪地龙</Text>
-          <Text style={{ color: "#2A9DEE", alignSelf: "center", fontSize: 12 }}> 去重新定位</Text>
-        </View>
-      </View>
+      }
+       </ScrollView >
+
     );
   }
 }
@@ -78,11 +86,12 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     marginLeft: "auto",
     marginRight: "auto",
+    marginTop:'2%',
     width: SCREEN_WIDTH - 260,
     height: SCREEN_WIDTH - 260,
     borderRadius: 5000000,
     justifyContent: "center",
-    backgroundColor: "#2A9DEE"
-
+    backgroundColor: "#2A9DEE",
+    flex:2
   }
 });
