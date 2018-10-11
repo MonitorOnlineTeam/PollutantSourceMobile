@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Checkbox } from 'antd-mobile-rn';
 /*
  * @Description: 报警详细信息卡片.
@@ -8,47 +8,55 @@ export default class EarlyWarningCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      checkBox: this.props.chicked,
       visible: false,
       part1Value: 1,
       part2Value: 1,
     };
   }
-
+  onpress = () => {
+    var chicked = this.state.checkBox == '1' ? '0' : '1';
+    this.setState({ checkBox: chicked });
+  }
   render() {
     return (
       <View>
-        {/* 主块 */}
-        <View style={styles.MainView}>
-          {/* 标题 */}
-          <View style={[styles.RowView]}>
-            <Checkbox
-              style={styles.TitleImg}
-              checked={this.props.chicked == '1' ? true : false}
-            />
-            <Text style={[styles.TitleText]}>{this.props.title}</Text>
-          </View>
-          {/* 文字描述模块 */}
-          <View style={styles.SpecificView}>
-            <Text style={styles.ContentText}>{this.props.dateTime}</Text>
+        <TouchableOpacity onPress={this.onpress}>
+          {/* 主块 */}
+          <View style={styles.MainView}>
+            {/* 标题 */}
+            <View style={[styles.RowView]}>
+              <Checkbox
+                style={styles.TitleImg}
+                checked={this.state.checkBox == '1' ? true : false}
+              />
+              <Text style={[styles.TitleText]}>{this.props.title}</Text>
+            </View>
+            {/* 文字描述模块 */}
+            <View style={styles.SpecificView}>
+              <Text style={styles.ContentText}>{this.props.dateTime}</Text>
 
-            <View style={styles.RowView}>
-              <Text style={styles.CosntentText}>预警次数：</Text>
-              <Text style={{ color: '#FF4F4F', fontSize: 13 }}>
-                {this.props.number}
-              </Text>
-            </View>
-            <View style={styles.RowView}>
-              <Text style={styles.ContentText}>预警类别：</Text>
-              <Text style={{ color: '#FF4F4F', fontSize: 13 }}>
-                {this.props.alarmType}
-              </Text>
-            </View>
-            <View style={styles.RowView}>
-              <Text style={styles.ContentText}>内容：</Text>
-              <Text style={styles.ContentText}>{this.props.contentTexts}</Text>
+              <View style={styles.RowView}>
+                <Text style={styles.CosntentText}>预警次数：</Text>
+                <Text style={{ color: '#FF4F4F', fontSize: 13 }}>
+                  {this.props.number}
+                </Text>
+              </View>
+              <View style={styles.RowView}>
+                <Text style={styles.ContentText}>预警类别：</Text>
+                <Text style={{ color: '#FF4F4F', fontSize: 13 }}>
+                  {this.props.alarmType}
+                </Text>
+              </View>
+              <View style={styles.RowView}>
+                <Text style={styles.ContentText}>内容：</Text>
+                <Text style={styles.ContentTexts}>
+                  {this.props.contentTexts}
+                </Text>
+              </View>
             </View>
           </View>
-        </View>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -86,8 +94,12 @@ const styles = StyleSheet.create({
     fontSize: 13,
     lineHeight: 24,
   },
+  ContentTexts: {
+    fontSize: 13,
+    lineHeight: 24,
+  },
   SpecificView: {
-    marginLeft: 30,
+    marginLeft: '7%',
   },
   RowView: {
     alignContent: 'center',
