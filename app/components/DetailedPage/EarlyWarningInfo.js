@@ -126,6 +126,7 @@ export default class EarlyWarningInfo extends Component {
                     title={item.name}
                     dateTime={item.time}
                     number={item.c}
+                    key={key}
                     alarmType={item.type}
                     contentTexts={item.content}
                   />
