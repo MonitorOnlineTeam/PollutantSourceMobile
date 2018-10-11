@@ -63,6 +63,7 @@ import SiteInformation from '../components/DetailedPage/SiteInformation';
 import StatisticalAnalysis from '../components/DetailedPage/StatisticalAnalysis';
 import OperationCalendar from '../components/DetailedPage/OperationCalendar';
 import WeeklyCalendar from '../components/DetailedPage/WeeklyCalendar';
+import OperationStatus from '../components/DetailedPage/OperationStatus';
 // const MainNavigator = StackNavigator(
 //   {
 //     // HomeNavigator: { screen: HomeNavigator },
@@ -125,7 +126,7 @@ export default StackNavigator(
     ExecutionTasks:{screen:ExecutionTasks},
     RecordSheet:{screen:RecordSheet},
     TaskDetails:{screen:TaskDetails},
-    
+    OperationStatus:{screen:OperationStatus},
     SingleStationDetail: { screen: SingleStationDetail },
     HistoricalData: { screen: HistoricalData },
     _3DStation: { screen: _3DStation },

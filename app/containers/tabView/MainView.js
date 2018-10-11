@@ -10,11 +10,17 @@ import ExecutionTasks from '../../components/DetailedPage/ExecutionTasks';
 import My from '../../components/DetailedPage/My';
 import SiteInformation from '../../components/DetailedPage/SiteInformation';
 import StatisticalAnalysis from '../../components/DetailedPage/StatisticalAnalysis';
+
+//import OperationStatus from '../../components/DetailedPage/OperationStatus';
+
+import OperationStatus from '../../components/DetailedPage/RecordSheetAuditing';
+
 import HistoryData from './HistoryData';
 import Statistical from './Statistical';
 import Account from './Account';
 import ConsumableManage from '../workbench/ConsumableManage';
 import { loadStorage } from '../../dvapack/storage';
+
 // create a component
 class Main extends Component {
   constructor(props) {
@@ -84,7 +90,7 @@ class Main extends Component {
             } else if (e.text === '数据一览') {
               nav.DataList = { screen: DataList };
             } else if (e.text === '历史记录') {
-              nav.StatisticalAnalysis = { screen: StatisticalAnalysis };
+              nav.StatisticalAnalysis = { screen: OperationStatus };
             } else if (e.text === '我的') {
               nav.My = { screen: My };
             }

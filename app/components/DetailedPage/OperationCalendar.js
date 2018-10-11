@@ -169,7 +169,7 @@ export default class OperationCalendar extends Component {
             }}
           />
         </View>
-        <ScrollView style={{height:"28%"}}>
+        <ScrollView style={{height:"34%"}}>
 
           <TouchableOpacity style={styles.MainViews}>
             {/* 标题 */}
