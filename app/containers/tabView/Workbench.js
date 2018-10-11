@@ -55,19 +55,11 @@ class Workbench extends Component {
   })
 
   constructor(props) {
-
     super(props);
-    this.state = {
-
-    };
-
+    this.state = {};
   }
-  async componentWillMount() {
-
-
-  }
+  async componentWillMount() {}
   render() {
-
     const tabs = [
       { title: '应急任务' },
       { title: '例行任务' },
@@ -75,19 +67,18 @@ class Workbench extends Component {
       { title: '预警信息' },
     ];
 
-
     return (
       <View style={{ flex: 1, backgroundColor: '#F1F4F9' }}>
-        <StatusBar
-          backgroundColor={'#1895EF'}
-          barStyle={'light-content'}
-        />
+        <StatusBar backgroundColor={'#1895EF'} barStyle={'light-content'} />
         <Tabs tabs={tabs} initialPage={2}>
+          <View style={style} />
+          <View style={style} />
           <View style={style}>
+            <AlarmInfo />
           </View>
-          <View style={style}></View>
-          <View style={style}><AlarmInfo></AlarmInfo></View>
-          <View style={style}><EarlyWarningInfo></EarlyWarningInfo></View>
+          <View style={style}>
+            <EarlyWarningInfo />
+          </View>
         </Tabs>
       </View>
     );

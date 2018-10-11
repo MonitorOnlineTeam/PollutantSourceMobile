@@ -1,5 +1,13 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView, Image, StyleSheet, TouchableOpacity, processColor, } from 'react-native';
+import {
+  View,
+  Text,
+  ScrollView,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+  processColor,
+} from 'react-native';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import { SCREEN_WIDTH } from '../../config/globalsize';
 import { WhiteSpace, WingBlank } from 'antd-mobile-rn';
@@ -16,19 +24,22 @@ import markersInfo from '../../mockdata/OverView/markersInfo.json';
  */
 @connect()
 export default class SiteInformation extends Component {
-
   static navigationOptions = {
     // header: null,
     title: '站点信息',
     tabBarLabel: '站点信息',
     headerTintColor: '#FFF',
     headerStyle: { backgroundColor: '#1895EF' },
-    headerTitleStyle: { alignSelf: 'center', },
-    headerRight: (<View><Image
-      style={{ width: 23, height: 23, marginRight: 8, alignSelf: "center" }}
-      tintColor="#FFF"
-      source={require('../../images/lssj.png')}
-    /></View>),
+    headerTitleStyle: { alignSelf: 'center' },
+    headerRight: (
+      <View>
+        <Image
+          style={{ width: 23, height: 23, marginRight: 8, alignSelf: 'center' }}
+          tintColor="#FFF"
+          source={require('../../images/lssj.png')}
+        />
+      </View>
+    ),
     headerLeft: (
       <Text
         onPress={() => {
@@ -39,7 +50,7 @@ export default class SiteInformation extends Component {
         <Icon name={'angle-left'} size={32} style={{ color: '#FFFFFF' }} />
       </Text>
     ),
-    
+
     tabBarIcon: ({ focused, tintColor }) => (
       // <Image
       //   style={[
@@ -56,7 +67,7 @@ export default class SiteInformation extends Component {
     ),
   }
 
-  handleSelect(event) { }
+  handleSelect(event) {}
   constructor(props) {
     super(props);
     let barChartData = [];
@@ -79,9 +90,7 @@ export default class SiteInformation extends Component {
       });
     }
     this.state = {
-
-
-     data:{},
+      data: {},
       legend: {
         enabled: true,
         textColor: processColor('blue'),
@@ -245,7 +254,6 @@ export default class SiteInformation extends Component {
         },
       },
     };
-
   }
   componentDidMount() {
     let _circleColors = [];
@@ -264,7 +272,7 @@ export default class SiteInformation extends Component {
             dataSets: [
               {
                 values: lineData,
-             
+
                 label: '',
 
                 config: {
@@ -329,44 +337,54 @@ export default class SiteInformation extends Component {
     return (
       <ScrollView>
         <View style={styles.MainView}>
-
           {/* 文字描述模块 */}
           <View style={styles.SpecificView}>
-
             <Text style={[styles.TitleText]}>大唐集团-废气排口1</Text>
-            <Text style={styles.ContentText}>运维人：<Text style={{ color: "#BABABA" }}>马冬梅</Text></Text>
-            <Text style={[styles.ContentText]}>运维电话：<Text style={{ color: "#BABABA" }}>15160169915</Text></Text>
-            <Text style={[styles.ContentText]}>当前运维人：<Text style={{ color: "#BABABA" }}>小王</Text></Text>
+            <Text style={styles.ContentText}>
+              运维人：<Text style={{ color: '#BABABA' }}>马冬梅</Text>
+            </Text>
+            <Text style={[styles.ContentText]}>
+              运维电话：<Text style={{ color: '#BABABA' }}>15160169915</Text>
+            </Text>
+            <Text style={[styles.ContentText]}>
+              当前运维人：<Text style={{ color: '#BABABA' }}>小王</Text>
+            </Text>
             <WhiteSpace size="md" />
-            <View style={{
-              flexDirection: "row", width: "100%", alignSelf: 'center',
-              borderBottomColor: "#E3E3E3", borderBottomWidth: 0.8
-            }}></View>
+            <View
+              style={{
+                flexDirection: 'row',
+                width: '100%',
+                alignSelf: 'center',
+                borderBottomColor: '#E3E3E3',
+                borderBottomWidth: 0.8,
+              }}
+            />
             <WhiteSpace size="md" />
 
-            <View style={{ flexDirection: "row" }}>
+            <View style={{ flexDirection: 'row' }}>
               <WingBlank size="sm" />
               <View style={{ flex: 1 }}>
-
                 <AnimatedCircularProgress
                   size={90}
                   width={8}
                   fill={90}
                   tintColor="#2096F3"
-
-                  backgroundColor="#F1F4F9" >
-                  {
-                    () => (
-                      <View >
-                        <Text style={{ fontSize: 11 }}>
-                          传输有效率
+                  backgroundColor="#F1F4F9"
+                >
+                  {() => (
+                    <View>
+                      <Text style={{ fontSize: 11 }}>传输有效率</Text>
+                      <Text
+                        style={{
+                          fontSize: 11,
+                          alignSelf: 'center',
+                          color: '#2096F3',
+                        }}
+                      >
+                        90%
                       </Text>
-                        <Text style={{ fontSize: 11, alignSelf: "center", color: "#2096F3" }}>
-                          90%
-                      </Text>
-                      </View>
-                    )
-                  }
+                    </View>
+                  )}
                 </AnimatedCircularProgress>
               </View>
               <View style={{ flex: 1 }}>
@@ -375,20 +393,22 @@ export default class SiteInformation extends Component {
                   width={8}
                   fill={70}
                   tintColor="#2096F3"
-
-                  backgroundColor="#F1F4F9" >
-                  {
-                    () => (
-                      <View >
-                        <Text style={{ fontSize: 11 }}>
-                          传输有效率
+                  backgroundColor="#F1F4F9"
+                >
+                  {() => (
+                    <View>
+                      <Text style={{ fontSize: 11 }}>传输有效率</Text>
+                      <Text
+                        style={{
+                          fontSize: 11,
+                          alignSelf: 'center',
+                          color: '#2096F3',
+                        }}
+                      >
+                        70%
                       </Text>
-                        <Text style={{ fontSize: 11, alignSelf: "center", color: "#2096F3" }}>
-                          70%
-                      </Text>
-                      </View>
-                    )
-                  }
+                    </View>
+                  )}
                 </AnimatedCircularProgress>
               </View>
               <View style={{ flex: 1 }}>
@@ -397,72 +417,124 @@ export default class SiteInformation extends Component {
                   width={8}
                   fill={90}
                   tintColor="#2096F3"
-
-                  backgroundColor="#F1F4F9" >
-                  {
-                    () => (
-                      <View >
-                        <Text style={{ fontSize: 11 }}>
-                          传输有效率
+                  backgroundColor="#F1F4F9"
+                >
+                  {() => (
+                    <View>
+                      <Text style={{ fontSize: 11 }}>传输有效率</Text>
+                      <Text
+                        style={{
+                          fontSize: 11,
+                          alignSelf: 'center',
+                          color: '#2096F3',
+                        }}
+                      >
+                        96%
                       </Text>
-                        <Text style={{ fontSize: 11, alignSelf: "center", color: "#2096F3" }}>
-                          96%
-                      </Text>
-                      </View>
-                    )
-                  }
+                    </View>
+                  )}
                 </AnimatedCircularProgress>
               </View>
             </View>
-
-
           </View>
         </View>
 
         <View style={styles.MainView}>
           <Text style={[styles.TitleText]}>污染物 2018年6月27日 00:00:00</Text>
           <WhiteSpace />
-          <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
-            <View style={{
-              backgroundColor: "#FF4F4F", flex: 1, alignSelf: "center", justifyContent: "center", alignItems: "center",
-              height: 50, borderRadius: 5, margin: 3, width: 500
-            }}>
-              <Text style={{ color: "#FFFFFF" }}>烟尘：107</Text>
+          <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
+            <View
+              style={{
+                backgroundColor: '#FF4F4F',
+                flex: 1,
+                alignSelf: 'center',
+                justifyContent: 'center',
+                alignItems: 'center',
+                height: 50,
+                borderRadius: 5,
+                margin: 3,
+                width: 500,
+              }}
+            >
+              <Text style={{ color: '#FFFFFF' }}>烟尘：107</Text>
             </View>
-            <View style={{
-              backgroundColor: "#2cca69", flex: 1, alignSelf: "center", justifyContent: "center", alignItems: "center",
-              height: 50, borderRadius: 5, margin: 3, width: 500
-            }}>
-              <Text style={{ color: "#FFFFFF" }}>SO2：107</Text>
+            <View
+              style={{
+                backgroundColor: '#2cca69',
+                flex: 1,
+                alignSelf: 'center',
+                justifyContent: 'center',
+                alignItems: 'center',
+                height: 50,
+                borderRadius: 5,
+                margin: 3,
+                width: 500,
+              }}
+            >
+              <Text style={{ color: '#FFFFFF' }}>SO2：107</Text>
             </View>
-            <View style={{
-              backgroundColor: "#2cca69", flex: 1, alignSelf: "center", justifyContent: "center", alignItems: "center",
-              height: 50, borderRadius: 5, margin: 3, width: 500
-            }}>
-              <Text style={{ color: "#FFFFFF" }}>NOx：107</Text>
+            <View
+              style={{
+                backgroundColor: '#2cca69',
+                flex: 1,
+                alignSelf: 'center',
+                justifyContent: 'center',
+                alignItems: 'center',
+                height: 50,
+                borderRadius: 5,
+                margin: 3,
+                width: 500,
+              }}
+            >
+              <Text style={{ color: '#FFFFFF' }}>NOx：107</Text>
             </View>
-
           </View>
-          <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
-            <View style={{
-              backgroundColor: "#2cca69", flex: 1, alignSelf: "center", justifyContent: "center", alignItems: "center",
-              height: 50, borderRadius: 5, margin: 3, width: 500
-            }}>
-              <Text style={{ color: "#FFFFFF" }}>折算烟尘：107</Text>
+          <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
+            <View
+              style={{
+                backgroundColor: '#2cca69',
+                flex: 1,
+                alignSelf: 'center',
+                justifyContent: 'center',
+                alignItems: 'center',
+                height: 50,
+                borderRadius: 5,
+                margin: 3,
+                width: 500,
+              }}
+            >
+              <Text style={{ color: '#FFFFFF' }}>折算烟尘：107</Text>
             </View>
-            <View style={{
-              backgroundColor: "#FF4F4F", flex: 1, alignSelf: "center", justifyContent: "center", alignItems: "center",
-              height: 50, borderRadius: 5, margin: 3, width: 500
-            }}>
-              <Text style={{ color: "#FFFFFF" }}>折算SO2：107</Text>
+            <View
+              style={{
+                backgroundColor: '#FF4F4F',
+                flex: 1,
+                alignSelf: 'center',
+                justifyContent: 'center',
+                alignItems: 'center',
+                height: 50,
+                borderRadius: 5,
+                margin: 3,
+                width: 500,
+              }}
+            >
+              <Text style={{ color: '#FFFFFF' }}>折算SO2：107</Text>
             </View>
-            <View style={{
-              backgroundColor: "#F7B507", flex: 1, alignSelf: "center", justifyContent: "center", alignItems: "center",
-              height: 50, borderRadius: 5, margin: 3, width: 500
-            }}>
-              <Text style={{ color: "#FFFFFF" }}>折算NOx：107</Text>
+            <View
+              style={{
+                backgroundColor: '#F7B507',
+                flex: 1,
+                alignSelf: 'center',
+                justifyContent: 'center',
+                alignItems: 'center',
+                height: 50,
+                borderRadius: 5,
+                margin: 3,
+                width: 500,
+              }}
+            >
+              <Text style={{ color: '#FFFFFF' }}>折算NOx：107</Text>
             </View>
-
           </View>
         </View>
         <View style={styles.MainView}>
@@ -503,45 +575,58 @@ export default class SiteInformation extends Component {
             />
           </View>
         </View>
-         {/* 历史数据 */}
+        {/* 历史数据 */}
         <TouchableOpacity style={styles.MainView}>
-          <View style={{ flexDirection: "column", }}>
-            <View style={{ flexDirection: "row", }}>
-              <View style={{
-                width: 5, height: 15, backgroundColor: "#24DCFE",
-                borderRadius: 5
-              }}></View>
+          <View style={{ flexDirection: 'column' }}>
+            <View style={{ flexDirection: 'row' }}>
+              <View
+                style={{
+                  width: 5,
+                  height: 15,
+                  backgroundColor: '#24DCFE',
+                  borderRadius: 5,
+                }}
+              />
               <WingBlank size="sm" />
-              <Text style={{ flex: 1, fontSize: 15, color: "#000000" }}>历史数据</Text>
+              <Text style={{ flex: 1, fontSize: 15, color: '#000000' }}>
+                历史数据
+              </Text>
               <Text style={{ fontSize: 10 }}>2018-06-27 10:10</Text>
             </View>
-            <View style={{ flexDirection: "row", }}>
+            <View style={{ flexDirection: 'row' }}>
               <WingBlank size="md" />
               <Text style={{ fontSize: 10 }}>PM10仪表异常</Text>
             </View>
           </View>
         </TouchableOpacity>
-           {/* 视频监控 */}
+        {/* 视频监控 */}
         <TouchableOpacity style={styles.MainView}>
-          <View style={{ flexDirection: "column", }}>
-            <View style={{ flexDirection: "row", }}>
-              <View style={{
-                width: 5, height: 15, backgroundColor: "#B676FF",
-                borderRadius: 5
-              }}></View>
+          <View style={{ flexDirection: 'column' }}>
+            <View style={{ flexDirection: 'row' }}>
+              <View
+                style={{
+                  width: 5,
+                  height: 15,
+                  backgroundColor: '#B676FF',
+                  borderRadius: 5,
+                }}
+              />
               <WingBlank size="sm" />
-              <Text style={{ flex: 1, fontSize: 15, color: "#000000" }}>历史数据</Text>
+              <Text style={{ flex: 1, fontSize: 15, color: '#000000' }}>
+                历史数据
+              </Text>
               <Text style={{ fontSize: 10 }}>2018-06-27 10:10</Text>
             </View>
-            <View style={{ flexDirection: "row", }}>
+            <View style={{ flexDirection: 'row' }}>
               <WingBlank size="md" />
-              <Text style={{ fontSize: 10 }}>张三完成2018年9月26日 14:40:19定陵设备</Text>
+              <Text style={{ fontSize: 10 }}>
+                张三完成2018年9月26日 14:40:19定陵设备
+              </Text>
             </View>
           </View>
         </TouchableOpacity>
 
-   <WhiteSpace />
-
+        <WhiteSpace />
       </ScrollView>
     );
   }
@@ -555,22 +640,21 @@ const styles = StyleSheet.create({
   },
   MainView: {
     width: '96%',
-    backgroundColor: "#FFFFFF",
+    backgroundColor: '#FFFFFF',
 
     padding: 15,
     borderRadius: 6,
     alignSelf: 'center',
     marginTop: 6,
     marginBottom: 3,
-    shadowColor: "#E3E3E3",
+    shadowColor: '#E3E3E3',
     shadowOffset: { w: 0, h: 50 },
     shadowRadius: 3,
     shadowOpacity: 0.1,
     elevation: 1,
   },
-  flexStyle:
-  {
-    flex: 1
+  flexStyle: {
+    flex: 1,
   },
   TitleImg: {
     width: 13,
@@ -579,28 +663,24 @@ const styles = StyleSheet.create({
   },
   TitleText: {
     color: '#3F3F3F',
-    fontSize: 14
+    fontSize: 14,
   },
   ContentText: {
     fontSize: 13,
-    color: "#3F3F3F",
-    lineHeight: 24
-
+    color: '#3F3F3F',
+    lineHeight: 24,
   },
-  SpecificView:
-  {
-    padding: "1%",
+  SpecificView: {
+    padding: '1%',
   },
-  RowView:
-  {
+  RowView: {
     alignContent: 'center',
     alignItems: 'center',
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
-  ClickText:
-  {
+  ClickText: {
     fontSize: 13,
-    color: "#2F9CF4",
-    paddingRight: 15
-  }
+    color: '#2F9CF4',
+    paddingRight: 15,
+  },
 });

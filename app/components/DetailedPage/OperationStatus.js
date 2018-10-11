@@ -4,16 +4,10 @@ import { View, Text } from 'react-native';
 export default class OperationStatus extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-    };
+    this.state = {};
   }
 
   render() {
-    return (
-      <View>
-     
-     
-      </View>
-    );
+    return <View />;
   }
 }

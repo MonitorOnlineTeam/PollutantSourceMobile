@@ -43,7 +43,7 @@ class Main extends Component {
     if (this.state.loading == true) {
       let nav = {
         // Map: { screen: Map },
-      }; 
+      };
       const navs = await loadStorage('mainnavs');
       for (const r of navs) {
         for (const e of r.children) {
@@ -91,7 +91,6 @@ class Main extends Component {
           }
         }
       }
-     
 
       this.setState({
         loading: false,
@@ -112,7 +111,7 @@ class Main extends Component {
       return <Text>123</Text>;
     } else {
       const SimpleAppNavigator = this.state.aa;
-      return  <SimpleAppNavigator />;
+      return <SimpleAppNavigator />;
     }
   }
 }

@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import {
+  View,
+  Text,
+  ScrollView,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+} from 'react-native';
 import { SCREEN_WIDTH } from '../../config/globalsize';
 import { NavigationActions } from '../../utils';
 import { connect } from 'react-redux';
@@ -11,57 +18,84 @@ import AlarmInfoCard from '../Assembly/AlarmInfoCard';
 export default class AlarmInfo extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-    };
+    this.state = {};
   }
 
   render() {
     const persons = [
-      { name:"大唐集团-废气排口1",time:"2018年10月8日 16:20:27", content: "气态分析仪故障" },
-      { name:"大唐集团-废气排口1",time:"2018年10月8日 16:20:27", content: "气态分析仪故障" },
-      { name:"大唐集团-废气排口1",time:"2018年10月8日 16:20:27", content: "气态分析仪故障" },
-      { name:"大唐集团-废气排口1",time:"2018年10月8日 16:20:27", content: "气态分析仪故障" },
-      { name:"大唐集团-废气排口1",time:"2018年10月8日 16:20:27", content: "气态分析仪故障" },
-      { name:"大唐集团-废气排口1",time:"2018年10月8日 16:20:27", content: "气态分析仪故障" },
-      { name:"大唐集团-废气排口1",time:"2018年10月8日 16:20:27", content: "气态分析仪故障" },
-      { name:"大唐集团-废气排口1",time:"2018年10月8日 16:20:27", content: "气态分析仪故障" },
-      { name:"大唐集团-废气排口1",time:"2018年10月8日 16:20:27", content: "气态分析仪故障" },
-
-  ];
+      {
+        name: '大唐集团-废气排口1',
+        time: '2018年10月8日 16:20:27',
+        content: '气态分析仪故障',
+      },
+      {
+        name: '大唐集团-废气排口1',
+        time: '2018年10月8日 16:20:27',
+        content: '气态分析仪故障',
+      },
+      {
+        name: '大唐集团-废气排口1',
+        time: '2018年10月8日 16:20:27',
+        content: '气态分析仪故障',
+      },
+      {
+        name: '大唐集团-废气排口1',
+        time: '2018年10月8日 16:20:27',
+        content: '气态分析仪故障',
+      },
+      {
+        name: '大唐集团-废气排口1',
+        time: '2018年10月8日 16:20:27',
+        content: '气态分析仪故障',
+      },
+      {
+        name: '大唐集团-废气排口1',
+        time: '2018年10月8日 16:20:27',
+        content: '气态分析仪故障',
+      },
+      {
+        name: '大唐集团-废气排口1',
+        time: '2018年10月8日 16:20:27',
+        content: '气态分析仪故障',
+      },
+      {
+        name: '大唐集团-废气排口1',
+        time: '2018年10月8日 16:20:27',
+        content: '气态分析仪故障',
+      },
+      {
+        name: '大唐集团-废气排口1',
+        time: '2018年10月8日 16:20:27',
+        content: '气态分析仪故障',
+      },
+    ];
     // const thiss = this;
     return (
-      <View style={{ backgroundColor: "#F1F4F9", width: SCREEN_WIDTH }}>
+      <View style={{ backgroundColor: '#F1F4F9', width: SCREEN_WIDTH }}>
         <ScrollView>
           {/* 主模块 */}
-            {
-              persons.map((item,key)=>
-              {
-                  
-                  return(
-                    <TouchableOpacity
-                    key={key}
-                    onPress={(event) => {
-                      this.props.dispatch(
-                        NavigationActions.navigate({
-                          routeName: 'AlarmInfoData'
-                        })
-                      );
-                    }}>
-                    {
-                        <AlarmInfoCard 
-                        title={item.name} 
-                        dateTime={item.time}
-                        contentText={item.content}
-                        >
-                       
-                        </AlarmInfoCard>
-                    }
-                    </TouchableOpacity>
-
-              );
-              
-              })
-            }
+          {persons.map((item, key) => {
+            return (
+              <TouchableOpacity
+                key={key}
+                onPress={event => {
+                  this.props.dispatch(
+                    NavigationActions.navigate({
+                      routeName: 'AlarmInfoData',
+                    })
+                  );
+                }}
+              >
+                {
+                  <AlarmInfoCard
+                    title={item.name}
+                    dateTime={item.time}
+                    contentText={item.content}
+                  />
+                }
+              </TouchableOpacity>
+            );
+          })}
           {/*--------------重复样式---美丽的分割线结束-----------------  */}
         </ScrollView>
       </View>
