@@ -8,21 +8,18 @@ import {
   TextInput,
   Image,
   PixelRatio,
-
 } from 'react-native';
 import { connect } from 'react-redux';
-import { SCREEN_WIDTH,WINDOW_HEIGHT,SCREEN_HEIGHT,NOSTATUSHEIGHT } from '../../config/globalsize';
-import Checkboxes from '../Assembly/Checkboxes';
 import {
-  Modal,
-  Radio,
-  WhiteSpace,
-  WingBlank,
-} from 'antd-mobile-rn';
+  SCREEN_WIDTH,
+  WINDOW_HEIGHT,
+  SCREEN_HEIGHT,
+  NOSTATUSHEIGHT,
+} from '../../config/globalsize';
+import Checkboxes from '../Assembly/Checkboxes';
+import { Modal, Radio, WhiteSpace, WingBlank } from 'antd-mobile-rn';
 import EarlyWarningCard from '../Assembly/EarlyWarningCard';
 import { NavigationActions, createAction } from '../../utils';
-
-
 
 const RadioItem = Radio.RadioItem;
 /*
@@ -43,175 +40,173 @@ export default class EarlyWarningInfo extends Component {
       part2Value: 1,
     };
   }
- 
 
-  
   onClose = () => {
     this.setState({
       visible: false,
     });
   }
 
-  clickItem = (index) => {
-    this.props.dispatch(createAction('earlyWarning/clickItem')({'index':index}));
+  clickItem = index => {
+    this.props.dispatch(
+      createAction('earlyWarning/clickItem')({ index: index })
+    );
   }
 
   render() {
- 
     console.log('EarlyWarningInfo');
     return (
       <View>
-      <View style={{ backgroundColor: '#F1F4F9', width: SCREEN_WIDTH, flex:1 }}>
-        <ScrollView style={{ flex:1  }}>
-          {this.props.persons.map((item, key) => {
-            return (
-                  <EarlyWarningCard
-                    chicked={item.ifchicked}
-                    title={item.name}
-                    dateTime={item.time}
-                    number={item.c}
-                    key={key}
-                    alarmType={item.type}
-                    contentTexts={item.content}
-                    index={key}
-                    click={this.clickItem}
-                  />
-            );
-          })}
-        </ScrollView>
-        {/* 对话框 */}
-        <Modal
-          style={{
-            borderRadius: 10,
-            backgroundColor: 'rgba(255, 255, 255, 0.0)',
-            position: 'absolute',
-          }}
-          transparent={true}
-          closable={false}
-          onClose={this.onClose}
-          maskClosable={true}
-          visible={this.state.visible}
-          modalVisible
+        <View
+          style={{ backgroundColor: '#F1F4F9', width: SCREEN_WIDTH, flex: 1 }}
         >
-          <View
+          <ScrollView style={{ flex: 1 }}>
+            {this.props.persons.map((item, key) => {
+              return (
+                <EarlyWarningCard
+                  chicked={item.ifchicked}
+                  title={item.name}
+                  dateTime={item.time}
+                  number={item.c}
+                  key={key}
+                  alarmType={item.type}
+                  contentTexts={item.content}
+                  index={key}
+                  click={this.clickItem}
+                />
+              );
+            })}
+          </ScrollView>
+          {/* 对话框 */}
+          <Modal
             style={{
-              width: 80,
-              height: 80,
-              borderRadius: 100,
-              backgroundColor: '#C0D4EF',
-              alignSelf: 'center',
-              top: 35,
-              zIndex: 99,
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          >
-            <Image
-              style={{ width: 20, height: 20 }}
-              tintColor="#FFFFFF"
-              source={require('../../images/dg.png')}
-            />
-          </View>
-          <View
-            style={{
-              paddingTop: '10%',
-              paddingLeft: '5%',
-              paddingRight: '5%',
-              paddingBottom: '1%',
-              backgroundColor: '#ffffff',
               borderRadius: 10,
+              backgroundColor: 'rgba(255, 255, 255, 0.0)',
+              position: 'absolute',
             }}
+            transparent={true}
+            closable={false}
+            onClose={this.onClose}
+            maskClosable={true}
+            visible={this.state.visible}
+            modalVisible
           >
             <View
               style={{
-                borderBottomColor: '#E3E3E3',
-                padding: 15,
+                width: 80,
+                height: 80,
+                borderRadius: 100,
+                backgroundColor: '#C0D4EF',
                 alignSelf: 'center',
+                top: 35,
+                zIndex: 99,
+                alignItems: 'center',
+                justifyContent: 'center',
               }}
             >
-              <Text style={{ color: '#000000', fontSize: 15 }}>
-                共选中
-                <Text style={{ color: '#ff0000' }}>3</Text>
-                条数据
-              </Text>
-            </View>
-            <View style={{ padding: 12, alignSelf: 'center' }}>
-              <Radio
-                checked={this.state.part1Value === 1}
-                onChange={event => {
-                  if (event.target.checked) {
-                    this.setState({ part1Value: 1 });
-                  }
-                }}
-                style={{}}
-              >
-                <WingBlank size="sm" />
-                <Text style={{ color: '#078FE9' }}>有问题生成应急任务单</Text>
-              </Radio>
-            </View>
-            <View style={{ padding: 12, alignSelf: 'center' }}>
-              <Radio
-                checked={this.state.part1Value === 2}
-                onChange={event => {
-                  if (event.target.checked) {
-                    this.setState({ part1Value: 2 });
-                  }
-                }}
-                style={{}}
-              >
-                <WingBlank size="sm" />
-                <Text style={{ color: '#078FE9' }}>无问题并生成反馈单</Text>
-              </Radio>
-            </View>
-            <View style={{ flexDirection: 'row', padding: 10 }}>
-              <Text style={{}}>备注：</Text>
-              <TextInput
-                style={{
-                  borderColor: '#E3E3E3',
-                  borderWidth: 0.8,
-                  width: '80%',
-                }}
-                multiline={true}
-                placeholder=""
-                underlineColorAndroid="transparent"
-                clearButtonMode="always"
-                maxLength={100}
+              <Image
+                style={{ width: 20, height: 20 }}
+                tintColor="#FFFFFF"
+                source={require('../../images/dg.png')}
               />
             </View>
-            <View style={{ flexDirection: 'row', padding: 10 }}>
-              <TouchableOpacity
-                onPress={() => {
-                  this.onClose();
-                }}
+            <View
+              style={{
+                paddingTop: '10%',
+                paddingLeft: '5%',
+                paddingRight: '5%',
+                paddingBottom: '1%',
+                backgroundColor: '#ffffff',
+                borderRadius: 10,
+              }}
+            >
+              <View
                 style={{
-                  backgroundColor: '#4BB3F0',
-                  borderRadius: 50,
-                  height: 35,
-                  width: '100%',
-                  justifyContent: 'center',
+                  borderBottomColor: '#E3E3E3',
+                  padding: 15,
+                  alignSelf: 'center',
                 }}
               >
-                <Text
+                <Text style={{ color: '#000000', fontSize: 15 }}>
+                  共选中
+                  <Text style={{ color: '#ff0000' }}>3</Text>
+                  条数据
+                </Text>
+              </View>
+              <View style={{ padding: 12, alignSelf: 'center' }}>
+                <Radio
+                  checked={this.state.part1Value === 1}
+                  onChange={event => {
+                    if (event.target.checked) {
+                      this.setState({ part1Value: 1 });
+                    }
+                  }}
+                  style={{}}
+                >
+                  <WingBlank size="sm" />
+                  <Text style={{ color: '#078FE9' }}>有问题生成应急任务单</Text>
+                </Radio>
+              </View>
+              <View style={{ padding: 12, alignSelf: 'center' }}>
+                <Radio
+                  checked={this.state.part1Value === 2}
+                  onChange={event => {
+                    if (event.target.checked) {
+                      this.setState({ part1Value: 2 });
+                    }
+                  }}
+                  style={{}}
+                >
+                  <WingBlank size="sm" />
+                  <Text style={{ color: '#078FE9' }}>无问题并生成反馈单</Text>
+                </Radio>
+              </View>
+              <View style={{ flexDirection: 'row', padding: 10 }}>
+                <Text style={{}}>备注：</Text>
+                <TextInput
                   style={{
-                    color: '#FFFFFF',
-                    alignSelf: 'center',
+                    borderColor: '#E3E3E3',
+                    borderWidth: 0.8,
+                    width: '80%',
+                  }}
+                  multiline={true}
+                  placeholder=""
+                  underlineColorAndroid="transparent"
+                  clearButtonMode="always"
+                  maxLength={100}
+                />
+              </View>
+              <View style={{ flexDirection: 'row', padding: 10 }}>
+                <TouchableOpacity
+                  onPress={() => {
+                    this.onClose();
+                  }}
+                  style={{
+                    backgroundColor: '#4BB3F0',
+                    borderRadius: 50,
+                    height: 35,
+                    width: '100%',
                     justifyContent: 'center',
-                    fontSize: 14,
                   }}
                 >
-                  确定
-                </Text>
-              </TouchableOpacity>
+                  <Text
+                    style={{
+                      color: '#FFFFFF',
+                      alignSelf: 'center',
+                      justifyContent: 'center',
+                      fontSize: 14,
+                    }}
+                  >
+                    确定
+                  </Text>
+                </TouchableOpacity>
+              </View>
             </View>
-          </View>
-        </Modal>
-   
-    
-      
-      </View>
+          </Modal>
+        </View>
 
-      <View>
-      <Checkboxes
+        <View>
+          <Checkboxes
             title={'核实'}
             bgColor={'#2196F3'}
             TColor={'#FFFFFF'}
@@ -221,9 +216,7 @@ export default class EarlyWarningInfo extends Component {
               this.setState({ visible: true });
             }}
           />
-         
-          </View>
-    
+        </View>
       </View>
     );
   }

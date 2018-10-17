@@ -17,7 +17,7 @@ import {
   BarChart,
   PieChart,
   ProgressChart,
-  ContributionGraph
+  ContributionGraph,
 } from 'react-native-chart-kit';
 /*
 * @Description: 用户评价.
@@ -25,9 +25,11 @@ import {
 
 const data = {
   labels: ['January', 'February', 'March', 'April', 'May', 'June'],
-  datasets: [{
-    data: [20, 45, 28, 80, 99, 43]
-  }]
+  datasets: [
+    {
+      data: [20, 45, 28, 80, 99, 43],
+    },
+  ],
 };
 export default class UserEvaluation extends Component {
   static navigationOptions = ({ navigation }) => ({
@@ -50,8 +52,7 @@ export default class UserEvaluation extends Component {
   })
   constructor(props) {
     super(props);
-    this.state = {
-    };
+    this.state = {};
   }
 
   render() {
@@ -71,8 +72,6 @@ export default class UserEvaluation extends Component {
             </DatePicker>
           </List>
         </TouchableOpacity>
-  
-
       </View>
     );
   }
@@ -88,5 +87,5 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     alignSelf: 'center',
     marginTop: 7,
-  }
+  },
 });

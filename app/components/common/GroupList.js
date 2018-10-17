@@ -103,8 +103,8 @@ class GroupList extends Component {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
-    height: (SCREEN_HEIGHT * 2) / 3,
-    width: (SCREEN_WIDTH * 3) / 4,
+    height: SCREEN_HEIGHT * 2 / 3,
+    width: SCREEN_WIDTH * 3 / 4,
     borderRadius: 8,
     borderWidth: 0.5,
     borderColor: 'white',
@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
     height: 40,
     backgroundColor: globalcolor.titleBlue,
     flexDirection: 'row',
-    width: (SCREEN_WIDTH * 3) / 4 - 1,
+    width: SCREEN_WIDTH * 3 / 4 - 1,
     alignItems: 'center',
     justifyContent: 'space-between',
     borderTopLeftRadius: 8,
@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
     flex: 1,
     borderBottomLeftRadius: 8,
     borderBottomRightRadius: 8,
-    width: (SCREEN_WIDTH * 3) / 4 - 1,
+    width: SCREEN_WIDTH * 3 / 4 - 1,
   },
   noDataComponent: {
     borderBottomLeftRadius: 8,

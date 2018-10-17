@@ -23,9 +23,8 @@ export default class TaskDetails extends Component {
           </View>
 
           <View style={styles.ContentView}>
-          <Text style={styles.TitleText}>排口：</Text>
+            <Text style={styles.TitleText}>排口：</Text>
             <Text style={styles.ContentText}>废气排口</Text>
-           
           </View>
 
           {/*--------重复样式---------美丽的分割线-----------------  */}
@@ -131,12 +130,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#9b9b9b',
     borderRadius: 5,
     borderBottomRightRadius: 0,
-    borderBottomLeftRadius:0,
+    borderBottomLeftRadius: 0,
   },
   ScrollTitleText: {
     flex: 1,
     fontSize: 13,
-    color:"#FFFFFF"
+    color: '#FFFFFF',
   },
   ScrollContentView: {
     flexDirection: 'row',

@@ -31,14 +31,36 @@ export default class ExecutionTasks extends Component {
   constructor(props) {
     super(props);
     this.data = [
-      { time: '2018-10-17', title: '创建任务单',lineColor:"#1296db", description: '',icon: require('../../images/lcdg.png') },
-      { time: '2018-10-17', title: '应急处理',lineColor:"#cccccc", description: '成云 开始时间:2018-6-15-2018-6-15',icon: require('../../images/lcdg.png') },
-      { time: '2018-10-17', title: '校准',lineColor:"#cccccc", description: '',icon: require('../../images/qt.png') },
-      { time: '2018-10-17', title: '审核',lineColor:"#cccccc", description: '',icon: require('../../images/qt.png') },
-
+      {
+        time: '2018-10-17',
+        title: '创建任务单',
+        lineColor: '#1296db',
+        description: '',
+        icon: require('../../images/lcdg.png'),
+      },
+      {
+        time: '2018-10-17',
+        title: '应急处理',
+        lineColor: '#cccccc',
+        description: '成云 开始时间:2018-6-15-2018-6-15',
+        icon: require('../../images/lcdg.png'),
+      },
+      {
+        time: '2018-10-17',
+        title: '校准',
+        lineColor: '#cccccc',
+        description: '',
+        icon: require('../../images/qt.png'),
+      },
+      {
+        time: '2018-10-17',
+        title: '审核',
+        lineColor: '#cccccc',
+        description: '',
+        icon: require('../../images/qt.png'),
+      },
     ];
     this.state = {
-
       steps2: [
         {
           title: '创建任务单',
@@ -83,16 +105,14 @@ export default class ExecutionTasks extends Component {
                 <View style={{ marginTop: 10 }}>
                   <WingBlank size="lg">
                     <Timeline
-                    descriptionStyle={{color:"#a5a5a5"}}
-                    showTime={false}
-                       circleSize={20}
-                       circleColor='rgb(45,156,219)'
-                       lineColor='rgb(45,156,219)'
-                       timeContainerStyle={{minWidth:52,}}
-                       innerCircle={'icon'}
-                    
+                      descriptionStyle={{ color: '#a5a5a5' }}
+                      showTime={false}
+                      circleSize={20}
+                      circleColor="rgb(45,156,219)"
+                      lineColor="rgb(45,156,219)"
+                      timeContainerStyle={{ minWidth: 52 }}
+                      innerCircle={'icon'}
                       data={this.data}
-         
                     />
                   </WingBlank>
                 </View>

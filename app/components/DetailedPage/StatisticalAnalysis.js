@@ -100,13 +100,13 @@ export default class StatisticalAnalysis extends Component {
             <WingBlank size="md" />
 
             <TouchableOpacity
-             onPress={event => {
-              this.props.dispatch(
-                NavigationActions.navigate({
-                  routeName: 'UserEvaluation',
-                })
-              );
-            }}
+              onPress={event => {
+                this.props.dispatch(
+                  NavigationActions.navigate({
+                    routeName: 'UserEvaluation',
+                  })
+                );
+              }}
               style={[
                 styles.flexStyle,
                 { alignItems: 'center', justifyContent: 'center' },

@@ -52,73 +52,63 @@ export default class SignIn extends Component {
   render() {
     return (
       <View style={{ flex: 1 }}>
-      <View style={{ backgroundColor: '#F1F4F9', flex:1 }}>
-      <ScrollView style={{ flex: 2 }}>
-      <TaskDetails style={{ flex: 1 }} />
-      </ScrollView>
+        <View style={{ backgroundColor: '#F1F4F9', flex: 1 }}>
+          <ScrollView style={{ flex: 2 }}>
+            <TaskDetails style={{ flex: 1 }} />
+          </ScrollView>
+        </View>
 
-      </View>      
-      
-      <View style={{height:200,backgroundColor:"#FFFFFF"}}>
-
-      <WhiteSpace size="lg"/>
-      <TouchableOpacity
-              style={styles.Touchable}
-              onPress={() => {
-                this.props.navigation.dispatch(
-                  NavigationActions.navigate({
-                    routeName: 'ExecutionTasks',
-                  })
-                );
-              }}
-            >
-              <Text
-                style={{
-                  alignSelf: 'center',
-                  fontSize: 25,
-                  color: '#FFF',
-                  letterSpacing: 1,
-                }}
-              >
-                签到
-              </Text>
-              <Text
-                style={{ alignSelf: 'center', fontSize: 14, color: '#FFF' }}
-              >
-                08:30:00
-              </Text>
-            </TouchableOpacity>
-            <WhiteSpace size="lg"/>
-            <View
+        <View style={{ height: 200, backgroundColor: '#FFFFFF' }}>
+          <WhiteSpace size="lg" />
+          <TouchableOpacity
+            style={styles.Touchable}
+            onPress={() => {
+              this.props.navigation.dispatch(
+                NavigationActions.navigate({
+                  routeName: 'ExecutionTasks',
+                })
+              );
+            }}
+          >
+            <Text
               style={{
-                width: SCREEN_WIDTH,
-                height: 20,
-                flexDirection: 'row',
-                justifyContent: 'center',
+                alignSelf: 'center',
+                fontSize: 25,
+                color: '#FFF',
+                letterSpacing: 1,
               }}
             >
-              <Image
-                style={{ width: 14, height: 14, alignSelf: 'center' }}
-                tintColor="#000"
-                source={require('../../images/dw.png')}
-              />
-              <Text style={{ alignSelf: 'center', fontSize: 12 }}>
-                定位地点：北京雪地龙
-              </Text>
-              <Text
-                style={{ color: '#2A9DEE', alignSelf: 'center', fontSize: 12 }}
-              >
-                去重新定位
-              </Text>
-            </View>
+              签到
+            </Text>
+            <Text style={{ alignSelf: 'center', fontSize: 14, color: '#FFF' }}>
+              08:30:00
+            </Text>
+          </TouchableOpacity>
+          <WhiteSpace size="lg" />
+          <View
+            style={{
+              width: SCREEN_WIDTH,
+              height: 20,
+              flexDirection: 'row',
+              justifyContent: 'center',
+            }}
+          >
+            <Image
+              style={{ width: 14, height: 14, alignSelf: 'center' }}
+              tintColor="#000"
+              source={require('../../images/dw.png')}
+            />
+            <Text style={{ alignSelf: 'center', fontSize: 12 }}>
+              定位地点：北京雪地龙
+            </Text>
+            <Text
+              style={{ color: '#2A9DEE', alignSelf: 'center', fontSize: 12 }}
+            >
+              去重新定位
+            </Text>
+          </View>
+        </View>
       </View>
-           
-        
-       
-
-
-      </View>
-
     );
   }
 }
@@ -133,6 +123,5 @@ const styles = StyleSheet.create({
     borderRadius: 50000000,
     justifyContent: 'center',
     backgroundColor: '#22D6F4',
-   
   },
 });

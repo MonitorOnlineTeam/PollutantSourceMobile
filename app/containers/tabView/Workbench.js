@@ -88,7 +88,7 @@ const style = {
   width: '100%',
   alignItems: 'center',
   justifyContent: 'center',
-  flex:1,
+  flex: 1,
   backgroundColor: '#F1F4F9',
 };
 // make this component available to the app

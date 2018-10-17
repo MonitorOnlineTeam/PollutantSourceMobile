@@ -9,12 +9,9 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import { NavigationActions } from '../../utils';
-import {
-  Calendar,
-  LocaleConfig,
-} from 'react-native-calendars';
-import OperationCalendarCard from "../Assembly/OperationCalendarCard";
-import StatePoint from "../Assembly/StatePoint";
+import { Calendar, LocaleConfig } from 'react-native-calendars';
+import OperationCalendarCard from '../Assembly/OperationCalendarCard';
+import StatePoint from '../Assembly/StatePoint';
 import { DatePicker, List } from 'antd-mobile-rn';
 import { WhiteSpace, WingBlank } from 'antd-mobile-rn';
 LocaleConfig.locales['fr'] = {
@@ -90,23 +87,49 @@ export default class OperationCalendar extends Component {
     this.setState({ value });
   }
   render() {
-    const data = [{ taskType: "例行任务", name: "小王", outName: "发电", taskState: "逾期" },
-    { taskType: "例行任务", name: "小王", outName: "发电", taskState: "逾期" },
-    { taskType: "例行任务", name: "小王", outName: "发电", taskState: "逾期" },
-    { taskType: "例行任务", name: "小王", outName: "发电", taskState: "逾期" }];
+    const data = [
+      {
+        taskType: '例行任务',
+        name: '小王',
+        outName: '发电',
+        taskState: '逾期',
+      },
+      {
+        taskType: '例行任务',
+        name: '小王',
+        outName: '发电',
+        taskState: '逾期',
+      },
+      {
+        taskType: '例行任务',
+        name: '小王',
+        outName: '发电',
+        taskState: '逾期',
+      },
+      {
+        taskType: '例行任务',
+        name: '小王',
+        outName: '发电',
+        taskState: '逾期',
+      },
+    ];
     return (
       <ScrollView>
         {/* 标头 */}
         <View
           style={[
             styles.MainView,
-            { flexDirection: 'column', alignItems: 'center',    },
+            { flexDirection: 'column', alignItems: 'center' },
           ]}
         >
- 
-         <StatePoint   stateType={[{color:"#2196F3",val:"计划"},{color:"#F7B507",val:"异常"},,{color:"#00C34C",val:"正常"}]}>
-
-         </StatePoint>
+          <StatePoint
+            stateType={[
+              { color: '#2196F3', val: '计划' },
+              { color: '#F7B507', val: '异常' },
+              ,
+              { color: '#00C34C', val: '正常' },
+            ]}
+          />
 
           <TouchableOpacity style={{ width: '100%', height: 50 }}>
             <List style={{}}>
@@ -165,19 +188,17 @@ export default class OperationCalendar extends Component {
             }}
           />
         </View>
-        {
-          data.map((item, key) => {
-
-
-            return (
-              <OperationCalendarCard key={key} taskType={item.taskState} name={item.name} outName={item.outName} taskState={item.taskType} >
-
-              </OperationCalendarCard>);
-
-          })
-
-
-        }
+        {data.map((item, key) => {
+          return (
+            <OperationCalendarCard
+              key={key}
+              taskType={item.taskState}
+              name={item.name}
+              outName={item.outName}
+              taskState={item.taskType}
+            />
+          );
+        })}
       </ScrollView>
     );
   }

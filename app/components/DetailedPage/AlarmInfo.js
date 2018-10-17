@@ -96,7 +96,6 @@ export default class AlarmInfo extends Component {
               </TouchableOpacity>
             );
           })}
-        
         </ScrollView>
       </View>
     );
