@@ -13,6 +13,7 @@ import { Tabs, Icon, WingBlank, Steps } from 'antd-mobile-rn';
 import { SCREEN_WIDTH } from '../../config/globalsize';
 import { NavigationActions } from '../../utils';
 import TaskDetails from './TaskDetails';
+import Timeline from '../Assembly/TimeLine';
 const Step = Steps.Step;
 @connect()
 /*
@@ -29,7 +30,15 @@ export default class ExecutionTasks extends Component {
   })
   constructor(props) {
     super(props);
+    this.data = [
+      { time: '2018-10-17', title: '创建任务单',lineColor:"#1296db", description: '',icon: require('../../images/lcdg.png') },
+      { time: '2018-10-17', title: '应急处理',lineColor:"#cccccc", description: '成云 开始时间:2018-6-15-2018-6-15',icon: require('../../images/lcdg.png') },
+      { time: '2018-10-17', title: '校准',lineColor:"#cccccc", description: '',icon: require('../../images/qt.png') },
+      { time: '2018-10-17', title: '审核',lineColor:"#cccccc", description: '',icon: require('../../images/qt.png') },
+
+    ];
     this.state = {
+
       steps2: [
         {
           title: '创建任务单',
@@ -73,16 +82,18 @@ export default class ExecutionTasks extends Component {
                 </View>
                 <View style={{ marginTop: 10 }}>
                   <WingBlank size="lg">
-                    <Steps current={1}>
-                      {this.state.steps2.map((item, index) => (
-                        <Step
-                          key={index}
-                          title={item.title}
-                          description={item.description}
-                          status={item.status}
-                        />
-                      ))}
-                    </Steps>
+                    <Timeline
+                    descriptionStyle={{color:"#a5a5a5"}}
+                    showTime={false}
+                       circleSize={20}
+                       circleColor='rgb(45,156,219)'
+                       lineColor='rgb(45,156,219)'
+                       timeContainerStyle={{minWidth:52,}}
+                       innerCircle={'icon'}
+                    
+                      data={this.data}
+         
+                    />
                   </WingBlank>
                 </View>
               </View>

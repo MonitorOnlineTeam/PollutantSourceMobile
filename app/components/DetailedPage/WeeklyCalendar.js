@@ -172,7 +172,7 @@ export default class WeeklyCalendar extends Component {
         Name: '王丹丹',
         taskData: 1,
         Date: '2018年9月30日',
-        Type: '例行任务',
+        Type: '例行任务1',
         address: '排口地址',
         state: '完成',
         stateColor: '#3cd05c',
@@ -293,7 +293,7 @@ export default class WeeklyCalendar extends Component {
           </TouchableOpacity>
         </View>
         <WhiteSpace size="xs" />
-        <ScrollView style={[styles.MainView, { height: '50%' }]}>
+        <ScrollView style={[styles.MainView, { height: '45%' }]}>
           {taskData.map((item, key) => {
             return (
               <TitleBlock

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
-import { Accordion, List } from 'antd-mobile-rn';
+import { Accordion } from 'antd-mobile-rn';
 import { SCREEN_WIDTH } from '../../config/globalsize';
 import CenterButton from '../Assembly/CenterButton';
 /*

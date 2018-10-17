@@ -23,7 +23,7 @@ import {
   getPointEnterprise,
   // getEnterprise,
 } from '../../mockdata/Base/commonbase';
-
+import globalcolor from '../../config/globalcolor';
 import AlarmInfo from '../../components/DetailedPage/AlarmInfo';
 import EarlyWarningInfo from '../../components/DetailedPage/EarlyWarningInfo';
 /*
@@ -88,7 +88,7 @@ const style = {
   width: '100%',
   alignItems: 'center',
   justifyContent: 'center',
-
+  flex:1,
   backgroundColor: '#F1F4F9',
 };
 // make this component available to the app

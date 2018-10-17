@@ -11,11 +11,12 @@ import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import { NavigationActions } from '../../utils';
 import {
   Calendar,
-  CalendarList,
-  Agenda,
   LocaleConfig,
 } from 'react-native-calendars';
-import { WhiteSpace, WingBlank, DatePicker, List } from 'antd-mobile-rn';
+import OperationCalendarCard from "../Assembly/OperationCalendarCard";
+import StatePoint from "../Assembly/StatePoint";
+import { DatePicker, List } from 'antd-mobile-rn';
+import { WhiteSpace, WingBlank } from 'antd-mobile-rn';
 LocaleConfig.locales['fr'] = {
   monthNames: [
     '一月',
@@ -89,59 +90,23 @@ export default class OperationCalendar extends Component {
     this.setState({ value });
   }
   render() {
+    const data = [{ taskType: "例行任务", name: "小王", outName: "发电", taskState: "逾期" },
+    { taskType: "例行任务", name: "小王", outName: "发电", taskState: "逾期" },
+    { taskType: "例行任务", name: "小王", outName: "发电", taskState: "逾期" },
+    { taskType: "例行任务", name: "小王", outName: "发电", taskState: "逾期" }];
     return (
-      <View>
+      <ScrollView>
         {/* 标头 */}
         <View
           style={[
             styles.MainView,
-            { flexDirection: 'column', alignItems: 'center' },
+            { flexDirection: 'column', alignItems: 'center',    },
           ]}
         >
-          <View
-            style={{
-              flexDirection: 'row',
-              backgroundColor: '#FFFFFF',
-              width: '100%',
-              height: 50,
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <View
-              style={{
-                backgroundColor: '#F7B507',
-                borderRadius: 50,
-                width: 15,
-                height: 15,
-              }}
-            />
-            <WingBlank size="md" />
-            <Text>异常</Text>
-            <WingBlank size="md" />
-            <View
-              style={{
-                backgroundColor: '#26C439',
-                borderRadius: 50,
-                width: 15,
-                height: 15,
-              }}
-            />
-            <WingBlank size="md" />
-            <Text>正常</Text>
-            <WingBlank size="md" />
-            <View
-              style={{
-                backgroundColor: '#2196F3',
-                borderRadius: 50,
-                width: 15,
-                height: 15,
-              }}
-            />
-            <WingBlank size="md" />
-            <Text>计划</Text>
-            <WingBlank size="md" />
-          </View>
+ 
+         <StatePoint   stateType={[{color:"#2196F3",val:"计划"},{color:"#F7B507",val:"异常"},,{color:"#00C34C",val:"正常"}]}>
+
+         </StatePoint>
 
           <TouchableOpacity style={{ width: '100%', height: 50 }}>
             <List style={{}}>
@@ -200,89 +165,20 @@ export default class OperationCalendar extends Component {
             }}
           />
         </View>
-        <ScrollView style={{ height: '28%' }}>
-          <TouchableOpacity style={styles.MainViews}>
-            {/* 标题 */}
-            <View style={[styles.RowView]}>
-              <Image
-                style={styles.TitleImg}
-                tintColor="#ff414e"
-                source={require('../../images/rw.png')}
-              />
-              <WingBlank size="md" />
-              <Text style={[styles.TitleText, { flex: 1 }]}>
-                任务类型：例行任务
-              </Text>
-              <Text style={{ fontSize: 11, color: '#7E7E7E' }}>
-                任务执行人：小王
-              </Text>
-              <WingBlank size="md" />
-            </View>
-            {/* 文字描述模块 */}
-            <View style={styles.SpecificView}>
-              <Text style={styles.ContentText}>排口地址：法电大唐</Text>
-              <View style={styles.RowView}>
-                <Text style={styles.ContentText}>任务执行状态：</Text>
-                <Text style={{ color: '#D05F77', fontSize: 13 }}>逾期</Text>
-              </View>
-            </View>
-          </TouchableOpacity>
+        {
+          data.map((item, key) => {
 
-          <TouchableOpacity style={styles.MainViews}>
-            {/* 标题 */}
-            <View style={[styles.RowView]}>
-              <Image
-                style={styles.TitleImg}
-                tintColor="#ff414e"
-                source={require('../../images/rw.png')}
-              />
-              <WingBlank size="md" />
-              <Text style={[styles.TitleText, { flex: 1 }]}>
-                任务类型：例行任务
-              </Text>
-              <Text style={{ fontSize: 11, color: '#7E7E7E' }}>
-                任务执行人：小王
-              </Text>
-              <WingBlank size="md" />
-            </View>
-            {/* 文字描述模块 */}
-            <View style={styles.SpecificView}>
-              <Text style={styles.ContentText}>排口地址：法电大唐</Text>
-              <View style={styles.RowView}>
-                <Text style={styles.ContentText}>任务执行状态：</Text>
-                <Text style={{ color: '#D05F77', fontSize: 13 }}>逾期</Text>
-              </View>
-            </View>
-          </TouchableOpacity>
 
-          <TouchableOpacity style={styles.MainViews}>
-            {/* 标题 */}
-            <View style={[styles.RowView]}>
-              <Image
-                style={styles.TitleImg}
-                tintColor="#ff414e"
-                source={require('../../images/rw.png')}
-              />
-              <WingBlank size="md" />
-              <Text style={[styles.TitleText, { flex: 1 }]}>
-                任务类型：例行任务
-              </Text>
-              <Text style={{ fontSize: 11, color: '#7E7E7E' }}>
-                任务执行人：小王
-              </Text>
-              <WingBlank size="md" />
-            </View>
-            {/* 文字描述模块 */}
-            <View style={styles.SpecificView}>
-              <Text style={styles.ContentText}>排口地址：法电大唐</Text>
-              <View style={styles.RowView}>
-                <Text style={styles.ContentText}>任务执行状态：</Text>
-                <Text style={{ color: '#D05F77', fontSize: 13 }}>逾期</Text>
-              </View>
-            </View>
-          </TouchableOpacity>
-        </ScrollView>
-      </View>
+            return (
+              <OperationCalendarCard key={key} taskType={item.taskState} name={item.name} outName={item.outName} taskState={item.taskType} >
+
+              </OperationCalendarCard>);
+
+          })
+
+
+        }
+      </ScrollView>
     );
   }
 }

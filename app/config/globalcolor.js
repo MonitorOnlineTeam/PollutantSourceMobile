@@ -20,5 +20,7 @@ const color = {
   backgroundGrey: '#f4f7f7',
   darkRed: '#bd322a',
   antBlue: '#1296db',
+  // 
+  
 };
 export default color;

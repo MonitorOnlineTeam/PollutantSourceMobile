@@ -17,8 +17,10 @@ export default class EarlyWarningCard extends Component {
   onpress = () => {
     var chicked = this.state.checkBox == '1' ? '0' : '1';
     this.setState({ checkBox: chicked });
+    this.props.click(this.props.index);
   }
   render() {
+    console.log(this.props);
     return (
       <View>
         <TouchableOpacity onPress={this.onpress}>
@@ -28,7 +30,7 @@ export default class EarlyWarningCard extends Component {
             <View style={[styles.RowView]}>
               <Checkbox
                 style={styles.TitleImg}
-                checked={this.state.checkBox == '1' ? true : false}
+                checked={this.props.chicked == '1' ? true : false}
               />
               <Text style={[styles.TitleText]}>{this.props.title}</Text>
             </View>

@@ -12,7 +12,7 @@ import { SCREEN_WIDTH } from '../../config/globalsize';
 import { connect } from 'react-redux';
 import { NavigationActions } from '../../utils';
 import TaskDetails from './TaskDetails';
-
+import { WhiteSpace, WingBlank } from 'antd-mobile-rn';
 /*
 * @Description: 现场签到.
 */
@@ -51,12 +51,18 @@ export default class SignIn extends Component {
   })
   render() {
     return (
-      <ScrollView style={{ flex: 1 }}>
-        {
-          <View style={{ backgroundColor: '#F1F4F9', height: '100%' }}>
-            <TaskDetails style={{ flex: 10 }} />
-            {/* 第三模块 签到*/}
-            <TouchableOpacity
+      <View style={{ flex: 1 }}>
+      <View style={{ backgroundColor: '#F1F4F9', flex:1 }}>
+      <ScrollView style={{ flex: 2 }}>
+      <TaskDetails style={{ flex: 1 }} />
+      </ScrollView>
+
+      </View>      
+      
+      <View style={{height:200,backgroundColor:"#FFFFFF"}}>
+
+      <WhiteSpace size="lg"/>
+      <TouchableOpacity
               style={styles.Touchable}
               onPress={() => {
                 this.props.navigation.dispatch(
@@ -82,14 +88,12 @@ export default class SignIn extends Component {
                 08:30:00
               </Text>
             </TouchableOpacity>
+            <WhiteSpace size="lg"/>
             <View
               style={{
                 width: SCREEN_WIDTH,
-                height: '30%',
+                height: 20,
                 flexDirection: 'row',
-                marginBottom: '2%',
-                marginTop: '5%',
-                flex: 3,
                 justifyContent: 'center',
               }}
             >
@@ -99,19 +103,22 @@ export default class SignIn extends Component {
                 source={require('../../images/dw.png')}
               />
               <Text style={{ alignSelf: 'center', fontSize: 12 }}>
-                {' '}
                 定位地点：北京雪地龙
               </Text>
               <Text
                 style={{ color: '#2A9DEE', alignSelf: 'center', fontSize: 12 }}
               >
-                {' '}
                 去重新定位
               </Text>
             </View>
-          </View>
-        }
-      </ScrollView>
+      </View>
+           
+        
+       
+
+
+      </View>
+
     );
   }
 }
@@ -120,12 +127,12 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     marginLeft: 'auto',
     marginRight: 'auto',
-    marginTop: '2%',
-    width: SCREEN_WIDTH - 260,
-    height: SCREEN_WIDTH - 260,
-    borderRadius: 5000000,
+
+    width: SCREEN_WIDTH - 230,
+    height: SCREEN_WIDTH - 230,
+    borderRadius: 50000000,
     justifyContent: 'center',
-    backgroundColor: '#2A9DEE',
-    flex: 2,
+    backgroundColor: '#22D6F4',
+   
   },
 });

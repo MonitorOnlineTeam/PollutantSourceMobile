@@ -12,9 +12,12 @@ import SiteInformation from '../../components/DetailedPage/SiteInformation';
 import StatisticalAnalysis from '../../components/DetailedPage/StatisticalAnalysis';
 import HistoryData from './HistoryData';
 import Statistical from './Statistical';
+
 import Account from './Account';
 import ConsumableManage from '../workbench/ConsumableManage';
 //import OperationStatus from '../../components/DetailedPage/OperationStatus';
+import OperationCalendar from '../../components/DetailedPage/OperationCalendar';
+
 import OperationStatus from '../../components/DetailedPage/RecordSheetAuditing';
 import { loadStorage } from '../../dvapack/storage';
 // create a component
@@ -86,7 +89,7 @@ class Main extends Component {
             } else if (e.text === '数据一览') {
               nav.DataList = { screen: DataList };
             } else if (e.text === '历史记录') {
-              nav.StatisticalAnalysis = { screen: OperationStatus };
+              nav.StatisticalAnalysis = { screen: StatisticalAnalysis };
             } else if (e.text === '我的') {
               nav.My = { screen: My };
             }
