@@ -31,7 +31,7 @@ export default class TaskAuditcard extends Component {
               <View style={styles.RowView}>
                 <WingBlank size="lg" />
                 <Text style={[styles.ContentText, styles.flexStyle]}>
-                时间：{this.props.dateTime}
+                  时间：{this.props.dateTime}
                 </Text>
               </View>
               <View style={styles.RowView}>
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
     color: 'rgb(180,179,199)',
     fontSize: 13,
   },
-  SpecificView:{
-      marginLeft:'-2%'
-  }
+  SpecificView: {
+    marginLeft: '-2%',
+  },
 });

@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
     fontSize: 13,
     lineHeight: 24,
   },
-  SpecificView:{
-    marginLeft:'-2%'
-}
+  SpecificView: {
+    marginLeft: '-2%',
+  },
 });

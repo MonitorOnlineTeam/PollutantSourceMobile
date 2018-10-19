@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   StatusBar,
 } from 'react-native';
-import { Grid, Tabs, NoticeBar, Badge ,WhiteSpace  } from 'antd-mobile-rn';
+import { Grid, Tabs, NoticeBar, Badge, WhiteSpace } from 'antd-mobile-rn';
 import { connect } from 'react-redux';
 import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
 import wholeSituationStyle from '../../config/wholeSituationStyle';
@@ -95,18 +95,18 @@ class Workbench extends Component {
         <StatusBar backgroundColor={'#1895EF'} barStyle={'light-content'} />
         <Tabs tabs={tabs} initialPage={0}>
           {/* <Badge dot> */}
-            <View style={style}>
-              <TaskAudit />
-            </View>
+          <View style={style}>
+            <TaskAudit />
+          </View>
           {/* </Badge> */}
-          <View style={style} >
-          <TaskAdjustment />
+          <View style={style}>
+            <TaskAdjustment />
           </View>
-          <View style={style} >
-          <ChargeAlarmInfo />
+          <View style={style}>
+            <ChargeAlarmInfo />
           </View>
-          <View style={style} >
-          <OverdueReminding />
+          <View style={style}>
+            <OverdueReminding />
           </View>
         </Tabs>
       </View>
