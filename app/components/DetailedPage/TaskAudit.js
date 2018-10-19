@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
-import {
-  View,
-  ScrollView,
-  TouchableOpacity,
-} from 'react-native';
+import { View, ScrollView, TouchableOpacity } from 'react-native';
 import { SCREEN_WIDTH } from '../../config/globalsize';
 import { NavigationActions } from '../../utils';
 import { connect } from 'react-redux';
@@ -24,55 +20,55 @@ export default class TaskAudit extends Component {
         name: '大唐集团-废气排口1',
         time: '2018年10月8日 16:20:27',
         operationperson: '成云',
-        phone:'15811322089'
+        phone: '15811322089',
       },
       {
         name: '大唐集团-废气排口1',
         time: '2018年10月8日 16:20:27',
         operationperson: '成云',
-        phone:'15811322089'
+        phone: '15811322089',
       },
       {
         name: '大唐集团-废气排口1',
         time: '2018年10月8日 16:20:27',
         operationperson: '成云',
-        phone:'15811322089'
+        phone: '15811322089',
       },
       {
         name: '大唐集团-废气排口1',
         time: '2018年10月8日 16:20:27',
         operationperson: '成云',
-        phone:'15811322089'
+        phone: '15811322089',
       },
       {
         name: '大唐集团-废气排口1',
         time: '2018年10月8日 16:20:27',
         operationperson: '成云',
-        phone:'15811322089'
+        phone: '15811322089',
       },
       {
         name: '大唐集团-废气排口1',
         time: '2018年10月8日 16:20:27',
         operationperson: '成云',
-        phone:'15811322089'
+        phone: '15811322089',
       },
       {
         name: '大唐集团-废气排口1',
         time: '2018年10月8日 16:20:27',
         operationperson: '成云',
-        phone:'15811322089'
+        phone: '15811322089',
       },
       {
         name: '大唐集团-废气排口1',
         time: '2018年10月8日 16:20:27',
         operationperson: '成云',
-        phone:'15811322089'
+        phone: '15811322089',
       },
       {
         name: '大唐集团-废气排口1',
         time: '2018年10月8日 16:20:27',
         operationperson: '成云',
-        phone:'15811322089'
+        phone: '15811322089',
       },
     ];
     // const thiss = this;
@@ -92,15 +88,15 @@ export default class TaskAudit extends Component {
               //     );
               //   }}
               // >
-              
-                  <TaskAuditcard
-                    name={item.name}
-                    dateTime={item.time}
-                    key={key}
-                    operationperson={item.operationperson}
-                    phone={item.phone}
-                  />
-            
+
+              <TaskAuditcard
+                name={item.name}
+                dateTime={item.time}
+                key={key}
+                operationperson={item.operationperson}
+                phone={item.phone}
+              />
+
               // </TouchableOpacity>
             );
           })}
