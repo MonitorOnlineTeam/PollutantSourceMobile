@@ -3,12 +3,12 @@ import { View, ScrollView, TouchableOpacity } from 'react-native';
 import { SCREEN_WIDTH } from '../../config/globalsize';
 import { NavigationActions } from '../../utils';
 import { connect } from 'react-redux';
-import TaskAuditcard from '../Assembly/TaskAuditcard';
+import ChargeAlarmInfoCard from '../Assembly/ChargeAlarmInfoCard';
 /*
  * @Description: 任务审核.
  */
 @connect()
-export default class TaskAudit extends Component {
+export default class ChargeAlarmInfo extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -17,56 +17,72 @@ export default class TaskAudit extends Component {
   render() {
     const persons = [
       {
-        name: '大唐集团-脱硫入口',
-        time: '2018年10月8日 16:20:27',
+        name: '大唐集团-脱硫入口1',
+        AlarmTime: '2018年10月8日 16:20:27',
+        LastAlarmTime: '2018年10月8日 16:20:27',
         operationperson: '成云',
         phone: '15811322089',
       },
       {
-        name: '大唐集团-锅炉小号烟囱',
-        time: '2018年10月8日 16:20:27',
+        name: '大唐集团-脱硫入口2',
+        AlarmTime: '2018年10月8日 16:20:27',
+        LastAlarmTime: '2018年10月8日 16:20:27',
         operationperson: '成云',
         phone: '15811322089',
       },
       {
-        name: '大唐集团-废气排口1',
-        time: '2018年10月8日 16:20:27',
+        name: '大唐集团-脱硫入口3',
+        AlarmTime: '2018年10月8日 16:20:27',
+        LastAlarmTime: '2018年10月8日 16:20:27',
         operationperson: '成云',
         phone: '15811322089',
       },
       {
-        name: '大唐集团-废气排口2',
-        time: '2018年10月8日 16:20:27',
+        name: '大唐集团-脱硫入口4',
+        AlarmTime: '2018年10月8日 16:20:27',
+        LastAlarmTime: '2018年10月8日 16:20:27',
         operationperson: '成云',
         phone: '15811322089',
       },
       {
-        name: '大唐集团-废气排口3',
-        time: '2018年10月8日 16:20:27',
+        name: '大唐集团-脱硫入口5',
+        AlarmTime: '2018年10月8日 16:20:27',
+        LastAlarmTime: '2018年10月8日 16:20:27',
         operationperson: '成云',
         phone: '15811322089',
       },
       {
-        name: '大唐集团-废气排口4',
-        time: '2018年10月8日 16:20:27',
+        name: '大唐集团-脱硫入口6',
+        AlarmTime: '2018年10月8日 16:20:27',
+        LastAlarmTime: '2018年10月8日 16:20:27',
         operationperson: '成云',
         phone: '15811322089',
       },
       {
-        name: '大唐集团-废气排口5',
-        time: '2018年10月8日 16:20:27',
+        name: '大唐集团-脱硫入口7',
+        AlarmTime: '2018年10月8日 16:20:27',
+        LastAlarmTime: '2018年10月8日 16:20:27',
         operationperson: '成云',
         phone: '15811322089',
       },
       {
-        name: '大唐集团-废气排口6',
-        time: '2018年10月8日 16:20:27',
+        name: '大唐集团-脱硫入口8',
+        AlarmTime: '2018年10月8日 16:20:27',
+        LastAlarmTime: '2018年10月8日 16:20:27',
         operationperson: '成云',
         phone: '15811322089',
       },
       {
-        name: '大唐集团-废气排口7',
-        time: '2018年10月8日 16:20:27',
+        name: '大唐集团-脱硫入口9',
+        AlarmTime: '2018年10月8日 16:20:27',
+        LastAlarmTime: '2018年10月8日 16:20:27',
+        operationperson: '成云',
+        phone: '15811322089',
+      },
+      {
+        name: '大唐集团-脱硫入口10',
+        AlarmTime: '2018年10月8日 16:20:27',
+        LastAlarmTime: '2018年10月8日 16:20:27',
         operationperson: '成云',
         phone: '15811322089',
       },
@@ -89,9 +105,10 @@ export default class TaskAudit extends Component {
               //   }}
               // >
 
-              <TaskAuditcard
+              <ChargeAlarmInfoCard
                 name={item.name}
-                dateTime={item.time}
+                AlarmTime={item.AlarmTime}
+                LastAlarmTime={item.LastAlarmTime}
                 key={key}
                 operationperson={item.operationperson}
                 phone={item.phone}

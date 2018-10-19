@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   StatusBar,
 } from 'react-native';
-import { Grid, Tabs, NoticeBar, Badge } from 'antd-mobile-rn';
+import { Grid, Tabs, NoticeBar, Badge ,WhiteSpace  } from 'antd-mobile-rn';
 import { connect } from 'react-redux';
 import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
 import wholeSituationStyle from '../../config/wholeSituationStyle';
@@ -27,6 +27,9 @@ import {
 import AlarmInfo from '../../components/DetailedPage/AlarmInfo';
 import EarlyWarningInfo from '../../components/DetailedPage/EarlyWarningInfo';
 import TaskAudit from '../../components/DetailedPage/TaskAudit';
+import TaskAdjustment from '../../components/DetailedPage/TaskAdjustment';
+import ChargeAlarmInfo from '../../components/DetailedPage/ChargeAlarmInfo';
+import OverdueReminding from '../../components/DetailedPage/OverdueReminding';
 /*
  * Copyright (c) 2018 SDL.All Rights Reserved
  *
@@ -91,15 +94,20 @@ class Workbench extends Component {
       <View style={{ flex: 1, backgroundColor: '#F1F4F9' }}>
         <StatusBar backgroundColor={'#1895EF'} barStyle={'light-content'} />
         <Tabs tabs={tabs} initialPage={0}>
-          <Badge dot>
+          {/* <Badge dot> */}
             <View style={style}>
               <TaskAudit />
             </View>
-          </Badge>
-
-          <View style={style} />
-          <View style={style} />
-          <View style={style} />
+          {/* </Badge> */}
+          <View style={style} >
+          <TaskAdjustment />
+          </View>
+          <View style={style} >
+          <ChargeAlarmInfo />
+          </View>
+          <View style={style} >
+          <OverdueReminding />
+          </View>
         </Tabs>
       </View>
     );

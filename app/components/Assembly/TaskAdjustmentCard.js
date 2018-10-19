@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { WhiteSpace, WingBlank } from 'antd-mobile-rn';
 /*
- * @Description: 任务审核卡片.
+ * @Description: 任务调整卡片.
  */
-export default class TaskAuditcard extends Component {
+export default class TaskAdjustmentCard extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -36,18 +36,16 @@ export default class TaskAuditcard extends Component {
               </View>
               <View style={styles.RowView}>
                 <WingBlank size="lg" />
+
                 <Text style={[styles.ContentText, styles.flexStyle]}>
                   运维人：{this.props.operationperson}
                 </Text>
               </View>
-
               <View style={styles.RowView}>
                 <WingBlank size="lg" />
-                {/* <Text style={[styles.ContentText, styles.flexStyle]}></Text> */}
                 <Text style={[styles.ContentText, styles.flexStyle]}>
                   电话：{this.props.phone}
                 </Text>
-                {/* <Text style={[styles.ContentText, styles.flexStyle]}></Text> */}
                 <Text style={styles.ClickText}>详情信息>></Text>
               </View>
             </View>
@@ -105,8 +103,9 @@ const styles = StyleSheet.create({
   CosntentText: {
     color: 'rgb(180,179,199)',
     fontSize: 13,
+    lineHeight: 24,
   },
   SpecificView:{
-      marginLeft:'-2%'
-  }
+    marginLeft:'-2%'
+}
 });

@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { WhiteSpace, WingBlank } from 'antd-mobile-rn';
 /*
- * @Description: 任务审核卡片.
+ * @Description: 任务调整卡片.
  */
-export default class TaskAuditcard extends Component {
+export default class ChargeAlarmInfoCard extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -24,18 +24,26 @@ export default class TaskAuditcard extends Component {
                 source={require('../../images/gzbj.png')}
               />
               <WingBlank size="sm" />
-              <Text style={[styles.TitleText]}>{this.props.name}</Text>
+              <Text style={styles.TitleText}>{this.props.name}</Text>
             </View>
+
             {/* 文字描述模块 */}
             <View style={styles.SpecificView}>
               <View style={styles.RowView}>
                 <WingBlank size="lg" />
+                <Text style={styles.CosntentText}>时间：</Text>
+                <Text style={styles.CosntentText}>{this.props.AlarmTime}</Text>
+              </View>
+              <View style={styles.RowView}>
+                <WingBlank size="lg" />
+
                 <Text style={[styles.ContentText, styles.flexStyle]}>
-                时间：{this.props.dateTime}
+                  最后报警时间：{this.props.LastAlarmTime}
                 </Text>
               </View>
               <View style={styles.RowView}>
                 <WingBlank size="lg" />
+
                 <Text style={[styles.ContentText, styles.flexStyle]}>
                   运维人：{this.props.operationperson}
                 </Text>
@@ -43,6 +51,7 @@ export default class TaskAuditcard extends Component {
 
               <View style={styles.RowView}>
                 <WingBlank size="lg" />
+
                 {/* <Text style={[styles.ContentText, styles.flexStyle]}></Text> */}
                 <Text style={[styles.ContentText, styles.flexStyle]}>
                   电话：{this.props.phone}
@@ -105,8 +114,9 @@ const styles = StyleSheet.create({
   CosntentText: {
     color: 'rgb(180,179,199)',
     fontSize: 13,
+    lineHeight: 24,
   },
   SpecificView:{
-      marginLeft:'-2%'
-  }
+    marginLeft:'-2%'
+}
 });

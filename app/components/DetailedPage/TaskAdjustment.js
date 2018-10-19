@@ -3,12 +3,12 @@ import { View, ScrollView, TouchableOpacity } from 'react-native';
 import { SCREEN_WIDTH } from '../../config/globalsize';
 import { NavigationActions } from '../../utils';
 import { connect } from 'react-redux';
-import TaskAuditcard from '../Assembly/TaskAuditcard';
+import TaskAdjustmentCard from '../Assembly/TaskAdjustmentCard';
 /*
  * @Description: 任务审核.
  */
 @connect()
-export default class TaskAudit extends Component {
+export default class TaskAdjustment extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -30,12 +30,6 @@ export default class TaskAudit extends Component {
       },
       {
         name: '大唐集团-废气排口1',
-        time: '2018年10月8日 16:20:27',
-        operationperson: '成云',
-        phone: '15811322089',
-      },
-      {
-        name: '大唐集团-废气排口2',
         time: '2018年10月8日 16:20:27',
         operationperson: '成云',
         phone: '15811322089',
@@ -70,6 +64,12 @@ export default class TaskAudit extends Component {
         operationperson: '成云',
         phone: '15811322089',
       },
+      {
+        name: '大唐集团-废气排口8',
+        time: '2018年10月8日 16:20:27',
+        operationperson: '成云',
+        phone: '15811322089',
+      },
     ];
     // const thiss = this;
     return (
@@ -89,7 +89,7 @@ export default class TaskAudit extends Component {
               //   }}
               // >
 
-              <TaskAuditcard
+              <TaskAdjustmentCard
                 name={item.name}
                 dateTime={item.time}
                 key={key}
