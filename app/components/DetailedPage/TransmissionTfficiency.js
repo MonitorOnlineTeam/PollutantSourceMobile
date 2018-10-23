@@ -1,6 +1,21 @@
 import React, { Component } from 'react';
-import { View, ScrollView, TouchableOpacity, Text,StyleSheet, FlatList } from 'react-native';
-import { Grid, Tabs, NoticeBar, Badge, WhiteSpace,List,WingBlank   } from 'antd-mobile-rn';
+import {
+  View,
+  ScrollView,
+  TouchableOpacity,
+  Text,
+  StyleSheet,
+  FlatList,
+} from 'react-native';
+import {
+  Grid,
+  Tabs,
+  NoticeBar,
+  Badge,
+  WhiteSpace,
+  List,
+  WingBlank,
+} from 'antd-mobile-rn';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import { SCREEN_WIDTH } from '../../config/globalsize';
 import { NavigationActions } from '../../utils';
@@ -16,143 +31,171 @@ const Brief = Item.Brief;
 export default class TransmissionTfficiency extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-    };
+    this.state = {};
   }
 
   render() {
-      const TransmissionTfficiencyData=[
-        {
-            "PointName":"锅炉1号",
-            "TransmissionRate":"100%",
-            "EffectiveRate":"88%",
-            "TransmissionTfficiency":'88%'
-        },
-        {
-            "PointName":"锅炉1号",
-            "TransmissionRate":"100%",
-            "EffectiveRate":"88%",
-            "TransmissionTfficiency":'88%'
-        },
-        {
-            "PointName":"锅炉1号",
-            "TransmissionRate":"100%",
-            "EffectiveRate":"88%",
-            "TransmissionTfficiency":'88%'
-        },
-        {
-            "PointName":"锅炉1号",
-            "TransmissionRate":"100%",
-            "EffectiveRate":"88%",
-            "TransmissionTfficiency":'88%'
-        },
-        {
-            "PointName":"锅炉1号",
-            "TransmissionRate":"100%",
-            "EffectiveRate":"88%",
-            "TransmissionTfficiency":'88%'
-        },
-        {
-            "PointName":"锅炉1号",
-            "TransmissionRate":"100%",
-            "EffectiveRate":"88%",
-            "TransmissionTfficiency":'88%'
-        },
-        {
-            "PointName":"锅炉1号",
-            "TransmissionRate":"100%",
-            "EffectiveRate":"88%",
-            "TransmissionTfficiency":'88%'
-        },
-        {
-            "PointName":"锅炉1号",
-            "TransmissionRate":"100%",
-            "EffectiveRate":"88%",
-            "TransmissionTfficiency":'88%'
-        }
+    const TransmissionTfficiencyData = [
+      {
+        PointName: '锅炉1号',
+        TransmissionRate: '100%',
+        EffectiveRate: '88%',
+        TransmissionTfficiency: '88%',
+      },
+      {
+        PointName: '锅炉1号',
+        TransmissionRate: '100%',
+        EffectiveRate: '88%',
+        TransmissionTfficiency: '88%',
+      },
+      {
+        PointName: '锅炉1号',
+        TransmissionRate: '100%',
+        EffectiveRate: '88%',
+        TransmissionTfficiency: '88%',
+      },
+      {
+        PointName: '锅炉1号',
+        TransmissionRate: '100%',
+        EffectiveRate: '88%',
+        TransmissionTfficiency: '88%',
+      },
+      {
+        PointName: '锅炉1号',
+        TransmissionRate: '100%',
+        EffectiveRate: '88%',
+        TransmissionTfficiency: '88%',
+      },
+      {
+        PointName: '锅炉1号',
+        TransmissionRate: '100%',
+        EffectiveRate: '88%',
+        TransmissionTfficiency: '88%',
+      },
+      {
+        PointName: '锅炉1号',
+        TransmissionRate: '100%',
+        EffectiveRate: '88%',
+        TransmissionTfficiency: '88%',
+      },
+      {
+        PointName: '锅炉1号',
+        TransmissionRate: '100%',
+        EffectiveRate: '88%',
+        TransmissionTfficiency: '88%',
+      },
     ];
     return (
-        <View  style={{backgroundColor:'rgb(241,244,249)'}}>
-        <ScrollView style={{width:'95%',marginTop:'3%',marginBottom:'7%',backgroundColor:'white',borderRadius:5}}>
-         <FlatList  
-          data={TransmissionTfficiencyData}
-          renderItem={({item}) =>            
-            <View style={{height:64,width:SCREEN_WIDTH,flexDirection:'row',alignItems:'center',borderBottomWidth:1 ,borderBottomColor:'rgb(237,237,240)'}}>   
-              <TouchableOpacity style={{height:64,width:SCREEN_WIDTH,flexDirection:'row',alignItems:'center',borderBottomWidth:1 ,borderBottomColor:'rgb(237,237,240)'}} >
-               <View style={{flex:8,marginLeft:24}}>
-                <Text style={{fontWeight:'bold'}}>{item.PointName}</Text>
-                <Text>{item.EntName}</Text>
-               </View>
-              <Text style={[{color:'red',flex:5}]}>{'报警次数：'+item.Count}</Text>
-              <Icon
-                  name={'angle-right'}
-                  size={20}
-                  style={{ color: 'gray',flex:2}}
-              />   
-               </TouchableOpacity>    
-            </View>}  
-        /> 
+      <View style={{ backgroundColor: 'rgb(241,244,249)' }}>
+        <ScrollView
+          style={{
+            width: '95%',
+            marginTop: '3%',
+            marginBottom: '7%',
+            backgroundColor: 'white',
+            borderRadius: 5,
+          }}
+        >
+          <FlatList
+            data={TransmissionTfficiencyData}
+            renderItem={({ item }) => (
+              <View
+                style={{
+                  height: 64,
+                  width: SCREEN_WIDTH,
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  borderBottomWidth: 1,
+                  borderBottomColor: 'rgb(237,237,240)',
+                }}
+              >
+                <TouchableOpacity
+                  style={{
+                    height: 64,
+                    width: SCREEN_WIDTH,
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    borderBottomWidth: 1,
+                    borderBottomColor: 'rgb(237,237,240)',
+                  }}
+                >
+                  <View style={{ flex: 8, marginLeft: 24 }}>
+                    <Text style={{ fontWeight: 'bold' }}>{item.PointName}</Text>
+                    <Text>{item.EntName}</Text>
+                  </View>
+                  <Text style={[{ color: 'red', flex: 5 }]}>
+                    {'报警次数：' + item.Count}
+                  </Text>
+                  <Icon
+                    name={'angle-right'}
+                    size={20}
+                    style={{ color: 'gray', flex: 2 }}
+                  />
+                </TouchableOpacity>
+              </View>
+            )}
+          />
         </ScrollView>
-        </View>
+      </View>
     );
   }
 }
 const styles = StyleSheet.create({
-    MainView: {
-      flexDirection: 'column',
-      marginLeft: 'auto',
-      marginRight: 'auto',
-      width: SCREEN_WIDTH - 30,
-      backgroundColor: '#FFFFFF',
-      marginTop: '2%',
-      marginBottom: '2%',
-      borderRadius: 5,
-      shadowColor: '#E3E3E3',
-      shadowOffset: { w: 0, h: 50 },
-      shadowRadius: 3,
-      shadowOpacity: 0.1,
-      elevation: 1,
-    },
-    MainPadding: {
-      padding: '3%',
-    },
-    ContentView: {
-      flexDirection: 'row',
-      marginLeft: 10,
-      marginTop: 6,
-      marginRight: 5,
-    },
-    TitleText: {
-      color: '#9F9F9F',
-      fontSize: 13,
-    },
-    ContentText: {
-      color: '#404040',
-      fontSize: 13,
-    },
-    ScrollTitleView: {
-      flexDirection: 'row',
-      padding: '2%',
-      backgroundColor: '#9b9b9b',
-      borderRadius: 5,
-      borderBottomRightRadius: 0,
-      borderBottomLeftRadius: 0,
-    },
-    ScrollTitleText: {
-      flex: 1,
-      fontSize: 13,
-      color: '#FFFFFF',
-    },
-    ScrollContentView: {
-      flexDirection: 'row',
-      padding: '2%',
-      backgroundColor: '#FFFFFF',
-      borderRadius: 5,
-      borderTopWidth: 1,
-      borderTopColor: '#E0E4E7',
-    },
-    ScrollContentText: {
-      flex: 1,
-      fontSize: 11,
-    },
-  });
+  MainView: {
+    flexDirection: 'column',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    width: SCREEN_WIDTH - 30,
+    backgroundColor: '#FFFFFF',
+    marginTop: '2%',
+    marginBottom: '2%',
+    borderRadius: 5,
+    shadowColor: '#E3E3E3',
+    shadowOffset: { w: 0, h: 50 },
+    shadowRadius: 3,
+    shadowOpacity: 0.1,
+    elevation: 1,
+  },
+  MainPadding: {
+    padding: '3%',
+  },
+  ContentView: {
+    flexDirection: 'row',
+    marginLeft: 10,
+    marginTop: 6,
+    marginRight: 5,
+  },
+  TitleText: {
+    color: '#9F9F9F',
+    fontSize: 13,
+  },
+  ContentText: {
+    color: '#404040',
+    fontSize: 13,
+  },
+  ScrollTitleView: {
+    flexDirection: 'row',
+    padding: '2%',
+    backgroundColor: '#9b9b9b',
+    borderRadius: 5,
+    borderBottomRightRadius: 0,
+    borderBottomLeftRadius: 0,
+  },
+  ScrollTitleText: {
+    flex: 1,
+    fontSize: 13,
+    color: '#FFFFFF',
+  },
+  ScrollContentView: {
+    flexDirection: 'row',
+    padding: '2%',
+    backgroundColor: '#FFFFFF',
+    borderRadius: 5,
+    borderTopWidth: 1,
+    borderTopColor: '#E0E4E7',
+  },
+  ScrollContentText: {
+    flex: 1,
+    fontSize: 11,
+  },
+});

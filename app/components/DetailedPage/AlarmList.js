@@ -6,10 +6,10 @@ import {
   StyleSheet,
   Image,
   TouchableOpacity,
-  StatusBar, 
-  ScrollView, 
+  StatusBar,
+  ScrollView,
 } from 'react-native';
-import { Grid, Tabs, NoticeBar, Badge, WhiteSpace,List  } from 'antd-mobile-rn';
+import { Grid, Tabs, NoticeBar, Badge, WhiteSpace, List } from 'antd-mobile-rn';
 import { connect } from 'react-redux';
 import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
 import wholeSituationStyle from '../../config/wholeSituationStyle';
@@ -64,7 +64,7 @@ class AlarmList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      extra:<Text style={{color:'red',flex:0.5}}>报警次数：8</Text>
+      extra: <Text style={{ color: 'red', flex: 0.5 }}>报警次数：8</Text>,
     };
   }
   async componentWillMount() {}
@@ -83,12 +83,8 @@ class AlarmList extends Component {
     // ];
 
     return (
-      <ScrollView
-      style={{ flex: 1, backgroundColor: '#f5f5f9' }}
-
-    >
- <List renderHeader={() => 'basic'}>
-
+      <ScrollView style={{ flex: 1, backgroundColor: '#f5f5f9' }}>
+        <List renderHeader={() => 'basic'}>
           <Item extra={this.state.extra} arrow="horizontal" multipleLine>
             锅炉小号烟囱1<Brief>法电供热</Brief>
           </Item>
@@ -113,10 +109,8 @@ class AlarmList extends Component {
           <Item extra={this.state.extra} arrow="horizontal" multipleLine>
             锅炉小号烟囱8<Brief>法电供热</Brief>
           </Item>
-        
         </List>
-   
-    </ScrollView>
+      </ScrollView>
     );
   }
 }
