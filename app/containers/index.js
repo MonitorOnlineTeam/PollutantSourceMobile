@@ -55,6 +55,8 @@ import AttentionDetail from './workbench/AttentionDetail';
 import AlarmRecord from './AlarmRecord';
 import EarlyWarningInfo from './EarlyWarningInfo';
 import AlarmInfoData from '../components/DetailedPage/AlarmInfoData';
+import TaskAdjustmentList from '../components/DetailedPage/TaskAdjustmentList';
+import ExceptionAlarmRecord from '../components/DetailedPage/ExceptionAlarmRecord';
 import SignIn from '../components/DetailedPage/SignIn';
 import ExecutionTasks from '../components/DetailedPage/ExecutionTasks';
 import RecordSheet from '../components/DetailedPage/RecordSheet';
@@ -95,6 +97,8 @@ export default StackNavigator(
     MainView: { screen: MainView },
     Detail: { screen: Detail },
     AlarmInfoData: { screen: AlarmInfoData },
+    TaskAdjustmentList: { screen: TaskAdjustmentList },
+    ExceptionAlarmRecord: { screen: ExceptionAlarmRecord },
     Todo: { screen: Todo },
     EarlyWarning: { screen: EarlyWarning },
     Alarm: { screen: Alarm },
