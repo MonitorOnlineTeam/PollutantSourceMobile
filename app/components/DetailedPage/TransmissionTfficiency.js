@@ -6,15 +6,16 @@ import {
   Text,
   StyleSheet,
   FlatList,
+  Image
 } from 'react-native';
 import {
   Grid,
   Tabs,
   NoticeBar,
   Badge,
-  WhiteSpace,
   List,
   WingBlank,
+  WhiteSpace,
 } from 'antd-mobile-rn';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import { SCREEN_WIDTH } from '../../config/globalsize';
@@ -84,58 +85,132 @@ export default class TransmissionTfficiency extends Component {
         EffectiveRate: '88%',
         TransmissionTfficiency: '88%',
       },
+      {
+        PointName: '锅炉1号',
+        TransmissionRate: '100%',
+        EffectiveRate: '88%',
+        TransmissionTfficiency: '88%',
+      },
+      {
+        PointName: '锅炉1号',
+        TransmissionRate: '100%',
+        EffectiveRate: '88%',
+        TransmissionTfficiency: '88%',
+      },
+      {
+        PointName: '锅炉1号',
+        TransmissionRate: '100%',
+        EffectiveRate: '88%',
+        TransmissionTfficiency: '88%',
+      },
+      {
+        PointName: '锅炉1号',
+        TransmissionRate: '100%',
+        EffectiveRate: '88%',
+        TransmissionTfficiency: '88%',
+      },
+      {
+        PointName: '锅炉1号',
+        TransmissionRate: '100%',
+        EffectiveRate: '88%',
+        TransmissionTfficiency: '88%',
+      },
+      {
+        PointName: '锅炉1号',
+        TransmissionRate: '100%',
+        EffectiveRate: '88%',
+        TransmissionTfficiency: '88%',
+      },
+      {
+        PointName: '锅炉1号',
+        TransmissionRate: '100%',
+        EffectiveRate: '88%',
+        TransmissionTfficiency: '88%',
+      },
     ];
     return (
-      <View style={{ backgroundColor: 'rgb(241,244,249)' }}>
-        <ScrollView
-          style={{
-            width: '95%',
-            marginTop: '3%',
-            marginBottom: '7%',
-            backgroundColor: 'white',
-            borderRadius: 5,
-          }}
-        >
-          <FlatList
-            data={TransmissionTfficiencyData}
-            renderItem={({ item }) => (
-              <View
+      <View style={{ backgroundColor: 'rgb(239,242,247)', width: '100%', marginTop: '5%' }}>
+        <View style={{ width: '90%' }}>
+          <View style={{ flexDirection: 'row', width: '100%', marginLeft: '5%', flexDirection: 'row' }}>
+            <View style={{ width: '25%' }}>
+              <Text style={{ textAlign: 'center', fontSize: 13, lineHeight: 50 }}>排口名</Text>
+            </View>
+            <View style={{ width: '23%', flexDirection: 'row' }}>
+              <View style={{ flex: 2 }}>
+                <Text style={{ fontSize: 13, lineHeight: 50, textAlign: 'right' }}>传输率</Text>
+              </View>
+              <View style={{ width: '5%', height: 50, alignItems: 'center', justifyContent: 'center', flex: 1 }}>
+                <Image
+                  style={{ width: 10, height: 10 }}
+                  source={require('../../images/shangxiajiantou.png')}
+                />
+              </View>
+            </View>
+
+            <View style={{ width: '23%', flexDirection: 'row' }}>
+              <View style={{ flex: 2 }}>
+                <Text style={{ fontSize: 13, lineHeight: 50, textAlign: 'right' }}>有效率</Text>
+              </View>
+              <View style={{ width: '5%', height: 50, alignItems: 'center', justifyContent: 'center', flex: 1 }}>
+                <Image
+                  style={{ width: 10, height: 10 }}
+                  source={require('../../images/shangxiajiantou.png')}
+                />
+              </View>
+            </View>
+
+            <View style={{ width: '29%', flexDirection: 'row' }}>
+              <View style={{ flex: 5 }}>
+                <Text style={{ fontSize: 13, lineHeight: 50, textAlign: 'right' }}>传输有效率</Text>
+              </View>
+              <View style={{ width: '5%', height: 50, alignItems: 'center', justifyContent: 'center', flex: 1 }}>
+                <Image
+                  style={{ width: 10, height: 10 }}
+                  source={require('../../images/shangxiajiantou.png')}
+                />
+              </View>
+            </View>
+          </View>
+        </View>
+
+        <FlatList
+          data={TransmissionTfficiencyData}
+          renderItem={({ item }) => (
+            <View
+              style={{
+                height: 45,
+                width: '90%',
+              }}
+            >
+              <TouchableOpacity
                 style={{
-                  height: 64,
-                  width: SCREEN_WIDTH,
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  borderBottomWidth: 1,
-                  borderBottomColor: 'rgb(237,237,240)',
+                  height: 45,
+                  width: '100%',
+                  marginLeft: '5%'
                 }}
               >
-                <TouchableOpacity
-                  style={{
-                    height: 64,
-                    width: SCREEN_WIDTH,
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    borderBottomWidth: 1,
-                    borderBottomColor: 'rgb(237,237,240)',
-                  }}
-                >
-                  <View style={{ flex: 8, marginLeft: 24 }}>
-                    <Text style={{ fontWeight: 'bold' }}>{item.PointName}</Text>
-                    <Text>{item.EntName}</Text>
+                <View style={{ flexDirection: 'row', width: '100%', backgroundColor: '#FFFFFF', height: 40, borderRadius: 3 }}>
+                  {/* <Text style={{ fontWeight: 'bold' }}>{item.PointName}</Text>
+                    <Text>{item.EntName}</Text> */}
+                  <View style={{ width: '25%' }}>
+                    <Text style={{ textAlign: 'center', fontSize: 14, lineHeight: 40 }}>{item.PointName}</Text>
                   </View>
-                  <Text style={[{ color: 'red', flex: 5 }]}>
-                    {'报警次数：' + item.Count}
-                  </Text>
-                  <Icon
-                    name={'angle-right'}
-                    size={20}
-                    style={{ color: 'gray', flex: 2 }}
-                  />
-                </TouchableOpacity>
-              </View>
-            )}
-          />
-        </ScrollView>
+                  <View style={{ width: '23%' }}>
+                    <Text style={{ textAlign: 'center', fontSize: 14, lineHeight: 40 }}>{item.TransmissionRate}</Text>
+                  </View>
+                  <View style={{ width: '23%' }}>
+                    <Text style={{ textAlign: 'center', fontSize: 14, lineHeight: 40 }}>{item.EffectiveRate}</Text>
+                  </View>
+                  <View style={{ width: '29%' }}>
+                    <Text style={{ textAlign: 'center', fontSize: 14, lineHeight: 40 }}>{item.TransmissionTfficiency}</Text>
+                  </View>
+                </View>
+              </TouchableOpacity>
+              <WhiteSpace style={{ backgroundColor: '#EFF2F7' }} />
+            </View>
+
+          )}
+        />
       </View>
     );
   }

@@ -62,15 +62,15 @@ export default class ExceptionAlarmRecordCard extends Component {
               </Text>
             </View>
           </View>
-          <View style={{ flexDirection: 'row', width: '100%' }}>
+          <View style={{ flexDirection: 'row', width: '100%', marginTop: 20 }}>
             <View style={{ width: '49.9%', zIndex: 300, position: 'relative' }}>
-              <Button style={{ backgroundColor: '#FABE50' }}>
-                <Text style={{ color: 'white', fontSize: 15 }}>督办</Text>
+              <Button style={{ backgroundColor: '#FABE50', height: 45, borderWidth: 0, borderRadius: 0, borderBottomLeftRadius: 3 }}>
+                <Text style={{ color: 'white', fontSize: 14 }}>督办</Text>
               </Button>
             </View>
-            <View style={{ width: '49.9%', zIndex: 300, position: 'relative' }}>
-              <Button style={{ backgroundColor: '#FABE50' }}>
-                <Text style={{ color: 'white', fontSize: 15 }}>
+            <View style={{ width: '49.9%', zIndex: 300, position: 'relative', marginLeft: '0.2%' }}>
+              <Button style={{ backgroundColor: '#FABE50', height: 45, borderWidth: 0, borderRadius: 0, borderBottomRightRadius: 3 }}>
+                <Text style={{ color: 'white', fontSize: 14 }}>
                   {this.state.OperationPerson}
                 </Text>
               </Button>

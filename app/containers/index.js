@@ -57,6 +57,7 @@ import EarlyWarningInfo from './EarlyWarningInfo';
 import AlarmInfoData from '../components/DetailedPage/AlarmInfoData';
 import TaskAdjustmentList from '../components/DetailedPage/TaskAdjustmentList';
 import ExceptionAlarmRecord from '../components/DetailedPage/ExceptionAlarmRecord';
+import TransmissionTfficiency from '../components/DetailedPage/TransmissionTfficiency';
 import SignIn from '../components/DetailedPage/SignIn';
 import ExecutionTasks from '../components/DetailedPage/ExecutionTasks';
 import RecordSheet from '../components/DetailedPage/RecordSheet';
@@ -65,7 +66,8 @@ import SiteInformation from '../components/DetailedPage/SiteInformation';
 import StatisticalAnalysis from '../components/DetailedPage/StatisticalAnalysis';
 import OperationCalendar from '../components/DetailedPage/OperationCalendar';
 import WeeklyCalendar from '../components/DetailedPage/WeeklyCalendar';
-import UserEvaluation from '../components/DetailedPage/UserEvaluation';
+import UserEvaluation from '../components/DetailedPage/UserEvaluation'; 
+import ReportAdd from '../components/DetailedPage/ReportAdd'; 
 
 // const MainNavigator = StackNavigator(
 //   {
@@ -145,6 +147,8 @@ export default StackNavigator(
     HaltProduction: { screen: HaltProduction },
     SparePart: { screen: SparePart },
     PowerCut: { screen: PowerCut },
+    TransmissionTfficiency: { screen: TransmissionTfficiency },
+    ReportAdd: { screen: ReportAdd },
     QualityControl: { screen: QualityControl },
     // DetailRouter:{ screen:DetailRouter},
 
