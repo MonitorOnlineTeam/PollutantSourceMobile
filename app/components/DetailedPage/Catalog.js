@@ -19,15 +19,15 @@ import ChargeAlarmInfo from './ChargeAlarmInfo'; //报警信息-
 import OverdueReminding from './OverdueReminding'; //逾期提醒-
 //企业
 import TaskAuditList from './TaskAuditList'; //报警列表-超标报警-
-import TaskAdjustmentList  from './TaskAdjustmentList'; //超标报警记录-
-import ExceptionAlarmRecord   from './ExceptionAlarmRecord'; //异常报警记录- 
-import TransmissionTfficiency   from './TransmissionTfficiency'; //传输有效率列表-  
-import SeverityAnalysisOfDataExceedingStandard   from './SeverityAnalysisOfDataExceedingStandard'; //数据超标严重程度分析-   
-import OverDataAlarmTimesAnalysis   from './OverDataAlarmTimesAnalysis'; //数据超标报警次数分析-  
-import NormalOperationTimeOfEquipment   from './NormalOperationTimeOfEquipment'; //设备正常运行时间分析-  
-import AbnormalAlarmFrequency   from './AbnormalAlarmFrequency'; //异常报警频次分析-  
-import RoutineOperationTimes   from './RoutineOperationTimes'; //例行运维频次分析-   
-import ReportAdd   from './ReportAdd'; //报备添加- 
+import TaskAdjustmentList from './TaskAdjustmentList'; //超标报警记录-
+import ExceptionAlarmRecord from './ExceptionAlarmRecord'; //异常报警记录-
+import TransmissionTfficiency from './TransmissionTfficiency'; //传输有效率列表-
+import SeverityAnalysisOfDataExceedingStandard from './SeverityAnalysisOfDataExceedingStandard'; //数据超标严重程度分析-
+import OverDataAlarmTimesAnalysis from './OverDataAlarmTimesAnalysis'; //数据超标报警次数分析-
+import NormalOperationTimeOfEquipment from './NormalOperationTimeOfEquipment'; //设备正常运行时间分析-
+import AbnormalAlarmFrequency from './AbnormalAlarmFrequency'; //异常报警频次分析-
+import RoutineOperationTimes from './RoutineOperationTimes'; //例行运维频次分析-
+import ReportAdd from './ReportAdd'; //报备添加-
 //工作台配置
 import MainView from '../../containers/tabView/MainView';
 //路由配置

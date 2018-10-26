@@ -66,8 +66,8 @@ import SiteInformation from '../components/DetailedPage/SiteInformation';
 import StatisticalAnalysis from '../components/DetailedPage/StatisticalAnalysis';
 import OperationCalendar from '../components/DetailedPage/OperationCalendar';
 import WeeklyCalendar from '../components/DetailedPage/WeeklyCalendar';
-import UserEvaluation from '../components/DetailedPage/UserEvaluation'; 
-import ReportAdd from '../components/DetailedPage/ReportAdd'; 
+import UserEvaluation from '../components/DetailedPage/UserEvaluation';
+import ReportAdd from '../components/DetailedPage/ReportAdd';
 
 // const MainNavigator = StackNavigator(
 //   {

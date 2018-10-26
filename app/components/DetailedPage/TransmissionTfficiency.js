@@ -6,7 +6,7 @@ import {
   Text,
   StyleSheet,
   FlatList,
-  Image
+  Image,
 } from 'react-native';
 import {
   Grid,
@@ -129,17 +129,46 @@ export default class TransmissionTfficiency extends Component {
       },
     ];
     return (
-      <View style={{ backgroundColor: 'rgb(239,242,247)', width: '100%', marginTop: '5%' }}>
+      <View
+        style={{
+          backgroundColor: 'rgb(239,242,247)',
+          width: '100%',
+          marginTop: '5%',
+        }}
+      >
         <View style={{ width: '90%' }}>
-          <View style={{ flexDirection: 'row', width: '100%', marginLeft: '5%', flexDirection: 'row' }}>
+          <View
+            style={{
+              flexDirection: 'row',
+              width: '100%',
+              marginLeft: '5%',
+              flexDirection: 'row',
+            }}
+          >
             <View style={{ width: '25%' }}>
-              <Text style={{ textAlign: 'center', fontSize: 13, lineHeight: 50 }}>排口名</Text>
+              <Text
+                style={{ textAlign: 'center', fontSize: 13, lineHeight: 50 }}
+              >
+                排口名
+              </Text>
             </View>
             <View style={{ width: '23%', flexDirection: 'row' }}>
               <View style={{ flex: 2 }}>
-                <Text style={{ fontSize: 13, lineHeight: 50, textAlign: 'right' }}>传输率</Text>
+                <Text
+                  style={{ fontSize: 13, lineHeight: 50, textAlign: 'right' }}
+                >
+                  传输率
+                </Text>
               </View>
-              <View style={{ width: '5%', height: 50, alignItems: 'center', justifyContent: 'center', flex: 1 }}>
+              <View
+                style={{
+                  width: '5%',
+                  height: 50,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flex: 1,
+                }}
+              >
                 <Image
                   style={{ width: 10, height: 10 }}
                   source={require('../../images/shangxiajiantou.png')}
@@ -149,9 +178,21 @@ export default class TransmissionTfficiency extends Component {
 
             <View style={{ width: '23%', flexDirection: 'row' }}>
               <View style={{ flex: 2 }}>
-                <Text style={{ fontSize: 13, lineHeight: 50, textAlign: 'right' }}>有效率</Text>
+                <Text
+                  style={{ fontSize: 13, lineHeight: 50, textAlign: 'right' }}
+                >
+                  有效率
+                </Text>
               </View>
-              <View style={{ width: '5%', height: 50, alignItems: 'center', justifyContent: 'center', flex: 1 }}>
+              <View
+                style={{
+                  width: '5%',
+                  height: 50,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flex: 1,
+                }}
+              >
                 <Image
                   style={{ width: 10, height: 10 }}
                   source={require('../../images/shangxiajiantou.png')}
@@ -161,9 +202,21 @@ export default class TransmissionTfficiency extends Component {
 
             <View style={{ width: '29%', flexDirection: 'row' }}>
               <View style={{ flex: 5 }}>
-                <Text style={{ fontSize: 13, lineHeight: 50, textAlign: 'right' }}>传输有效率</Text>
+                <Text
+                  style={{ fontSize: 13, lineHeight: 50, textAlign: 'right' }}
+                >
+                  传输有效率
+                </Text>
               </View>
-              <View style={{ width: '5%', height: 50, alignItems: 'center', justifyContent: 'center', flex: 1 }}>
+              <View
+                style={{
+                  width: '5%',
+                  height: 50,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flex: 1,
+                }}
+              >
                 <Image
                   style={{ width: 10, height: 10 }}
                   source={require('../../images/shangxiajiantou.png')}
@@ -186,29 +239,68 @@ export default class TransmissionTfficiency extends Component {
                 style={{
                   height: 45,
                   width: '100%',
-                  marginLeft: '5%'
+                  marginLeft: '5%',
                 }}
               >
-                <View style={{ flexDirection: 'row', width: '100%', backgroundColor: '#FFFFFF', height: 40, borderRadius: 3 }}>
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    width: '100%',
+                    backgroundColor: '#FFFFFF',
+                    height: 40,
+                    borderRadius: 3,
+                  }}
+                >
                   {/* <Text style={{ fontWeight: 'bold' }}>{item.PointName}</Text>
                     <Text>{item.EntName}</Text> */}
                   <View style={{ width: '25%' }}>
-                    <Text style={{ textAlign: 'center', fontSize: 14, lineHeight: 40 }}>{item.PointName}</Text>
+                    <Text
+                      style={{
+                        textAlign: 'center',
+                        fontSize: 14,
+                        lineHeight: 40,
+                      }}
+                    >
+                      {item.PointName}
+                    </Text>
                   </View>
                   <View style={{ width: '23%' }}>
-                    <Text style={{ textAlign: 'center', fontSize: 14, lineHeight: 40 }}>{item.TransmissionRate}</Text>
+                    <Text
+                      style={{
+                        textAlign: 'center',
+                        fontSize: 14,
+                        lineHeight: 40,
+                      }}
+                    >
+                      {item.TransmissionRate}
+                    </Text>
                   </View>
                   <View style={{ width: '23%' }}>
-                    <Text style={{ textAlign: 'center', fontSize: 14, lineHeight: 40 }}>{item.EffectiveRate}</Text>
+                    <Text
+                      style={{
+                        textAlign: 'center',
+                        fontSize: 14,
+                        lineHeight: 40,
+                      }}
+                    >
+                      {item.EffectiveRate}
+                    </Text>
                   </View>
                   <View style={{ width: '29%' }}>
-                    <Text style={{ textAlign: 'center', fontSize: 14, lineHeight: 40 }}>{item.TransmissionTfficiency}</Text>
+                    <Text
+                      style={{
+                        textAlign: 'center',
+                        fontSize: 14,
+                        lineHeight: 40,
+                      }}
+                    >
+                      {item.TransmissionTfficiency}
+                    </Text>
                   </View>
                 </View>
               </TouchableOpacity>
               <WhiteSpace style={{ backgroundColor: '#EFF2F7' }} />
             </View>
-
           )}
         />
       </View>
