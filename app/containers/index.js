@@ -68,8 +68,8 @@ import OperationCalendar from '../components/DetailedPage/OperationCalendar';
 import WeeklyCalendar from '../components/DetailedPage/WeeklyCalendar';
 import UserEvaluation from '../components/DetailedPage/UserEvaluation';
 import ReportAdd from '../components/DetailedPage/ReportAdd';
-import DataListEnterprise from '../components/DetailedPage/DataListEnterprise'; // 企业——数据一览路由 
-import RealTimeMap from '../components/DetailedPage/RealTimeMap'; 
+import DataListEnterprise from '../components/DetailedPage/DataListEnterprise'; // 企业——数据一览路由
+import RealTimeMap from '../components/DetailedPage/RealTimeMap';
 // const MainNavigator = StackNavigator(
 //   {
 //     // HomeNavigator: { screen: HomeNavigator },
