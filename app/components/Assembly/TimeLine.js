@@ -157,9 +157,7 @@ export default class Timeline extends Component {
       : this.state.data.slice(-1)[0] === rowData;
     const lineColor = isLast
       ? 'rgba(0,0,0,0)'
-      : rowData.lineColor
-        ? rowData.lineColor
-        : this.props.lineColor;
+      : rowData.lineColor ? rowData.lineColor : this.props.lineColor;
     let opStyle = null;
 
     switch (this.props.columnFormat) {
@@ -246,19 +244,13 @@ export default class Timeline extends Component {
   _renderCircle(rowData, sectionID, rowID) {
     var circleSize = rowData.circleSize
       ? rowData.circleSize
-      : this.props.circleSize
-        ? this.props.circleSize
-        : defaultCircleSize;
+      : this.props.circleSize ? this.props.circleSize : defaultCircleSize;
     var circleColor = rowData.circleColor
       ? rowData.circleColor
-      : this.props.circleColor
-        ? this.props.circleColor
-        : defaultCircleColor;
+      : this.props.circleColor ? this.props.circleColor : defaultCircleColor;
     var lineWidth = rowData.lineWidth
       ? rowData.lineWidth
-      : this.props.lineWidth
-        ? this.props.lineWidth
-        : defaultLineWidth;
+      : this.props.lineWidth ? this.props.lineWidth : defaultLineWidth;
 
     var circleStyle = null;
 
@@ -314,9 +306,7 @@ export default class Timeline extends Component {
           borderRadius: circleSize / 4,
           backgroundColor: rowData.dotColor
             ? rowData.dotColor
-            : this.props.dotColor
-              ? this.props.dotColor
-              : defaultDotColor,
+            : this.props.dotColor ? this.props.dotColor : defaultDotColor,
         };
         innerCircle = <View style={[styles.dot, dotStyle]} />;
         break;

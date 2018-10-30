@@ -119,12 +119,7 @@ export default Model.extend({
     //   });
     //   yield update({ pollutantBeens });
     // },
-    *allSelect(
-      {
-        payload: { keys },
-      },
-      { update, call, put, select }
-    ) {
+    *allSelect({ payload: { keys } }, { update, call, put, select }) {
       const { persons } = yield select(state => state.earlyWarning);
       persons.forEach(item => {
         item.ifchicked = keys;
@@ -133,12 +128,7 @@ export default Model.extend({
       yield update({ persons: [] });
       yield update({ persons: persons });
     },
-    *clickItem(
-      {
-        payload: { index },
-      },
-      { update, call, put, select }
-    ) {
+    *clickItem({ payload: { index } }, { update, call, put, select }) {
       const { persons } = yield select(state => state.earlyWarning);
       persons[index].ifchicked = persons[index].ifchicked == 1 ? 0 : 1;
       yield update({ persons: [] });
