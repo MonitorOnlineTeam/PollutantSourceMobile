@@ -94,52 +94,21 @@ class Workbench extends Component {
       <View style={{ flex: 1, backgroundColor: '#F1F4F9' }}>
         <StatusBar backgroundColor={'#1895EF'} barStyle={'light-content'} />
         <Tabs tabs={tabs} initialPage={0}>
-        <TouchableOpacity
-               
-                onPress={event => {
-                  this.props.dispatch(
-                    NavigationActions.navigate({
-                      routeName: 'DataListEnterprise',
-                    })
-                  );
-                }}
-              >
-                <Text>
-                  hahahhah
-                  hahahhah
-                  hdhhdhdh
-                  hhdhdhdhhd
-
-                </Text>
-                <Text>
-                  hahahhah
-                  hahahhah
-                  hdhhdhdh
-                  hhdhdhdhhd
-
-                </Text>
-                <Text>
-                  hahahhah
-                  hahahhah
-                  hdhhdhdh
-                  hhdhdhdhhd
-
-                </Text>
-                <Text>
-                  hahahhah
-                  hahahhah
-                  hdhhdhdh
-                  hhdhdhdhhd
-
-                </Text>
-                <Text>
-                  hahahhah
-                  hahahhah
-                  hdhhdhdh
-                  hhdhdhdhhd
-
-                </Text>
-              </TouchableOpacity>
+          <TouchableOpacity
+            onPress={event => {
+              this.props.dispatch(
+                NavigationActions.navigate({
+                  routeName: 'DataListEnterprise',
+                })
+              );
+            }}
+          >
+            <Text>hahahhah hahahhah hdhhdhdh hhdhdhdhhd</Text>
+            <Text>hahahhah hahahhah hdhhdhdh hhdhdhdhhd</Text>
+            <Text>hahahhah hahahhah hdhhdhdh hhdhdhdhhd</Text>
+            <Text>hahahhah hahahhah hdhhdhdh hhdhdhdhhd</Text>
+            <Text>hahahhah hahahhah hdhhdhdh hhdhdhdhhd</Text>
+          </TouchableOpacity>
         </Tabs>
       </View>
     );
