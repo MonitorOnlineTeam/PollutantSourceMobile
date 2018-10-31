@@ -28,6 +28,9 @@ import NormalOperationTimeOfEquipment from './NormalOperationTimeOfEquipment'; /
 import AbnormalAlarmFrequency from './AbnormalAlarmFrequency'; //异常报警频次分析-
 import RoutineOperationTimes from './RoutineOperationTimes'; //例行运维频次分析-
 import ReportAdd from './ReportAdd'; //报备添加-
+//环保局
+import RealTimeMap from './RealTimeMap'; //地图一览- 
+import RealTimeVideo from './RealTimeVideo'; //实时视频- 
 //工作台配置
 import MainView from '../../containers/tabView/MainView';
 //路由配置
