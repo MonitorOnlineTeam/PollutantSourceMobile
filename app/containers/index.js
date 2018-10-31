@@ -69,7 +69,7 @@ import WeeklyCalendar from '../components/DetailedPage/WeeklyCalendar';
 import UserEvaluation from '../components/DetailedPage/UserEvaluation';
 import ReportAdd from '../components/DetailedPage/ReportAdd';
 import DataListEnterprise from '../components/DetailedPage/DataListEnterprise'; // 企业——数据一览路由
-import RealTimeMap from '../components/DetailedPage/RealTimeMap'; 
+import RealTimeMap from '../components/DetailedPage/RealTimeMap';
 import RealTimeVideo from '../components/DetailedPage/RealTimeVideo';
 // const MainNavigator = StackNavigator(
 //   {
