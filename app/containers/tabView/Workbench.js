@@ -71,7 +71,7 @@ class Workbench extends Component {
     //   { title: '预警信息' },
     // ];
     const tabs = [
-      { title: '任务审核' },
+      { title: '任务审核1' },
       { title: '任务调整' },
       { title: '报警信息' },
       { title: '逾期提醒' },
@@ -94,20 +94,52 @@ class Workbench extends Component {
       <View style={{ flex: 1, backgroundColor: '#F1F4F9' }}>
         <StatusBar backgroundColor={'#1895EF'} barStyle={'light-content'} />
         <Tabs tabs={tabs} initialPage={0}>
-          {/* <Badge dot> */}
-          <View style={style}>
-            <TaskAudit />
-          </View>
-          {/* </Badge> */}
-          <View style={style}>
-            <TaskAdjustment />
-          </View>
-          <View style={style}>
-            <ChargeAlarmInfo />
-          </View>
-          <View style={style}>
-            <OverdueReminding />
-          </View>
+        <TouchableOpacity
+               
+                onPress={event => {
+                  this.props.dispatch(
+                    NavigationActions.navigate({
+                      routeName: 'DataListEnterprise',
+                    })
+                  );
+                }}
+              >
+                <Text>
+                  hahahhah
+                  hahahhah
+                  hdhhdhdh
+                  hhdhdhdhhd
+
+                </Text>
+                <Text>
+                  hahahhah
+                  hahahhah
+                  hdhhdhdh
+                  hhdhdhdhhd
+
+                </Text>
+                <Text>
+                  hahahhah
+                  hahahhah
+                  hdhhdhdh
+                  hhdhdhdhhd
+
+                </Text>
+                <Text>
+                  hahahhah
+                  hahahhah
+                  hdhhdhdh
+                  hhdhdhdhhd
+
+                </Text>
+                <Text>
+                  hahahhah
+                  hahahhah
+                  hdhhdhdh
+                  hhdhdhdhhd
+
+                </Text>
+              </TouchableOpacity>
         </Tabs>
       </View>
     );
