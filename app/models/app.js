@@ -44,8 +44,8 @@ export default Model.extend({
        * 运维主管：2acd1422-8474-4709-8cfc-d8b7c4628fac
        * 运维人员：766f911d-5e41-4bbf-b705-add427a16e77
        * 监测专员：c2f18c7e-b735-42a0-91a1-96b886966ddc
-       * 
-      */
+       *
+       */
 
       if (account === 'system') {
         data = 'system';
@@ -137,7 +137,7 @@ export default Model.extend({
           let user = result.data;
           if (user !== null) {
             yield saveToken(user);
-            
+
             // //获取菜单权限并保存
             // const account = user.User_Account;
             // if (account === 'system') {

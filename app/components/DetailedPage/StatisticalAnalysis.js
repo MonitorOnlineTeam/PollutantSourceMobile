@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity, StatusBar } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  StatusBar,
+} from 'react-native';
 
 import { SCREEN_WIDTH } from '../../config/globalsize';
 import globalcolor from '../../config/globalcolor';
@@ -36,7 +43,6 @@ export default class StatisticalAnalysis extends Component {
           style={{ color: focused ? tintColor : 'gray' }}
         />
       ),
-
     };
   }
   constructor(props) {
@@ -48,9 +54,21 @@ export default class StatisticalAnalysis extends Component {
     return (
       <View style={{ flex: 1 }}>
         <StatusBar backgroundColor={'#1895EF'} barStyle={'light-content'} />
-        <View style={[{backgroundColor:'#1895EF',flexDirection:'row',justifyContent:'center',alignItems:'center',
-              width:SCREEN_WIDTH,height:48},]} >
-              <Text style={[{color:globalcolor.white,fontSize:20,}]}>{'统计分析'}</Text>
+        <View
+          style={[
+            {
+              backgroundColor: '#1895EF',
+              flexDirection: 'row',
+              justifyContent: 'center',
+              alignItems: 'center',
+              width: SCREEN_WIDTH,
+              height: 48,
+            },
+          ]}
+        >
+          <Text style={[{ color: globalcolor.white, fontSize: 20 }]}>
+            {'统计分析'}
+          </Text>
         </View>
         {/*主模块 */}
         <View style={[styles.MainView]}>

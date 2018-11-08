@@ -89,7 +89,7 @@ export default class EarlyWarningInfo extends Component {
             onClose={this.onClose}
             maskClosable={true}
             visible={this.state.visible}
-            modalVisible
+            modalVisible={true}
           >
             <View
               style={{

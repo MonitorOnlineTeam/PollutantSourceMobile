@@ -66,7 +66,7 @@ import {
 }))
 class DataList extends Component {
   static navigationOptions = {
-    tabBarLabel:'监控总览',
+    tabBarLabel: '监控总览',
     title: '监控总览',
     tabBarLabel: '监控总览',
     tabBarIcon: ({ focused, tintColor }) => (
@@ -89,9 +89,21 @@ class DataList extends Component {
     return (
       <View style={{ backgroundColor: '#F1F4F9', height: '100%' }}>
         <StatusBar backgroundColor={'#1895EF'} barStyle={'light-content'} />
-        <View style={[{backgroundColor:'#1895EF',flexDirection:'row',justifyContent:'center',alignItems:'center',
-              width:SCREEN_WIDTH,height:48},]} >
-              <Text style={[{color:globalcolor.white,fontSize:20,}]}>{'监控总览'}</Text>
+        <View
+          style={[
+            {
+              backgroundColor: '#1895EF',
+              flexDirection: 'row',
+              justifyContent: 'center',
+              alignItems: 'center',
+              width: SCREEN_WIDTH,
+              height: 48,
+            },
+          ]}
+        >
+          <Text style={[{ color: globalcolor.white, fontSize: 20 }]}>
+            {'监控总览'}
+          </Text>
         </View>
         <View style={styles.MainView}>
           <TouchableOpacity

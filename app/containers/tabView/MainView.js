@@ -30,12 +30,12 @@ class Main extends Component {
     };
   }
   static navigationOptions = ({ navigation }) => ({
-    header:null,
+    header: null,
     title: '主页',
     tabBarLable: '主页',
     headerBackTitle: null,
     headerTintColor: '#FFF',
-    headerStyle: { backgroundColor: '#1895EF', },
+    headerStyle: { backgroundColor: '#1895EF' },
     tabBarIcon: ({ focused, tintColor }) => (
       <Icon
         name={'clipboard'}
@@ -120,13 +120,16 @@ class Main extends Component {
       const SimpleAppNavigator = this.state.aa;
       SimpleAppNavigator.navigationOptions = ({ navigation }) => {
         const { routeName } = navigation.state.routes[navigation.state.index];
-      
+
         return {
           headerTitle: routeName,
         };
       };
-      return <SimpleAppNavigator onNavigationStateChange={(prevState, currentState, action) => {
-    }}/>;
+      return (
+        <SimpleAppNavigator
+          onNavigationStateChange={(prevState, currentState, action) => {}}
+        />
+      );
     }
   }
 }

@@ -44,7 +44,7 @@ class Workbench extends Component {
     tabBarLable: '工作台',
     headerBackTitle: null,
     headerTintColor: '#FFF',
-    headerStyle: { backgroundColor: '#1895EF', height:40 },
+    headerStyle: { backgroundColor: '#1895EF', height: 40 },
     tabBarIcon: ({ focused, tintColor }) => (
       <Icon
         name={'clipboard'}
@@ -70,9 +70,21 @@ class Workbench extends Component {
     return (
       <View style={{ flex: 1, backgroundColor: '#F1F4F9' }}>
         <StatusBar backgroundColor={'#1895EF'} barStyle={'light-content'} />
-        <View style={[{backgroundColor:'#1895EF',flexDirection:'row',justifyContent:'center',alignItems:'center',
-              width:SCREEN_WIDTH,height:48},]} >
-              <Text style={[{color:globalcolor.white,fontSize:20,}]}>{'工作台'}</Text>
+        <View
+          style={[
+            {
+              backgroundColor: '#1895EF',
+              flexDirection: 'row',
+              justifyContent: 'center',
+              alignItems: 'center',
+              width: SCREEN_WIDTH,
+              height: 48,
+            },
+          ]}
+        >
+          <Text style={[{ color: globalcolor.white, fontSize: 20 }]}>
+            {'工作台'}
+          </Text>
         </View>
         <Tabs tabs={tabs} initialPage={2}>
           <View style={style} />

@@ -85,28 +85,28 @@ class AlarmList extends Component {
     return (
       <ScrollView style={{ flex: 1, backgroundColor: '#f5f5f9' }}>
         <List renderHeader={() => 'basic'}>
-          <Item extra={this.state.extra} arrow="horizontal" multipleLine>
+          <Item extra={this.state.extra} arrow="horizontal" multipleLine={true}>
             锅炉小号烟囱1<Brief>法电供热</Brief>
           </Item>
-          <Item extra={this.state.extra} arrow="horizontal" multipleLine>
+          <Item extra={this.state.extra} arrow="horizontal" multipleLine={true}>
             锅炉小号烟囱2<Brief>法电供热</Brief>
           </Item>
-          <Item extra={this.state.extra} arrow="horizontal" multipleLine>
+          <Item extra={this.state.extra} arrow="horizontal" multipleLine={true}>
             锅炉小号烟囱3<Brief>法电供热</Brief>
           </Item>
-          <Item extra={this.state.extra} arrow="horizontal" multipleLine>
+          <Item extra={this.state.extra} arrow="horizontal" multipleLine={true}>
             锅炉小号烟囱4<Brief>法电供热</Brief>
           </Item>
-          <Item extra={this.state.extra} arrow="horizontal" multipleLine>
+          <Item extra={this.state.extra} arrow="horizontal" multipleLine={true}>
             锅炉小号烟囱5<Brief>法电供热</Brief>
           </Item>
-          <Item extra={this.state.extra} arrow="horizontal" multipleLine>
+          <Item extra={this.state.extra} arrow="horizontal" multipleLine={true}>
             锅炉小号烟囱6<Brief>法电供热</Brief>
           </Item>
-          <Item extra={this.state.extra} arrow="horizontal" multipleLine>
+          <Item extra={this.state.extra} arrow="horizontal" multipleLine={true}>
             锅炉小号烟囱7<Brief>法电供热</Brief>
           </Item>
-          <Item extra={this.state.extra} arrow="horizontal" multipleLine>
+          <Item extra={this.state.extra} arrow="horizontal" multipleLine={true}>
             锅炉小号烟囱8<Brief>法电供热</Brief>
           </Item>
         </List>

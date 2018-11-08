@@ -47,17 +47,34 @@ export default class My extends Component {
     return (
       <View>
         <StatusBar backgroundColor={'#1895EF'} barStyle={'light-content'} />
-          <View style={[{backgroundColor:'#1895EF',flexDirection:'row',justifyContent:'center',alignItems:'center',
-                width:SCREEN_WIDTH,height:48},]} >
-                <Text style={[{color:globalcolor.white,fontSize:20,}]}>{'监控总览'}</Text>
-          </View>
-          <ScrollView>
+        <View
+          style={[
+            {
+              backgroundColor: '#1895EF',
+              flexDirection: 'row',
+              justifyContent: 'center',
+              alignItems: 'center',
+              width: SCREEN_WIDTH,
+              height: 48,
+            },
+          ]}
+        >
+          <Text style={[{ color: globalcolor.white, fontSize: 20 }]}>
+            {'监控总览'}
+          </Text>
+        </View>
+        <ScrollView>
           {
             <View style={{ backgroundColor: '#F1F4F9', width: SCREEN_WIDTH }}>
               {/* 主模块 */}
               <View style={[styles.MainView, styles.UserView]}>
                 <Image
-                  style={{ width: 70, height: 70, borderRadius: 100, margin: 3 }}
+                  style={{
+                    width: 70,
+                    height: 70,
+                    borderRadius: 100,
+                    margin: 3,
+                  }}
                   source={require('../../images/userlogo.jpg')}
                 />
                 <Text style={{ fontSize: 18, color: '#2f2f2f', margin: 3 }}>
@@ -255,7 +272,9 @@ export default class My extends Component {
                   <Text style={{ flex: 1, fontSize: 14, color: '#000000' }}>
                     检查更新
                   </Text>
-                  <Text style={{ fontSize: 12, color: '#B5B5B5' }}>版本1.0</Text>
+                  <Text style={{ fontSize: 12, color: '#B5B5B5' }}>
+                    版本1.0
+                  </Text>
 
                   <WingBlank size="sm" />
                 </TouchableOpacity>
