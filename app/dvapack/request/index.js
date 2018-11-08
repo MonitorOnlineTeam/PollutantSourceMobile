@@ -28,9 +28,10 @@ const fetchtimeout = (requestPromise, timeout = 30000) => {
 };
 
 async function request(url, _options) {
-  let { neturl } = await getUseNetConfig();
+  // let { neturl } = await getUseNetConfig();
   // 替换为https
-  neturl = 'https://api.chsdl.cn/PMS15';
+  // neturl = 'https://api.chsdl.cn/PMS15';
+  let neturl = 'http://172.16.12.152:8011';
   const uri = new URI(neturl + url);
   const options = _options || {};
   options.method = options.method || 'GET';
@@ -43,7 +44,7 @@ async function request(url, _options) {
   }
   const resp = await fetch(uri.toString(), options);
   const text = await resp.text();
-  // console.log('RESP:', text);
+  console.log('RESP:', text);
   const json = await JSON.parse(text);
   // 如果请求失败
   if (resp.status !== 200) {

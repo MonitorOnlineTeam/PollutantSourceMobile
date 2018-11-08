@@ -1,5 +1,7 @@
 import { delay } from '../utils';
+import { post, get } from '../dvapack/request';
 import userlist from '../mockdata/User/userinfo.json';
+import api from '../config/globalapi';
 
 const users = userlist;
 export const login = async params => {
@@ -33,11 +35,18 @@ export const login = async params => {
 };
 
 export async function getNavigators(params) {
+  let url = api.system.getMenu;
   const body = {
     menu_id: 'c9b7ab20-2fd9-4009-81fd-e0413108a71a',
   };
-  let url =
-    '/api/rest/PollutantSourceApi/SysMenu/GetSysMenuByUserId?authorCode=48f3889c-af8d-401f-ada2-c383031af92d';
+  const resulta = await post(url, body, null);
+  console.log(resulta);
+
+  // const body = {
+  //   menu_id: 'c9b7ab20-2fd9-4009-81fd-e0413108a71a',
+  // };
+  // let url =
+  //   '/api/rest/PollutantSourceApi/SysMenu/GetSysMenuByUserId?authorCode=48f3889c-af8d-401f-ada2-c383031af92d';
   // const result = await post(url, body, null);
   const result = {
     requstresult: '1',
@@ -160,4 +169,5 @@ export async function getNavigators(params) {
     total: 0,
   };
   return result === null ? { data: null } : result;
+  
 }

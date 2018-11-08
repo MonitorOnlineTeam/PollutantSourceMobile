@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity, StatusBar } from 'react-native';
 
 import { SCREEN_WIDTH } from '../../config/globalsize';
+import globalcolor from '../../config/globalcolor';
 import { Grid } from 'antd-mobile-rn';
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
@@ -28,6 +29,14 @@ export default class StatisticalAnalysis extends Component {
           <Icon name={'angle-left'} size={32} style={{ color: '#ffffff' }} />
         </Text>
       ),
+      tabBarIcon: ({ focused, tintColor }) => (
+        <Icon
+          name={'area-chart'}
+          size={20}
+          style={{ color: focused ? tintColor : 'gray' }}
+        />
+      ),
+
     };
   }
   constructor(props) {
@@ -38,6 +47,11 @@ export default class StatisticalAnalysis extends Component {
   render() {
     return (
       <View style={{ flex: 1 }}>
+        <StatusBar backgroundColor={'#1895EF'} barStyle={'light-content'} />
+        <View style={[{backgroundColor:'#1895EF',flexDirection:'row',justifyContent:'center',alignItems:'center',
+              width:SCREEN_WIDTH,height:48},]} >
+              <Text style={[{color:globalcolor.white,fontSize:20,}]}>{'统计分析'}</Text>
+        </View>
         {/*主模块 */}
         <View style={[styles.MainView]}>
           <WhiteSpace size="sm" />

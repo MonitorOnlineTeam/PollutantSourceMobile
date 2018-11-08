@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   StatusBar,
 } from 'react-native';
-import { Grid, Tabs, NoticeBar, Badge, WhiteSpace } from 'antd-mobile-rn';
+import { Grid, Tabs, NoticeBar } from 'antd-mobile-rn';
 import { connect } from 'react-redux';
 import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
 import wholeSituationStyle from '../../config/wholeSituationStyle';
@@ -23,13 +23,9 @@ import {
   getPointEnterprise,
   // getEnterprise,
 } from '../../mockdata/Base/commonbase';
-
+import globalcolor from '../../config/globalcolor';
 import AlarmInfo from '../../components/DetailedPage/AlarmInfo';
 import EarlyWarningInfo from '../../components/DetailedPage/EarlyWarningInfo';
-import TaskAudit from '../../components/DetailedPage/TaskAudit';
-import TaskAdjustment from '../../components/DetailedPage/TaskAdjustment';
-import ChargeAlarmInfo from '../../components/DetailedPage/ChargeAlarmInfo';
-import OverdueReminding from '../../components/DetailedPage/OverdueReminding';
 /*
  * Copyright (c) 2018 SDL.All Rights Reserved
  *
@@ -48,7 +44,7 @@ class Workbench extends Component {
     tabBarLable: '工作台',
     headerBackTitle: null,
     headerTintColor: '#FFF',
-    headerStyle: { backgroundColor: '#1895EF' },
+    headerStyle: { backgroundColor: '#1895EF', height:40 },
     tabBarIcon: ({ focused, tintColor }) => (
       <Icon
         name={'clipboard'}
@@ -64,49 +60,28 @@ class Workbench extends Component {
   }
   async componentWillMount() {}
   render() {
-    // const tabs = [
-    //   { title: '应急任务' },
-    //   { title: '例行任务' },
-    //   { title: '报警信息' },
-    //   { title: '预警信息' },
-    // ];
     const tabs = [
-      { title: '任务审核' },
-      { title: '任务调整' },
+      { title: '应急任务' },
+      { title: '例行任务' },
       { title: '报警信息' },
-      { title: '逾期提醒' },
+      { title: '预警信息' },
     ];
 
     return (
-      // <View style={{ flex: 1, backgroundColor: '#F1F4F9' }}>
-      //   <StatusBar backgroundColor={'#1895EF'} barStyle={'light-content'} />
-      //   <Tabs tabs={tabs} initialPage={2}>
-      //     <View style={style} />
-      //     <View style={style} />
-      //     <View style={style}>
-      //       <AlarmInfo />
-      //     </View>react
-      //     <View style={style}>
-      //       <EarlyWarningInfo />
-      //     </View>
-      //   </Tabs>
-      // </View>
       <View style={{ flex: 1, backgroundColor: '#F1F4F9' }}>
         <StatusBar backgroundColor={'#1895EF'} barStyle={'light-content'} />
-        <Tabs tabs={tabs} initialPage={0}>
-          {/* <Badge dot> */}
+        <View style={[{backgroundColor:'#1895EF',flexDirection:'row',justifyContent:'center',alignItems:'center',
+              width:SCREEN_WIDTH,height:48},]} >
+              <Text style={[{color:globalcolor.white,fontSize:20,}]}>{'工作台'}</Text>
+        </View>
+        <Tabs tabs={tabs} initialPage={2}>
+          <View style={style} />
+          <View style={style} />
           <View style={style}>
-            <TaskAudit />
-          </View>
-          {/* </Badge> */}
-          <View style={style}>
-            <TaskAdjustment />
-          </View>
-          <View style={style}>
-            <ChargeAlarmInfo />
+            <AlarmInfo />
           </View>
           <View style={style}>
-            <OverdueReminding />
+            <EarlyWarningInfo />
           </View>
         </Tabs>
       </View>
@@ -117,7 +92,7 @@ const style = {
   width: '100%',
   alignItems: 'center',
   justifyContent: 'center',
-
+  flex: 1,
   backgroundColor: '#F1F4F9',
 };
 // make this component available to the app
