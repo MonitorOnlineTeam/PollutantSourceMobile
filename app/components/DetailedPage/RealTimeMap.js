@@ -708,7 +708,7 @@ class RealTimeMap extends Component {
         >
           {this._drawPoint()}
           <Modal
-            popup
+            popup={true}
             visible={this.state.visible2}
             animationType="slide-up"
             onClose={this.onClose2}
