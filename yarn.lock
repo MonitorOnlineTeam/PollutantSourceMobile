@@ -5604,6 +5604,12 @@ react-native-splash-screen@^3.0.9:
   version "3.0.9"
   resolved "http://registry.npm.taobao.org/react-native-splash-screen/download/react-native-splash-screen-3.0.9.tgz#5cdd026ae414d60cd86bcaa897bffacd16395bed"
 
+react-native-step-indicator@^0.0.9:
+  version "0.0.9"
+  resolved "http://registry.npm.taobao.org/react-native-step-indicator/download/react-native-step-indicator-0.0.9.tgz#939b78b43c131c048cf52493c4ed8a1bbc8ce034"
+  dependencies:
+    prop-types "^15.6.0"
+
 react-native-storage@^0.2.2:
   version "0.2.2"
   resolved "http://registry.npm.taobao.org/react-native-storage/download/react-native-storage-0.2.2.tgz#4449197f122b2da0650e3704e1f050260ed58d9f"
@@ -5643,6 +5649,10 @@ react-native-tab-view@^1.0.2:
   resolved "https://codeload.github.com/react-navigation/react-native-tab-view/tar.gz/36ebd834d78b841fc19778c966465d02fd1213bb"
   dependencies:
     prop-types "^15.6.0"
+
+react-native-timeline-listview@^0.2.3:
+  version "0.2.3"
+  resolved "http://registry.npm.taobao.org/react-native-timeline-listview/download/react-native-timeline-listview-0.2.3.tgz#e46b7f0fd2c2206329eee6194795e03899afe882"
 
 react-native-vector-icons@4.5.0:
   version "4.5.0"

@@ -57,6 +57,7 @@ import EarlyWarningInfo from './EarlyWarningInfo';
 import AlarmInfoData from '../components/DetailedPage/AlarmInfoData';
 import TaskAdjustmentList from '../components/DetailedPage/TaskAdjustmentList';
 import ExceptionAlarmRecord from '../components/DetailedPage/ExceptionAlarmRecord';
+import TransmissionTfficiency from '../components/DetailedPage/TransmissionTfficiency';
 import SignIn from '../components/DetailedPage/SignIn';
 import ExecutionTasks from '../components/DetailedPage/ExecutionTasks';
 import RecordSheet from '../components/DetailedPage/RecordSheet';
@@ -66,7 +67,10 @@ import StatisticalAnalysis from '../components/DetailedPage/StatisticalAnalysis'
 import OperationCalendar from '../components/DetailedPage/OperationCalendar';
 import WeeklyCalendar from '../components/DetailedPage/WeeklyCalendar';
 import UserEvaluation from '../components/DetailedPage/UserEvaluation';
-
+import ReportAdd from '../components/DetailedPage/ReportAdd';
+import DataListEnterprise from '../components/DetailedPage/DataListEnterprise'; // 企业——数据一览路由
+import RealTimeMap from '../components/DetailedPage/RealTimeMap';
+import RealTimeVideo from '../components/DetailedPage/RealTimeVideo';
 // const MainNavigator = StackNavigator(
 //   {
 //     // HomeNavigator: { screen: HomeNavigator },
@@ -132,7 +136,7 @@ export default StackNavigator(
     RecordSheet: { screen: RecordSheet },
     TaskDetails: { screen: TaskDetails },
     UserEvaluation: { screen: UserEvaluation },
-
+    RealTimeMap: { screen: RealTimeMap },
     SingleStationDetail: { screen: SingleStationDetail },
     HistoricalData: { screen: HistoricalData },
     _3DStation: { screen: _3DStation },
@@ -145,7 +149,10 @@ export default StackNavigator(
     HaltProduction: { screen: HaltProduction },
     SparePart: { screen: SparePart },
     PowerCut: { screen: PowerCut },
+    TransmissionTfficiency: { screen: TransmissionTfficiency },
+    ReportAdd: { screen: ReportAdd },
     QualityControl: { screen: QualityControl },
+    RealTimeVideo: { screen: RealTimeVideo },
     // DetailRouter:{ screen:DetailRouter},
 
     MyPhoneList: { screen: MyPhoneList },
@@ -153,6 +160,7 @@ export default StackNavigator(
     FileDOC: { screen: FileDOC },
     DisplayDOC: { screen: DisplayDOC },
     EarlyWarningInfo: { screen: EarlyWarningInfo },
+    DataListEnterprise: { screen: DataListEnterprise }, //DataListEnterprise
   },
   {
     lazyLoad: true,

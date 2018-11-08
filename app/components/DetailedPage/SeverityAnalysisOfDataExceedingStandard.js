@@ -26,106 +26,100 @@ import AlarmListInfoData from '../Assembly/AlarmListInfoData.json';
 const Item = List.Item;
 const Brief = Item.Brief;
 /*
- * @Description: 传输有效率列表.
+ * @Description: 数据超标严重程度分析.
  */
 @connect()
-export default class TransmissionTfficiency extends Component {
+export default class SeverityAnalysisOfDataExceedingStandard extends Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
 
   render() {
-    const TransmissionTfficiencyData = [
+    const SeverityAnalysisOfDataExceedingStandardData = [
       {
         PointName: '锅炉1号',
-        TransmissionRate: '100%',
-        EffectiveRate: '88%',
-        TransmissionTfficiency: '88%',
+        MinTimes: '1.2',
+        MaxTimes: '2.3',
+        AvgTimes: '2.1',
       },
       {
-        PointName: '锅炉1号',
-        TransmissionRate: '100%',
-        EffectiveRate: '88%',
-        TransmissionTfficiency: '88%',
+        PointName: '锅炉2号',
+        MinTimes: '1.2',
+        MaxTimes: '2.3',
+        AvgTimes: '2.1',
       },
       {
-        PointName: '锅炉1号',
-        TransmissionRate: '100%',
-        EffectiveRate: '88%',
-        TransmissionTfficiency: '88%',
+        PointName: '锅炉3号',
+        MinTimes: '1.2',
+        MaxTimes: '2.3',
+        AvgTimes: '2.1',
       },
       {
-        PointName: '锅炉1号',
-        TransmissionRate: '100%',
-        EffectiveRate: '88%',
-        TransmissionTfficiency: '88%',
+        PointName: '锅炉4号',
+        MinTimes: '1.2',
+        MaxTimes: '2.3',
+        AvgTimes: '2.1',
       },
       {
-        PointName: '锅炉1号',
-        TransmissionRate: '100%',
-        EffectiveRate: '88%',
-        TransmissionTfficiency: '88%',
+        PointName: '锅炉5号',
+        MinTimes: '1.2',
+        MaxTimes: '2.3',
+        AvgTimes: '2.1',
       },
       {
-        PointName: '锅炉1号',
-        TransmissionRate: '100%',
-        EffectiveRate: '88%',
-        TransmissionTfficiency: '88%',
+        PointName: '锅炉6号',
+        MinTimes: '1.2',
+        MaxTimes: '2.3',
+        AvgTimes: '2.1',
       },
       {
-        PointName: '锅炉1号',
-        TransmissionRate: '100%',
-        EffectiveRate: '88%',
-        TransmissionTfficiency: '88%',
+        PointName: '锅炉7号',
+        MinTimes: '1.2',
+        MaxTimes: '2.3',
+        AvgTimes: '2.1',
       },
       {
-        PointName: '锅炉1号',
-        TransmissionRate: '100%',
-        EffectiveRate: '88%',
-        TransmissionTfficiency: '88%',
+        PointName: '锅炉8号',
+        MinTimes: '1.2',
+        MaxTimes: '2.3',
+        AvgTimes: '2.1',
       },
       {
-        PointName: '锅炉1号',
-        TransmissionRate: '100%',
-        EffectiveRate: '88%',
-        TransmissionTfficiency: '88%',
+        PointName: '锅炉9号',
+        MinTimes: '1.2',
+        MaxTimes: '2.3',
+        AvgTimes: '2.1',
       },
       {
-        PointName: '锅炉1号',
-        TransmissionRate: '100%',
-        EffectiveRate: '88%',
-        TransmissionTfficiency: '88%',
+        PointName: '锅炉10号',
+        MinTimes: '1.2',
+        MaxTimes: '2.3',
+        AvgTimes: '2.1',
       },
       {
-        PointName: '锅炉1号',
-        TransmissionRate: '100%',
-        EffectiveRate: '88%',
-        TransmissionTfficiency: '88%',
+        PointName: '锅炉11号',
+        MinTimes: '1.2',
+        MaxTimes: '2.3',
+        AvgTimes: '2.1',
       },
       {
-        PointName: '锅炉1号',
-        TransmissionRate: '100%',
-        EffectiveRate: '88%',
-        TransmissionTfficiency: '88%',
+        PointName: '锅炉12号',
+        MinTimes: '1.2',
+        MaxTimes: '2.3',
+        AvgTimes: '2.1',
       },
       {
-        PointName: '锅炉1号',
-        TransmissionRate: '100%',
-        EffectiveRate: '88%',
-        TransmissionTfficiency: '88%',
+        PointName: '锅炉13号',
+        MinTimes: '1.2',
+        MaxTimes: '2.3',
+        AvgTimes: '2.1',
       },
       {
-        PointName: '锅炉1号',
-        TransmissionRate: '100%',
-        EffectiveRate: '88%',
-        TransmissionTfficiency: '88%',
-      },
-      {
-        PointName: '锅炉1号',
-        TransmissionRate: '100%',
-        EffectiveRate: '88%',
-        TransmissionTfficiency: '88%',
+        PointName: '锅炉14号',
+        MinTimes: '1.2',
+        MaxTimes: '2.3',
+        AvgTimes: '2.1',
       },
     ];
     return (
@@ -145,19 +139,19 @@ export default class TransmissionTfficiency extends Component {
               flexDirection: 'row',
             }}
           >
-            <View style={{ width: '25%' }}>
+            <View style={{ width: '22%' }}>
               <Text
                 style={{ textAlign: 'center', fontSize: 13, lineHeight: 50 }}
               >
                 排口名
               </Text>
             </View>
-            <View style={{ width: '23%', flexDirection: 'row' }}>
-              <View style={{ flex: 2 }}>
+            <View style={{ width: '26%', flexDirection: 'row' }}>
+              <View style={{ flex: 3 }}>
                 <Text
                   style={{ fontSize: 13, lineHeight: 50, textAlign: 'right' }}
                 >
-                  传输率
+                  最小倍数
                 </Text>
               </View>
               <View
@@ -176,12 +170,12 @@ export default class TransmissionTfficiency extends Component {
               </View>
             </View>
 
-            <View style={{ width: '23%', flexDirection: 'row' }}>
-              <View style={{ flex: 2 }}>
+            <View style={{ width: '26%', flexDirection: 'row' }}>
+              <View style={{ flex: 3 }}>
                 <Text
                   style={{ fontSize: 13, lineHeight: 50, textAlign: 'right' }}
                 >
-                  有效率
+                  最大倍数
                 </Text>
               </View>
               <View
@@ -200,12 +194,12 @@ export default class TransmissionTfficiency extends Component {
               </View>
             </View>
 
-            <View style={{ width: '29%', flexDirection: 'row' }}>
-              <View style={{ flex: 5 }}>
+            <View style={{ width: '26%', flexDirection: 'row' }}>
+              <View style={{ flex: 3 }}>
                 <Text
                   style={{ fontSize: 13, lineHeight: 50, textAlign: 'right' }}
                 >
-                  传输有效率
+                  平均倍数
                 </Text>
               </View>
               <View
@@ -227,7 +221,7 @@ export default class TransmissionTfficiency extends Component {
         </View>
 
         <FlatList
-          data={TransmissionTfficiencyData}
+          data={SeverityAnalysisOfDataExceedingStandardData}
           renderItem={({ item }) => (
             <View
               style={{
@@ -253,7 +247,7 @@ export default class TransmissionTfficiency extends Component {
                 >
                   {/* <Text style={{ fontWeight: 'bold' }}>{item.PointName}</Text>
                     <Text>{item.EntName}</Text> */}
-                  <View style={{ width: '25%' }}>
+                  <View style={{ width: '22%' }}>
                     <Text
                       style={{
                         textAlign: 'center',
@@ -264,7 +258,7 @@ export default class TransmissionTfficiency extends Component {
                       {item.PointName}
                     </Text>
                   </View>
-                  <View style={{ width: '23%' }}>
+                  <View style={{ width: '26%' }}>
                     <Text
                       style={{
                         textAlign: 'center',
@@ -272,10 +266,10 @@ export default class TransmissionTfficiency extends Component {
                         lineHeight: 40,
                       }}
                     >
-                      {item.TransmissionRate}
+                      {item.MinTimes}
                     </Text>
                   </View>
-                  <View style={{ width: '23%' }}>
+                  <View style={{ width: '26%' }}>
                     <Text
                       style={{
                         textAlign: 'center',
@@ -283,10 +277,10 @@ export default class TransmissionTfficiency extends Component {
                         lineHeight: 40,
                       }}
                     >
-                      {item.EffectiveRate}
+                      {item.MaxTimes}
                     </Text>
                   </View>
-                  <View style={{ width: '29%' }}>
+                  <View style={{ width: '26%' }}>
                     <Text
                       style={{
                         textAlign: 'center',
@@ -294,7 +288,7 @@ export default class TransmissionTfficiency extends Component {
                         lineHeight: 40,
                       }}
                     >
-                      {item.TransmissionTfficiency}
+                      {item.AvgTimes}
                     </Text>
                   </View>
                 </View>

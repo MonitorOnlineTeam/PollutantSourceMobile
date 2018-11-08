@@ -275,6 +275,28 @@
                     "fontcolor":"#000"
                 }
             ],
+            "states":[
+                {
+                    "defaultValue":"正常",
+                    "bgcolor":"#79C403",
+                    "fontcolor":"#fff"
+                },
+                {
+                    "defaultValue":"超标",
+                    "bgcolor":"#F40000",
+                    "fontcolor":"#fff"
+                },
+                {
+                    "defaultValue":"停产",
+                    "bgcolor":"#A8A9A9",
+                    "fontcolor":"#fff"
+                },
+                {
+                    "defaultValue":"故障",
+                    "bgcolor":"#F5B205",
+                    "fontcolor":"#000"
+                }
+            ],
             "operation":[
                 {
                     "defaultValue":"正常",

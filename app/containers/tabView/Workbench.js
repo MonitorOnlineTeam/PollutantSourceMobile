@@ -95,6 +95,21 @@ class Workbench extends Component {
           <View style={style}>
             <EarlyWarningInfo />
           </View>
+          <TouchableOpacity
+            onPress={event => {
+              this.props.dispatch(
+                NavigationActions.navigate({
+                  routeName: 'DataListEnterprise',
+                })
+              );
+            }}
+          >
+            <Text>hahahhah hahahhah hdhhdhdh hhdhdhdhhd</Text>
+            <Text>hahahhah hahahhah hdhhdhdh hhdhdhdhhd</Text>
+            <Text>hahahhah hahahhah hdhhdhdh hhdhdhdhhd</Text>
+            <Text>hahahhah hahahhah hdhhdhdh hhdhdhdhhd</Text>
+            <Text>hahahhah hahahhah hdhhdhdh hhdhdhdhhd</Text>
+          </TouchableOpacity>
         </Tabs>
       </View>
     );

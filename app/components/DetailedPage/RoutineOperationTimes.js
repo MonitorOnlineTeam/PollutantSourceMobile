@@ -26,106 +26,88 @@ import AlarmListInfoData from '../Assembly/AlarmListInfoData.json';
 const Item = List.Item;
 const Brief = Item.Brief;
 /*
- * @Description: 传输有效率列表.
+ * @Description: 例行运维频次列表.
  */
 @connect()
-export default class TransmissionTfficiency extends Component {
+export default class RoutineOperationTimes extends Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
 
   render() {
-    const TransmissionTfficiencyData = [
+    const RoutineOperationTimesData = [
       {
         PointName: '锅炉1号',
-        TransmissionRate: '100%',
-        EffectiveRate: '88%',
-        TransmissionTfficiency: '88%',
+        TransmissionTfficiency: '20',
+        Processed: '10',
+        color: '#ED3334',
       },
       {
         PointName: '锅炉1号',
-        TransmissionRate: '100%',
-        EffectiveRate: '88%',
-        TransmissionTfficiency: '88%',
+        TransmissionTfficiency: '20',
+        Processed: '10',
+        color: '#ED3334',
       },
       {
         PointName: '锅炉1号',
-        TransmissionRate: '100%',
-        EffectiveRate: '88%',
-        TransmissionTfficiency: '88%',
+        TransmissionTfficiency: '20',
+        Processed: '10',
+        color: '#ED3334',
       },
       {
         PointName: '锅炉1号',
-        TransmissionRate: '100%',
-        EffectiveRate: '88%',
-        TransmissionTfficiency: '88%',
+        TransmissionTfficiency: '20',
+        Processed: '10',
+        color: '#ED3334',
       },
       {
         PointName: '锅炉1号',
-        TransmissionRate: '100%',
-        EffectiveRate: '88%',
-        TransmissionTfficiency: '88%',
+        TransmissionTfficiency: '20',
+        Processed: '10',
+        color: '#0EAF5F',
       },
       {
         PointName: '锅炉1号',
-        TransmissionRate: '100%',
-        EffectiveRate: '88%',
-        TransmissionTfficiency: '88%',
+        TransmissionTfficiency: '20',
+        Processed: '10',
+        color: '#0EAF5F',
       },
       {
         PointName: '锅炉1号',
-        TransmissionRate: '100%',
-        EffectiveRate: '88%',
-        TransmissionTfficiency: '88%',
+        TransmissionTfficiency: '20',
+        Processed: '10',
+        color: '#0EAF5F',
       },
       {
         PointName: '锅炉1号',
-        TransmissionRate: '100%',
-        EffectiveRate: '88%',
-        TransmissionTfficiency: '88%',
+        TransmissionTfficiency: '20',
+        Processed: '10',
+        color: '#0EAF5F',
       },
       {
         PointName: '锅炉1号',
-        TransmissionRate: '100%',
-        EffectiveRate: '88%',
-        TransmissionTfficiency: '88%',
+        TransmissionTfficiency: '20',
+        Processed: '10',
+        color: '#0EAF5F',
       },
       {
         PointName: '锅炉1号',
-        TransmissionRate: '100%',
-        EffectiveRate: '88%',
-        TransmissionTfficiency: '88%',
+        TransmissionTfficiency: '20',
+        Processed: '10',
+        color: '#0EAF5F',
       },
       {
         PointName: '锅炉1号',
-        TransmissionRate: '100%',
-        EffectiveRate: '88%',
-        TransmissionTfficiency: '88%',
+        TransmissionTfficiency: '20',
+        Processed: '10',
+        color: '#0EAF5F',
       },
       {
         PointName: '锅炉1号',
-        TransmissionRate: '100%',
-        EffectiveRate: '88%',
-        TransmissionTfficiency: '88%',
-      },
-      {
-        PointName: '锅炉1号',
-        TransmissionRate: '100%',
-        EffectiveRate: '88%',
-        TransmissionTfficiency: '88%',
-      },
-      {
-        PointName: '锅炉1号',
-        TransmissionRate: '100%',
-        EffectiveRate: '88%',
-        TransmissionTfficiency: '88%',
-      },
-      {
-        PointName: '锅炉1号',
-        TransmissionRate: '100%',
-        EffectiveRate: '88%',
-        TransmissionTfficiency: '88%',
+        TransmissionTfficiency: '20',
+        Processed: '10',
+        color: '#0EAF5F',
       },
     ];
     return (
@@ -145,19 +127,19 @@ export default class TransmissionTfficiency extends Component {
               flexDirection: 'row',
             }}
           >
-            <View style={{ width: '25%' }}>
+            <View style={{ width: '28%' }}>
               <Text
                 style={{ textAlign: 'center', fontSize: 13, lineHeight: 50 }}
               >
                 排口名
               </Text>
             </View>
-            <View style={{ width: '23%', flexDirection: 'row' }}>
-              <View style={{ flex: 2 }}>
+            <View style={{ width: '36%', flexDirection: 'row' }}>
+              <View style={{ flex: 4 }}>
                 <Text
                   style={{ fontSize: 13, lineHeight: 50, textAlign: 'right' }}
                 >
-                  传输率
+                  实际例行次数
                 </Text>
               </View>
               <View
@@ -175,37 +157,12 @@ export default class TransmissionTfficiency extends Component {
                 />
               </View>
             </View>
-
-            <View style={{ width: '23%', flexDirection: 'row' }}>
-              <View style={{ flex: 2 }}>
+            <View style={{ width: '36%', flexDirection: 'row' }}>
+              <View style={{ flex: 4 }}>
                 <Text
                   style={{ fontSize: 13, lineHeight: 50, textAlign: 'right' }}
                 >
-                  有效率
-                </Text>
-              </View>
-              <View
-                style={{
-                  width: '5%',
-                  height: 50,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  flex: 1,
-                }}
-              >
-                <Image
-                  style={{ width: 10, height: 10 }}
-                  source={require('../../images/shangxiajiantou.png')}
-                />
-              </View>
-            </View>
-
-            <View style={{ width: '29%', flexDirection: 'row' }}>
-              <View style={{ flex: 5 }}>
-                <Text
-                  style={{ fontSize: 13, lineHeight: 50, textAlign: 'right' }}
-                >
-                  传输有效率
+                  计划例行次数
                 </Text>
               </View>
               <View
@@ -225,9 +182,8 @@ export default class TransmissionTfficiency extends Component {
             </View>
           </View>
         </View>
-
         <FlatList
-          data={TransmissionTfficiencyData}
+          data={RoutineOperationTimesData}
           renderItem={({ item }) => (
             <View
               style={{
@@ -242,60 +198,58 @@ export default class TransmissionTfficiency extends Component {
                   marginLeft: '5%',
                 }}
               >
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    width: '100%',
-                    backgroundColor: '#FFFFFF',
-                    height: 40,
-                    borderRadius: 3,
-                  }}
-                >
-                  {/* <Text style={{ fontWeight: 'bold' }}>{item.PointName}</Text>
-                    <Text>{item.EntName}</Text> */}
-                  <View style={{ width: '25%' }}>
-                    <Text
-                      style={{
-                        textAlign: 'center',
-                        fontSize: 14,
-                        lineHeight: 40,
-                      }}
-                    >
-                      {item.PointName}
-                    </Text>
-                  </View>
-                  <View style={{ width: '23%' }}>
-                    <Text
-                      style={{
-                        textAlign: 'center',
-                        fontSize: 14,
-                        lineHeight: 40,
-                      }}
-                    >
-                      {item.TransmissionRate}
-                    </Text>
-                  </View>
-                  <View style={{ width: '23%' }}>
-                    <Text
-                      style={{
-                        textAlign: 'center',
-                        fontSize: 14,
-                        lineHeight: 40,
-                      }}
-                    >
-                      {item.EffectiveRate}
-                    </Text>
-                  </View>
-                  <View style={{ width: '29%' }}>
-                    <Text
-                      style={{
-                        textAlign: 'center',
-                        fontSize: 14,
-                        lineHeight: 40,
-                      }}
-                    >
-                      {item.TransmissionTfficiency}
-                    </Text>
+                <View style={{ flexDirection: 'row' }}>
+                  <View
+                    style={{
+                      width: '1%',
+                      backgroundColor: item.color,
+                      height: 40,
+                      borderRadius: 3,
+                    }}
+                  />
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      width: '99%',
+                      backgroundColor: '#FFFFFF',
+                      height: 40,
+                      borderBottomRightRadius: 3,
+                      borderTopRightRadius: 3,
+                    }}
+                  >
+                    <View style={{ width: '28%' }}>
+                      <Text
+                        style={{
+                          textAlign: 'center',
+                          fontSize: 14,
+                          lineHeight: 40,
+                        }}
+                      >
+                        {item.PointName}
+                      </Text>
+                    </View>
+                    <View style={{ width: '36%' }}>
+                      <Text
+                        style={{
+                          textAlign: 'center',
+                          fontSize: 14,
+                          lineHeight: 40,
+                        }}
+                      >
+                        {item.TransmissionTfficiency}
+                      </Text>
+                    </View>
+                    <View style={{ width: '36%' }}>
+                      <Text
+                        style={{
+                          textAlign: 'center',
+                          fontSize: 14,
+                          lineHeight: 40,
+                        }}
+                      >
+                        {item.Processed}
+                      </Text>
+                    </View>
                   </View>
                 </View>
               </TouchableOpacity>
