@@ -75,11 +75,9 @@ class Main extends Component {
             if (e.text === '数据') {
               nav.DataList = { screen: DataList };
             } else if (e.text === '报警') {
-
             } else if (e.text === '工作台') {
               nav.Workbench = { screen: Workbench };
             } else if (e.text === '记录') {
-              
             } else if (e.text === '我的') {
               nav.Account = { screen: Account };
             }
