@@ -65,12 +65,21 @@ class Main extends Component {
               nav.Account = { screen: Account };
             }
           } else if (r.text === '监测专员') {
+            /**
+             * 0:{id: "02e6312f-5046-4853-af9b-d56c0bbedd06", text: "数据", Menu_Img: "16/16", children: Array(0)}
+               1:{id: "f30f97d3-402e-49f2-a3a0-a12c613ac821", text: "报警", Menu_Img: "16/16", children: Array(0)}
+               2:{id: "8f41f719-780d-47d2-8e77-5b401c6ad941", text: "工作台", Menu_Img: "16/16", children: Array(0)}
+               3:{id: "4aed1c92-d970-4121-b0df-15727703eab9", text: "记录", Menu_Img: "16/16", children: Array(0)}
+               4:{id: "29d5609e-27d8-4c70-979a-9b247c08224a", text: "我的", Menu_Img: "16/16", children: Array(0)}
+            */
             if (e.text === '数据') {
               nav.DataList = { screen: DataList };
             } else if (e.text === '报警') {
+
             } else if (e.text === '工作台') {
               nav.Workbench = { screen: Workbench };
             } else if (e.text === '记录') {
+              
             } else if (e.text === '我的') {
               nav.Account = { screen: Account };
             }

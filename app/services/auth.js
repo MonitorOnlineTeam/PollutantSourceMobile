@@ -168,5 +168,6 @@ export async function getNavigators(params) {
     ],
     total: 0,
   };
-  return result === null ? { data: null } : result;
+  // return result === null ? { data: null } : result;
+  return resulta === null ? { data: null } : resulta;
 }
